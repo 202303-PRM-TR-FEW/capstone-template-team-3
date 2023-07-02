@@ -15,13 +15,17 @@ const RootLayout = ({ children }) => {
                         href="/"
                         className="mx-5"
                     >
-                        Home Link
+                        Home
                     </Link>
                     <Link
-                        href="/example-page"
+                        href="/Projects"
                         className="mx-5"
                     >
-                        Example Page Link
+                        My projects
+                    </Link>
+                    <Link href='/Profile'
+                        className="mx-5">
+                        Profile
                     </Link>
                 </nav>
                 {children}
