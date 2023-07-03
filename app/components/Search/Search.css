@@ -1,6 +1,7 @@
-.search {
-  margin: 0px 0px 0px 5px;
-  width: 100%;
-  padding: 0.625rem /* 10px */;
-  display: block;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5;
 }
