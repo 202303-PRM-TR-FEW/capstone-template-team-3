@@ -1,4 +1,7 @@
 import NavLink from "../NavLink/NavLink";
+
+//Comment to be deleted
+
 const Navbar = () => {
     return (
         <nav>
