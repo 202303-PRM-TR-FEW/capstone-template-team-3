@@ -1,10 +1,3 @@
 .logo {
-  flex-grow: 1;
-
-  font-size: 18px;
-  text-transform: none;
-
-  visibility: visible;
-  color: rgb(10, 10, 10);
-  font-family: "Krona One";
+  margin: 0px 5px 0px 0px;
 }
