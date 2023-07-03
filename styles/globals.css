@@ -9,5 +9,5 @@ body {
 }
 
 .example {
-  @apply font-krona text-[#0a0a0a] container mx-auto flex flex-col items-center p-5 text-[18px]
+  @apply font-krona text-[#0a0a0a] text-[18px]
 }

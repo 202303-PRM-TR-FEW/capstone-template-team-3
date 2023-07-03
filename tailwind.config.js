@@ -10,7 +10,11 @@ module.exports = {
       fontFamily: {
         krona: ['Krona One', 'sans-serif']
       },
+      colors: {
+        "theme": "rgb(212, 238, 38)",
+        "accent": "rgb(250, 250, 250)"
+      }
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 }

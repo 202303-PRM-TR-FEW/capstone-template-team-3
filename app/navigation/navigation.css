@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navigation-main {
+    @apply bg-accent flex justify-center py-20 container mx-auto
+}
+
+.option-paragraph {
+    @apply text-[32px] py-10 text-center
+}
+
+.support-main {
+    @apply text-[64px]
+}
+
+.support-appendix,
+.inform-text {
+    @apply text-[32px]
+}
