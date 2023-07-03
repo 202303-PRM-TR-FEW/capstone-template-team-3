@@ -1,15 +1,15 @@
 import NavLink from "../NavLink/NavLink";
-
-//Comment to be deleted
+import Logo from "../Logo/Logo";
 
 const Navbar = () => {
-    return (
-        <nav>
-            <NavLink to='/' name='Home'/>
-            <NavLink to='/my-projects' name='My Projects'/>
-            <NavLink to='/profile' name='Profile'/>
-        </nav>
-    );
+  return (
+    <nav className="flex justify-between">
+      <Logo to="/" />
+      <NavLink to="/" name="Home" />
+      <NavLink to="/my-projects" name="My Projects" />
+      <NavLink to="/profile" name="Profile" />
+    </nav>
+  );
 };
 
 export default Navbar;
