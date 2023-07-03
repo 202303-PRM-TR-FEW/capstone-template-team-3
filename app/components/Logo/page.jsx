@@ -1,10 +1,13 @@
 import React from "react";
 import styles from "styles/logo.module.css";
+import Link from "next/link";
 
-const Logo = () => {
+const Logo = ({ to }) => {
   return (
     <div className={styles.logo}>
-      <p>Givingly</p>
+      <Link href={to}>
+        <p>Givingly</p>
+      </Link>
     </div>
   );
 };
