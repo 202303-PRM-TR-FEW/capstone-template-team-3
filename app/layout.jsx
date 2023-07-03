@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import Link from "next/link";
+import Navbar from "./components/Navbar/Navbar";
 
 export const metadata = {
     title: "Givingly",
@@ -10,20 +10,7 @@ const RootLayout = ({ children }) => {
     return (
         <html lang="en">
             <body className="example">
-                <nav>
-                    <Link
-                        href="/"
-                        className="mx-5"
-                    >
-                        Home Link
-                    </Link>
-                    <Link
-                        href="/example-page"
-                        className="mx-5"
-                    >
-                        Example Page Link
-                    </Link>
-                </nav>
+                <Navbar/>
                 {children}
             </body>
         </html>
