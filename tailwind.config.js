@@ -8,9 +8,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        krona: ['Krona One', 'sans-serif']
+        krona: ['Krona One', 'sans-serif'],
+        mulish: ['Mulish', 'sans-serif']
       },
+      colors: {
+        "theme": "rgb(212, 238, 38)",
+        "accent": "rgb(250, 250, 250)"
+      }
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 }
