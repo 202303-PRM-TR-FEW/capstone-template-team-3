@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -9,5 +9,5 @@ body {
 }
 
 .example {
-  @apply font-krona text-[#0a0a0a] container mx-auto flex flex-col items-center p-5 text-[18px]
+  @apply font-krona text-[#0a0a0a] text-[18px];
 }
