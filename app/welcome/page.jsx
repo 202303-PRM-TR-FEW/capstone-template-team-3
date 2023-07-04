@@ -1,4 +1,5 @@
 import "./welcome.css";
+import Link from "next/link";
 
 const WelcomePage = () => {
   return (
@@ -24,13 +25,10 @@ const WelcomePage = () => {
               and get your idea kicked off or support <br></br> others kick off
               their amazing projects.
             </p>
-
-            <button className="leading-button">Start today</button>
+            <Link href="/navigation">
+              <button className="leading-button">Start today</button>
+            </Link>
           </div>
-          {/* <!--Right Col--> */}
-          {/* <div className="w-full md:w-3/5 py-6 text-center">
-            <img className="w-full md:w-4/5 z-50" src="/welcomepage.png" />
-          </div> */}
         </div>
       </div>
     </div>
