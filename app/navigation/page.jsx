@@ -1,4 +1,6 @@
 import "./navigation.css"
+import Image from "next/image"
+import navigationBanner from "public/assets/images/navigation-banner.png"
 
 const Navigation = () => {
     return (
@@ -25,7 +27,9 @@ const Navigation = () => {
                 <div className="newsletter-container">
                     <div>
                         <div className="newsletter-banner-container">
-                            <img src="https://assets.api.uizard.io/api/cdn/stream/e0453b28-0e1c-49c7-a0bc-629da3689327.png" alt="Illustration of a hand holding green hearts near books." className="newsletter-banner" />
+                            <Image src={navigationBanner}
+                                alt="Illustration of a hand holding green hearts near books." className="newsletter-banner"
+                                priority={true} />
                         </div>
                     </div>
                     <article className="newsletter-text-container">
