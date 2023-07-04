@@ -1,5 +1,5 @@
+import NavLink from "../components/NavLink/NavLink";
 import "./welcome.css";
-import Link from "next/link";
 
 const WelcomePage = () => {
   return (
@@ -25,9 +25,11 @@ const WelcomePage = () => {
               and get your idea kicked off or support <br></br> others kick off
               their amazing projects.
             </p>
-            <Link href="/navigation">
-              <button className="leading-button">Start today</button>
-            </Link>
+            <NavLink to="/navigation">
+              <button type="button" className="leading-button">
+                Start today
+              </button>
+            </NavLink>
           </div>
         </div>
       </div>

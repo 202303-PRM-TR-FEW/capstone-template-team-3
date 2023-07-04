@@ -1,11 +1,12 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-const NavLink = ({ to, name }) => {
-    return (
-        <Link href={to} className="mx-5">
-            {name}
-        </Link>
-    );
+const NavLink = ({ to, name, children }) => {
+  return (
+    <Link href={to}>
+      {name}
+      {children}
+    </Link>
+  );
 };
 
 export default NavLink;
