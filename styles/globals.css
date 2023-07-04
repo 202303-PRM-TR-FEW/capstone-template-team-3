@@ -10,5 +10,6 @@ body {
 }
 
 .example {
-  @apply font-krona text-[#0a0a0a] text-[18px]
+  @apply font-krona text-[#0a0a0a] text-[18px];
 }
+

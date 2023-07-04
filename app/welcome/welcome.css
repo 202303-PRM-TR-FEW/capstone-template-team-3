@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.welcome {
+  @apply h-screen pt-24 ;
+}
+
+.container {
+  @apply  px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center;
+}
+
+.leading-left {
+  @apply flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left ml-10;
+}
+
+.leading-header {
+  @apply  text-7xl font-bold mb-10;
+}
+
+.leading-normal {
+  @apply text-2xl mb-8;
+}
+
+.leading-sub-normal {
+  @apply text-sm mb-8;
+}
+
+.leading-button {
+  @apply mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg;
+}
+
+
