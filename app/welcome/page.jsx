@@ -1,3 +1,4 @@
+import NavLink from "../components/NavLink/NavLink";
 import "./welcome.css";
 
 const WelcomePage = () => {
@@ -24,13 +25,12 @@ const WelcomePage = () => {
               and get your idea kicked off or support <br></br> others kick off
               their amazing projects.
             </p>
-
-            <button className="leading-button">Start today</button>
+            <NavLink to="/navigation">
+              <button type="button" className="leading-button">
+                Start today
+              </button>
+            </NavLink>
           </div>
-          {/* <!--Right Col--> */}
-          {/* <div className="w-full md:w-3/5 py-6 text-center">
-            <img className="w-full md:w-4/5 z-50" src="/welcomepage.png" />
-          </div> */}
         </div>
       </div>
     </div>
