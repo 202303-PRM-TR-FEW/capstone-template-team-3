@@ -5,8 +5,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: rgb(212, 238, 38);
+.body-bg {
+  @apply bg-accent
 }
 
 .example {

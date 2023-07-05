@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.input {
-  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5;
+input.search-input {
+  @apply bg-accent text-gray-900 rounded-lg focus:ring-0 block w-[20rem] p-2.5 border-0 h-11;
 }

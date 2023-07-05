@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.welcome-bg {
+  @apply bg-theme
+}
+
 .welcome {
-  @apply h-screen pt-24 ;
+  @apply h-screen;
 }
 
 .container {
