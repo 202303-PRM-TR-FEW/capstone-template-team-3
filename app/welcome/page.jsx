@@ -25,11 +25,11 @@ const WelcomePage = () => {
               and get your idea kicked off or support <br></br> others kick off
               their amazing projects.
             </p>
-            <NavLink to="/navigation">
-              <button type="button" className="leading-button">
-                Start today
-              </button>
-            </NavLink>
+            <NavLink
+              to="/navigation"
+              name="Start today"
+              style="leading-button"
+            ></NavLink>
           </div>
         </div>
       </div>

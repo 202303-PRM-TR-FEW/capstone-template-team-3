@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .welcome {
-  @apply h-screen pt-24 ;
+  @apply h-screen pt-24;
 }
 
 .container {
-  @apply  px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center;
+  @apply px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center;
 }
 
 .leading-left {
@@ -15,7 +15,7 @@
 }
 
 .leading-header {
-  @apply  text-7xl font-bold mb-10;
+  @apply text-7xl font-bold mb-10;
 }
 
 .leading-normal {
@@ -27,7 +27,5 @@
 }
 
 .leading-button {
-  @apply mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg;
+  @apply text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mr-2 mb-2 w-[16.5rem];
 }
-
-
