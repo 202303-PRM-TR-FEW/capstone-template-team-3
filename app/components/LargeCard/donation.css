@@ -13,7 +13,6 @@
   white-space: pre-line;
   opacity: 1;
   visibility: visible;
-  font-family: "Krona One";
 }
 
 .project-text {
@@ -63,15 +62,16 @@
 .project-title {
   font-family: "Krona One";
   font-size: 27px;
-  font-weight: bold;
   margin: 1.8rem;
 }
+
 .project-descripe{
-  font-family:'Times New Roman', Times, serif;
-  font-size: 20px;
-  font-weight: bold;
+  font-family: 'Krona One', sans-serif;
+  font-size: 16px;
+  color:rgb(201, 201, 201);
   margin: 1.8rem;
 }
+
 .custom-container {
   top: 572px;
   left: 808px;
@@ -82,7 +82,7 @@
 }
 
 .custom-background {
-  width: 500px;
+  width: 535px;
   height: 12px;
   opacity: 1;
   background-color: rgb(233, 233, 233);
@@ -97,5 +97,9 @@
 .donation-amount {
   display: flex;
   flex-direction: column;
+}
+.donation-tag{
+  font-size: 14px;
+  margin-bottom: 0.3rem;
 }
 

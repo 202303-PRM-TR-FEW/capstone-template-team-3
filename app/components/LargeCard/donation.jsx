@@ -1,4 +1,4 @@
-import '/app/large-card/page.css'
+import './donation.css'
 const LargeCard = () => {
   return (
     <main>
@@ -16,7 +16,7 @@ const LargeCard = () => {
         </div>
         <div className="column">
           <div className='project-title'>
-            <h1>Help us release cookbook for parents and kids</h1>
+            <h1>Help us release <br/>cookbook for parents <br /> and kids</h1>
           </div>
           <div className='project-descripe'>
             <p>We want to create beautiful and helpful cooking book for parents and kids to have fun in kitchen.</p>
@@ -30,13 +30,13 @@ const LargeCard = () => {
           </div>
           <div className='donation-info'>
             <div className='donation-amount'>
-              <p>Raised:</p>
-              <p>$2000</p>
+              <p className='donation-tag'>Raised:</p>
+              <p>$2.000</p>
             </div>
             <div className='donation-amount'>
-              <p>
+              <p className='donation-tag'>
                 Goal:</p>
-              <p>$3000</p>
+              <p>$3.000</p>
             </div>
           </div>
         </div>
