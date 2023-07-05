@@ -1,12 +1,11 @@
-import ExampleComponent from "./components/ExampleComponent/ExampleComponent";
+import WelcomePage from "./welcome/page";
 
 const Home = () => {
-    return (
-        <main className="example">
-            <h1>Home Component</h1>
-            <ExampleComponent />
-        </main>
-    );
+  return (
+    <main className="example">
+      <WelcomePage />
+    </main>
+  );
 };
 
 export default Home;

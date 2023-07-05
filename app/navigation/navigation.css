@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navigation-main {
+    @apply bg-accent flex justify-center items-center container mx-auto
+}
+
+.checkbox-section {
+    @apply w-2/3 mb-20
+}
+
+.checkbox-option-paragraph-text {
+    @apply text-[32px] py-10 text-center
+}
+
+.checkbox-support-container {
+    @apply flex justify-center items-center p-10 text-left mb-10
+}
+
+.checkbox-input {
+    @apply w-[48px] h-[48px] rounded-xl text-theme ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent me-20 mb-12 outline-none focus:outline-none
+}
+
+.checkbox-text-container {
+    @apply flex flex-col
+}
+
+.checkbox-header-text {
+    @apply text-[64px]
+}
+
+.checkbox-appendix-text {
+    @apply text-[32px]
+}
+
+.navigation-divider {
+    @apply h-0.5 w-3/4 mx-auto bg-[#0a0a0a]
+}
+
+.checkbox-kick-off-container {
+    @apply flex justify-center items-center p-10 text-left mt-10
+}
+
+.newsletter-section {
+    @apply w-1/3 my-12 mx-20
+}
+
+.newsletter-container {
+    @apply flex flex-col justify-between bg-[#0a0a0a] rounded-3xl relative
+}
+
+.newsletter-banner-container {
+    @apply bg-theme m-7 rounded-3xl h-[20.1em] w-[21.9em] mx-auto overflow-visible
+}
+
+.newsletter-banner {
+    @apply absolute inset-0 w-11/12 my-5 mx-auto
+}
+
+.newsletter-text-container {
+    @apply px-16 pt-5 text-[#fafafa]
+}
+
+.newsletter-header-text {
+    @apply text-[32px] mb-5
+}
+
+.newsletter-paragraph-text {
+    @apply font-mulish font-bold text-[18px]
+}
+
+.newsletter-button {
+    @apply bg-theme px-2 py-3 my-10 text-[#0a0a0a] w-3/4 mx-auto rounded-lg
+}
