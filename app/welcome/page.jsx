@@ -13,7 +13,7 @@ const WelcomePage = () => {
         }}
       >
         <div>
-          <div className="container">
+          <div className="welcome-container">
             {/* <!--Left Col--> */}
             <div className="leading-left">
               <h1 className="leading-header">Givingly</h1>

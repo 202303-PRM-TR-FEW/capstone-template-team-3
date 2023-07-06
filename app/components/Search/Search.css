@@ -1,7 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-input.search-input {
-  @apply bg-accent text-gray-900 rounded-lg focus:ring-0 block w-[20rem] p-2.5 border-0 h-11;
-}

@@ -10,7 +10,7 @@
   @apply h-screen;
 }
 
-.container {
+.welcome-container {
   @apply  px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center;
 }
 
