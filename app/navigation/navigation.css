@@ -3,23 +3,23 @@
 @tailwind utilities;
 
 .navigation-main {
-    @apply bg-accent flex justify-center items-center container mx-auto
+    @apply bg-accent flex flex-col xl:flex-row justify-center items-center container mx-auto
 }
 
 .checkbox-section {
-    @apply w-2/3 mb-20
+    @apply xl:w-2/3 xl:mb-20 mb-0 w-11/12
 }
 
 .checkbox-option-paragraph-text {
-    @apply text-[32px] py-10 text-center
+    @apply xl:text-[32px] text-[16px] xl:py-10 pb-5 pt-10 text-center
 }
 
 .checkbox-support-container {
-    @apply flex justify-center items-center p-10 text-left mb-10
+    @apply flex justify-center items-center xl:p-10 p-5 text-left xl:mb-10 mb-5
 }
 
-.checkbox-input {
-    @apply w-[48px] h-[48px] rounded-xl text-theme ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent me-20 mb-12 outline-none focus:outline-none
+input.checkbox-input {
+    @apply xl:w-[48px] xl:h-[48px] w-[24px] h-[24px] rounded-lg xl:rounded-xl text-theme ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent xl:me-20 xl:mb-12 me-10 mb-6 outline-none focus:outline-none
 }
 
 .checkbox-text-container {
@@ -27,49 +27,49 @@
 }
 
 .checkbox-header-text {
-    @apply text-[64px]
+    @apply xl:text-[64px] text-[32px] whitespace-nowrap
 }
 
 .checkbox-appendix-text {
-    @apply text-[32px]
+    @apply xl:text-[32px] text-[16px]
 }
 
 .navigation-divider {
-    @apply h-0.5 w-3/4 mx-auto bg-[#0a0a0a]
+    @apply h-0.5 xl:w-5/6 xl:ml-24 mx-auto w-11/12 bg-[#0a0a0a]
 }
 
 .checkbox-kick-off-container {
-    @apply flex justify-center items-center p-10 text-left mt-10
+    @apply flex justify-center items-center xl:p-10 p-5 text-left xl:mt-10 mt-5
 }
 
 .newsletter-section {
-    @apply w-1/3 my-12 mx-20
+    @apply xl:w-1/3 xl:my-12 my-6 mx-20 w-11/12 flex justify-center items-center
 }
 
 .newsletter-container {
-    @apply flex flex-col justify-between bg-[#0a0a0a] rounded-3xl relative
+    @apply flex flex-col md:flex-row xl:flex-col justify-between md:justify-evenly xl:justify-between bg-[#0a0a0a] rounded-3xl xl:h-[46rem] xl:w-[28rem] md:h-[40rem] md:w-[46rem] h-[32rem] w-[18rem] relative
 }
 
 .newsletter-banner-container {
-    @apply bg-theme m-7 rounded-3xl h-[20.1em] w-[21.9em] mx-auto overflow-visible
+    @apply bg-theme xl:mt-6 mt-4 xl:h-[360px] h-[238px] w-[88%] mx-auto rounded-3xl overflow-visible
 }
 
 .newsletter-banner {
-    @apply absolute inset-0 w-11/12 my-5 mx-auto
+    @apply absolute w-[93%] md:w-[35%] xl:w-[93%] mx-auto inset-[12px] xl:inset-[18px] inset-y-[19px]
 }
 
 .newsletter-text-container {
-    @apply px-16 pt-5 text-[#fafafa]
+    @apply xl:px-16 px-8 pt-0 xl:pt-5 text-[#fafafa]
 }
 
 .newsletter-header-text {
-    @apply text-[32px] mb-5
+    @apply xl:text-[32px] text-[16px] mb-5
 }
 
 .newsletter-paragraph-text {
-    @apply font-mulish font-bold text-[18px]
+    @apply font-mulish font-bold xl:text-[18px] text-[12px]
 }
 
 .newsletter-button {
-    @apply bg-theme px-2 py-3 my-10 text-[#0a0a0a] w-3/4 mx-auto rounded-lg
+    @apply bg-theme px-2 py-3 xl:my-10 text-[#0a0a0a] xl:text-[18px] text-[14px] w-3/4 mx-auto rounded-lg mt-0 mb-5
 }

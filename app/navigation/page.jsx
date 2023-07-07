@@ -25,13 +25,15 @@ const Navigation = () => {
             </section>
             <section className="newsletter-section">
                 <div className="newsletter-container">
-                    <div>
-                        <div className="newsletter-banner-container">
-                            <Image src={navigationBanner}
-                                alt="Illustration of a hand holding green hearts near books." className="newsletter-banner"
-                                priority={true} />
-                        </div>
+
+                    <div className="newsletter-banner-container">
+                        <Image src={navigationBanner}
+                            alt="Illustration of a hand holding green hearts near books." className="newsletter-banner"
+                            priority={true}
+
+                        />
                     </div>
+
                     <article className="newsletter-text-container">
                         <h3 className="newsletter-header-text">Stay informed</h3>
                         <p className="newsletter-paragraph-text">Want to be among the first people to know about amazing projects on our platform? Join our monthly digest of <br />the best causes.</p>
