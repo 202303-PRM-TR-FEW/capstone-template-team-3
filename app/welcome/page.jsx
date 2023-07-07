@@ -3,6 +3,7 @@ import "./welcome.css";
 
 const WelcomePage = () => {
   return (
+
     <div className="welcome-bg">
       <div
         className="welcome"
@@ -31,6 +32,7 @@ const WelcomePage = () => {
                 </button>
               </NavLink>
             </div>
+
           </div>
         </div>
       </div>
