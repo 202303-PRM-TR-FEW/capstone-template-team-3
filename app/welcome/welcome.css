@@ -2,12 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-.welcome {
-  @apply h-screen pt-24;
+.welcome-bg {
+  @apply bg-theme
 }
 
-.container {
-  @apply px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center;
+.welcome {
+  @apply h-screen;
+}
+
+.welcome-container {
+  @apply  px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center;
 }
 
 .leading-left {

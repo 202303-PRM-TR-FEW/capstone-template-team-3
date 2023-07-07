@@ -1,11 +1,9 @@
-import "./Search.css";
-
-const Search = () => {
+const Search = ({ style }) => {
   return (
     <form>
       <input
         type="text"
-        className="input"
+        className={style}
         placeholder="Search for projects"
       />
     </form>

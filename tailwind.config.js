@@ -13,7 +13,8 @@ module.exports = {
       },
       colors: {
         "theme": "rgb(212, 238, 38)",
-        "accent": "rgb(250, 250, 250)"
+        "accent": "rgb(250, 250, 250)",
+        "accent-black": "#0a0a0a"
       }
     },
   },
