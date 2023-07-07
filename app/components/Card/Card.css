@@ -1,5 +1,5 @@
 .card-main {
-  @apply w-80 h-96 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between;
+  @apply w-80 h-auto bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between;
 }
 
 .card-img-section {
