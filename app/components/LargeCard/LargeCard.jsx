@@ -1,4 +1,5 @@
-import './donation.css'
+import './LargeCard.css'
+
 const LargeCard = () => {
   return (
     <main>

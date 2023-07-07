@@ -1,5 +1,5 @@
 import CategoryFilter from "../components/CategoryFilter/CategoryFilter";
-import LargeCard from "../components/LargeCard/donation";
+import LargeCard from "../components/LargeCard/LargeCard";
 import Card from "../components/Card/Card.jsx";
 import projects from "app/data/data.jsx";
 

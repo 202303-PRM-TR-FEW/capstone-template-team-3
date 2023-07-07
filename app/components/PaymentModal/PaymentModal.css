@@ -1,0 +1,28 @@
+.charity-checkbox {
+    appearance: none;
+    background-color: rgb(212, 238, 38);
+    border-radius: 4px;
+    width: 16px;
+    height: 16px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .charity-checkbox:checked {
+    background-color: rgb(212, 238, 38);
+  }
+
+  .charity-checkbox:checked:hover {
+    background-color: rgb(212, 238, 38);
+  }
+
+  .charity-checkbox:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .charity-checkbox:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
