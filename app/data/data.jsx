@@ -5,6 +5,8 @@ const projects = [
     title: "School reconstruction",
     raised: "2.500",
     goal: "11.000",
+    about:
+      "We aim to rebuild a local school that was damaged in a recent natural disaster. Your contribution will help provide a safe and conducive learning environment for the students.",
   },
   {
     id: 2,
@@ -12,6 +14,8 @@ const projects = [
     title: "Intelligent weather app development",
     raised: "1.600",
     goal: "2.300",
+    about:
+      "We are developing an intelligent weather app that uses advanced algorithms to provide accurate weather forecasts. Support us to enhance your daily weather experience!",
   },
   {
     id: 3,
@@ -19,6 +23,8 @@ const projects = [
     title: "Build a cat shelter with us!",
     raised: "2.500",
     goal: "3.500",
+    about:
+      "Join us in creating a safe and loving shelter for stray cats. With your help, we can provide them with a caring environment, medical care, and find them forever homes.",
   },
   {
     id: 4,
@@ -26,6 +32,8 @@ const projects = [
     title: "School reconstruction",
     raised: "2.500",
     goal: "11.000",
+    about:
+      "We aim to rebuild a local school that was damaged in a recent natural disaster. Your contribution will help provide a safe and conducive learning environment for the students.",
   },
   {
     id: 5,
@@ -33,6 +41,8 @@ const projects = [
     title: "Intelligent weather app development",
     raised: "1.600",
     goal: "2.300",
+    about:
+      "We are developing an intelligent weather app that uses advanced algorithms to provide accurate weather forecasts. Support us to enhance your daily weather experience!",
   },
   {
     id: 6,
@@ -40,6 +50,8 @@ const projects = [
     title: "Build a cat shelter with us!",
     raised: "2.500",
     goal: "3.500",
+    about:
+      "Join us in creating a safe and loving shelter for stray cats. With your help, we can provide them with a caring environment, medical care, and find them forever homes.",
   },
   {
     id: 7,
@@ -47,6 +59,8 @@ const projects = [
     title: "School reconstruction",
     raised: "2.500",
     goal: "11.000",
+    about:
+      "We aim to rebuild a local school that was damaged in a recent natural disaster. Your contribution will help provide a safe and conducive learning environment for the students.",
   },
   {
     id: 8,
@@ -54,6 +68,8 @@ const projects = [
     title: "Intelligent weather app development",
     raised: "1.600",
     goal: "2.300",
+    about:
+      "We are developing an intelligent weather app that uses advanced algorithms to provide accurate weather forecasts. Support us to enhance your daily weather experience!",
   },
   {
     id: 9,
@@ -61,6 +77,8 @@ const projects = [
     title: "Build a cat shelter with us!",
     raised: "2.500",
     goal: "3.500",
+    about:
+      "Join us in creating a safe and loving shelter for stray cats. With your help, we can provide them with a caring environment, medical care, and find them forever homes.",
   },
   {
     id: 10,
@@ -68,6 +86,8 @@ const projects = [
     title: "Build a cat shelter with us!",
     raised: "2.500",
     goal: "3.500",
+    about:
+      "Join us in creating a safe and loving shelter for stray cats. With your help, we can provide them with a caring environment, medical care, and find them forever homes.",
   },
 ];
 
