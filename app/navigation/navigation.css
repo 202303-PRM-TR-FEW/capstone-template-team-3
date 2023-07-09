@@ -11,7 +11,7 @@
 }
 
 .checkbox-option-paragraph-text {
-    @apply xl:text-[32px] text-[16px] xl:py-10 pb-5 pt-10 text-center
+    @apply xl:text-[32px] text-[16px] md:text-[20px] lg:text-[24px] xl:py-10 pb-5 pt-10 text-center
 }
 
 .checkbox-support-container {
@@ -19,7 +19,7 @@
 }
 
 input.checkbox-input {
-    @apply xl:w-[48px] xl:h-[48px] w-[24px] h-[24px] rounded-lg xl:rounded-xl text-theme ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent xl:me-20 xl:mb-12 me-10 mb-6 outline-none focus:outline-none
+    @apply xl:w-[48px] xl:h-[48px] w-[24px] h-[24px] md:w-[30px] md:h-[30px] lg:w-[36px] lg:h-[36px] rounded-md md:rounded-lg xl:rounded-xl text-theme ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent xl:me-20 xl:mb-12 me-8 mb-6 md:mb-8 md:me-12 lg:mb-9 lg:me-14 outline-none focus:outline-none disabled:opacity-25 cursor-pointer disabled:cursor-not-allowed
 }
 
 .checkbox-text-container {
@@ -27,11 +27,11 @@ input.checkbox-input {
 }
 
 .checkbox-header-text {
-    @apply xl:text-[64px] text-[32px] whitespace-nowrap
+    @apply xl:text-[64px] md:text-[40px] lg:text-[48px] text-[32px] whitespace-nowrap
 }
 
 .checkbox-appendix-text {
-    @apply xl:text-[32px] text-[16px]
+    @apply xl:text-[32px] md:text-[20px] lg:text-[24px] text-[16px]
 }
 
 .navigation-divider {
@@ -47,29 +47,29 @@ input.checkbox-input {
 }
 
 .newsletter-container {
-    @apply flex flex-col md:flex-row xl:flex-col justify-between md:justify-evenly xl:justify-between bg-[#0a0a0a] rounded-3xl xl:h-[46rem] xl:w-[28rem] md:h-[40rem] md:w-[46rem] h-[32rem] w-[18rem] relative
+    @apply flex flex-col md:flex-row xl:flex-col justify-between md:justify-between md:items-center xl:justify-between bg-[#0a0a0a] rounded-3xl xl:h-[46rem] xl:w-[28rem] md:h-[15rem] md:w-[44rem] h-[32rem] w-[18rem] relative lg:w-[59rem] lg:h-[16rem]
 }
 
 .newsletter-banner-container {
-    @apply bg-theme xl:mt-6 mt-4 xl:h-[360px] h-[238px] w-[88%] mx-auto rounded-3xl overflow-visible
+    @apply bg-theme xl:mt-6 mt-4 xl:h-[360px] h-[238px] w-[88%] mx-auto rounded-3xl overflow-visible md:h-[13rem] md:w-full xl:w-[88%] md:mt-0 md:ms-4 xl:mx-auto md:max-w-[14.5rem] xl:max-w-none lg:h-[14rem] lg:max-w-[16rem]
 }
 
 .newsletter-banner {
-    @apply absolute w-[93%] md:w-[35%] xl:w-[93%] mx-auto inset-[12px] xl:inset-[18px] inset-y-[19px]
+    @apply absolute w-[93%] md:w-[35%] lg:w-[29%] xl:w-[93%] mx-auto inset-[12px] xl:inset-[18px] inset-y-[19px] md:mx-0 md:inset-y-[8px] md:inset-[10px] lg:inset-y-[1px]
 }
 
 .newsletter-text-container {
-    @apply xl:px-16 px-8 pt-0 xl:pt-5 text-[#fafafa]
+    @apply xl:px-16 px-8 pt-0 xl:pt-5 text-[#fafafa] xl:min-w-[28rem] md:px-4 lg:px-12
 }
 
 .newsletter-header-text {
-    @apply xl:text-[32px] text-[16px] mb-5
+    @apply xl:text-[32px] md:text-[20px] lg:text-[24px] text-[16px] mb-5
 }
 
 .newsletter-paragraph-text {
-    @apply font-mulish font-bold xl:text-[18px] text-[12px]
+    @apply font-mulish font-bold xl:text-[18px] text-[12px] md:text-[16px] lg:text-[20px]
 }
 
-.newsletter-button {
-    @apply bg-theme px-2 py-3 xl:my-10 text-[#0a0a0a] xl:text-[18px] text-[14px] w-3/4 mx-auto rounded-lg mt-0 mb-5
+button.newsletter-button {
+    @apply bg-theme px-2 py-3 xl:my-10 text-[#0a0a0a] xl:text-[18px] text-[14px] w-5/6 mx-auto rounded-lg mt-0 mb-5 md:mb-0 md:text-[14px] lg:text-[22px] md:w-1/6 lg:w-1/3 xl:w-3/4 md:h-[6.5rem] lg:h-[7rem] xl:h-auto md:me-4 xl:mx-auto md:rounded-l-3xl md:rounded-r-sm xl:rounded-lg break-words
 }
