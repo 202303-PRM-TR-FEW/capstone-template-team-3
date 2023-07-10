@@ -1,25 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.welcome-bg {
-  @apply bg-theme
+.welcome-main-container {
+  @apply bg-theme h-screen flex flex-col justify-center items-center md:block;
 }
 
 .welcome {
-  @apply h-screen;
+  @apply sm:h-5/6 md:grid md:grid-cols-2 content-center md:bg-center sm:bg-no-repeat sm:bg-contain  bg-contain bg-no-repeat ml-4 mr-4;
 }
 
 .welcome-container {
-  @apply  px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center;
+  @apply px-3 mx-auto flex flex-wrap flex-col md:flex-row py-10;
 }
 
 .leading-left {
-  @apply flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left ml-10;
+  @apply flex flex-col w-full justify-center text-center md:text-left md:ml-10 max-w-[17em] min-w-[17rem] mx-auto xl:max-w-[28rem] ;
 }
 
 .leading-header {
-  @apply text-7xl font-bold mb-10;
+  @apply sm:text-7xl text-5xl font-bold mb-10;
 }
 
 .leading-normal {
@@ -30,6 +26,6 @@
   @apply text-sm mb-8;
 }
 
-.leading-button {
-  @apply text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mr-2 mb-2 w-[16.5rem];
+button.leading-button {
+  @apply text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center md:flex sm:items-center justify-center mr-2 mb-2 w-[16.5rem];
 }
