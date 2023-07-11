@@ -7,6 +7,7 @@ import {
     auth, onAuthStateChanged, createUserWithEmailAndPassword,
     updateProfile,
     signInWithEmailAndPassword,
+    signOut
 } from '../firebase/firebase'
 import Button from '../components/Button/Button';
 import NavLink from '../components/NavLink/NavLink';
@@ -62,6 +63,12 @@ function SignIn() {
             });
 
     };
+
+    const logoutFromApp = (e) => {
+        e.preventDefault()
+        dispatch(logout(user));
+        signOut(auth)
+    }
 
     // A quick check on the name field to make it mandatory
     // const register = () => {
@@ -130,7 +137,9 @@ function SignIn() {
                 <NavLink to="#" name={"Sign Up"} style="text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg px-5 py-2 text-center flex items-center justify-center h-11" />
             </div>) : (<div>
                 <p className='text-center'>Signed in succesfully</p>
-                <Button type='button' style="navbar-button mt-5 mx-auto" clickAction={logout}>
+                <p>{user.email}</p>
+                <p>{user.uid}</p>
+                <Button type='submit' style="navbar-button mt-5 mx-auto" clickAction={logoutFromApp}>
                     Sign Out
                 </Button>
             </div>)}
