@@ -7,12 +7,14 @@ import NavLink from "../NavLink/NavLink";
 import Button from "../Button/Button";
 import "./Navbar.css"
 import { HiSearchCircle } from "react-icons/hi"
+import { useRouter } from "next/navigation"
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [toggleDropdown, setToggleDropdown] = useState(false)
   const [toggleSearch, setToggleSearch] = useState(false)
   const [isHidden, setIsHidden] = useState("xl:hidden")
+  const router = useRouter()
 
   const handleToggleDropdown = () => {
     setToggleDropdown((prevState) => !prevState)
@@ -20,6 +22,13 @@ const Navbar = () => {
 
   const handleToggleSearch = () => {
     setToggleSearch((prevState) => !prevState)
+  }
+
+  const handleLogin = () => {
+    const redirectTimeout = setTimeout(() => {
+      router.push('/sign-in')
+    }, 300)
+    return () => clearTimeout(redirectTimeout)
   }
 
   return (
@@ -48,7 +57,7 @@ const Navbar = () => {
               <Button type="button" name="New project" style="lg:ms-10 navbar-button" />
             </>
           )}
-          <Button type="button" name={isLoggedIn ? "Sign out" : "Sign in"} style="ms-5 navbar-button" />
+          <Button type="button" name={isLoggedIn ? "Sign out" : "Sign in"} style="ms-5 navbar-button" clickAction={() => handleLogin()} />
         </div>
         <div className="lg:hidden relative">
           <Button type="button" style="relative group" clickAction={() => {
