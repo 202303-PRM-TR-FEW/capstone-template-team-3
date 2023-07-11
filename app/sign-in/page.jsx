@@ -11,6 +11,7 @@ import {
 } from '../firebase/firebase'
 import Button from '../components/Button/Button';
 import NavLink from '../components/NavLink/NavLink';
+import { useRouter } from 'next/navigation';
 
 function SignIn() {
     const user = useSelector(selectUser);
@@ -57,18 +58,14 @@ function SignIn() {
                     })
                 );
             })
+            .then(() => {
+                router.push('/profile')
+            })
             // display the error if any
             .catch((err) => {
                 alert(err);
             });
-
     };
-
-    const logoutFromApp = (e) => {
-        e.preventDefault()
-        dispatch(logout(user));
-        signOut(auth)
-    }
 
     // A quick check on the name field to make it mandatory
     // const register = () => {
@@ -103,10 +100,11 @@ function SignIn() {
     //             alert(err);
     //         });
     // };
+    const router = useRouter();
 
     return (
         <div className='flex justify-center mt-20'>
-            {!user ? (<div className='login'>
+            {!user && (<div className='login'>
                 <form className='flex flex-col'>
                     {/* <input
                         value={name}
@@ -128,23 +126,25 @@ function SignIn() {
                         className='mt-2'
                     />
                     <Button type='submit' style="navbar-button mt-5" clickAction={loginToApp}>
-                        Sign In
+                        Continue
                     </Button>
                 </form>
                 <p className='pt-5 pb-1 text-center'>
                     Not a member?{' '}
                 </p>
                 <NavLink to="#" name={"Sign Up"} style="text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg px-5 py-2 text-center flex items-center justify-center h-11" />
-            </div>) : (<div>
-                <p className='text-center'>Signed in succesfully</p>
-                <p>{user.email}</p>
-                <p>{user.uid}</p>
-                <Button type='submit' style="navbar-button mt-5 mx-auto" clickAction={logoutFromApp}>
-                    Sign Out
-                </Button>
             </div>)}
         </div>
     );
 }
+
+{/* <div>
+    <p className='text-center'>Signed in succesfully</p>
+    <p>{user.email}</p>
+    <p>{user.uid}</p>
+    {/* <Button type='submit' style="navbar-button mt-5 mx-auto" clickAction={logoutFromApp}>
+                    Sign Out
+                </Button> */}
+// </div> */}
 
 export default SignIn;
