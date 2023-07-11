@@ -7,12 +7,18 @@ import NavLink from "../NavLink/NavLink";
 import Button from "../Button/Button";
 import "./Navbar.css"
 import { HiSearchCircle } from "react-icons/hi"
+import { useRouter } from "next/navigation"
+import { useSelector, useDispatch } from "react-redux";
+import { selectUser, logout } from "@/app/lib/features/userSlice";
+import { signOut, auth } from "../../firebase/firebase";
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const user = useSelector(selectUser)
   const [toggleDropdown, setToggleDropdown] = useState(false)
   const [toggleSearch, setToggleSearch] = useState(false)
   const [isHidden, setIsHidden] = useState("xl:hidden")
+  const router = useRouter()
+  const dispatch = useDispatch()
 
   const handleToggleDropdown = () => {
     setToggleDropdown((prevState) => !prevState)
@@ -20,6 +26,19 @@ const Navbar = () => {
 
   const handleToggleSearch = () => {
     setToggleSearch((prevState) => !prevState)
+  }
+
+  const handleLogin = () => {
+    const redirectTimeout = setTimeout(() => {
+      router.push('/sign-in')
+    }, 300)
+    return () => clearTimeout(redirectTimeout)
+  }
+
+  const handleLogout = () => {
+    dispatch(logout(user));
+    signOut(auth);
+    router.push('/')
   }
 
   return (
@@ -41,14 +60,14 @@ const Navbar = () => {
         </div>
         <div className="lg:flex lg:justify-between lg:items-center hidden">
           <NavLink to="/" name="Home" style="lg:ms-0 xl:ms-10" />
-          {isLoggedIn && (
+          {user && (
             <>
               <NavLink to="/my-projects" name="My Projects" style="lg:ms-10" />
               <NavLink to="/profile" name="Profile" style="lg:ms-10" />
               <Button type="button" name="New project" style="lg:ms-10 navbar-button" />
             </>
           )}
-          <Button type="button" name={isLoggedIn ? "Sign out" : "Sign in"} style="ms-5 navbar-button" />
+          <Button type="button" name={user ? "Sign out" : "Sign in"} style="ms-5 navbar-button" clickAction={!user ? () => handleLogin() : () => handleLogout()} />
         </div>
         <div className="lg:hidden relative">
           <Button type="button" style="relative group" clickAction={() => {
@@ -83,14 +102,14 @@ const Navbar = () => {
           {toggleDropdown && (
             <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl">
               <NavLink to="/" name="Home" style="mb-2" />
-              {isLoggedIn && (
+              {user && (
                 <>
                   <NavLink to="/my-projects" name="My Projects" style="mb-2" />
                   <NavLink to="/profile" name="Profile" style="mb-2" />
                   <Button type="button" name="New project" style="navbar-button mb-2" />
                 </>
               )}
-              <Button type="button" name={isLoggedIn ? "Sign out" : "Sign in"} style="navbar-button" />
+              <Button type="button" name={user ? "Sign out" : "Sign in"} style="navbar-button" clickAction={!user ? () => handleLogin() : () => handleLogout()} />
             </div>
           )}
         </div>
