@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@firebase/firestore": "^4.0.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@tailwindcss/forms": "^0.5.3",
     "autoprefixer": "10.4.14",
