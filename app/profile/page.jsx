@@ -5,17 +5,16 @@ import { selectUser } from "@/app/lib/features/userSlice";
 
 const Profile = () => {
   const user = useSelector(selectUser)
+  console.log(user)
 
   return (
     user &&
     <main>
-      <div>
-        <p className='text-center'>Signed in succesfully</p>
-        <p>{user.email}</p>
-        <p>{user.uid}</p>
-        {/* <Button type='submit' style="navbar-button mt-5 mx-auto" clickAction={logoutFromApp}>
-                    Sign Out
-                </Button> */}
+      <div className="flex flex-col justify-center items-center">
+        <p>Signed in succesfully</p>
+        <p>Name: {user.displayName}</p>
+        <p>Email: {user.email}</p>
+        <p>ID: {user.uid}</p>
       </div>
     </main>
   )

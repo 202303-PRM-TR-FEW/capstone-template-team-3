@@ -73,6 +73,7 @@ function SignIn() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               type="email"
+              required
             />
             <input
               value={password}
@@ -80,6 +81,7 @@ function SignIn() {
               placeholder="Password"
               type="password"
               className="mt-2"
+              required
             />
             <Button
               type="submit"
