@@ -1,31 +1,34 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "../lib/features/userSlice";
 import {
   auth,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
-  updateProfile,
+  db,
+  addDoc,
+  collection
 } from "../firebase/firebase";
 import Button from "../components/Button/Button";
+import NavLink from "../components/NavLink/NavLink";
 import { useRouter } from "next/navigation";
 
 function SignUp() {
   const user = useSelector(selectUser);
-  // use state constants for the the form inputs
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const { register, formState: { errors }, handleSubmit, watch } = useForm();
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const onSubmit = async (data) => {
+    await registerUser(data)
+  }
 
   useEffect(() => {
     onAuthStateChanged(auth, (userAuth) => {
       if (userAuth) {
-        // user is logged in, send the user's details to redux, store the current user in the state
         dispatch(
           login({
             email: userAuth.email,
@@ -39,82 +42,101 @@ function SignUp() {
     });
   }, [dispatch]);
 
-  // A quick check on the name field to make it mandatory
-  const register = (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      return alert("Passwords did not match!");
-    }
-
-    // Create a new user with Firebase
-    createUserWithEmailAndPassword(auth, email, password, name, confirmPassword)
-      .then((userAuth) => {
-        // Update the newly created user with a display name and a picture
-        updateProfile(userAuth.user, {
-          displayName: name,
-        })
-          .then(
-            // Dispatch the user information for persistence in the redux state
-            dispatch(
-              login({
-                email: userAuth.user.email,
-                uid: userAuth.user.uid,
-                displayName: name,
-              })
-            )
-          )
-          .then(() => {
-            router.push("/profile");
-          })
-          .catch((error) => {
-            console.log("user not updated");
-          });
+  const registerUser = async (data) => {
+    try {
+      const currentUserAuth = await createUserWithEmailAndPassword(auth, data.email, data.password, data.name)
+      await addDoc(collection(db, "users"), {
+        acceptedTermsAndConditions: data.checkbox,
+        email: data.email,
+        id: currentUserAuth.user.uid,
+        name: data.name,
       })
-      .catch((err) => {
-        alert(err);
-      });
-    console.log(email);
-  };
+      dispatch(
+        login({
+          email: currentUserAuth.user.email,
+          uid: currentUserAuth.user.uid,
+          displayName: data.name,
+        })
+      )
+      if (currentUserAuth) {
+        router.push("/profile");
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
-    <div className="flex justify-center mt-20">
+    <div>
       {!user && (
-        <div className="login">
-          <form className="flex flex-col">
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
-              type="text"
-            />
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              type="email"
-              className="mt-2"
-            />
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              type="password"
-              className="mt-2"
-            />
-            <input
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm Password"
-              type="password"
-              className="mt-2"
-            />
+        <div>
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-5 w-full xl:w-1/4 mx-auto bg-theme mt-20 rounded-3xl">
+            <div className="my-2 mx-auto w-10/12">
+              <input {...register("name", { required: true, pattern: /^[a-zA-Z]+(?:-[a-zA-Z]+)*$/ })}
+                placeholder="Name"
+                className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                aria-invalid={errors.name ? "true" : "false"}
+                type="text" />
+              {errors.name?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">First name is required</p>}
+              {errors.name?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">First name is invalid</p>}
+            </div>
+
+            <div className="my-2 mx-auto w-10/12">
+              <input {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })}
+                placeholder="Email"
+                className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                aria-invalid={errors.email ? "true" : "false"}
+                type="email" />
+              {errors.email?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Email is required</p>}
+              {errors.email?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Email is invalid</p>}
+            </div>
+
+            <div className="my-2 mx-auto w-10/12">
+              <input {...register("password", { required: true })}
+                placeholder="Password"
+                className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                aria-invalid={errors.password ? "true" : "false"}
+                type="password" />
+              {errors.password?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Password is required</p>}
+              {errors.password?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Password is invalid</p>}
+            </div>
+
+            <div className="my-2 mx-auto w-10/12">
+              <input {...register("passwordConfirm", {
+                required: true, validate: (value) => {
+                  if (watch("password") !== value) {
+                    return false;
+                  }
+                }
+              })}
+                placeholder="Confirm Password"
+                className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                aria-invalid={errors.passwordConfirm ? "true" : "false"}
+                type="password" />
+              {errors.passwordConfirm?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Please re-enter password</p>}
+              {errors.passwordConfirm?.type === 'validate' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Your passwords do not match</p>}
+            </div>
+
+            <div className="my-2 flex justify-between items-center w-10/12 mx-auto">
+              <input {...register("checkbox", { required: true })} type="checkbox" aria-invalid={errors.phone ? "true" : "false"} name="checkbox" className="text-lime-600 w-6 h-6 rounded-md ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent outline-none focus:outline-none cursor-pointer" />
+              <label className="text-center font-medium text-[16px]" htmlFor="checkbox">I accept the <a href="#" className="text-lime-700 italic font-bold">Terms & Conditions</a></label>
+            </div>
+            {errors.checkbox?.type === 'required' &&
+              <div className="my-2 w-10/12 mx-auto">
+                <p role="alert" className="text-center text-red-600 italic text-[14px]">You must accept the Terms & Conditions to proceed.</p>
+              </div>}
             <Button
               type="submit"
               style="navbar-button mt-5"
-              clickAction={register}
             >
               Sign Up
             </Button>
+            <p className="pt-5 pb-1 text-center">Already a member? </p>
+            <NavLink
+              to="/sign-in"
+              name={"Sign In"}
+              style="text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg px-5 py-2 text-center flex items-center justify-center h-11"
+            />
           </form>
         </div>
       )}
