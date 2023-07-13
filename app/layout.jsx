@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import Navbar from "./components/Navbar/Navbar";
+import { ReduxProvider } from "./lib/features/provider";
 
 export const metadata = {
   title: "Givingly",
@@ -10,8 +11,10 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body className="body-text body-bg">
-        <Navbar />
-        {children}
+        <ReduxProvider>
+          <Navbar />
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   );

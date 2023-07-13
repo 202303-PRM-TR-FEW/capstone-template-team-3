@@ -9,18 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@firebase/firestore": "^4.0.0",
+    "@reduxjs/toolkit": "^1.9.5",
     "@tailwindcss/forms": "^0.5.3",
     "autoprefixer": "10.4.14",
     "date-fns": "^2.30.0",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
-    "next": "13.4.7",
+    "firebase": "^10.0.0",
+    "next": "^13.4.9",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-date-range": "^1.4.0",
     "react-datepicker": "^4.16.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.1",
     "react-icons": "^4.10.1",
-    "tailwindcss": "3.3.2"
+    "react-redux": "^8.1.1",
+    "redux-logger": "^3.0.6",
+    "tailwindcss": "^3.3.2"
   }
 }
