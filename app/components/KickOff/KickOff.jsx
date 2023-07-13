@@ -3,7 +3,7 @@
 import { IoIosArrowBack } from 'react-icons/io';
 import { useState } from 'react';
 import { FaUpload, FaCalendarAlt } from 'react-icons/fa';
-import { CgClose } from 'react-icons/Cg'
+import { CgClose } from 'react-icons/cg'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './KickOff.css';
