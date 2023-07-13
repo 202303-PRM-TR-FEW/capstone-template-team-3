@@ -8,27 +8,27 @@ import {
   auth,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
-  updateProfile,
+  db,
+  addDoc,
+  collection
 } from "../firebase/firebase";
 import Button from "../components/Button/Button";
+import NavLink from "../components/NavLink/NavLink";
 import { useRouter } from "next/navigation";
 
 function SignUp() {
   const user = useSelector(selectUser);
   const { register, formState: { errors }, handleSubmit, watch } = useForm();
-
-  const onSubmit = (data, e) => {
-    e.preventDefault();
-    registerUser(data)
-  }
-
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const onSubmit = async (data) => {
+    await registerUser(data)
+  }
 
   useEffect(() => {
     onAuthStateChanged(auth, (userAuth) => {
       if (userAuth) {
-        // user is logged in, send the user's details to redux, store the current user in the state
         dispatch(
           login({
             email: userAuth.email,
@@ -42,38 +42,29 @@ function SignUp() {
     });
   }, [dispatch]);
 
-  // A quick check on the name field to make it mandatory
-  const registerUser = (data) => {
-    // e.preventDefault();
-
-    // Create a new user with Firebase
-    createUserWithEmailAndPassword(auth, data.email, data.password, data.name)
-      .then((userAuth) => {
-        // Update the newly created user with a display name and a picture
-        updateProfile(userAuth.user, {
+  const registerUser = async (data) => {
+    try {
+      const currentUserAuth = await createUserWithEmailAndPassword(auth, data.email, data.password, data.name)
+      await addDoc(collection(db, "users"), {
+        acceptedTermsAndConditions: data.checkbox,
+        email: data.email,
+        id: currentUserAuth.user.uid,
+        name: data.name,
+      })
+      dispatch(
+        login({
+          email: currentUserAuth.user.email,
+          uid: currentUserAuth.user.uid,
           displayName: data.name,
         })
-          .then(
-            // Dispatch the user information for persistence in the redux state
-            dispatch(
-              login({
-                email: userAuth.user.email,
-                uid: userAuth.user.uid,
-                displayName: data.name,
-              })
-            )
-          )
-          .then(() => {
-            router.push("/profile");
-          })
-          .catch((err) => {
-            console.log("user not updated");
-          });
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  };
+      )
+      if (currentUserAuth) {
+        router.push("/profile");
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div>
@@ -140,6 +131,12 @@ function SignUp() {
             >
               Sign Up
             </Button>
+            <p className="pt-5 pb-1 text-center">Already a member? </p>
+            <NavLink
+              to="/sign-in"
+              name={"Sign In"}
+              style="text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg px-5 py-2 text-center flex items-center justify-center h-11"
+            />
           </form>
         </div>
       )}
