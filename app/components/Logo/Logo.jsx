@@ -5,7 +5,7 @@ import Link from "next/link";
 const Logo = ({ name }) => {
   return (
     <div className="logo">
-      <NavLink to="/donation" name="Givingly" />
+      <NavLink to="/welcome" name="Givingly" />
     </div>
   );
 };
