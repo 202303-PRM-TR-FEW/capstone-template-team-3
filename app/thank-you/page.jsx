@@ -22,7 +22,7 @@ const ThankYouPage = () => {
                     Make another donation
                   </button>
                 </NavLink>
-                <NavLink to="/welcome">
+                <NavLink to="/donation">
                   <button type="button" className="ty-second-button">
                     Go to homepage
                   </button>
