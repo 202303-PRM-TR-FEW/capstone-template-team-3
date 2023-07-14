@@ -45,7 +45,7 @@ const Navbar = () => {
     <div className="bg-theme">
       <nav className="container mx-auto flex flex-row justify-between items-center py-5 px-5 whitespace-nowrap">
         <div className="flex justify-between items-center">
-          <Logo to="/" />
+          <Logo />
         </div>
         <div className="relative">
           <HiSearchCircle className={isHidden} size={40} title="Search" onClick={() => {
@@ -59,7 +59,7 @@ const Navbar = () => {
           )}
         </div>
         <div className="lg:flex lg:justify-between lg:items-center hidden">
-          <NavLink to="/" name="Home" style="lg:ms-0 xl:ms-10" />
+          <NavLink to="/donation" name="Home" style="lg:ms-0 xl:ms-10" />
           {user && (
             <>
               <NavLink to="/my-projects" name="My Projects" style="lg:ms-10" />
@@ -101,7 +101,7 @@ const Navbar = () => {
           </Button>
           {toggleDropdown && (
             <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl">
-              <NavLink to="/" name="Home" style="mb-2" />
+              <NavLink to="/donation" name="Home" style="mb-2" />
               {user && (
                 <>
                   <NavLink to="/my-projects" name="My Projects" style="mb-2" />

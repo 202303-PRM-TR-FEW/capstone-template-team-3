@@ -14,6 +14,7 @@ const Navigation = () => {
 
     const handleSupportCheck = () => {
         setSupportIsChecked(!supportIsChecked)
+        router.push('/donation')
     }
 
     const handleKickoffCheck = () => {
