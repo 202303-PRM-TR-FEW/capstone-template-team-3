@@ -3,9 +3,9 @@ import LargeCard from "../components/LargeCard/LargeCard";
 import Card from "../components/Card/Card.jsx";
 import projects from "app/data/data.jsx";
 
-const Donation = () => {
+const Campaigns = () => {
   return (
-    <main> 
+    <main>
       <LargeCard />
       <CategoryFilter />
 
@@ -25,4 +25,4 @@ const Donation = () => {
   );
 };
 
-export default Donation;
+export default Campaigns;

@@ -98,17 +98,6 @@ const projects = [
     organizer: "Cats Haven Organization",
     date: "2023-09-01",
   },
-  {
-    id: 10,
-    img: "https://assets.api.uizard.io/api/cdn/stream/bd625712-1fb4-47da-990c-cfd1f1111831.png",
-    title: "Building homes, one meow at a time!",
-    raised: "2.500",
-    goal: "3.500",
-    about:
-      "Join us in creating a safe and loving shelter for stray cats. With your help, we can provide them with a caring environment, medical care, and find them forever homes.",
-    organizer: "Cat Rescue Foundation",
-    date: "2023-09-03",
-  },
 ];
 
 export default projects;
