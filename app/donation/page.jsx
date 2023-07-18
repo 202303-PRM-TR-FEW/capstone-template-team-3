@@ -8,8 +8,7 @@ const Donation = () => {
     <main> 
       <LargeCard />
       <CategoryFilter />
-
-      <div className="flex flex-row gap-4 ml-4 mb-4 flex-wrap">
+      <div className="flex flex-row gap-4 flex-wrap items-center justify-evenly container w-11/12 mx-auto">
         {projects.map((project, index) => (
           <div key={index}>
             <Card

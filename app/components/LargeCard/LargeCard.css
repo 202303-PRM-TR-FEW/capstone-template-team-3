@@ -1,105 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.project-description {
-  width: auto;
-  height: 80px;
-  flex-grow: 1;
+.large-main{
+  @apply container w-11/12 mx-auto
+}
+
+.project-description { 
+  width: auto; 
+  height: 80px; 
+  flex-grow: 1; 
+  overflow: hidden; 
+  text-transform: none; 
+  text-align: left; 
+  line-height: 80px; 
+  white-space: pre-line; 
+  opacity: 1; 
+  visibility: visible; 
+} 
+ 
+.project-text { 
+  color: #0a0a0a; 
+} 
+ 
+.row { 
+  display: flex; 
+  align-items: stretch; 
+  margin: 1rem; 
+} 
+ 
+.column { 
+  flex: 1; 
+  margin: 5px; 
+  position: relative; 
+} 
+ 
+.container-style { 
+  width: 750px; 
+  height: 500px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  align-items: center; 
+  opacity: 1; 
+  background-color: rgb(233, 233, 233); 
+  border-radius: 16px; 
+  border: 0px; 
+} 
+ 
+.image-container-style { 
+  background-image: url("https://assets.api.uizard.io/api/cdn/stream/241f0bb7-2c13-4b97-ad01-d55152b1731a.png"); 
+} 
+ 
+.project-title { 
+  font-family: "Krona One"; 
+  font-size: 27px; 
+  margin: 1.8rem;
+  @apply max-sm:mx-[0] max-sm:text-[20px] max-sm:mt-[3rem]
+} 
+ 
+.project-descripe{ 
+  font-family: 'Krona One', sans-serif; 
+  font-size: 16px; 
+  color:rgb(201, 201, 201); 
+  margin: 1.8rem;
+  @apply max-sm:mx-[0] 
+} 
+ 
+.custom-container { 
+  top: 572px; 
+  left: 808px; 
+  width: 100%; 
+  height: 12px; 
+  z-index: 109; 
   margin: 1.5rem;
-  overflow: hidden;
-  font-size: 48px;
-  text-transform: none;
-  text-align: left;
-  letter-spacing: -4px;
-  line-height: 80px;
-  white-space: pre-line;
-  opacity: 1;
-  visibility: visible;
+  @apply max-sm:m-0 max-sm:w-[105%]
+} 
+ 
+.custom-background { 
+  width: 95%; 
+  height: 12px; 
+  opacity: 1; 
+  background-color: rgb(233, 233, 233); 
+  border-radius: 4px; 
+} 
+.donation-info { 
+  display: flex; 
+  justify-content: space-between; 
+  @apply max-sm:m-[0] lg:m-[1.5rem]
+} 
+ 
+.donation-amount { 
+  display: flex; 
+  flex-direction: column; 
+} 
+.donation-tag{ 
+  font-size: 14px; 
+  margin-bottom: 0.3rem; 
 }
-
-.project-text {
-  color: #0a0a0a;
-}
-
-.row {
-  display: flex;
-  align-items: stretch;
-  margin: 1rem;
-}
-
-.column {
-  flex: 1;
-  margin: 5px;
-  position: relative;
-}
-
-.container-style {
-  width: 600px;
-  height: 410px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  opacity: 1;
-  background-color: rgb(233, 233, 233);
-  border-radius: 16px;
-  border: 0px;
-}
-
-.image-container-style {
-  position: absolute;
-  top: -20px;
-  left: 0;
-  z-index: 5;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://assets.api.uizard.io/api/cdn/stream/241f0bb7-2c13-4b97-ad01-d55152b1731a.png");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 8px;
-  border: 0px;
-}
-
-.project-title {
-  font-family: "Krona One";
-  font-size: 27px;
-  margin: 1.8rem;
-}
-
-.project-descripe{
-  font-family: 'Krona One', sans-serif;
-  font-size: 16px;
-  color:rgb(201, 201, 201);
-  margin: 1.8rem;
-}
-
-.custom-container {
-  top: 572px;
-  left: 808px;
-  width: 500px;
-  height: 12px;
-  z-index: 109;
-  margin: 1.8rem;
-}
-
-.custom-background {
-  width: 535px;
-  height: 12px;
-  opacity: 1;
-  background-color: rgb(233, 233, 233);
-  border-radius: 4px;
-}
-.donation-info {
-  display: flex;
-  justify-content: space-between;
-  margin: 1.8rem;
-}
-
-.donation-amount {
-  display: flex;
-  flex-direction: column;
-}
-.donation-tag{
-  font-size: 14px;
-  margin-bottom: 0.3rem;
-}
-

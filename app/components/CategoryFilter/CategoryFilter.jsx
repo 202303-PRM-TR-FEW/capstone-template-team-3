@@ -16,7 +16,7 @@ const CategoryFilter = () => {
   };
 
   return (
-    <div className="flex flex-col p-3 m-5 space-y-4">
+    <div className="flex flex-col p-3 m-5 space-y-4 container w-11/12 mx-auto">
       <h2 className="text-2xl font-bold">Categories</h2>
       <div className="flex flex-row items-center gap-4 text-white">
         <AllIcon onClick={() => handleClick("all")} />
