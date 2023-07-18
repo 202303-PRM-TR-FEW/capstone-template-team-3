@@ -17,7 +17,7 @@ export default function CampaignPage({ params }) {
   // console.log(project);
   return (
     // main container
-    <div className="flex flex-col p-4 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 ">
+    <div className="flex flex-col p-4 lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 ">
       {/* left container */}
       <div className="mb-5">
         <Image
@@ -42,7 +42,7 @@ export default function CampaignPage({ params }) {
           <h3>{project.organizer ? project.organizer : "Organizer"}</h3>
         </div>
 
-        <div className="flex flex-col space-y-5 lg:flex-row">
+        <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
           {/* about project  */}
           <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
             <h4 className="text-xl">About project</h4>
@@ -70,7 +70,7 @@ export default function CampaignPage({ params }) {
         <div className="flex justify-center lg:flex lg:justify-start">
           <Link href={"/payment"}>
             <Button
-              style={"bg-neutral-950 text-white  py-3  rounded-lg"}
+              style={"bg-neutral-950 text-white  py-3 px-16  rounded-lg"}
               name={"Fund this project!"}
             />
           </Link>
