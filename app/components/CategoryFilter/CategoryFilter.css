@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.category-main {
+  @apply flex flex-col p-3 m-5 space-y-4;
+}
+
+.category-text {
+  @apply text-2xl font-bold;
+}
+
+.category-icons {
+  @apply flex flex-row items-center gap-4;
+}
