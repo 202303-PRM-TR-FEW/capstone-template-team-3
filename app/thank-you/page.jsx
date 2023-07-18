@@ -17,15 +17,11 @@ const ThankYouPage = () => {
           for supporting us!
         </h3>
         <div className="flex space-x-6 ty-buttons">
-          <NavLink to="/navigation">
-            <button type="button" className="ty-first-button">
-              Make another donation
-            </button>
+          <NavLink to="/navigation" style="ty-first-button">
+            Make another donation
           </NavLink>
-          <NavLink to="/campaigns">
-            <button type="button" className="ty-second-button">
-              Go to homepage
-            </button>
+          <NavLink to="/campaigns" style="ty-second-button">
+            Go to homepage
           </NavLink>
         </div>
       </div>
