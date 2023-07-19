@@ -21,10 +21,8 @@ const WelcomePage = () => {
               your idea kicked off or support others kick off their amazing
               projects.
             </p>
-            <NavLink to="/navigation">
-              <button type="button" className="leading-button">
-                Start today
-              </button>
+            <NavLink to="/navigation" style="leading-button">
+              Start today
             </NavLink>
           </div>
         </div>

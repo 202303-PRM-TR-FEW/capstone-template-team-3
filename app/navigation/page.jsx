@@ -23,7 +23,7 @@ const Navigation = () => {
     useEffect(() => {
         const redirectTimeout = setTimeout(() => {
             if (supportIsChecked) {
-                router.push('/donation')
+                router.push('/campaigns')
             }
         }, 1000)
         return () => clearTimeout(redirectTimeout)

@@ -3,6 +3,7 @@
 import { IoIosArrowBack } from 'react-icons/io';
 import './PaymentModal.css'
 import { useState } from 'react';
+import Button from '../Button/Button';
 
 const PaymentModal = () => {
     const [modalOpen, setModalOpen] = useState(true)
@@ -13,9 +14,9 @@ const PaymentModal = () => {
                     <div className="bg-slate-50 lg:w-[35%] lg:h-[70%] rounded-xl p-4 flex flex-col justify-between sm:w-[75%] sm:h-[75%]">
                         <div>
                             <div>
-                                <button onClick={() => setModalOpen(false)}>
+                                <Button type="button" clickAction={() => setModalOpen(false)}>
                                     <IoIosArrowBack size={28} />
-                                </button>
+                                </Button>
                             </div>
                             <div className="m-2 my-6 text-[32px]">Enter the donation amount:</div>
                             <div>
@@ -32,7 +33,9 @@ const PaymentModal = () => {
                             </div>
                         </div>
                         <div className='flex justify-end mt-10 md:mt-auto'>
-                            <button className='bg-zinc-950 rounded-md w-full p-2 text-white text-[15px]'>Pay now</button>
+                            <Button type="button" style='bg-zinc-950 rounded-md w-full p-2 text-white text-[15px]'>
+                                Pay now
+                            </Button>
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,12 @@
 import { FaPaw } from "react-icons/fa6";
+import "../CategoryIcons/CategoryIcons.css";
 
 const AnimalsIcon = () => {
   return (
-    <div className="flex flex-col items-center space-y-2">
+    <div className="icon-main">
       <FaPaw
         size={40}
-        className="border-2 border-spacing-3 border-white rounded-md  hover:text-black hover:border-black"
+        className="icon"
       />
       <span className="text-xs">Animals</span>
     </div>

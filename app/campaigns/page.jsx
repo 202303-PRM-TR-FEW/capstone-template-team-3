@@ -3,9 +3,9 @@ import LargeCard from "../components/LargeCard/LargeCard";
 import Card from "../components/Card/Card.jsx";
 import projects from "app/data/data.jsx";
 
-const Donation = () => {
+const Campaigns = () => {
   return (
-    <main> 
+    <main>
       <LargeCard />
       <CategoryFilter />
       <div className="flex flex-row gap-4 flex-wrap items-center justify-evenly container w-11/12 mx-auto">
@@ -24,4 +24,4 @@ const Donation = () => {
   );
 };
 
-export default Donation;
+export default Campaigns;
