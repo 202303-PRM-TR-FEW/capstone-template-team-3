@@ -1,69 +1,26 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login, logout, selectUser } from "../lib/features/userSlice";
-import {
-  auth,
-  onAuthStateChanged,
-  createUserWithEmailAndPassword,
-  db,
-  addDoc,
-  collection
-} from "../firebase/firebase";
 import Button from "../components/Button/Button";
 import NavLink from "../components/NavLink/NavLink";
 import { useRouter } from "next/navigation";
+import { userSignUpWithEmailAndPassword } from "../lib/features/userSlice";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from "../firebase/firebase";
 
 function SignUp() {
-  const user = useSelector(selectUser);
+  const [user, loading] = useAuthState(auth)
   const { register, formState: { errors }, handleSubmit, watch } = useForm();
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const onSubmit = async (data) => {
-    await registerUser(data)
+  const handleRoute = () => {
+    router.push('/profile')
   }
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (userAuth) => {
-      if (userAuth) {
-        dispatch(
-          login({
-            email: userAuth.email,
-            uid: userAuth.uid,
-            displayName: userAuth.displayName,
-          })
-        );
-      } else {
-        dispatch(logout());
-      }
-    });
-  }, [dispatch]);
-
-  const registerUser = async (data) => {
-    try {
-      const currentUserAuth = await createUserWithEmailAndPassword(auth, data.email, data.password, data.name)
-      await addDoc(collection(db, "users"), {
-        acceptedTermsAndConditions: data.checkbox,
-        email: data.email,
-        id: currentUserAuth.user.uid,
-        name: data.name,
-      })
-      dispatch(
-        login({
-          email: currentUserAuth.user.email,
-          uid: currentUserAuth.user.uid,
-          displayName: data.name,
-        })
-      )
-      if (currentUserAuth) {
-        router.push("/profile");
-      }
-    } catch (error) {
-      console.log(error)
-    }
+  const onSubmit = async (data) => {
+    dispatch(userSignUpWithEmailAndPassword(data))
   }
 
   return (
