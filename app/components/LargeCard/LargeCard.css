@@ -1,3 +1,4 @@
+
 .project-description {
   width: auto;
   height: 80px;
@@ -64,10 +65,10 @@
   margin: 1.8rem;
 }
 
-.project-descripe {
-  font-family: "Krona One", sans-serif;
+.project-descripe{
+  font-family: 'Krona One', sans-serif;
   font-size: 16px;
-  color: rgb(201, 201, 201);
+  color:rgb(201, 201, 201);
   margin: 1.8rem;
 }
 
@@ -87,17 +88,17 @@
   background-color: rgb(233, 233, 233);
   border-radius: 4px;
 }
-.campaign-info {
+.donation-info {
   display: flex;
   justify-content: space-between;
   margin: 1.8rem;
 }
 
-.campaign-amount {
+.donation-amount {
   display: flex;
   flex-direction: column;
 }
-.campaign-tag {
+.donation-tag{
   font-size: 14px;
   margin-bottom: 0.3rem;
 }

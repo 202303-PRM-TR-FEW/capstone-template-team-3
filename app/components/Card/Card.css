@@ -1,6 +1,7 @@
 .card-main {
   @apply w-80 h-96 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between;
 }
+/*w-[19rem] ml-[2rem]*/
 
 .card-img-section {
   @apply m-5 p-3 rounded-lg h-[9.3em] w-[16em] mx-auto overflow-visible bg-[#e6e6e6];
@@ -31,5 +32,5 @@
 }
 
 .card-money-section {
-  @apply flex sm:items-center justify-between sm:flex-row gap-4 flex-col;
+  @apply flex sm:items-center justify-between max-sm:flex-row sm:flex-row gap-4 flex-col;
 }
