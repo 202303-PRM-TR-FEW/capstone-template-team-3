@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Button from "../components/Button/Button";
 import NavLink from "../components/NavLink/NavLink";
 import { useRouter } from "next/navigation";
@@ -20,14 +20,15 @@ function SignUp() {
   }
 
   const onSubmit = async (data) => {
-    dispatch(userSignUpWithEmailAndPassword(data))
+    const { email, password, name, checkbox } = data
+    dispatch(userSignUpWithEmailAndPassword({ email, password, name, checkbox, handleRoute }))
   }
 
   return (
     <div>
       {!user && (
-        <div>
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-5 w-full xl:w-1/4 mx-auto bg-theme mt-20 rounded-3xl">
+        <div className="container mx-auto">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto bg-theme mt-32 rounded-3xl">
             <div className="my-2 mx-auto w-10/12">
               <input {...register("name", { required: true, pattern: /^[a-zA-Z]+(?:-[a-zA-Z]+)*$/ })}
                 placeholder="Name"
@@ -75,7 +76,7 @@ function SignUp() {
             </div>
 
             <div className="my-2 flex justify-between items-center w-10/12 mx-auto">
-              <input {...register("checkbox", { required: true })} type="checkbox" aria-invalid={errors.phone ? "true" : "false"} name="checkbox" className="text-lime-600 w-6 h-6 rounded-md ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent outline-none focus:outline-none cursor-pointer" />
+              <input {...register("checkbox", { required: true })} type="checkbox" name="checkbox" className="text-lime-600 w-6 h-6 rounded-md ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent outline-none focus:outline-none cursor-pointer" />
               <label className="text-center font-medium text-[16px]" htmlFor="checkbox">I accept the <a href="#" className="text-lime-700 italic font-bold">Terms & Conditions</a></label>
             </div>
             {errors.checkbox?.type === 'required' &&

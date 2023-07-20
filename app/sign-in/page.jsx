@@ -1,13 +1,15 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Button from "../components/Button/Button";
 import NavLink from "../components/NavLink/NavLink";
 import { useRouter } from "next/navigation";
-import { userSignInWithEmailAndPassword } from "../lib/features/userSlice";
+import { userSignInWithEmailAndPassword, userSignInWithGoogle, userSignInWithFacebook, userSignInWithGithub } from "../lib/features/userSlice";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from "../firebase/firebase";
+import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs"
+
 
 function SignIn() {
   const [user, loading] = useAuthState(auth)
@@ -20,48 +22,27 @@ function SignIn() {
   }
 
   const onSubmit = async (data) => {
-    dispatch(userSignInWithEmailAndPassword(data))
+    const { email, password } = data
+    dispatch(userSignInWithEmailAndPassword({ email, password, handleRoute }))
   }
 
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (userAuth) => {
-  //     if (userAuth) {
-  //       dispatch(
-  //         login({
-  //           email: userAuth.email,
-  //           uid: userAuth.uid,
-  //           displayName: userAuth.displayName,
-  //         })
-  //       );
-  //     } else {
-  //       dispatch(logout());
-  //     }
-  //   });
-  // }, [dispatch]);
+  const handleGoogleSignIn = async () => {
+    dispatch(userSignInWithGoogle({ handleRoute }))
+  }
 
-  // const loginUser = async (data) => {
-  //   try {
-  //     const currentUserAuth = await signInWithEmailAndPassword(auth, data.email, data.password)
-  //     dispatch(
-  //       login({
-  //         email: currentUserAuth.user.email,
-  //         uid: currentUserAuth.user.uid,
-  //         displayName: data.name,
-  //       })
-  //     )
-  //     if (currentUserAuth) {
-  //       router.push("/profile");
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+  const handleFacebookSignIn = async () => {
+    dispatch(userSignInWithFacebook({ handleRoute }))
+  }
+
+  const handleGithubSignIn = async () => {
+    dispatch(userSignInWithGithub({ handleRoute }))
+  }
 
   return (
     <div>
       {!user && (
-        <div>
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-5 w-full xl:w-1/4 mx-auto bg-theme mt-20 rounded-3xl">
+        <div className="container mx-auto">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto bg-theme mt-32 rounded-3xl">
             <div className="my-2 mx-auto w-10/12">
               <input {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })}
                 placeholder="Email"
@@ -87,6 +68,29 @@ function SignIn() {
             >
               Sign In
             </Button>
+            <div className="flex gap-2">
+              <Button
+                type="button"
+                style="navbar-button mt-5 w-1/3"
+                clickAction={handleGoogleSignIn}
+              >
+                <BsGoogle size={30} />
+              </Button>
+              <Button
+                type="button"
+                style="navbar-button mt-5 w-1/3"
+                clickAction={handleFacebookSignIn}
+              >
+                <BsFacebook size={30} />
+              </Button>
+              <Button
+                type="button"
+                style="navbar-button mt-5 w-1/3"
+                clickAction={handleGithubSignIn}
+              >
+                <BsGithub size={30} />
+              </Button>
+            </div>
             <p className="pt-5 pb-1 text-center">Not a member? </p>
             <NavLink
               to="/sign-up"
