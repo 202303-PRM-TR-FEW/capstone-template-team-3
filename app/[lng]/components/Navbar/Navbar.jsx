@@ -1,16 +1,16 @@
 "use client"
 
 import { useState } from "react";
-import Logo from "../Logo/Logo";
-import Search from "../Search/Search";
-import NavLink from "../NavLink/NavLink";
-import Button from "../Button/Button";
+import Logo from "app/components/Logo/Logo.jsx";
+import Search from "app/components/Search/Search.jsx";
+import NavLink from "app/components/NavLink/NavLink.jsx";
+import Button from "app/components/Button/Button.jsx";
 import "./Navbar.css"
 import { HiSearchCircle } from "react-icons/hi"
 import { useRouter } from "next/navigation"
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser, logout } from "@/app/lib/features/userSlice";
-import { signOut, auth } from "../../firebase/firebase";
+import { signOut, auth } from "app/firebase/firebase.jsx";
 
 const Navbar = () => {
   const user = useSelector(selectUser)
