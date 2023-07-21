@@ -1,84 +1,42 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login, logout, selectUser } from "../lib/features/userSlice";
-import {
-  auth,
-  onAuthStateChanged,
-  createUserWithEmailAndPassword,
-  db,
-  addDoc,
-  collection
-} from "../firebase/firebase";
+import { useDispatch } from "react-redux";
 import Button from "../components/Button/Button";
 import NavLink from "../components/NavLink/NavLink";
 import { useRouter } from "next/navigation";
+import { userSignUpWithEmailAndPassword } from "../lib/features/userSlice";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from "../firebase/firebase";
 
 function SignUp() {
-  const user = useSelector(selectUser);
+  const [user, loading] = useAuthState(auth)
   const { register, formState: { errors }, handleSubmit, watch } = useForm();
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const onSubmit = async (data) => {
-    await registerUser(data)
+  const handleRoute = () => {
+    router.push('/profile')
   }
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (userAuth) => {
-      if (userAuth) {
-        dispatch(
-          login({
-            email: userAuth.email,
-            uid: userAuth.uid,
-            displayName: userAuth.displayName,
-          })
-        );
-      } else {
-        dispatch(logout());
-      }
-    });
-  }, [dispatch]);
-
-  const registerUser = async (data) => {
-    try {
-      const currentUserAuth = await createUserWithEmailAndPassword(auth, data.email, data.password, data.name)
-      await addDoc(collection(db, "users"), {
-        acceptedTermsAndConditions: data.checkbox,
-        email: data.email,
-        id: currentUserAuth.user.uid,
-        name: data.name,
-      })
-      dispatch(
-        login({
-          email: currentUserAuth.user.email,
-          uid: currentUserAuth.user.uid,
-          displayName: data.name,
-        })
-      )
-      if (currentUserAuth) {
-        router.push("/profile");
-      }
-    } catch (error) {
-      console.log(error)
-    }
+  const onSubmit = async (data) => {
+    const { email, password, name, checkbox } = data
+    dispatch(userSignUpWithEmailAndPassword({ email, password, name, checkbox, handleRoute }))
   }
 
   return (
     <div>
       {!user && (
-        <div>
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-5 w-full xl:w-1/4 mx-auto bg-theme mt-20 rounded-3xl">
+        <div className="container mx-auto">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto bg-theme mt-32 rounded-3xl">
             <div className="my-2 mx-auto w-10/12">
-              <input {...register("name", { required: true, pattern: /^[a-zA-Z]+(?:-[a-zA-Z]+)*$/ })}
+              <input {...register("name", { required: true, pattern: /^[a-zA-Z]+(?:-[a-zA-Z]+)*(?:\s[a-zA-Z]+(?:-[a-zA-Z]+)*)*$/ })}
                 placeholder="Name"
                 className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.name ? "true" : "false"}
                 type="text" />
-              {errors.name?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">First name is required</p>}
-              {errors.name?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">First name is invalid</p>}
+              {errors.name?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Name is required</p>}
+              {errors.name?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Name is invalid</p>}
             </div>
 
             <div className="my-2 mx-auto w-10/12">
@@ -92,13 +50,16 @@ function SignUp() {
             </div>
 
             <div className="my-2 mx-auto w-10/12">
-              <input {...register("password", { required: true })}
+              <input {...register("password", {
+                required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).{8,}$/, minLength: 8
+              })}
                 placeholder="Password"
                 className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.password ? "true" : "false"}
                 type="password" />
               {errors.password?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Password is required</p>}
-              {errors.password?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Password is invalid</p>}
+              {errors.password?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Password must contain a lowercase, an uppercase, and a special character</p>}
+              {errors.password?.type === 'minLength' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Password must be at least 8 characters</p>}
             </div>
 
             <div className="my-2 mx-auto w-10/12">
@@ -114,11 +75,11 @@ function SignUp() {
                 aria-invalid={errors.passwordConfirm ? "true" : "false"}
                 type="password" />
               {errors.passwordConfirm?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Please re-enter password</p>}
-              {errors.passwordConfirm?.type === 'validate' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Your passwords do not match</p>}
+              {errors.passwordConfirm?.type === 'validate' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Passwords do not match</p>}
             </div>
 
             <div className="my-2 flex justify-between items-center w-10/12 mx-auto">
-              <input {...register("checkbox", { required: true })} type="checkbox" aria-invalid={errors.phone ? "true" : "false"} name="checkbox" className="text-lime-600 w-6 h-6 rounded-md ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent outline-none focus:outline-none cursor-pointer" />
+              <input {...register("checkbox", { required: true })} type="checkbox" name="checkbox" className="text-lime-600 w-6 h-6 rounded-md ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent outline-none focus:outline-none cursor-pointer" />
               <label className="text-center font-medium text-[16px]" htmlFor="checkbox">I accept the <a href="#" className="text-lime-700 italic font-bold">Terms & Conditions</a></label>
             </div>
             {errors.checkbox?.type === 'required' &&

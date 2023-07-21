@@ -19,9 +19,9 @@ const RootLayout = ({ children, params: { lng } }) => {
     <html lang={lng} dir={dir(lng)}>
       <body className="body-text body-bg">
         <ReduxProvider>
-          <Navbar />
+          <Navbar lng={lng} />
           {children}
-          <Footer lng={lng}/>
+          <Footer lng={lng} />
         </ReduxProvider>
       </body>
     </html>

@@ -1,8 +1,7 @@
 import NavLink from "../NavLink/NavLink";
 import "./Logo.css";
-import Link from "next/link";
 
-const Logo = ({ name }) => {
+const Logo = () => {
   return (
     <div className="logo">
       <NavLink to="/welcome" name="Givingly" />
