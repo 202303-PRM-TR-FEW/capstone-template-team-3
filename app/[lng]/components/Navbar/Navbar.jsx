@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Logo from "app/components/Logo/Logo.jsx";
-import Search from "app/components/Search/Search.jsx";
+import Search from "app/[lng]/components/Search/Search.jsx";
 import NavLink from "app/components/NavLink/NavLink.jsx";
 import Button from "app/components/Button/Button.jsx";
 import "./Navbar.css"
