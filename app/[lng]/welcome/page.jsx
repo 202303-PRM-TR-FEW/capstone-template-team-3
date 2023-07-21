@@ -2,7 +2,7 @@ import NavLink from "../../components/NavLink/NavLink";
 import "./welcome.css";
 import { useTranslation } from "../../i18n";
 
-export default async function WelcomePage({ lng, l }) {
+export default async function WelcomePage({ lng }) {
   const { t } = await useTranslation(lng, "welcome");
 
   return (
@@ -10,7 +10,7 @@ export default async function WelcomePage({ lng, l }) {
       <div
         className="welcome"
         style={{
-          backgroundImage: "url(/welcomepage.png)",
+          backgroundImage: "url(/assets/images/welcomepage.png)",
         }}
       >
         <div className="welcome-container">
