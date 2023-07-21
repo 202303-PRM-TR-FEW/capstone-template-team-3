@@ -8,12 +8,13 @@ import Button from "../Button/Button";
 import "./Navbar.css"
 import { HiSearchCircle } from "react-icons/hi"
 import { useRouter } from "next/navigation"
-import { useSelector, useDispatch } from "react-redux";
-import { selectUser, logout } from "@/app/lib/features/userSlice";
-import { signOut, auth } from "../../firebase/firebase";
+import { useDispatch } from "react-redux";
+import { auth } from "../../firebase/firebase";
+import { userSignOut, returnToInitialState } from "@/app/lib/features/userSlice";
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Navbar = () => {
-  const user = useSelector(selectUser)
+  const [user, loading] = useAuthState(auth)
   const [toggleDropdown, setToggleDropdown] = useState(false)
   const [toggleSearch, setToggleSearch] = useState(false)
   const [isHidden, setIsHidden] = useState("xl:hidden")
@@ -29,15 +30,12 @@ const Navbar = () => {
   }
 
   const handleLogin = () => {
-    const redirectTimeout = setTimeout(() => {
-      router.push('/sign-in')
-    }, 300)
-    return () => clearTimeout(redirectTimeout)
+    router.push('/sign-in')
   }
 
   const handleLogout = () => {
-    dispatch(logout(user));
-    signOut(auth);
+    dispatch(userSignOut());
+    dispatch(returnToInitialState());
     router.push('/')
   }
 
