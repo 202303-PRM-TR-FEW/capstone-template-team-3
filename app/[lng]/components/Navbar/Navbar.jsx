@@ -11,14 +11,16 @@ import { useRouter } from "next/navigation"
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser, logout } from "@/app/lib/features/userSlice";
 import { signOut, auth } from "app/firebase/firebase.jsx";
+import { useTranslation } from '../../../i18n/client'
 
-const Navbar = () => {
+const Navbar = ({lng}) => {
   const user = useSelector(selectUser)
   const [toggleDropdown, setToggleDropdown] = useState(false)
   const [toggleSearch, setToggleSearch] = useState(false)
   const [isHidden, setIsHidden] = useState("xl:hidden")
   const router = useRouter()
   const dispatch = useDispatch()
+  const { t } = useTranslation(lng, 'navbar')
 
   const handleToggleDropdown = () => {
     setToggleDropdown((prevState) => !prevState)
@@ -59,15 +61,15 @@ const Navbar = () => {
           )}
         </div>
         <div className="lg:flex lg:justify-between lg:items-center hidden">
-          <NavLink to="/campaigns" name="Home" style="lg:ms-0 xl:ms-10" />
+          <NavLink to="/campaigns" name={t("Home")} style="lg:ms-0 xl:ms-10" />
           {user && (
             <>
-              <NavLink to="/my-projects" name="My Projects" style="lg:ms-10" />
-              <NavLink to="/profile" name="Profile" style="lg:ms-10" />
-              <Button type="button" name="New project" style="lg:ms-10 navbar-button" />
+              <NavLink to="/my-projects" name={t("My Projects")} style="lg:ms-10" />
+              <NavLink to="/profile" name={t("Profile")} style="lg:ms-10" />
+              <Button type="button" name={t("New project")} style="lg:ms-10 navbar-button" />
             </>
           )}
-          <Button type="button" name={user ? "Sign out" : "Sign in"} style="ms-5 navbar-button" clickAction={!user ? () => handleLogin() : () => handleLogout()} />
+          <Button type="button" name={user ? t("Sign out") : t("Sign in")} style="ms-5 navbar-button" clickAction={!user ? () => handleLogin() : () => handleLogout()} />
         </div>
         <div className="lg:hidden relative">
           <Button type="button" style="relative group" clickAction={() => {
@@ -101,15 +103,15 @@ const Navbar = () => {
           </Button>
           {toggleDropdown && (
             <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl">
-              <NavLink to="/campaigns" name="Home" style="mb-2" />
+              <NavLink to="/campaigns" name={t("Home")}  style="mb-2" />
               {user && (
                 <>
-                  <NavLink to="/my-projects" name="My Projects" style="mb-2" />
-                  <NavLink to="/profile" name="Profile" style="mb-2" />
-                  <Button type="button" name="New project" style="navbar-button mb-2" />
+                  <NavLink to="/my-projects" name={t("My Projects")} style="mb-2" />
+                  <NavLink to="/profile" name={t("Profile")} style="mb-2" />
+                  <Button type="button" name={t("New project")}  style="navbar-button mb-2" />
                 </>
               )}
-              <Button type="button" name={user ? "Sign out" : "Sign in"} style="navbar-button" clickAction={!user ? () => handleLogin() : () => handleLogout()} />
+              <Button type="button" name={user ? t("Sign out") : t("Sign in")} style="navbar-button" clickAction={!user ? () => handleLogin() : () => handleLogout()} />
             </div>
           )}
         </div>
