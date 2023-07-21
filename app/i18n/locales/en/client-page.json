@@ -1,0 +1,8 @@
+{
+  "title": "Client page",
+  "counter_one": "one selected",
+  "counter_other": "{{count}} selected",
+  "counter_zero": "none selected",
+  "back-to-home": "Back to home",
+  "leading-normal-first": "Supporting great"
+}
