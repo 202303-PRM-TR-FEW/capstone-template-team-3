@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
-import { collection, db, addDoc, auth, signInWithPopup, googleAuthProvider, facebookAuthProvider, githubAuthProvider, query, where, doc, getDoc, setDoc } from '@/app/firebase/firebase';
+import { db, auth, signInWithPopup, googleAuthProvider, githubAuthProvider, twitterAuthProvider, doc, getDoc, setDoc } from '@/app/firebase/firebase';
 
 const initialState = {
     user: null,
@@ -75,11 +75,11 @@ export const userSignInWithGoogle = createAsyncThunk(
         }
     })
 
-export const userSignInWithFacebook = createAsyncThunk(
-    "signInWithFacebook",
+export const userSignInWithGithub = createAsyncThunk(
+    "signInWithGithub",
     async (data) => {
         const { handleRoute } = data
-        const provider = facebookAuthProvider
+        const provider = githubAuthProvider
         try {
             const userCredential = await signInWithPopup(auth, provider)
             const userId = userCredential.user.uid
@@ -101,11 +101,11 @@ export const userSignInWithFacebook = createAsyncThunk(
         }
     })
 
-export const userSignInWithGithub = createAsyncThunk(
-    "signInWithGithub",
+export const userSignInWithTwitter = createAsyncThunk(
+    "signInWithTwitter",
     async (data) => {
         const { handleRoute } = data
-        const provider = githubAuthProvider
+        const provider = twitterAuthProvider
         try {
             const userCredential = await signInWithPopup(auth, provider)
             const userId = userCredential.user.uid
@@ -196,21 +196,6 @@ const userSlice = createSlice({
                 state.status = "failed"
                 state.error = action.error.message
             })
-            .addCase(userSignInWithFacebook.pending, (state) => {
-                state.user = {}
-                state.status = "loading"
-                state.error = null
-            })
-            .addCase(userSignInWithFacebook.fulfilled, (state, action) => {
-                state.user = action.payload
-                state.status = "succeeded"
-                state.error = null
-            })
-            .addCase(userSignInWithFacebook.rejected, (state, action) => {
-                state.user = {}
-                state.status = "failed"
-                state.error = action.error.message
-            })
             .addCase(userSignInWithGithub.pending, (state) => {
                 state.user = {}
                 state.status = "loading"
@@ -222,6 +207,21 @@ const userSlice = createSlice({
                 state.error = null
             })
             .addCase(userSignInWithGithub.rejected, (state, action) => {
+                state.user = {}
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(userSignInWithTwitter.pending, (state) => {
+                state.user = {}
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(userSignInWithTwitter.fulfilled, (state, action) => {
+                state.user = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(userSignInWithTwitter.rejected, (state, action) => {
                 state.user = {}
                 state.status = "failed"
                 state.error = action.error.message

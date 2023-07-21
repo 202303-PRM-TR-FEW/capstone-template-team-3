@@ -30,13 +30,13 @@ function SignUp() {
         <div className="container mx-auto">
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto bg-theme mt-32 rounded-3xl">
             <div className="my-2 mx-auto w-10/12">
-              <input {...register("name", { required: true, pattern: /^[a-zA-Z]+(?:-[a-zA-Z]+)*$/ })}
+              <input {...register("name", { required: true, pattern: /^[a-zA-Z]+(?:-[a-zA-Z]+)*(?:\s[a-zA-Z]+(?:-[a-zA-Z]+)*)*$/ })}
                 placeholder="Name"
                 className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.name ? "true" : "false"}
                 type="text" />
-              {errors.name?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">First name is required</p>}
-              {errors.name?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">First name is invalid</p>}
+              {errors.name?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Name is required</p>}
+              {errors.name?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Name is invalid</p>}
             </div>
 
             <div className="my-2 mx-auto w-10/12">
@@ -50,13 +50,16 @@ function SignUp() {
             </div>
 
             <div className="my-2 mx-auto w-10/12">
-              <input {...register("password", { required: true })}
+              <input {...register("password", {
+                required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).{8,}$/, minLength: 8
+              })}
                 placeholder="Password"
                 className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.password ? "true" : "false"}
                 type="password" />
               {errors.password?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Password is required</p>}
-              {errors.password?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Password is invalid</p>}
+              {errors.password?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Password must contain a lowercase, an uppercase, and a special character</p>}
+              {errors.password?.type === 'minLength' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Password must be at least 8 characters</p>}
             </div>
 
             <div className="my-2 mx-auto w-10/12">
@@ -72,7 +75,7 @@ function SignUp() {
                 aria-invalid={errors.passwordConfirm ? "true" : "false"}
                 type="password" />
               {errors.passwordConfirm?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Please re-enter password</p>}
-              {errors.passwordConfirm?.type === 'validate' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Your passwords do not match</p>}
+              {errors.passwordConfirm?.type === 'validate' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Passwords do not match</p>}
             </div>
 
             <div className="my-2 flex justify-between items-center w-10/12 mx-auto">

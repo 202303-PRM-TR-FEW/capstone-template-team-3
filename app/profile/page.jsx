@@ -11,8 +11,9 @@ const Profile = () => {
     <main>
       <div className="flex flex-col justify-center items-center">
         <p>Signed in succesfully</p>
-        <p>Email: {user.email}</p>
-        <p>ID: {user.uid}</p>
+        {user.displayName && <p>Name: {user.displayName}</p>}
+        {user.email && <p>Email: {user.email}</p>}
+        <p>User ID: {user.uid}</p>
       </div>
     </main>
   )

@@ -5,10 +5,10 @@ import { useDispatch } from "react-redux";
 import Button from "../components/Button/Button";
 import NavLink from "../components/NavLink/NavLink";
 import { useRouter } from "next/navigation";
-import { userSignInWithEmailAndPassword, userSignInWithGoogle, userSignInWithFacebook, userSignInWithGithub } from "../lib/features/userSlice";
+import { userSignInWithEmailAndPassword, userSignInWithGoogle, userSignInWithGithub, userSignInWithTwitter } from "../lib/features/userSlice";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from "../firebase/firebase";
-import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs"
+import { BsTwitter, BsGithub, BsGoogle } from "react-icons/bs"
 
 
 function SignIn() {
@@ -30,12 +30,12 @@ function SignIn() {
     dispatch(userSignInWithGoogle({ handleRoute }))
   }
 
-  const handleFacebookSignIn = async () => {
-    dispatch(userSignInWithFacebook({ handleRoute }))
-  }
-
   const handleGithubSignIn = async () => {
     dispatch(userSignInWithGithub({ handleRoute }))
+  }
+
+  const handleTwitterSignIn = async () => {
+    dispatch(userSignInWithTwitter({ handleRoute }))
   }
 
   return (
@@ -79,9 +79,9 @@ function SignIn() {
               <Button
                 type="button"
                 style="navbar-button mt-5 w-1/3"
-                clickAction={handleFacebookSignIn}
+                clickAction={handleTwitterSignIn}
               >
-                <BsFacebook size={30} />
+                <BsTwitter size={30} />
               </Button>
               <Button
                 type="button"
