@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, addDoc, collection, onSnapshot, query, where, getDoc, doc, setDoc } from "@firebase/firestore"
+import { getFirestore, addDoc, collection, onSnapshot, query, where, getDoc, doc, setDoc, getDocs } from "@firebase/firestore"
 import { GoogleAuthProvider, signInWithPopup, GithubAuthProvider, TwitterAuthProvider } from "firebase/auth";
-import {getStorage} from 'firebase/storage'
+import { getStorage, getDownloadURL } from 'firebase/storage'
 
 // import { getAnalytics } from "firebase/analytics";
 import {
@@ -32,7 +32,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
-export const storage =getStorage(app)
+export const storage = getStorage(app)
 const googleAuthProvider = new GoogleAuthProvider();
 const githubAuthProvider = new GithubAuthProvider();
 const twitterAuthProvider = new TwitterAuthProvider();
@@ -59,4 +59,6 @@ export {
     doc,
     getDoc,
     setDoc,
+    getDocs,
+    getDownloadURL
 }
