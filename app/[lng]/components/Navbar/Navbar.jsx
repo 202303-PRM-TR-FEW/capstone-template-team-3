@@ -48,7 +48,7 @@ const Navbar = ({ lng }) => {
     <div className="bg-theme">
       <nav className="container mx-auto flex flex-row justify-between items-center py-5 px-5 whitespace-nowrap">
         <div className="flex justify-between items-center">
-          <Logo lng={lng} />
+          <Logo lng={lng}/>
         </div>
         <div className="relative">
           <HiSearchCircle
@@ -67,7 +67,7 @@ const Navbar = ({ lng }) => {
           )}
         </div>
         <div className="lg:flex lg:justify-between lg:items-center hidden">
-          <NavLink to="/campaigns" name={t("Home")} style="lg:ms-0 xl:ms-10" />
+          <NavLink to={`/${lng}/campaigns`} name={t("Home")} style="lg:ms-0 xl:ms-10" />
           {user && (
             <>
               <NavLink

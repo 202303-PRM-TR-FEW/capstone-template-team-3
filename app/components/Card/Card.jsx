@@ -1,7 +1,9 @@
 import Image from "next/image";
 import "./Card.css";
+import { useTranslation } from "app/i18n/client.js";
 
-const Card = ({ img, title, raised, goal }) => {
+const Card = ({ img, title, raised, goal, lng }) => {
+  const { t } = useTranslation(lng, "largeCard");
   return (
     <div className="card-main">
       <div className="card-img-section ">
@@ -29,11 +31,11 @@ const Card = ({ img, title, raised, goal }) => {
 
         <div className="card-money-section">
           <div>
-            <p>Raised:</p>
+            <p>{t("Raised")}:</p>
             <p>${raised}</p>
           </div>
           <div>
-            <p>Goal:</p>
+            <p>{t("Goal")}:</p>
             <p>${goal}</p>
           </div>
         </div>
