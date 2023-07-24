@@ -11,9 +11,11 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Campaigns = () => {
   const [campaigns, setCampaigns] = useState([]);
+  const router = useRouter();
 
   // Read campaigns from database
   useEffect(() => {
@@ -28,13 +30,18 @@ const Campaigns = () => {
     });
   }, []);
 
+  
+
   return (
     <main>
       <LargeCard />
       <CategoryFilter />
       <div className="flex flex-row gap-4 flex-wrap items-center justify-evenly container w-11/12 mx-auto">
         {campaigns.map((campaign, index) => (
-          <div key={index}>
+          <div
+            key={index}
+            onClick={() => router.push(`/campaigns/${campaign.id}`)}
+          >
             <Card
               img={campaign.img}
               title={campaign.title}

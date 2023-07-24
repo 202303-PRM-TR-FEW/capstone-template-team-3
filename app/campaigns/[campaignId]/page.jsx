@@ -1,20 +1,30 @@
+"use client";
 import Button from "@/app/components/Button/Button";
-import projects from "@/app/data/data";
 import Image from "next/image";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import Link from "next/link";
-
-// export async function generateStaticParams() {
-//   return projects.map((project) => ({
-//     id: project.id.toString(),
-//     title: project.title,
-//   }));
-// }
+import { getDoc, collection, query, where, getDocs } from "@firebase/firestore";
+import { db } from "@/app/firebase/firebase";
+import { useEffect, useState } from "react";
 
 export default function CampaignPage({ params }) {
-  const project = projects.find((p) => p.id === parseInt(params.campaignId));
-  console.log(params);
-  // console.log(project);
+  const { campaignId } = params;
+  console.log(campaignId);
+
+  const [campaign, setCampaign] = useState({});
+
+  useEffect(() => {
+    const getCampaign = async () => {
+      const campaignRef = collection(db, "campaigns");
+      const q = query(campaignRef, where("id", "==", campaignId));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        setCampaign(doc.data());
+      });
+    };
+    getCampaign();
+  }, [campaignId]);
+
   return (
     // main container
     <div className="flex flex-col p-4 lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 ">
@@ -24,45 +34,47 @@ export default function CampaignPage({ params }) {
           className="bg-slate-100 rounded-xl"
           width={1200}
           height={200}
-          src={project.img}
-          alt={project.title}
+          src={campaign.image}
+          alt={campaign.projectName}
         />
       </div>
       {/* right container  */}
       <div className="flex flex-col space-y-5 lg:">
-        <h1 className="text-2xl font-bold lg:text-start ">{project.title}</h1>
+        <h1 className="text-2xl font-bold lg:text-start ">
+          {campaign.projectName}
+        </h1>
         <div className="flex items-center justify-center space-x-5 lg:justify-start">
           <Image
             className="rounded-full border-2 border-neutral-950"
-            alt={project.organizer}
-            src={project.img}
+            alt={campaign.organizer}
+            src={campaign.img}
             width={50}
             height={50}
           />
-          <h3>{project.organizer ? project.organizer : "Organizer"}</h3>
+          <h3>{campaign.organizer ? campaign.organizer : "Organizer"}</h3>
         </div>
 
         <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
-          {/* about project  */}
+          {/* about campaign  */}
           <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
-            <h4 className="text-xl">About project</h4>
-            <p className="text-sm">{project.about}</p>
+            <h4 className="text-xl">About campaign</h4>
+            <p className="text-sm">{campaign.about}</p>
           </div>
-          {/* project details   */}
+          {/* campaign details   */}
           <div className="flex flex-col justify-around py-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 border-neutral-950">
             <div className="flex space-x-10 ">
               <div className="p-2">
                 <h5>Raised:</h5>
-                <p>{"$" + project.raised}</p>
+                <p>{"$" + campaign.raised}</p>
               </div>
               <div className="bg-theme rounded-lg p-2">
                 <h5>Goal:</h5>
-                <p>{"$" + project.goal}</p>
+                <p>{"$" + campaign.goal}</p>
               </div>
             </div>
             <div>
               <h5 className="flex items-center">
-                <FaRegCalendarDays /> {project.date}
+                <FaRegCalendarDays /> {campaign.date}
               </h5>
             </div>
           </div>
@@ -71,7 +83,7 @@ export default function CampaignPage({ params }) {
           <Link href={"/payment"}>
             <Button
               style={"bg-neutral-950 text-white  py-3 px-16  rounded-lg"}
-              name={"Fund this project!"}
+              name={"Fund this campaign!"}
             />
           </Link>
         </div>
