@@ -1,9 +1,11 @@
-import CategoryFilter from "../components/CategoryFilter/CategoryFilter";
-import LargeCard from "../components/LargeCard/LargeCard";
-import Card from "../components/Card/Card.jsx";
+"use client";
+
+import CategoryFilter from "app/components/CategoryFilter/CategoryFilter.jsx";
+import LargeCard from "app/[lng]/components/LargeCard/LargeCard.jsx";
+import Card from "app/components/Card/Card.jsx";
 import projects from "app/data/data.jsx";
 
-const Campaigns = () => {
+export default function Campaigns() {
   return (
     <main>
       <LargeCard />
@@ -22,6 +24,4 @@ const Campaigns = () => {
       </div>
     </main>
   );
-};
-
-export default Campaigns;
+}

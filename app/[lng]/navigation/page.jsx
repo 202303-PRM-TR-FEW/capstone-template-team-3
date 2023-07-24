@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import "./navigation.css";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "../../i18n/client";
 
-export default  function Navigation({ lng }) {
+export default function Navigation({ lng }) {
   const [supportIsChecked, setSupportIsChecked] = useState(false);
   const [kickoffIsChecked, setKickoffIsChecked] = useState(false);
   const router = useRouter();
@@ -29,7 +29,7 @@ export default  function Navigation({ lng }) {
       }
     }, 1000);
     return () => clearTimeout(redirectTimeout);
-  }, [supportIsChecked, router]);
+  }, [supportIsChecked, router,lng]);
 
   return (
     <main className="navigation-main">
@@ -46,8 +46,10 @@ export default  function Navigation({ lng }) {
             disabled={kickoffIsChecked}
           />
           <div className="checkbox-text-container">
-            <h2 className="checkbox-header-text">Support</h2>
-            <span className="checkbox-appendix-text">other projects</span>
+            <h2 className="checkbox-header-text">{t("Support")}</h2>
+            <span className="checkbox-appendix-text">
+              {t("other-projects")}
+            </span>
           </div>
         </div>
         <hr className="navigation-divider" />
@@ -62,8 +64,8 @@ export default  function Navigation({ lng }) {
             onChange={handleKickoffCheck}
           />
           <div className="checkbox-text-container">
-            <h2 className="checkbox-header-text">Kick-off</h2>
-            <span className="checkbox-appendix-text">my project</span>
+            <h2 className="checkbox-header-text">{t("Kick-off")}</h2>
+            <span className="checkbox-appendix-text">{t("my-project")}</span>
           </div>
         </div>
       </section>
@@ -78,17 +80,17 @@ export default  function Navigation({ lng }) {
             />
           </div>
           <article className="newsletter-text-container">
-            <h3 className="newsletter-header-text">Stay informed</h3>
+            <h3 className="newsletter-header-text">{t("Stay informed")}</h3>
             <p className="newsletter-paragraph-text">
-              Want to be among the first people to know about amazing projects
-              on our platform? Join our monthly digest of <br />
-              the best causes.
+              {t("newsletter-paragraph-text-first")}
+              <br />
+              {t("newsletter-paragraph-text-second")}
             </p>
           </article>
           <Button
             type={"button"}
             style="newsletter-button"
-            name={"Join newsletter"}
+            name={t("Join newsletter")}
           />
         </div>
       </section>
