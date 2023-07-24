@@ -8,17 +8,26 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './KickOff.css';
 import Button from '../Button/Button';
-import { db, collection, addDoc, storage } from "../../firebase/firebase"; // Assuming you have imported Firebase correctly
-import { ref, uploadBytes } from 'firebase/storage'
-import { v4 } from 'uuid'
+import { auth } from "../../firebase/firebase";
 import { useForm } from "react-hook-form";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { addUserCampaign } from '@/app/lib/features/campaignSlice';
+import { useDispatch } from 'react-redux';
+import { useRouter } from "next/navigation";
 
 const PaymentModal = () => {
+  const [user, loading] = useAuthState(auth)
+  const dispatch = useDispatch()
+  const router = useRouter()
   const { register, formState: { errors }, handleSubmit } = useForm();
   const [modalOpen, setModalOpen] = useState(true);
   const [showCalendar, setShowCalendar] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
+  const handleRoute = () => {
+    router.push('/my-campaigns')
+  }
 
   const handleCalendarIconClick = () => {
     setShowCalendar(!showCalendar);
@@ -31,24 +40,9 @@ const PaymentModal = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log(data)
     const { projectName, goal, about, file } = data
-    try {
-      await addDoc(collection(db, "campaigns"), {
-        ProjectName: projectName,
-        Goal: goal,
-        About: about,
-        StartDate: startDate,
-        EndDate: endDate
-      });
-      alert("Project uploaded!")
-      const fileRef = ref(storage, `folder/${file[0].name + v4()}`)
-      uploadBytes(fileRef, file[0]).then(() => {
-        alert("Img uploaded!")
-      })
-    } catch (error) {
-      console.error("Error submitting project name:", error);
-    }
+    const userId = user.uid
+    dispatch(addUserCampaign({ projectName, goal, about, file, startDate, endDate, userId, handleRoute }))
   }
 
   const handleCancel = () => {
@@ -99,6 +93,7 @@ const PaymentModal = () => {
                         className="title-input bg-slate-50 py-0 px-2 text-black font-medium text-base leading-normal text-left uppercase input-field focus:outline-none focus:ring-0"
                         onClick={handleCalendarIconClick}
                         defaultValue={startDate && endDate ? `${startDate.getDate()}/${startDate.getMonth() + 1}/${startDate.getFullYear().toString().slice(-2)} - ${endDate.getDate()}/${endDate.getMonth() + 1}/${endDate.getFullYear().toString().slice(-2)}` : ''}
+                        required
                       />
                       {errors.calendar?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Timeline is required</p>}
                       <FaCalendarAlt

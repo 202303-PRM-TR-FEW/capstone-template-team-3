@@ -51,18 +51,18 @@ const Navbar = () => {
             setToggleDropdown(false);
           }} />
           {isHidden === "xl:hidden" && !toggleSearch ? (
-            <Search style="bg-accent text-gray-900 rounded-lg focus:ring-0 w-[20rem] p-2.5 border-0 h-11 ms-10 hidden xl:block" />
+            <Search style="bg-accent text-gray-900 rounded-lg focus:ring-0 w-[20rem] p-2.5 border-0 h-11 ms-8 hidden xl:block" />
           ) : (
             <Search style="bg-accent text-gray-900 text-sm lg:text-[1rem] rounded-lg focus:ring-0 w-[12.4rem] lg:w-[14rem] p-2.5 border-0 h-11 -left-20 lg:-left-24 inset-y-[3.2rem] sm:inset-y-10 absolute drop-shadow-2xl" />
           )}
         </div>
         <div className="lg:flex lg:justify-between lg:items-center hidden">
-          <NavLink to="/campaigns" name="Home" style="lg:ms-0 xl:ms-10" />
+          <NavLink to="/campaigns" name="Home" style="lg:ms-0 xl:ms-8" />
           {user && (
             <>
-              <NavLink to="/my-projects" name="My Projects" style="lg:ms-10" />
-              <NavLink to="/profile" name="Profile" style="lg:ms-10" />
-              <Button type="button" name="New project" style="lg:ms-10 navbar-button" />
+              <NavLink to="/my-campaigns" name="My Campaigns" style="lg:ms-8" />
+              <NavLink to="/profile" name="Profile" style="lg:ms-8" />
+              <Button type="button" name="New project" style="lg:ms-8 navbar-button" />
             </>
           )}
           <Button type="button" name={user ? "Sign out" : "Sign in"} style="ms-5 navbar-button" clickAction={!user ? () => handleLogin() : () => handleLogout()} />
@@ -102,7 +102,7 @@ const Navbar = () => {
               <NavLink to="/campaigns" name="Home" style="mb-2" />
               {user && (
                 <>
-                  <NavLink to="/my-projects" name="My Projects" style="mb-2" />
+                  <NavLink to="/my-campaigns" name="My Campaigns" style="mb-2" />
                   <NavLink to="/profile" name="Profile" style="mb-2" />
                   <Button type="button" name="New project" style="navbar-button mb-2" />
                 </>
