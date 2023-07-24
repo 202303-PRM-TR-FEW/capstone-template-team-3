@@ -35,7 +35,7 @@ const Navbar = ({ lng }) => {
   };
 
   const handleLogin = () => {
-    router.push("/sign-in");
+    router.push(`/${lng}/sign-in`);
   };
 
   const handleLogout = () => {

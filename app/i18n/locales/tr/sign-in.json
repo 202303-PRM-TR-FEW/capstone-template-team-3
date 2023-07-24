@@ -1,0 +1,11 @@
+{
+  "Email": "E-posta",
+  "Password": "Şifre",
+  "Sign In": "Giriş Yap",
+  "Not a member?": "Üye değil misin?",
+  "Sign Up": "Üye Ol",
+  "Email is required": "E-posta giriniz",
+  "Email is invalid": "Geçersiz e-posta",
+  "Password is required": "Şifre giriniz",
+  "Password is invalid": "Geçersiz şifre"
+}
