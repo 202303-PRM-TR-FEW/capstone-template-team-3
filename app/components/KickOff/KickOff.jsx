@@ -45,9 +45,9 @@ const PaymentModal = () => {
   const onSubmit = async (data) => {
     const { projectName, goal, about, file } = data
     const userId = user.uid
-    dispatch(addUserCampaign({ projectName, goal, about, file, startDate, endDate, userId, formatDate, today, nextMonth }))
-      .then(() => dispatch(getAllUserCampaigns(userId)))
-      .then(() => dispatch(closeModal()))
+    await dispatch(addUserCampaign({ projectName, goal, about, file, startDate, endDate, userId, formatDate, today, nextMonth }))
+    await dispatch(getAllUserCampaigns(userId))
+    await dispatch(closeModal())
   }
 
   const handleCancel = () => {
