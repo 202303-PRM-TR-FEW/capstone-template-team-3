@@ -70,17 +70,17 @@ const PaymentModal = () => {
               </Button>
             </div>
             <div className="lg:m-2 md:m-0 lg:my-4 md:my-1 lg:text-[40px] md:text-[20px]">
-              Kick-off <br /> your project
+              Kick-off <br /> your campaign
             </div>
             <div className="flex flex-col md:flex-row justify-between m-2">
               <div className="flex flex-col lg:mx-4">
                 <div className="flex flex-col">
-                  <label className="font-mulish text-lg md:text-[18px]">Name of your project</label>
+                  <label className="font-mulish text-lg md:text-[18px]">Name of your campaign</label>
                   <input {...register("projectName", { required: true, pattern: /^(?=.*[a-zA-Z])[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*(?:\s[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*)*$/ })}
                     placeholder="Build a cat shelter with us!"
                     className="title-input bg-slate-50 p-2 input-field focus:outline-none focus:ring-0 project-name-input" />
-                  {errors.projectName?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Project Name is required</p>}
-                  {errors.projectName?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Project Name is invalid</p>}
+                  {errors.projectName?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Campaign name is required</p>}
+                  {errors.projectName?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Campaign name is invalid</p>}
                 </div>
                 <div className="flex flex-col">
                   <label className="font-mulish text-lg md:text-[18px]">Add your goal</label>
@@ -139,7 +139,7 @@ const PaymentModal = () => {
               <div className="bg-zinc-400 border rounded border-zinc-400 h-auto"></div>
               <div className="lg:mx-4 md:w-auto">
                 <div className="flex flex-col">
-                  <label className="font-mulish text-lg md:text-[18px]">About your project</label>
+                  <label className="font-mulish text-lg md:text-[18px]">About your campaign</label>
                   <input {...register("about", { required: true, pattern: /^(?=.*[a-zA-Z])[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*(?:\s[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*)*$/ })}
                     placeholder="So many cats, so little homes. We want to provide home and care to them all. Help us build a dream shelter for all cats in our town."
                     className="title-input bg-slate-50 lg:py-7 md:py-1 input-field focus:outline-none focus:ring-0" />
@@ -167,7 +167,7 @@ const PaymentModal = () => {
               type="submit"
               style="bg-zinc-950 rounded-md w-full p-2 text-white text-[15px]"
             >
-              Upload project
+              Upload campaign
             </Button>
           </div>
         </form>

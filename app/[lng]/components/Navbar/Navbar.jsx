@@ -88,7 +88,7 @@ const Navbar = ({ lng }) => {
               <NavLink to="/profile" name={t("Profile")} style="lg:ms-8" />
               <Button
                 type="button"
-                name={t("New project")}
+                name={t("New Campaign")}
                 style="lg:ms-8 navbar-button"
                 clickAction={handleModalToggle}
               />
@@ -135,7 +135,7 @@ const Navbar = ({ lng }) => {
                   <NavLink to="/profile" name={t("Profile")} style="mb-2" />
                   <Button
                     type="button"
-                    name={t("New project")}
+                    name={t("New Campaign")}
                     style="navbar-button mb-2"
                     clickAction={handleModalToggle}
                   />

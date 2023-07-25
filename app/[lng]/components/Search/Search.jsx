@@ -7,7 +7,7 @@ const Search = ({ style, lng }) => {
       <input
         type="text"
         className={style}
-        placeholder={t("Search-for-projects")}
+        placeholder={t("Search-for-campaigns")}
       />
     </form>
   );

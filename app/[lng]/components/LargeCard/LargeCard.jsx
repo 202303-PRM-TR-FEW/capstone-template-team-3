@@ -9,7 +9,7 @@ const LargeCard = ({ lng }) => {
     <main>
       <div>
         <p className="project-description">
-          <span className="project-text">{t("Project of the week")}</span>
+          <span className="project-text">{t("Campaign of the week")}</span>
         </p>
       </div>
       <div className="row">
@@ -20,17 +20,14 @@ const LargeCard = ({ lng }) => {
         <div className="column">
           <div className="project-title">
             <h1>
-              {t("Help us release")}
-              <br /> {t("cookbook for parents")}
-              <br />
-              {t("and kids")}{" "}
+              Help us release <br /> cookbook for parents <br />
+              and kids
             </h1>
           </div>
           <div className="project-descripe">
             <p>
-              {t(
-                "We want to create beautiful and helpful cooking book for parents and kids to have fun in kitchen."
-              )}
+              We want to create beautiful and helpful cooking book for parents
+              and kids to have fun in kitchen.
             </p>
           </div>
           <div>

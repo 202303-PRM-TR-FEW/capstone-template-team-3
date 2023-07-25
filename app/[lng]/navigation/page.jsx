@@ -48,7 +48,7 @@ export default function Navigation({ lng }) {
           <div className="checkbox-text-container">
             <h2 className="checkbox-header-text">{t("Support")}</h2>
             <span className="checkbox-appendix-text">
-              {t("other-projects")}
+              {t("other-campaigns")}
             </span>
           </div>
         </div>
@@ -65,7 +65,7 @@ export default function Navigation({ lng }) {
           />
           <div className="checkbox-text-container">
             <h2 className="checkbox-header-text">{t("Kick-off")}</h2>
-            <span className="checkbox-appendix-text">{t("my-project")}</span>
+            <span className="checkbox-appendix-text">{t("my-campaign")}</span>
           </div>
         </div>
       </section>

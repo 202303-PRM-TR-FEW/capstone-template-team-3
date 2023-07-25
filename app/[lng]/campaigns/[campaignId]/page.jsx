@@ -52,7 +52,7 @@ export default function CampaignPage({ params, lng }) {
         <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
           {/* about project  */}
           <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
-            <h4 className="text-xl">{t("About project")}:</h4>
+            <h4 className="text-xl">{t("About campaign")}:</h4>
             <p className="text-sm">{project.about}</p>
           </div>
           {/* project details   */}
@@ -78,7 +78,7 @@ export default function CampaignPage({ params, lng }) {
           <Link href={"/payment"}>
             <Button
               style={"bg-neutral-950 text-white  py-3 px-16  rounded-lg"}
-              name={t("Fund this project!")}
+              name={t("Fund this campaign!")}
             />
           </Link>
         </div>

@@ -28,7 +28,7 @@ function SignIn({ lng }) {
   const { t } = useTranslation(lng, "sign-in");
 
   const handleRoute = () => {
-    router.push(`/${lng}/profile`);
+    router.push(`/profile`);
   };
 
   const onSubmit = async (data) => {
