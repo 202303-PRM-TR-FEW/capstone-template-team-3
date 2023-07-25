@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { auth } from "../../firebase/firebase";
 import { userSignOut, returnToInitialState } from "@/app/lib/features/userSlice";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { openModal, closeModal } from "@/app/lib/features/kickOffModalSlice";
 
 const Navbar = () => {
   const [user, loading] = useAuthState(auth)
@@ -39,6 +40,11 @@ const Navbar = () => {
     router.push('/')
   }
 
+  const handleModalToggle = () => {
+    router.push("/my-campaigns")
+    dispatch(openModal())
+  }
+
   return (
     <div className="bg-theme">
       <nav className="container mx-auto flex flex-row justify-between items-center py-5 px-5 whitespace-nowrap">
@@ -62,7 +68,7 @@ const Navbar = () => {
             <>
               <NavLink to="/my-campaigns" name="My Campaigns" style="lg:ms-8" />
               <NavLink to="/profile" name="Profile" style="lg:ms-8" />
-              <Button type="button" name="New project" style="lg:ms-8 navbar-button" />
+              <Button type="button" name="New project" style="lg:ms-8 navbar-button" clickAction={handleModalToggle} />
             </>
           )}
           <Button type="button" name={user ? "Sign out" : "Sign in"} style="ms-5 navbar-button" clickAction={!user ? () => handleLogin() : () => handleLogout()} />
@@ -104,7 +110,7 @@ const Navbar = () => {
                 <>
                   <NavLink to="/my-campaigns" name="My Campaigns" style="mb-2" />
                   <NavLink to="/profile" name="Profile" style="mb-2" />
-                  <Button type="button" name="New project" style="navbar-button mb-2" />
+                  <Button type="button" name="New project" style="navbar-button mb-2" clickAction={handleModalToggle} />
                 </>
               )}
               <Button type="button" name={user ? "Sign out" : "Sign in"} style="navbar-button" clickAction={!user ? () => handleLogin() : () => handleLogout()} />
