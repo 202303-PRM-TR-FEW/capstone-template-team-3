@@ -1,8 +1,11 @@
+"use client";
+
 import Button from "@/app/components/Button/Button";
 import projects from "@/app/data/data";
 import Image from "next/image";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import Link from "next/link";
+import { useTranslation } from "../../../i18n/client";
 
 // export async function generateStaticParams() {
 //   return projects.map((project) => ({
@@ -11,7 +14,9 @@ import Link from "next/link";
 //   }));
 // }
 
-export default function CampaignPage({ params }) {
+export default function CampaignPage({ params, lng }) {
+  const { t } = useTranslation(lng, "campaignId");
+
   const project = projects.find((p) => p.id === parseInt(params.campaignId));
   console.log(params);
   // console.log(project);
@@ -39,24 +44,26 @@ export default function CampaignPage({ params }) {
             width={50}
             height={50}
           />
-          <h3>{project.organizer ? project.organizer : "Organizer"}</h3>
+          <h3>
+            {project.organizer ? project.organizer : <>{t("Organizer")}</>}
+          </h3>
         </div>
 
         <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
           {/* about project  */}
           <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
-            <h4 className="text-xl">About project</h4>
+            <h4 className="text-xl">{t("About project")}:</h4>
             <p className="text-sm">{project.about}</p>
           </div>
           {/* project details   */}
           <div className="flex flex-col justify-around py-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 border-neutral-950">
             <div className="flex space-x-10 ">
               <div className="p-2">
-                <h5>Raised:</h5>
+                <h5>{t("Raised")}:</h5>
                 <p>{"$" + project.raised}</p>
               </div>
               <div className="bg-theme rounded-lg p-2">
-                <h5>Goal:</h5>
+                <h5>{t("Goal")}:</h5>
                 <p>{"$" + project.goal}</p>
               </div>
             </div>
@@ -71,7 +78,7 @@ export default function CampaignPage({ params }) {
           <Link href={"/payment"}>
             <Button
               style={"bg-neutral-950 text-white  py-3 px-16  rounded-lg"}
-              name={"Fund this project!"}
+              name={t("Fund this project!")}
             />
           </Link>
         </div>

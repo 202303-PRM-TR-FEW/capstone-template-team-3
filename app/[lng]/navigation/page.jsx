@@ -29,7 +29,7 @@ export default function Navigation({ lng }) {
       }
     }, 1000);
     return () => clearTimeout(redirectTimeout);
-  }, [supportIsChecked, router,lng]);
+  }, [supportIsChecked, router, lng]);
 
   return (
     <main className="navigation-main">
