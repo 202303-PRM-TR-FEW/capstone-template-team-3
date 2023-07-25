@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from '../features/userSlice';
-import campaignSlice from '../features/campaignSlice';
+import campaignReducer from '../features/campaignSlice';
+import kickOffModalReducer from '../features/kickOffModalSlice';
 
 export const store = configureStore({
     reducer: {
         user: userReducer,
-        campaign: campaignSlice,
+        campaign: campaignReducer,
+        modal: kickOffModalReducer
     },
 });
 
