@@ -16,6 +16,7 @@ import {
 } from "@/app/lib/features/userSlice";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useTranslation } from "../../../i18n/client";
+import { openModal, closeModal } from "@/app/lib/features/kickOffModalSlice";
 
 const Navbar = ({ lng }) => {
   const [user, loading] = useAuthState(auth);
@@ -44,11 +45,16 @@ const Navbar = ({ lng }) => {
     router.push("/");
   };
 
+  const handleModalToggle = () => {
+    router.push("/my-campaigns");
+    dispatch(openModal());
+  };
+
   return (
     <div className="bg-theme">
       <nav className="container mx-auto flex flex-row justify-between items-center py-5 px-5 whitespace-nowrap">
         <div className="flex justify-between items-center">
-          <Logo lng={lng}/>
+          <Logo lng={lng} />
         </div>
         <div className="relative">
           <HiSearchCircle
@@ -67,7 +73,11 @@ const Navbar = ({ lng }) => {
           )}
         </div>
         <div className="lg:flex lg:justify-between lg:items-center hidden">
-          <NavLink to={`/${lng}/campaigns`} name={t("Home")} style="lg:ms-0 xl:ms-8" />
+          <NavLink
+            to={`/${lng}/campaigns`}
+            name={t("Home")}
+            style="lg:ms-0 xl:ms-8"
+          />
           {user && (
             <>
               <NavLink
@@ -80,6 +90,7 @@ const Navbar = ({ lng }) => {
                 type="button"
                 name={t("New project")}
                 style="lg:ms-8 navbar-button"
+                clickAction={handleModalToggle}
               />
             </>
           )}
@@ -126,6 +137,7 @@ const Navbar = ({ lng }) => {
                     type="button"
                     name={t("New project")}
                     style="navbar-button mb-2"
+                    clickAction={handleModalToggle}
                   />
                 </>
               )}

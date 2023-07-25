@@ -9,24 +9,21 @@ const initialState = {
 }
 
 export const addUserCampaign = createAsyncThunk("addUserCampaign", async (data) => {
-    const { projectName, goal, about, file, startDate, endDate, userId, handleRoute } = data
+    const { projectName, goal, about, file, startDate, endDate, userId, formatDate, today, nextMonth } = data
     const fileRef = ref(storage, `folder/${file[0].name} ${userId} ${projectName}`)
     try {
-        await uploadBytes(fileRef, file[0]).then(() => {
-            alert("Img uploaded!")
-        })
+        await uploadBytes(fileRef, file[0])
         const campaign = await addDoc(collection(db, "campaigns"), {
             projectName: projectName,
             goal: goal,
             about: about,
-            startDate: startDate,
-            endDate: endDate,
+            startDate: startDate !== null ? startDate : formatDate(today),
+            endDate: endDate !== null ? endDate : formatDate(nextMonth),
             id: userId,
             donators: [],
             image: await getDownloadURL(fileRef),
             raised: 0
         });
-        alert("Project uploaded!")
         return campaign
     } catch (error) {
         console.log(error.code)
