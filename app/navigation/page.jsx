@@ -6,11 +6,14 @@ import navigationBanner from "public/assets/images/navigation-banner.png"
 import Button from "../components/Button/Button"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import { useDispatch } from "react-redux"
+import { openModal } from "../lib/features/kickOffModalSlice"
 
 const Navigation = () => {
     const [supportIsChecked, setSupportIsChecked] = useState(false)
     const [kickoffIsChecked, setKickoffIsChecked] = useState(false)
     const router = useRouter()
+    const dispatch = useDispatch()
 
     const handleSupportCheck = () => {
         setSupportIsChecked(!supportIsChecked)
@@ -25,9 +28,13 @@ const Navigation = () => {
             if (supportIsChecked) {
                 router.push('/campaigns')
             }
+            if (kickoffIsChecked) {
+                router.push('/my-campaigns')
+                dispatch(openModal())
+            }
         }, 1000)
         return () => clearTimeout(redirectTimeout)
-    }, [supportIsChecked])
+    }, [supportIsChecked, kickoffIsChecked])
 
     return (
         <main className="navigation-main">
