@@ -3,27 +3,35 @@ import Button from "@/app/components/Button/Button";
 import Image from "next/image";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import Link from "next/link";
-import { getDoc, collection, query, where, getDocs } from "@firebase/firestore";
+import {
+  getDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+} from "@firebase/firestore";
 import { db } from "@/app/firebase/firebase";
 import { useEffect, useState } from "react";
+import { ca } from "date-fns/locale";
 
 export default function CampaignPage({ params }) {
-  const { campaignId } = params;
-  console.log(campaignId);
-
   const [campaign, setCampaign] = useState({});
+  const { campaignId } = params;
+
+  const docRef = doc(db, "campaigns", campaignId);
 
   useEffect(() => {
     const getCampaign = async () => {
-      const campaignRef = collection(db, "campaigns");
-      const q = query(campaignRef, where("id", "==", campaignId));
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        setCampaign(doc.data());
-      });
+      const docSnap = await getDoc(docRef);
+      setCampaign(docSnap.data());
     };
     getCampaign();
+    console.log(campaign);
   }, [campaignId]);
+
+  // console.log(campaignId);
+  // console.log(campaignId);
 
   return (
     // main container
@@ -47,7 +55,7 @@ export default function CampaignPage({ params }) {
           <Image
             className="rounded-full border-2 border-neutral-950"
             alt={campaign.organizer}
-            src={campaign.img}
+            src={campaign.image}
             width={50}
             height={50}
           />

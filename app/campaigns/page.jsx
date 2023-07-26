@@ -12,6 +12,7 @@ import {
 import { db } from "../firebase/firebase";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ca } from "date-fns/locale";
 
 const Campaigns = () => {
   const [campaigns, setCampaigns] = useState([]);
@@ -30,8 +31,6 @@ const Campaigns = () => {
     });
   }, []);
 
-  
-
   return (
     <main>
       <LargeCard />
@@ -43,8 +42,8 @@ const Campaigns = () => {
             onClick={() => router.push(`/campaigns/${campaign.id}`)}
           >
             <Card
-              img={campaign.img}
-              title={campaign.title}
+              img={campaign.image}
+              title={campaign.projectName}
               raised={campaign.raised}
               goal={campaign.goal}
             />
