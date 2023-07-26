@@ -30,5 +30,21 @@ a.ty-first-button {
 }
 
 a.ty-second-button {
-    @apply text-black bg-white hover:bg-[#050708]/80 hover:text-white focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium border-2 border-[#050708]/50 rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mr-2 mb-2 w-[16.5rem];
+    @apply text-black bg-white hover:bg-[#050708]/80  hover:text-white focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium border-2 border-[#050708]/50 rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mr-2 mb-2 w-[16.5rem];
+  }
+
+  @media (max-width: 640px) {
+    .ty-buttons {
+      flex-direction: column;
+    }
+    .ty-header{
+      font-size: 30px;
+      font-weight: bolder;
+    }
+    .ty-sub-normal{
+      font-size: 15px;
+    }
+    .ty-img{
+      width: 55vh;
+    }
   }
