@@ -1,5 +1,5 @@
 import NavLink from "../components/NavLink/NavLink";
-import "./ty.css";
+import "./thank-you.css";
 import thankyouPic from "public/assets/images/thankyou.png"
 import Image from "next/image"
 
@@ -16,7 +16,7 @@ const ThankYouPage = () => {
         <h3 className="ty-sub-normal">
           for supporting us!
         </h3>
-        <div className="flex space-x-6 ty-buttons">
+        <div className="md:space-x-6 ty-buttons">
           <NavLink to="/navigation" style="ty-first-button">
             Make another donation
           </NavLink>
