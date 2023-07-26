@@ -19,9 +19,7 @@ const Profile = ({ lng }) => {
               {t("Email")}: {user.email}
             </p>
           )}
-          <p>
-            {t("User ID")}: {user.uid}
-          </p>
+          <p>User ID: {user.uid}</p>
         </div>
       </main>
     )

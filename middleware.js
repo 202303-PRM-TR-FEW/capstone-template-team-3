@@ -3,7 +3,6 @@ import acceptLanguage from 'accept-language'
 import { fallbackLng, languages } from './app/i18n/settings'
 
 acceptLanguage.languages(languages)
-let locales = ['en', 'tr']
 
 export const config = {
   // matcher: '/:lng*'

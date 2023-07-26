@@ -46,7 +46,7 @@ const Navbar = ({ lng }) => {
   };
 
   const handleModalToggle = () => {
-    router.push("/my-campaigns");
+    router.push(`/${lng}//my-campaigns`);
     dispatch(openModal());
   };
 
@@ -81,7 +81,7 @@ const Navbar = ({ lng }) => {
           {user && (
             <>
               <NavLink
-                to="/my-campaigns"
+                to={`/${lng}/my-campaigns`}
                 name={t("My Campaigns")}
                 style="lg:ms-8"
               />
@@ -128,7 +128,7 @@ const Navbar = ({ lng }) => {
               {user && (
                 <>
                   <NavLink
-                    to="/my-campaigns"
+                    to={`/${lng}/my-campaigns`}
                     name={t("My Campaigns")}
                     style="mb-2"
                   />
