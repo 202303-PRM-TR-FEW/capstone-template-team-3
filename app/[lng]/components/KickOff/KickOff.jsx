@@ -63,10 +63,10 @@ const PaymentModal = ({ lng }) => {
   };
 
   const categoryOptions = [
-    { label: "Education", value: "Education" },
-    { label: "Culture", value: "Culture" },
-    { label: "Animals", value: "Animals" },
-    { label: "Children", value: "Children" },
+    { label: t("Education"), value: t("Education") },
+    { label: t("Culture"), value: t("Culture") },
+    { label: t("Animals"), value: t("Animals") },
+    { label: t("Children"), value: t("Children") },
   ];
 
   const handleCalendarIconClick = () => {
@@ -262,7 +262,7 @@ const PaymentModal = ({ lng }) => {
                 </div>
                 <div className="flex flex-col mt-5">
                   <label className="font-mulish text-lg md:text-[18px]">
-                    Select categories for your campaign
+                    {t("Select categories for your campaign")}
                   </label>
                   <Controller
                     name="category"
@@ -275,9 +275,11 @@ const PaymentModal = ({ lng }) => {
                         isMulti
                         onChange={(value) => field.onChange(value)}
                         onBlur={() => field.onBlur()}
-                        placeholder="Education, Culture"
+                        placeholder={t("Education") + ", " + t("Culture")}
                         isSearchable
-                        noOptionsMessage={() => "No category found..."}
+                        noOptionsMessage={() => {
+                          t("No category found...");
+                        }}
                         classNames={{
                           multiValueRemove: () => multiValueRemoveStyles,
                           multiValueLabel: () => multiValueLabelStyles,
@@ -290,7 +292,7 @@ const PaymentModal = ({ lng }) => {
                       role="alert"
                       className="text-end text-red-600 italic text-[14px]"
                     >
-                      Category is required
+                      {t("Category is required")}
                     </p>
                   )}
                 </div>

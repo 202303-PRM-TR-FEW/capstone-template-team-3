@@ -3,7 +3,7 @@
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "app/firebase/firebase.jsx";
 import { useEffect } from "react";
-import { getUserData } from "../lib/features/userSlice";
+import { getUserData } from "app/lib/features/userSlice.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "../../i18n/client";
 
@@ -37,7 +37,7 @@ const Profile = ({ lng }) => {
           )}
           {currentUser.email && (
             <p>
-              {t("Email")}: {user.email}
+              {t("Email")}:&nbsp; &nbsp;
               <span className="font-bold">{currentUser.email}</span>
             </p>
           )}
@@ -46,9 +46,9 @@ const Profile = ({ lng }) => {
             <span className="font-bold">{currentUser.id}</span>
           </p>
           <p>
-            Terms & Conditions:&nbsp; &nbsp;
+            {t("Terms & Conditions")}:&nbsp; &nbsp;
             <span className="font-bold">
-              {currentUser.acceptedTermsAndConditions && "Accepted"}
+              {currentUser.acceptedTermsAndConditions && t("Accepted")}
             </span>
           </p>
         </div>
