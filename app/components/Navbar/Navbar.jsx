@@ -34,9 +34,9 @@ const Navbar = () => {
     router.push('/sign-in')
   }
 
-  const handleLogout = () => {
-    dispatch(userSignOut());
-    dispatch(returnToInitialState());
+  const handleLogout = async () => {
+    await dispatch(userSignOut());
+    await dispatch(returnToInitialState());
     router.push('/')
   }
 
