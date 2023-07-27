@@ -9,21 +9,28 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './KickOff.css';
 import Button from '../Button/Button';
 import { auth } from "../../firebase/firebase";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { addUserCampaign, getAllUserCampaigns } from '@/app/lib/features/campaignSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '@/app/lib/features/kickOffModalSlice';
+import Select from 'react-select';
 
 const PaymentModal = () => {
   const [user, loading] = useAuthState(auth)
   const dispatch = useDispatch()
-  const { register, formState: { errors }, handleSubmit } = useForm();
+  const { register, formState: { errors }, handleSubmit, control } = useForm();
   const [showCalendar, setShowCalendar] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const today = new Date();
   const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+  const currentUser = useSelector((state) => state.user.user)
+  console.log(currentUser.name)
+
+  const multiValueRemoveStyles = "text-theme bg-accent-black"
+  const multiValueLabelStyles = "text-accent-black bg-theme"
+
 
   const formatDate = (date) => {
     const day = String(date.getDate()).padStart(2, '0');
@@ -31,6 +38,13 @@ const PaymentModal = () => {
     const year = date.getFullYear().toString().substr(-2);
     return `${day}/${month}/${year}`;
   }
+
+  const categoryOptions = [
+    { label: "Education", value: "Education" },
+    { label: "Culture", value: "Culture" },
+    { label: "Animals", value: "Animals" },
+    { label: "Children", value: "Children" },
+  ];
 
   const handleCalendarIconClick = () => {
     setShowCalendar(!showCalendar);
@@ -43,9 +57,10 @@ const PaymentModal = () => {
   };
 
   const onSubmit = async (data) => {
-    const { projectName, goal, about, file } = data
+    const { projectName, goal, about, file, category } = data
     const userId = user.uid
-    await dispatch(addUserCampaign({ projectName, goal, about, file, startDate, endDate, userId, formatDate, today, nextMonth }))
+    const currentUserName = currentUser.name
+    await dispatch(addUserCampaign({ currentUserName, projectName, goal, about, file, category, startDate, endDate, userId, formatDate, today, nextMonth }))
     await dispatch(getAllUserCampaigns(userId))
     await dispatch(closeModal())
   }
@@ -134,6 +149,31 @@ const PaymentModal = () => {
                       </div>
                     )}
                   </div>
+                </div>
+                <div className="flex flex-col mt-5">
+                  <label className="font-mulish text-lg md:text-[18px]">Select categories for your campaign</label>
+                  <Controller
+                    name='category'
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        options={categoryOptions}
+                        isMulti
+                        onChange={value => field.onChange(value)}
+                        onBlur={() => field.onBlur()}
+                        placeholder="Education, Culture"
+                        isSearchable
+                        noOptionsMessage={() => "No category found..."}
+                        classNames={{
+                          multiValueRemove: () => multiValueRemoveStyles,
+                          multiValueLabel: () => multiValueLabelStyles,
+                        }}
+                      />
+                    )}
+                  />
+                  {errors.category?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Category is required</p>}
                 </div>
               </div>
               <div className="bg-zinc-400 border rounded border-zinc-400 h-auto"></div>
