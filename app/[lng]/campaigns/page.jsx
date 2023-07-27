@@ -1,23 +1,51 @@
 "use client";
+import CategoryFilter from "../components/CategoryFilter/CategoryFilter";
+import LargeCard from "../components/LargeCard/LargeCard";
+import Card from "../components/Card/Card.jsx";
+import {
+  collection,
+  getDoc,
+  query,
+  querySnapshot,
+  onSnapshot,
+} from "firebase/firestore";
+import { db } from "../firebase/firebase";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { ca } from "date-fns/locale";
 
-import CategoryFilter from "app/components/CategoryFilter/CategoryFilter.jsx";
-import LargeCard from "app/[lng]/components/LargeCard/LargeCard.jsx";
-import Card from "app/components/Card/Card.jsx";
-import projects from "app/data/data.jsx";
+const Campaigns = () => {
+  const [campaigns, setCampaigns] = useState([]);
+  const router = useRouter();
 
-export default function Campaigns() {
+  // Read campaigns from database
+  useEffect(() => {
+    const q = query(collection(db, "campaigns"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      let campaignsArr = [];
+
+      querySnapshot.forEach((campaign) => {
+        campaignsArr.push({ ...campaign.data(), id: campaign.id });
+      });
+      setCampaigns(campaignsArr);
+    });
+  }, []);
+
   return (
     <main>
       <LargeCard />
       <CategoryFilter />
       <div className="flex flex-row gap-4 flex-wrap items-center justify-evenly container w-11/12 mx-auto">
-        {projects.map((project, index) => (
-          <div key={index}>
+        {campaigns.map((campaign, index) => (
+          <div
+            key={index}
+            onClick={() => router.push(`/campaigns/${campaign.id}`)}
+          >
             <Card
-              img={project.img}
-              title={project.title}
-              raised={project.raised}
-              goal={project.goal}
+              img={campaign.image}
+              title={campaign.projectName}
+              raised={campaign.raised}
+              goal={campaign.goal}
             />
           </div>
         ))}
