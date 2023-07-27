@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "../../i18n/client";
 import { useDispatch } from "react-redux";
-import { openModal } from "../lib/features/kickOffModalSlice";
+import { openModal } from "app/lib/features/kickOffModalSlice.jsx";
 
 export default function Navigation({ lng }) {
   const [supportIsChecked, setSupportIsChecked] = useState(false);
@@ -36,7 +36,7 @@ export default function Navigation({ lng }) {
       }
     }, 1000);
     return () => clearTimeout(redirectTimeout);
-  }, [supportIsChecked, lng, kickoffIsChecked]);
+  }, [supportIsChecked, kickoffIsChecked]);
 
   return (
     <main className="navigation-main">

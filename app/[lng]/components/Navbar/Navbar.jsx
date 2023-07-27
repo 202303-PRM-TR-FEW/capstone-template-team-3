@@ -85,7 +85,7 @@ const Navbar = ({ lng }) => {
                 name={t("My Campaigns")}
                 style="lg:ms-8"
               />
-              <NavLink to="/profile" name={t("Profile")} style="lg:ms-8" />
+              <NavLink to={`/${lng}/profile`} name={t("Profile")} style="lg:ms-8" />
               <Button
                 type="button"
                 name={t("New Campaign")}

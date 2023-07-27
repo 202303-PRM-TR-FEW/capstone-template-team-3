@@ -1,7 +1,7 @@
 "use client";
-import CategoryFilter from "../components/CategoryFilter/CategoryFilter";
+import CategoryFilter from "app/components/CategoryFilter/CategoryFilter.jsx";
 import LargeCard from "../components/LargeCard/LargeCard";
-import Card from "../components/Card/Card.jsx";
+import Card from "app/components/Card/Card.jsx";
 import {
   collection,
   getDoc,
@@ -9,7 +9,7 @@ import {
   querySnapshot,
   onSnapshot,
 } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { db } from "app/firebase/firebase.jsx";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ca } from "date-fns/locale";
@@ -53,3 +53,5 @@ const Campaigns = () => {
     </main>
   );
 }
+
+export default Campaigns;
