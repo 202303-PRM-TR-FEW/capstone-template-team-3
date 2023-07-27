@@ -9,14 +9,16 @@ const initialState = {
 }
 
 export const addUserCampaign = createAsyncThunk("addUserCampaign", async (data) => {
-    const { projectName, goal, about, file, startDate, endDate, userId, formatDate, today, nextMonth } = data
+    const { currentUserName, projectName, goal, about, file, category, startDate, endDate, userId, formatDate, today, nextMonth } = data
     const fileRef = ref(storage, `folder/${file[0].name} ${userId} ${projectName}`)
     try {
         await uploadBytes(fileRef, file[0])
         const campaign = await addDoc(collection(db, "campaigns"), {
+            owner: currentUserName,
             projectName: projectName,
             goal: goal,
             about: about,
+            category: category,
             startDate: startDate !== null ? startDate : formatDate(today),
             endDate: endDate !== null ? endDate : formatDate(nextMonth),
             id: userId,

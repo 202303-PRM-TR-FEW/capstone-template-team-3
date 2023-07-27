@@ -33,7 +33,7 @@ const MyCampaigns = () => {
             <h3 className="text-center py-5">Your Campaigns</h3>
             <div className="container mx-auto grid grid-cols-3 place-items-center gap-5 pb-5">
                 {
-                    userCampaigns.length > 0 && userCampaigns.map((campaign) => {
+                    Array.isArray(userCampaigns) && userCampaigns.length > 0 && userCampaigns.map((campaign) => {
                         return <Card key={campaign.id} title={campaign.data.projectName} goal={campaign.data.goal} img={campaign.data.image} raised={campaign.data.raised} />
                     })
                 }
