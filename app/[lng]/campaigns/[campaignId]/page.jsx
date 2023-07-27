@@ -16,6 +16,7 @@ import {
 import { db } from "@/app/firebase/firebase";
 import { useEffect, useState } from "react";
 import { ca } from "date-fns/locale";
+import DonationBar from "@/app/components/DonationBar/DonationBar";
 
 // export async function generateStaticParams() {
 //   return projects.map((project) => ({
@@ -82,7 +83,7 @@ export default function CampaignPage({ params, lng }) {
             <p className="text-sm">{campaign.about}</p>
           </div>
           {/* campaign details   */}
-          <div className="flex flex-col justify-around py-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 border-neutral-950">
+          <div className="flex flex-col justify-around py-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950">
             <div className="flex space-x-10 ">
               <div className="p-2">
                 <h5>{t("Raised")}:</h5>
@@ -93,6 +94,7 @@ export default function CampaignPage({ params, lng }) {
                 <p>{"$" + campaign.goal}</p>
               </div>
             </div>
+            <DonationBar raised={campaign.raised} goal={campaign.goal} />
             <div>
               <h5 className="flex items-center">
                 <FaRegCalendarDays /> {campaign.date}

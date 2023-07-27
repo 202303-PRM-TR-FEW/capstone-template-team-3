@@ -1,6 +1,7 @@
 import Image from "next/image";
 import "./Card.css";
 import { useTranslation } from "app/i18n/client.js";
+import DonationBar from "../DonationBar/DonationBar";
 
 const Card = ({ img, title, raised, goal, lng }) => {
   const { t } = useTranslation(lng, "largeCard");
@@ -25,7 +26,7 @@ const Card = ({ img, title, raised, goal, lng }) => {
         </a>
         <div className="card-progress-bar-main">
           <div className="card-progress-bar">
-            <div className="progress-bar"></div>
+            <DonationBar raised={raised} goal={goal} />
           </div>
         </div>
 
