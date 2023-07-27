@@ -1,5 +1,6 @@
 import Image from "next/image";
 import "./Card.css";
+import DonationBar from "../DonationBar/DonationBar";
 
 const Card = ({ img, title, raised, goal }) => {
   return (
@@ -23,7 +24,7 @@ const Card = ({ img, title, raised, goal }) => {
         </a>
         <div className="card-progress-bar-main">
           <div className="card-progress-bar">
-            <div className="progress-bar"></div>
+            <DonationBar raised={raised} goal={goal} />
           </div>
         </div>
 
