@@ -7,11 +7,14 @@ import Button from "../../components/Button/Button";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "../../i18n/client";
+import { useDispatch } from "react-redux";
+import { openModal } from "../lib/features/kickOffModalSlice";
 
 export default function Navigation({ lng }) {
   const [supportIsChecked, setSupportIsChecked] = useState(false);
   const [kickoffIsChecked, setKickoffIsChecked] = useState(false);
   const router = useRouter();
+  const dispatch = useDispatch();
   const { t } = useTranslation(lng, "navigation");
 
   const handleSupportCheck = () => {
@@ -27,9 +30,13 @@ export default function Navigation({ lng }) {
       if (supportIsChecked) {
         router.push("/campaigns");
       }
+      if (kickoffIsChecked) {
+        router.push("/my-campaigns");
+        dispatch(openModal());
+      }
     }, 1000);
     return () => clearTimeout(redirectTimeout);
-  }, [supportIsChecked, router, lng]);
+  }, [supportIsChecked, lng, kickoffIsChecked]);
 
   return (
     <main className="navigation-main">
