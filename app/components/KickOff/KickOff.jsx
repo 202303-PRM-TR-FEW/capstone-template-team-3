@@ -1,7 +1,7 @@
 'use client'
 
 import { IoIosArrowBack } from 'react-icons/io';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaUpload, FaCalendarAlt } from 'react-icons/fa';
 import { CgClose } from 'react-icons/cg';
 import DatePicker from 'react-datepicker';
@@ -12,6 +12,7 @@ import { auth } from "../../firebase/firebase";
 import { useForm, Controller } from "react-hook-form";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { addUserCampaign, getAllUserCampaigns } from '@/app/lib/features/campaignSlice';
+import { getUserData } from '@/app/lib/features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '@/app/lib/features/kickOffModalSlice';
 import Select from 'react-select';
@@ -25,11 +26,19 @@ const PaymentModal = () => {
   const [endDate, setEndDate] = useState(null);
   const today = new Date();
   const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
-  const currentUser = useSelector((state) => state.user.user)
-  console.log(currentUser.name)
-
   const multiValueRemoveStyles = "text-theme bg-accent-black"
   const multiValueLabelStyles = "text-accent-black bg-theme"
+  const currentUser = useSelector((state) => state.user.user)
+
+  const getCurrentUserData = async () => {
+    await dispatch(getUserData(user.uid))
+  }
+
+  useEffect(() => {
+    if (!loading) {
+      getCurrentUserData()
+    }
+  }, [loading])
 
 
   const formatDate = (date) => {
