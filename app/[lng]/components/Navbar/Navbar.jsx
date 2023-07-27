@@ -39,9 +39,9 @@ const Navbar = ({ lng }) => {
     router.push(`/${lng}/sign-in`);
   };
 
-  const handleLogout = () => {
-    dispatch(userSignOut());
-    dispatch(returnToInitialState());
+  const handleLogout = async () => {
+    await dispatch(userSignOut());
+    await dispatch(returnToInitialState());
     router.push("/");
   };
 
@@ -85,7 +85,11 @@ const Navbar = ({ lng }) => {
                 name={t("My Campaigns")}
                 style="lg:ms-8"
               />
-              <NavLink to={`/${lng}/profile`} name={t("Profile")} style="lg:ms-8" />
+              <NavLink
+                to={`/${lng}/profile`}
+                name={t("Profile")}
+                style="lg:ms-8"
+              />
               <Button
                 type="button"
                 name={t("New Campaign")}

@@ -1,7 +1,7 @@
 "use client";
 
 import { IoIosArrowBack } from "react-icons/io";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaUpload, FaCalendarAlt } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
 import DatePicker from "react-datepicker";
@@ -9,15 +9,17 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./KickOff.css";
 import Button from "../../../components/Button/Button";
 import { auth } from "../../../firebase/firebase";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
   addUserCampaign,
   getAllUserCampaigns,
 } from "@/app/lib/features/campaignSlice";
-import { useDispatch } from "react-redux";
+import { getUserData } from "@/app/lib/features/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "@/app/lib/features/kickOffModalSlice";
 import { useTranslation } from "../../../i18n/client";
+import Select from "react-select";
 
 const PaymentModal = ({ lng }) => {
   const [user, loading] = useAuthState(auth);
@@ -27,6 +29,7 @@ const PaymentModal = ({ lng }) => {
     register,
     formState: { errors },
     handleSubmit,
+    control,
   } = useForm();
   const [showCalendar, setShowCalendar] = useState(false);
   const [startDate, setStartDate] = useState(null);
@@ -38,12 +41,33 @@ const PaymentModal = ({ lng }) => {
     today.getDate()
   );
 
+  const multiValueRemoveStyles = "text-theme bg-accent-black";
+  const multiValueLabelStyles = "text-accent-black bg-theme";
+  const currentUser = useSelector((state) => state.user.user);
+
+  const getCurrentUserData = async () => {
+    await dispatch(getUserData(user.uid));
+  };
+
+  useEffect(() => {
+    if (!loading) {
+      getCurrentUserData();
+    }
+  }, [loading]);
+
   const formatDate = (date) => {
     const day = String(date.getDate()).padStart(2, "0");
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const year = date.getFullYear().toString().substr(-2);
     return `${day}/${month}/${year}`;
   };
+
+  const categoryOptions = [
+    { label: "Education", value: "Education" },
+    { label: "Culture", value: "Culture" },
+    { label: "Animals", value: "Animals" },
+    { label: "Children", value: "Children" },
+  ];
 
   const handleCalendarIconClick = () => {
     setShowCalendar(!showCalendar);
@@ -56,14 +80,17 @@ const PaymentModal = ({ lng }) => {
   };
 
   const onSubmit = async (data) => {
-    const { projectName, goal, about, file } = data;
+    const { projectName, goal, about, file, category } = data;
     const userId = user.uid;
+    const currentUserName = currentUser.name;
     await dispatch(
       addUserCampaign({
+        currentUserName,
         projectName,
         goal,
         about,
         file,
+        category,
         startDate,
         endDate,
         userId,
@@ -233,6 +260,40 @@ const PaymentModal = ({ lng }) => {
                     )}
                   </div>
                 </div>
+                <div className="flex flex-col mt-5">
+                  <label className="font-mulish text-lg md:text-[18px]">
+                    Select categories for your campaign
+                  </label>
+                  <Controller
+                    name="category"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        options={categoryOptions}
+                        isMulti
+                        onChange={(value) => field.onChange(value)}
+                        onBlur={() => field.onBlur()}
+                        placeholder="Education, Culture"
+                        isSearchable
+                        noOptionsMessage={() => "No category found..."}
+                        classNames={{
+                          multiValueRemove: () => multiValueRemoveStyles,
+                          multiValueLabel: () => multiValueLabelStyles,
+                        }}
+                      />
+                    )}
+                  />
+                  {errors.category?.type === "required" && (
+                    <p
+                      role="alert"
+                      className="text-end text-red-600 italic text-[14px]"
+                    >
+                      Category is required
+                    </p>
+                  )}
+                </div>
               </div>
               <div className="bg-zinc-400 border rounded border-zinc-400 h-auto"></div>
               <div className="lg:mx-4 md:w-auto">
@@ -269,7 +330,9 @@ const PaymentModal = ({ lng }) => {
                   )}
                 </div>
                 <div className="flex flex-col items-center lg:my-10 md:my-1">
-                  <span className="text-black px-4 text-[18px]">{t("Add media")}</span>
+                  <span className="text-black px-4 text-[18px]">
+                    {t("Add media")}
+                  </span>
                   <span className="text-black pb-4 text-[12px]">
                     (.jpg/.jpeg/.png)
                   </span>
