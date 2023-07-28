@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media screen and (max-width: 768px) {
+    #givingly{
+        display: flex;
+        flex-direction: column;
+    }
+    .container{
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+    #givingly{
+        align-content: center;
+    }
+}
