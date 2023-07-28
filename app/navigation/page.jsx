@@ -1,78 +1,110 @@
-"use client"
+"use client";
 
-import "./navigation.css"
-import Image from "next/image"
-import navigationBanner from "public/assets/images/navigation-banner.png"
-import Button from "../components/Button/Button"
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { useDispatch } from "react-redux"
-import { openModal } from "../lib/features/kickOffModalSlice"
+import "./navigation.css";
+import Image from "next/image";
+import navigationBanner from "public/assets/images/navigation-banner.png";
+import Button from "../components/Button/Button";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { openModal } from "../lib/features/kickOffModalSlice";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "app/firebase/firebase.jsx";
 
 const Navigation = () => {
-    const [supportIsChecked, setSupportIsChecked] = useState(false)
-    const [kickoffIsChecked, setKickoffIsChecked] = useState(false)
-    const router = useRouter()
-    const dispatch = useDispatch()
+  const [user, loading] = useAuthState(auth);
+  const [supportIsChecked, setSupportIsChecked] = useState(false);
+  const [kickoffIsChecked, setKickoffIsChecked] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
 
-    const handleSupportCheck = () => {
-        setSupportIsChecked(!supportIsChecked)
-    }
+  const handleSupportCheck = () => {
+    setSupportIsChecked(!supportIsChecked);
+  };
 
-    const handleKickoffCheck = () => {
-        setKickoffIsChecked(!kickoffIsChecked)
-    }
+  const handleKickoffCheck = () => {
+    setKickoffIsChecked(!kickoffIsChecked);
+  };
 
-    useEffect(() => {
-        const redirectTimeout = setTimeout(() => {
-            if (supportIsChecked) {
-                router.push('/campaigns')
-            }
-            if (kickoffIsChecked) {
-                router.push('/my-campaigns')
-                dispatch(openModal())
-            }
-        }, 1000)
-        return () => clearTimeout(redirectTimeout)
-    }, [supportIsChecked, kickoffIsChecked])
+  useEffect(() => {
+    const redirectTimeout = setTimeout(() => {
+      if (supportIsChecked) {
+        router.push("/campaigns");
+      }
+      if (kickoffIsChecked) {
+        router.push("/my-campaigns");
+        dispatch(openModal());
+      }
+      if (kickoffIsChecked && !user) {
+        router.push("/sign-in");
+      }
+    }, 1000);
+    return () => clearTimeout(redirectTimeout);
+  }, [supportIsChecked, kickoffIsChecked]);
 
-    return (
-        <main className="navigation-main">
-            <section className="checkbox-section">
-                <p className="checkbox-option-paragraph-text">I want to:</p>
-                <div className="checkbox-support-container">
-                    <input type="checkbox" name="support" id="support" className="checkbox-input" onChange={handleSupportCheck} checked={supportIsChecked} disabled={kickoffIsChecked} />
-                    <div className="checkbox-text-container">
-                        <h2 className="checkbox-header-text">Support</h2>
-                        <span className="checkbox-appendix-text">other projects</span>
-                    </div>
-                </div>
-                <hr className="navigation-divider" />
-                <div className="checkbox-kick-off-container">
-                    <input type="checkbox" name="kick-off" id="kick-off" className="checkbox-input" checked={kickoffIsChecked} disabled={supportIsChecked} onChange={handleKickoffCheck} />
-                    <div className="checkbox-text-container">
-                        <h2 className="checkbox-header-text">Kick-off</h2>
-                        <span className="checkbox-appendix-text">my project</span>
-                    </div>
-                </div>
-            </section>
-            <section className="newsletter-section">
-                <div className="newsletter-container">
-                    <div className="newsletter-banner-container">
-                        <Image src={navigationBanner}
-                            alt="Illustration of a hand holding green hearts near books." className="newsletter-banner"
-                            priority={true}
-                        />
-                    </div>
-                    <article className="newsletter-text-container">
-                        <h3 className="newsletter-header-text">Stay informed</h3>
-                        <p className="newsletter-paragraph-text">Want to be among the first people to know about amazing projects on our platform? Join our monthly digest of <br />the best causes.</p>
-                    </article>
-                    <Button type={"button"} style="newsletter-button" name={"Join newsletter"} />
-                </div>
-            </section>
-        </main>
-    )
-}
+  return (
+    <main className="navigation-main">
+      <section className="checkbox-section">
+        <p className="checkbox-option-paragraph-text">I want to:</p>
+        <div className="checkbox-support-container">
+          <input
+            type="checkbox"
+            name="support"
+            id="support"
+            className="checkbox-input"
+            onChange={handleSupportCheck}
+            checked={supportIsChecked}
+            disabled={kickoffIsChecked}
+          />
+          <div className="checkbox-text-container">
+            <h2 className="checkbox-header-text">Support</h2>
+            <span className="checkbox-appendix-text">other projects</span>
+          </div>
+        </div>
+        <hr className="navigation-divider" />
+        <div className="checkbox-kick-off-container">
+          <input
+            type="checkbox"
+            name="kick-off"
+            id="kick-off"
+            className="checkbox-input"
+            checked={kickoffIsChecked}
+            disabled={supportIsChecked}
+            onChange={handleKickoffCheck}
+          />
+          <div className="checkbox-text-container">
+            <h2 className="checkbox-header-text">Kick-off</h2>
+            <span className="checkbox-appendix-text">my project</span>
+          </div>
+        </div>
+      </section>
+      <section className="newsletter-section">
+        <div className="newsletter-container">
+          <div className="newsletter-banner-container">
+            <Image
+              src={navigationBanner}
+              alt="Illustration of a hand holding green hearts near books."
+              className="newsletter-banner"
+              priority={true}
+            />
+          </div>
+          <article className="newsletter-text-container">
+            <h3 className="newsletter-header-text">Stay informed</h3>
+            <p className="newsletter-paragraph-text">
+              Want to be among the first people to know about amazing projects
+              on our platform? Join our monthly digest of <br />
+              the best causes.
+            </p>
+          </article>
+          <Button
+            type={"button"}
+            style="newsletter-button"
+            name={"Join newsletter"}
+          />
+        </div>
+      </section>
+    </main>
+  );
+};
 
-export default Navigation
+export default Navigation;

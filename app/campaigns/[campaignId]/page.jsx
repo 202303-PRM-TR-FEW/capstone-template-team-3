@@ -15,12 +15,26 @@ import { db } from "@/app/firebase/firebase";
 import { useEffect, useState } from "react";
 import { ca } from "date-fns/locale";
 import DonationBar from "@/app/components/DonationBar/DonationBar";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "app/firebase/firebase.jsx";
+import { useRouter } from "next/navigation";
 
 export default function CampaignPage({ params }) {
+  const [user, loading] = useAuthState(auth);
   const [campaign, setCampaign] = useState({});
   const { campaignId } = params;
+  const router = useRouter();
 
   const docRef = doc(db, "campaigns", campaignId);
+
+  const handleRoute = () => {
+    if (!user) {
+      router.push("/sign-in");
+    }
+    if (user) {
+      router.push("/payment");
+    }
+  };
 
   useEffect(() => {
     const getCampaign = async () => {
@@ -90,12 +104,11 @@ export default function CampaignPage({ params }) {
           </div>
         </div>
         <div className="flex justify-center lg:flex lg:justify-start">
-          <Link href={"/payment"}>
-            <Button
-              style={"bg-neutral-950 text-white  py-3 px-16  rounded-lg"}
-              name={"Fund this campaign!"}
-            />
-          </Link>
+          <Button
+            style={"bg-neutral-950 text-white py-3 px-16 rounded-lg"}
+            name={"Fund this campaign!"}
+            clickAction={handleRoute}
+          />
         </div>
       </div>
     </div>
