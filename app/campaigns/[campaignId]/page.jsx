@@ -27,9 +27,9 @@ export default function CampaignPage({ params }) {
   const [campaign, setCampaign] = useState({});
   const { campaignId } = params;
   const router = useRouter();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const docRef = doc(db, "campaigns", campaignId);
-  const modalIsOpen = useSelector((state) => state.paymentModal.isOpen)
+  const modalIsOpen = useSelector((state) => state.paymentModal.isOpen);
 
   useEffect(() => {
     const getCampaign = async () => {
@@ -37,7 +37,7 @@ export default function CampaignPage({ params }) {
       setCampaign(docSnap.data());
     };
     getCampaign();
-    console.log(campaign);
+    // console.log(campaign);
   }, [campaignId, modalIsOpen]);
 
   // console.log(campaignId);
@@ -48,17 +48,17 @@ export default function CampaignPage({ params }) {
       router.push("/sign-in");
     }
     if (user) {
-      dispatch(openModal())
+      dispatch(openModal());
     }
-  }
+  };
 
   return (
     // main container
     <>
       {modalIsOpen && <PaymentModal campaignId={campaignId} />}
-      <div className="flex flex-col p-4 lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 ">
+      <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
         {/* left container */}
-        <div className="mb-5">
+        <div className="mb-5 max-w-3xl">
           <Image
             className="bg-slate-100 rounded-xl"
             width={1200}
@@ -68,7 +68,7 @@ export default function CampaignPage({ params }) {
           />
         </div>
         {/* right container  */}
-        <div className="flex flex-col space-y-5 lg:">
+        <div className="flex flex-col space-y-5 ">
           <h1 className="text-2xl font-bold lg:text-start ">
             {campaign.projectName}
           </h1>
@@ -111,7 +111,9 @@ export default function CampaignPage({ params }) {
           </div>
           <div className="flex justify-center lg:flex lg:justify-start">
             <Button
-              style={"bg-neutral-950 text-white  py-3 px-16  rounded-lg"}
+              style={
+                "bg-neutral-950 text-white  py-3 px-16  rounded-lg hover:bg-neutral-950/80"
+              }
               name={"Fund this campaign!"}
               clickAction={handleModalToggle}
             />
