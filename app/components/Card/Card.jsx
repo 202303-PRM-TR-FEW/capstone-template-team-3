@@ -9,21 +9,17 @@ const Card = ({ img, title, raised, goal, lng }) => {
     <div className="card-main">
       <div className="card-img-section ">
         <div className="card-img">
-          <a href="#">
-            <Image
-              className="h-[9em] w-[16em]"
-              src={img}
-              alt={title}
-              width={800}
-              height={200}
-            />
-          </a>
+          <Image
+            className="h-[9em] w-[16em]"
+            src={img}
+            alt={title}
+            width={800}
+            height={200}
+          />
         </div>
       </div>
       <div className="card-text-section">
-        <a href="#">
-          <h1 className="card-title ">{title}</h1>
-        </a>
+        <h1 className="card-title ">{title}</h1>
         <div className="card-progress-bar-main">
           <div className="card-progress-bar">
             <DonationBar raised={raised} goal={goal} />

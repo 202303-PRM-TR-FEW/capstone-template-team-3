@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "app/firebase/firebase.jsx";
 import { getAllUserCampaigns } from "../../lib/features/campaignSlice";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Card from "../../components/Card/Card";
@@ -14,8 +15,8 @@ const MyCampaigns = ({ lng }) => {
   const [user, loading] = useAuthState(auth);
   const { t } = useTranslation(lng, "myCampaings");
   const dispatch = useDispatch();
-
-  const modalIsOpen = useSelector((state) => state.modal.isOpen);
+  const router = useRouter();
+  const modalIsOpen = useSelector((state) => state.kickOffModal.isOpen);
   const userCampaigns = useSelector((state) => state.campaign.campaign);
 
   const getUserCampaigns = async () => {
@@ -35,17 +36,22 @@ const MyCampaigns = ({ lng }) => {
         {modalIsOpen && <PaymentModal />}
         <h3 className="text-center py-5">{t("Your Campaigns")}</h3>
         <div className="container mx-auto grid grid-cols-3 place-items-center gap-5 pb-5">
-          {Array.isArray(userCampaigns) &&
+          {Array.isArray(userCampaigns, index) &&
             userCampaigns.length > 0 &&
             userCampaigns.map((campaign) => {
               return (
-                <Card
-                  key={campaign.id}
-                  title={campaign.data.projectName}
-                  goal={campaign.data.goal}
-                  img={campaign.data.image}
-                  raised={campaign.data.raised}
-                />
+                <div
+                  key={index}
+                  onClick={() => router.push(`/campaigns/${campaign.id}`)}
+                >
+                  <Card
+                    key={campaign.id}
+                    title={campaign.data.projectName}
+                    goal={campaign.data.goal}
+                    img={campaign.data.image}
+                    raised={campaign.data.raised}
+                  />
+                </div>
               );
             })}
         </div>

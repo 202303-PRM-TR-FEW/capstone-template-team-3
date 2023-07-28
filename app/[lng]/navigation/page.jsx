@@ -9,8 +9,11 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "../../i18n/client";
 import { useDispatch } from "react-redux";
 import { openModal } from "app/lib/features/kickOffModalSlice.jsx";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "app/firebase/firebase.jsx";
 
 export default function Navigation({ lng }) {
+  const [user, loading] = useAuthState(auth);
   const [supportIsChecked, setSupportIsChecked] = useState(false);
   const [kickoffIsChecked, setKickoffIsChecked] = useState(false);
   const router = useRouter();
@@ -33,6 +36,9 @@ export default function Navigation({ lng }) {
       if (kickoffIsChecked) {
         router.push("/my-campaigns");
         dispatch(openModal());
+      }
+      if (kickoffIsChecked && !user) {
+        router.push("/sign-in");
       }
     }, 1000);
     return () => clearTimeout(redirectTimeout);
