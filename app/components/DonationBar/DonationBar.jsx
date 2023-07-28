@@ -15,7 +15,7 @@ const DonationBar = ({ goal, raised }) => {
     <div className="w-4/5 bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">
       <div
         className="bg-theme h-2.5 rounded-full dark:bg-theme"
-        style={{ width: `${progress}%` }}
+        style={{ width: `${progress <= 100 ? progress : 100}%` }}
       ></div>
     </div>
   );
