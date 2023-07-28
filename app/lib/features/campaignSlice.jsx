@@ -3,7 +3,9 @@ import { db, auth, doc, getDocs, getDoc, setDoc, updateDoc, addDoc, collection, 
 import { ref, uploadBytes } from 'firebase/storage'
 
 const initialState = {
-    campaign: [],
+    userCampaigns: [],
+    userDonations: [],
+    currentCampaign: [],
     status: "idle",
     error: null
 }
@@ -81,75 +83,110 @@ export const getAllUserCampaigns = createAsyncThunk("getAllUserCampaigns", async
     }
 })
 
+export const getAllUserDonations = createAsyncThunk("getAllUserDonations", async (userId) => {
+    try {
+        const q = query(collection(db, "campaigns"), where("donators", "array-contains", userId))
+        const allUserDonations = await getDocs(q)
+        const allDonations = allUserDonations.docs.map((doc) => {
+            return {
+                id: doc.id,
+                data: doc.data()
+            }
+        })
+        console.log(allDonations)
+        return allDonations
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
 const campaignSlice = createSlice({
     name: "campaign",
     initialState,
     reducers: {
         returnToInitialState: (state) => {
-            state.campaign = [],
-                state.status = "idle",
-                state.error = null
+            state.userCampaigns = []
+            state.userDonations = []
+            state.currentCampaign = []
+            state.status = "idle"
+            state.error = null
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(addUserCampaign.pending, (state) => {
-                state.campaign = []
+                state.currentCampaign = []
                 state.status = "loading"
                 state.error = null
             })
             .addCase(addUserCampaign.fulfilled, (state, action) => {
-                state.campaign = action.payload
+                state.currentCampaign = action.payload
                 state.status = "succeeded"
                 state.error = null
             })
             .addCase(addUserCampaign.rejected, (state, action) => {
-                state.campaign = []
+                state.currentCampaign = []
                 state.status = "failed"
                 state.error = action.error.message
             })
             .addCase(addUserDonation.pending, (state) => {
-                state.campaign = []
+                state.currentCampaign = []
                 state.status = "loading"
                 state.error = null
             })
             .addCase(addUserDonation.fulfilled, (state, action) => {
-                state.campaign = action.payload
+                state.currentCampaign = action.payload
                 state.status = "succeeded"
                 state.error = null
             })
             .addCase(addUserDonation.rejected, (state, action) => {
-                state.campaign = []
+                state.currentCampaign = []
                 state.status = "failed"
                 state.error = action.error.message
             })
             .addCase(getCurrentCampaign.pending, (state) => {
-                state.campaign = []
+                state.currentCampaign = []
                 state.status = "loading"
                 state.error = null
             })
             .addCase(getCurrentCampaign.fulfilled, (state, action) => {
-                state.campaign = action.payload
+                state.currentCampaign = action.payload
                 state.status = "succeeded"
                 state.error = null
             })
             .addCase(getCurrentCampaign.rejected, (state, action) => {
-                state.campaign = []
+                state.currentCampaign = []
                 state.status = "failed"
                 state.error = action.error.message
             })
             .addCase(getAllUserCampaigns.pending, (state) => {
-                state.campaign = []
+                state.userCampaigns = []
                 state.status = "loading"
                 state.error = null
             })
             .addCase(getAllUserCampaigns.fulfilled, (state, action) => {
-                state.campaign = action.payload
+                state.userCampaigns = action.payload
                 state.status = "succeeded"
                 state.error = null
             })
             .addCase(getAllUserCampaigns.rejected, (state, action) => {
-                state.campaign = []
+                state.userCampaigns = []
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(getAllUserDonations.pending, (state) => {
+                state.userDonations = []
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(getAllUserDonations.fulfilled, (state, action) => {
+                state.userDonations = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(getAllUserDonations.rejected, (state, action) => {
+                state.userDonations = []
                 state.status = "failed"
                 state.error = action.error.message
             })
