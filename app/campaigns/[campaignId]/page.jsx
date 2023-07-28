@@ -15,17 +15,21 @@ import { db } from "@/app/firebase/firebase";
 import { useEffect, useState } from "react";
 import { ca } from "date-fns/locale";
 import DonationBar from "@/app/components/DonationBar/DonationBar";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "app/firebase/firebase.jsx";
+import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "@/app/lib/features/paymentModalSlice";
 import PaymentModal from "@/app/components/PaymentModal/PaymentModal";
 
 export default function CampaignPage({ params }) {
+  const [user, loading] = useAuthState(auth);
   const [campaign, setCampaign] = useState({});
   const { campaignId } = params;
+  const router = useRouter();
   const dispatch = useDispatch()
   const docRef = doc(db, "campaigns", campaignId);
   const modalIsOpen = useSelector((state) => state.paymentModal.isOpen)
-
 
   useEffect(() => {
     const getCampaign = async () => {
@@ -40,7 +44,12 @@ export default function CampaignPage({ params }) {
   // console.log(campaignId);
 
   const handleModalToggle = () => {
-    dispatch(openModal())
+    if (!user) {
+      router.push("/sign-in");
+    }
+    if (user) {
+      dispatch(openModal())
+    }
   }
 
   return (

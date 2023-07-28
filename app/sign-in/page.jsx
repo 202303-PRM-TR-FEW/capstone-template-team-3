@@ -5,67 +5,114 @@ import { useDispatch } from "react-redux";
 import Button from "../components/Button/Button";
 import NavLink from "../components/NavLink/NavLink";
 import { useRouter } from "next/navigation";
-import { userSignInWithEmailAndPassword, userSignInWithGoogle, userSignInWithGithub, userSignInWithTwitter } from "../lib/features/userSlice";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import {
+  userSignInWithEmailAndPassword,
+  userSignInWithGoogle,
+  userSignInWithGithub,
+  userSignInWithTwitter,
+} from "../lib/features/userSlice";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase";
-import { BsTwitter, BsGithub, BsGoogle } from "react-icons/bs"
-
+import { BsTwitter, BsGithub, BsGoogle } from "react-icons/bs";
 
 function SignIn() {
-  const [user, loading] = useAuthState(auth)
-  const { register, formState: { errors }, handleSubmit } = useForm();
+  const [user, loading] = useAuthState(auth);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   const router = useRouter();
   const dispatch = useDispatch();
 
   const handleRoute = () => {
-    router.push('/profile')
-  }
+    router.push("/profile");
+  };
 
   const onSubmit = async (data) => {
-    const { email, password } = data
-    dispatch(userSignInWithEmailAndPassword({ email, password, handleRoute }))
-  }
+    const { email, password } = data;
+    dispatch(userSignInWithEmailAndPassword({ email, password, handleRoute }));
+  };
 
   const handleGoogleSignIn = async () => {
-    dispatch(userSignInWithGoogle({ handleRoute }))
-  }
+    dispatch(userSignInWithGoogle({ handleRoute }));
+  };
 
   const handleGithubSignIn = async () => {
-    dispatch(userSignInWithGithub({ handleRoute }))
-  }
+    dispatch(userSignInWithGithub({ handleRoute }));
+  };
 
   const handleTwitterSignIn = async () => {
-    dispatch(userSignInWithTwitter({ handleRoute }))
-  }
+    dispatch(userSignInWithTwitter({ handleRoute }));
+  };
 
   return (
     <div>
       {!user && (
         <div className="container mx-auto">
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto bg-theme mt-32 rounded-3xl">
+          <div className="flex flex-col w-11/12 xl:w-2/5 p-5 mt-10  mx-auto text-center bg-neutral-950 text-white rounded-lg">
+            <p>Sign in to kick-off your campaigns or support the others!</p>
+          </div>
+
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto bg-theme mt-16 rounded-3xl"
+          >
             <div className="my-2 mx-auto w-10/12">
-              <input {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })}
+              <input
+                {...register("email", {
+                  required: true,
+                  pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                })}
                 placeholder="Email"
                 className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.email ? "true" : "false"}
-                type="email" />
-              {errors.email?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Email is required</p>}
-              {errors.email?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Email is invalid</p>}
+                type="email"
+              />
+              {errors.email?.type === "required" && (
+                <p
+                  role="alert"
+                  className="text-end text-red-600 italic text-[14px]"
+                >
+                  Email is required
+                </p>
+              )}
+              {errors.email?.type === "pattern" && (
+                <p
+                  role="alert"
+                  className="text-end text-red-600 italic text-[14px]"
+                >
+                  Email is invalid
+                </p>
+              )}
             </div>
 
             <div className="my-2 mx-auto w-10/12">
-              <input {...register("password", { required: true })}
+              <input
+                {...register("password", { required: true })}
                 placeholder="Password"
                 className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.password ? "true" : "false"}
-                type="password" />
-              {errors.password?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Password is required</p>}
-              {errors.password?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Password is invalid</p>}
+                type="password"
+              />
+              {errors.password?.type === "required" && (
+                <p
+                  role="alert"
+                  className="text-end text-red-600 italic text-[14px]"
+                >
+                  Password is required
+                </p>
+              )}
+              {errors.password?.type === "pattern" && (
+                <p
+                  role="alert"
+                  className="text-end text-red-600 italic text-[14px]"
+                >
+                  Password is invalid
+                </p>
+              )}
             </div>
-            <Button
-              type="submit"
-              style="navbar-button mt-5"
-            >
+            <Button type="submit" style="navbar-button mt-5">
               Sign In
             </Button>
             <div className="flex gap-2">
