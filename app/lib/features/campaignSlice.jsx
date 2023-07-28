@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { db, auth, doc, getDocs, setDoc, addDoc, collection, storage, query, where, getDownloadURL } from '@/app/firebase/firebase';
+import { db, auth, doc, getDocs, getDoc, setDoc, updateDoc, addDoc, collection, storage, query, where, getDownloadURL, increment, arrayUnion } from '@/app/firebase/firebase';
 import { ref, uploadBytes } from 'firebase/storage'
 
 const initialState = {
@@ -27,6 +27,36 @@ export const addUserCampaign = createAsyncThunk("addUserCampaign", async (data) 
             raised: 0
         });
         return campaign
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
+export const addUserDonation = createAsyncThunk("addUserDonation", async (data) => {
+    const { currentUserId, campaignId, donation, checkbox } = data
+    try {
+        const docRef = doc(db, "campaigns", campaignId)
+        const docSnap = await getDoc(docRef)
+        console.log(docSnap)
+        if (docSnap.exists()) {
+            const updatedCampaign = await updateDoc(docRef, {
+                raised: increment(donation),
+                donators: arrayUnion(currentUserId)
+            })
+            return updatedCampaign
+        }
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
+export const getCurrentCampaign = createAsyncThunk("getCurrentCampaign", async (campaignId) => {
+    try {
+        const docRef = doc(db, "campaigns", campaignId);
+        const docSnap = await getDoc(docRef)
+        return docSnap.data()
     } catch (error) {
         console.log(error.code)
         console.log(error.message)
@@ -74,6 +104,36 @@ const campaignSlice = createSlice({
                 state.error = null
             })
             .addCase(addUserCampaign.rejected, (state, action) => {
+                state.campaign = []
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(addUserDonation.pending, (state) => {
+                state.campaign = []
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(addUserDonation.fulfilled, (state, action) => {
+                state.campaign = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(addUserDonation.rejected, (state, action) => {
+                state.campaign = []
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(getCurrentCampaign.pending, (state) => {
+                state.campaign = []
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(getCurrentCampaign.fulfilled, (state, action) => {
+                state.campaign = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(getCurrentCampaign.rejected, (state, action) => {
                 state.campaign = []
                 state.status = "failed"
                 state.error = action.error.message
