@@ -30,6 +30,7 @@ export const userSignInWithEmailAndPassword = createAsyncThunk(
         } catch (error) {
             console.log(error.code)
             console.log(error.message)
+            throw error
         }
     })
 
@@ -55,6 +56,7 @@ export const userSignUpWithEmailAndPassword = createAsyncThunk(
         } catch (error) {
             console.log(error.code)
             console.log(error.message)
+            throw error
         }
     }
 )
@@ -83,6 +85,7 @@ export const userSignInWithGoogle = createAsyncThunk(
         } catch (error) {
             console.log(error.code)
             console.log(error.message)
+            throw error
         }
     })
 
@@ -109,6 +112,7 @@ export const userSignInWithGithub = createAsyncThunk(
         } catch (error) {
             console.log(error.code)
             console.log(error.message)
+            throw error
         }
     })
 
@@ -135,6 +139,7 @@ export const userSignInWithTwitter = createAsyncThunk(
         } catch (error) {
             console.log(error.code)
             console.log(error.message)
+            throw error
         }
     })
 

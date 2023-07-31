@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "app/components/Button/Button.jsx";
 import NavLink from "../../components/NavLink/NavLink";
 import { useRouter } from "next/navigation";
@@ -9,6 +10,7 @@ import { userSignUpWithEmailAndPassword } from "app/lib/features/userSlice.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "app/firebase/firebase.jsx";
 import { useTranslation } from "../../i18n/client";
+import { toast } from "react-toastify"
 
 function SignUp({ lng }) {
   const [user, loading] = useAuthState(auth);
@@ -21,6 +23,17 @@ function SignUp({ lng }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation(lng, "sign-up");
+  const error = useSelector((state) => state.user.error)
+  const currentUserStatus = useSelector((state) => state.user.status)
+
+  useEffect(() => {
+    currentUserStatus === "succeeded" && toast.success("Signed in succesfully.", {
+      toastId: "sign-in-succeeded"
+    })
+    error && error === "Firebase: Error (auth/email-already-in-use)." && toast.error("Email already associated with another account.", {
+      toastId: "email-already-in-use"
+    })
+  }, [currentUserStatus, error])
 
   const handleRoute = () => {
     router.push(`/profile`);
@@ -86,7 +99,7 @@ function SignUp({ lng }) {
                 placeholder={t("Email")}
                 className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.email ? "true" : "false"}
-                type="email"
+                type="text"
               />
               {errors.email?.type === "required" && (
                 <p

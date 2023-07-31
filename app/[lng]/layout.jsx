@@ -4,6 +4,8 @@ import { ReduxProvider } from "../../app/lib/features/provider";
 import { dir } from "i18next";
 import { languages } from "../i18n/settings";
 import { Footer } from "./components/Footer";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
@@ -19,9 +21,21 @@ const RootLayout = ({ children, params: { lng } }) => {
     <html lang={lng} dir={dir(lng)}>
       <body className="body-text body-bg">
         <ReduxProvider>
-          <Navbar lng={lng}/>
+          <Navbar lng={lng} />
           {children}
-          <Footer lng={lng}/>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            limit={3}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            toastClassName={"bg-theme"} />
+          <Footer lng={lng} />
         </ReduxProvider>
       </body>
     </html>
