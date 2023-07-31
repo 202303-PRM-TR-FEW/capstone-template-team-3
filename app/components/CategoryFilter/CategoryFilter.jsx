@@ -7,7 +7,7 @@ import {
   FaGraduationCap,
   FaMasksTheater,
 } from "react-icons/fa6";
-
+// new
 const CategoryFilter = () => {
   const categories = [
     { name: "All", query: null, icon: <FaGlobe /> },
