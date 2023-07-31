@@ -1,0 +1,22 @@
+{
+  "Name": "Name",
+  "Email": "Email",
+  "Password": "Password",
+  "Confirm Password": "Confirm Password",
+  "Name is required": "Name is required",
+  "Name is invalid": "Name is invalid",
+  "Email is required": "Email is required",
+  "Email is invalid": "Email is invalid",
+  "Password is required": "Password is required",
+  "Password must contain a lowercase, an uppercase, and a special character": "Password must contain a lowercase, an uppercase, and a special character",
+  "Password must be at least 8 characters": "Password must be at least 8 characters",
+  "Please re-enter password": "Please re-enter password",
+  "Passwords do not match": "Passwords do not match",
+  "I accept the": "I accept the",
+  "Terms & Conditions": "Terms & Conditions",
+  "You must accept the Terms & Conditions to proceed.": "You must accept the Terms & Conditions to proceed.",
+  "Already a member?": "Already a member?",
+  "Sign In": "Sign In",
+  "Sign Up": "Sign Up",
+  "Password is invalid": "Password is invalid"
+}

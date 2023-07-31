@@ -2,14 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.category-main {
-  @apply flex flex-col p-3 m-5 space-y-4;
+.icon-main {
+  @apply flex flex-col items-center gap-2 rounded-md p-2 space-y-2
 }
 
-.category-text {
-  @apply text-2xl font-bold;
-}
-
-.category-icons {
-  @apply flex flex-row items-center gap-4;
+.icon {
+  @apply border-2 border-spacing-4 rounded-md border-black hover:border-[#d4ee26] hover:text-[#d4ee26] p-[0.250rem]
 }

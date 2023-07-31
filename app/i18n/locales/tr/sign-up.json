@@ -1,0 +1,22 @@
+{
+  "Name": "İsim",
+  "Email": "E-posta",
+  "Password": "Şifre",
+  "Confirm Password": "Şifreyi Onayla",
+  "Name is required": "İsim gereklidir",
+  "Name is invalid": "Geçersiz isim",
+  "Email is required": "E-posta giriniz",
+  "Email is invalid": "Geçersiz e-posta",
+  "Password is required": "Şifre giriniz",
+  "Password must contain a lowercase, an uppercase, and a special character": "Şifre bir küçük harf, bir büyük harf ve bir özel karakter içermelidir",
+  "Password must be at least 8 characters": "Şifre en az 8 karakter olmalıdır",
+  "Please re-enter password": "Lütfen şifrenizi tekrar giriniz",
+  "Passwords do not match": "Şifreler uyuşmuyor",
+  "I accept the": "Şart ve koşulları",
+  "Terms & Conditions": "kabul ediyorum",
+  "You must accept the Terms & Conditions to proceed.": "Devam etmek için şart ve koşulları kabul etmelisiniz.",
+  "Already a member?": "Üyeliğin var mı?",
+  "Sign In": "Giriş Yap",
+  "Sign Up": "Üye Ol",
+  "Password is invalid": "Geçersiz şifre"
+}
