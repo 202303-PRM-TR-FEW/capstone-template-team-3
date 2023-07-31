@@ -1,32 +1,39 @@
-"use client";
-
-import { useState } from "react";
-
-import AllIcon from "./CategoryIcons/AllIcon";
-import EducationIcon from "./CategoryIcons/EducationIcon";
-import CultureIcon from "./CategoryIcons/CultureIcon";
-import AnimalsIcon from "./CategoryIcons/AnimalsIcon";
-import ChildrenIcon from "./CategoryIcons/ChildrenIcon";
-import "../CategoryFilter/CategoryFilter.css"
-
+import Link from "next/link";
+import React from "react";
+import {
+  FaGlobe,
+  FaPaw,
+  FaChild,
+  FaGraduationCap,
+  FaMasksTheater,
+} from "react-icons/fa6";
 
 const CategoryFilter = () => {
-  const [selected, setSelected] = useState("all");
-
-  const handleClick = (category) => {
-    setSelected(category);
-  };
+  const categories = [
+    { name: "All", query: null, icon: <FaGlobe /> },
+    { name: "Education", query: `Education`, icon: <FaGraduationCap /> },
+    { name: "Culture", query: `Culture`, icon: <FaMasksTheater /> },
+    { name: "Animals", query: `Animals`, icon: <FaPaw /> },
+    { name: "Children", query: `Children`, icon: <FaChild /> },
+  ];
 
   return (
-    <div className="category-main">
-      <h2 className="category-text">Categories</h2>
-      <div className="category-icons">
-        <AllIcon onClick={() => handleClick("all")} />
-        <EducationIcon onClick={() => handleClick("education")}/>
-        <CultureIcon onClick={() => handleClick("culture")} />
-        <AnimalsIcon onClick={() => handleClick("animals")} />
-        <ChildrenIcon onClick={() => handleClick("children")} />
-      </div>
+    <div className="flex">
+      {categories.map((category) => (
+        <Link
+          key={category.name}
+          href={{
+            pathname: "/campaigns",
+            query: { category: category.query },
+          }}
+          className="flex flex-col items-center justify-center gap-2 rounded-md p-2 hover:bg-gray-200 transition-colors duration-200"
+        >
+          <div className="text-2xl border border-neutral-900 rounded-lg p-2 ">
+            {category.icon}
+          </div>
+          <div>{category.name}</div>
+        </Link>
+      ))}
     </div>
   );
 };
