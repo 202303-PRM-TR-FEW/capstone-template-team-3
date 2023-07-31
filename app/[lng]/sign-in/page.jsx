@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "app/components/Button/Button.jsx";
 import NavLink from "../../components/NavLink/NavLink";
 import { useRouter } from "next/navigation";
@@ -15,6 +16,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/firebase";
 import { BsTwitter, BsGithub, BsGoogle } from "react-icons/bs";
 import { useTranslation } from "../../i18n/client";
+import { toast } from "react-toastify"
 
 function SignIn({ lng }) {
   const [user, loading] = useAuthState(auth);
@@ -26,6 +28,26 @@ function SignIn({ lng }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation(lng, "sign-in");
+  const error = useSelector((state) => state.user.error)
+  const currentUserStatus = useSelector((state) => state.user.status)
+
+  useEffect(() => {
+    currentUserStatus === "succeeded" && toast.success("Signed in succesfully.", {
+      toastId: "sign-in-succeeded"
+    })
+    error && error === "Firebase: Error (auth/account-exists-with-different-credential)." && toast.error("Account exists with different credentials.", {
+      toastId: "account-exists-with-different-credential"
+    })
+    error && error === "Firebase: Error (auth/user-not-found)." && toast.error("Account not found.", {
+      toastId: "user-not-found"
+    })
+    error && error === "Firebase: Error (auth/wrong-password)." && toast.error("Password is wrong.", {
+      toastId: "wrong-password"
+    })
+    error && error === "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)." && toast.error("Account has been temporarily disabled due to many failed login attempts. Please try again later.", {
+      toastId: "too-many-requests"
+    })
+  }, [currentUserStatus, error])
 
   const handleRoute = () => {
     router.push(`/profile`);
@@ -68,7 +90,7 @@ function SignIn({ lng }) {
                 placeholder={t("Email")}
                 className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.email ? "true" : "false"}
-                type="email"
+                type="text"
               />
               {errors.email?.type === "required" && (
                 <p
