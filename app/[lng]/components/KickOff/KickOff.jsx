@@ -7,7 +7,7 @@ import { CgClose } from "react-icons/cg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./KickOff.css";
-import Button from "../../../components/Button/Button";
+import Button from "../Button/Button";
 import { auth } from "../../../firebase/firebase";
 import { useForm, Controller } from "react-hook-form";
 import { useAuthState } from "react-firebase-hooks/auth";

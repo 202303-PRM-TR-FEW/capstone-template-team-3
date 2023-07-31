@@ -1,7 +1,7 @@
 "use client";
 
 import "../CategoryFilter/CategoryFilter.css";
-import { useTranslation } from "../../i18n/client";
+import { useTranslation } from "../../../i18n/client";
 import Link from "next/link";
 import React from "react";
 import {

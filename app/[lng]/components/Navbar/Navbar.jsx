@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Logo from "app/components/Logo/Logo.jsx";
+import Logo from "../Logo/Logo";
 import Search from "app/[lng]/components/Search/Search.jsx";
-import NavLink from "app/components/NavLink/NavLink.jsx";
-import Button from "app/components/Button/Button.jsx";
+import NavLink from "../NavLink/NavLink";
+import Button from "../Button/Button";
 import "./Navbar.css";
 import { HiSearchCircle } from "react-icons/hi";
 import { useRouter } from "next/navigation";

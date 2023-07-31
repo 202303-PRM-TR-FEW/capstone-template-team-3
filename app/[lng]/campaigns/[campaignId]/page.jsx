@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/app/components/Button/Button";
+import Button from "@/app/[lng]/components/Button/Button";
 import Image from "next/image";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import Link from "next/link";
@@ -16,7 +16,7 @@ import {
 import { db } from "@/app/firebase/firebase";
 import { useEffect, useState } from "react";
 import { ca } from "date-fns/locale";
-import DonationBar from "@/app/components/DonationBar/DonationBar";
+import DonationBar from "../../../[lng]/components/DonationBar/DonationBar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "app/firebase/firebase.jsx";
 import { useRouter } from "next/navigation";
