@@ -36,9 +36,9 @@ const MyCampaigns = ({ lng }) => {
         {modalIsOpen && <PaymentModal />}
         <h3 className="text-center py-5">{t("Your Campaigns")}</h3>
         <div className="container mx-auto grid grid-cols-3 place-items-center gap-5 pb-5">
-          {Array.isArray(userCampaigns, index) &&
+          {Array.isArray(userCampaigns) &&
             userCampaigns.length > 0 &&
-            userCampaigns.map((campaign) => {
+            userCampaigns.map((campaign, index) => {
               return (
                 <div
                   key={index}
