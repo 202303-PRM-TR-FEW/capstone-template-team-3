@@ -53,11 +53,11 @@ function SignIn({ lng }) {
       {!user && (
         <div className="container mx-auto">
           <div className="flex flex-col w-11/12 xl:w-2/5 p-5 mt-10  mx-auto text-center bg-neutral-950 text-white rounded-lg">
-            <p>Sign in to kick-off your campaigns or support the others!</p>
+            <p>{t("Sign in to kick-off your campaigns or support the others!")}</p>
           </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto bg-theme mt-32 rounded-3xl"
+            className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto bg-theme mt-24 rounded-3xl"
           >
             <div className="my-2 mx-auto w-10/12">
               <input

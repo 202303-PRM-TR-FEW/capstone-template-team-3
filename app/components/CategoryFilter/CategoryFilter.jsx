@@ -1,32 +1,45 @@
 "use client";
 
-import { useState } from "react";
-import AllIcon from "./CategoryIcons/AllIcon";
-import EducationIcon from "./CategoryIcons/EducationIcon";
-import CultureIcon from "./CategoryIcons/CultureIcon";
-import AnimalsIcon from "./CategoryIcons/AnimalsIcon";
-import ChildrenIcon from "./CategoryIcons/ChildrenIcon";
-import "../CategoryFilter/CategoryFilter.css"
-import { useTranslation } from '../../i18n/client'
+import "../CategoryFilter/CategoryFilter.css";
+import { useTranslation } from "../../i18n/client";
+import Link from "next/link";
+import React from "react";
+import {
+  FaGlobe,
+  FaPaw,
+  FaChild,
+  FaGraduationCap,
+  FaMasksTheater,
+} from "react-icons/fa6";
 
-const CategoryFilter = ({lng}) => {
-  const [selected, setSelected] = useState("all");
-  const { t } = useTranslation(lng, 'categoryFilter')
+const CategoryFilter = ({ lng }) => {
+  const { t } = useTranslation(lng, "categoryFilter");
 
-  const handleClick = (category) => {
-    setSelected(category);
-  };
+  const categories = [
+    { name: t("All"), query: null, icon: <FaGlobe /> },
+    { name: t("Education"), query: `Education`, icon: <FaGraduationCap /> },
+    { name: t("Culture"), query: `Culture`, icon: <FaMasksTheater /> },
+    { name: t("Animals"), query: `Animals`, icon: <FaPaw /> },
+    { name: t("Children"), query: `Children`, icon: <FaChild /> },
+  ];
 
   return (
-    <div className="category-main">
-      <h2 className="category-text">{t("Categories")}</h2>
-      <div className="category-icons">
-        <AllIcon onClick={() => handleClick("all")} />
-        <EducationIcon onClick={() => handleClick("education")}/>
-        <CultureIcon onClick={() => handleClick("culture")} />
-        <AnimalsIcon onClick={() => handleClick("animals")} />
-        <ChildrenIcon onClick={() => handleClick("children")} />
-      </div>
+    <div className="flex ">
+      {categories.map((category) => (
+        <Link
+          key={category.name}
+          href={{
+            pathname: "/campaigns",
+            query: { category: category.query },
+          }}
+          className="icon-main"
+        >
+          <div className="icon">
+            {category.icon}
+          </div>
+          <div>{category.name}</div>
+        </Link>
+      ))}
     </div>
   );
 };

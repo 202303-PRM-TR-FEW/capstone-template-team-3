@@ -1,11 +1,12 @@
 {
- "Email": "Email",
- "Password": "Password",
- "Sign In": "Sign In",
- "Not a member?": "Not a member?",
- "Sign Up": "Sign Up",
- "Email is required": "Email is required",
- "Email is invalid": "Email is invalid",
- "Password is required": "Password is required",
- "Password is invalid": "Password is invalid"
+  "Email": "Email",
+  "Password": "Password",
+  "Sign In": "Sign In",
+  "Not a member?": "Not a member?",
+  "Sign Up": "Sign Up",
+  "Email is required": "Email is required",
+  "Email is invalid": "Email is invalid",
+  "Password is required": "Password is required",
+  "Password is invalid": "Password is invalid",
+  "Sign in to kick-off your campaigns or support the others!": "Sign in to kick-off your campaigns or support the others!"
 }
