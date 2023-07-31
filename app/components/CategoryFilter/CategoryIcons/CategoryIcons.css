@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.icon-main {
+  @apply flex flex-col items-center space-y-2
+}
+
+.icon {
+  @apply border-2 border-spacing-4 rounded-md border-black hover:border-[#d4ee26] hover:text-[#d4ee26] p-[0.250rem]
+}
