@@ -41,7 +41,7 @@ export default function CampaignPage({ params, lng }) {
       setCampaign(docSnap.data());
     };
     getCampaign();
-    console.log(campaign);
+    // console.log(campaign);
   }, [campaignId, modalIsOpen]);
 
   // console.log(campaignId);
@@ -60,9 +60,9 @@ export default function CampaignPage({ params, lng }) {
     // main container
     <>
       {modalIsOpen && <PaymentModal campaignId={campaignId} />}
-      <div className="flex flex-col p-4 lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 ">
+      <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
         {/* left container */}
-        <div className="mb-5">
+        <div className="mb-5 max-w-3xl">
           <Image
             className="bg-slate-100 rounded-xl"
             width={1200}
@@ -72,7 +72,7 @@ export default function CampaignPage({ params, lng }) {
           />
         </div>
         {/* right container  */}
-        <div className="flex flex-col space-y-5 lg:">
+        <div className="flex flex-col space-y-5 ">
           <h1 className="text-2xl font-bold lg:text-start ">
             {campaign.projectName}
           </h1>
