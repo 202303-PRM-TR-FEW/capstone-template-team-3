@@ -7,10 +7,12 @@ import Button from "../components/Button/Button";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "../../i18n/client";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "app/lib/features/kickOffModalSlice.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "app/firebase/firebase.jsx";
+import { getUserData, userJoinNewsletter } from "@/app/lib/features/userSlice";
+import { BsPatchCheckFill } from "react-icons/bs"
 
 export default function Navigation({ lng }) {
   const [user, loading] = useAuthState(auth);
@@ -19,6 +21,7 @@ export default function Navigation({ lng }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation(lng, "navigation");
+  const currentUser = useSelector((state) => state.user.user);
 
   const handleSupportCheck = () => {
     setSupportIsChecked(!supportIsChecked);
@@ -27,6 +30,23 @@ export default function Navigation({ lng }) {
   const handleKickoffCheck = () => {
     setKickoffIsChecked(!kickoffIsChecked);
   };
+
+  const handleNewsletter = async () => {
+    if (user && !loading) {
+      const userId = user.uid
+      await dispatch(userJoinNewsletter(userId))
+      await dispatch(getUserData(userId))
+    } else {
+      router.push("/sign-in")
+    }
+  }
+
+  useEffect(() => {
+    if (user && !loading) {
+      const userId = user.uid
+      dispatch(getUserData(userId))
+    }
+  }, [user, loading])
 
   useEffect(() => {
     const redirectTimeout = setTimeout(() => {
@@ -96,15 +116,17 @@ export default function Navigation({ lng }) {
             <h3 className="newsletter-header-text">{t("Stay informed")}</h3>
             <p className="newsletter-paragraph-text">
               {t("newsletter-paragraph-text-first")}
-              <br />
               {t("newsletter-paragraph-text-second")}
             </p>
           </article>
-          <Button
-            type={"button"}
-            style="newsletter-button"
-            name={t("Join newsletter")}
-          />
+          {currentUser && currentUser.joinedNewsletter ?
+            <BsPatchCheckFill size={50} className="text-theme my-10" />
+            : <Button
+              type={"button"}
+              style="newsletter-button"
+              name={t("Join newsletter")}
+              clickAction={handleNewsletter}
+            />}
         </div>
       </section>
     </main>

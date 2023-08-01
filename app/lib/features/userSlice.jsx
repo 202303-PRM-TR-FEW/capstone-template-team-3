@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
-import { db, auth, signInWithPopup, googleAuthProvider, githubAuthProvider, twitterAuthProvider, doc, getDoc, setDoc, query, where, collection } from '@/app/firebase/firebase';
+import { db, auth, signInWithPopup, googleAuthProvider, githubAuthProvider, twitterAuthProvider, doc, getDoc, setDoc, query, where, collection, updateDoc } from '@/app/firebase/firebase';
 
 const initialState = {
     user: null,
@@ -12,6 +12,23 @@ export const getUserData = createAsyncThunk("getUserData", async (userId) => {
     try {
         const docRef = doc(db, "users", userId)
         const docSnap = await getDoc(docRef)
+        return docSnap.data()
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
+export const userJoinNewsletter = createAsyncThunk("userJoinNewsletter", async (userId) => {
+    try {
+        const docRef = doc(db, "users", userId)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+            const updatedUser = await updateDoc(docRef, {
+                joinedNewsletter: true
+            })
+            return updatedUser.data()
+        }
         return docSnap.data()
     } catch (error) {
         console.log(error.code)
@@ -178,6 +195,21 @@ const userSlice = createSlice({
                 state.error = null
             })
             .addCase(getUserData.rejected, (state, action) => {
+                state.user = {}
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(userJoinNewsletter.pending, (state) => {
+                state.user = {}
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(userJoinNewsletter.fulfilled, (state, action) => {
+                state.user = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(userJoinNewsletter.rejected, (state, action) => {
                 state.user = {}
                 state.status = "failed"
                 state.error = action.error.message
