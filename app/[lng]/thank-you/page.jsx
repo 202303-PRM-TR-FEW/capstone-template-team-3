@@ -1,6 +1,6 @@
 "use client";
 
-import NavLink from "../../components/NavLink/NavLink";
+import NavLink from "../components/NavLink/NavLink";
 import "./thank-you.css";
 import thankyouPic from "public/assets/images/thankyou.png";
 import Image from "next/image";

@@ -1,4 +1,4 @@
-import NavLink from "../../components/NavLink/NavLink";
+import NavLink from "../components/NavLink/NavLink";
 import "./welcome.css";
 import { useTranslation } from "../../i18n";
 

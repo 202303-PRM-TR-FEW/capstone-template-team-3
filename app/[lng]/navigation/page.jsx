@@ -3,7 +3,7 @@
 import "./navigation.css";
 import Image from "next/image";
 import navigationBanner from "public/assets/images/navigation-banner.png";
-import Button from "../../components/Button/Button";
+import Button from "../components/Button/Button";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "../../i18n/client";

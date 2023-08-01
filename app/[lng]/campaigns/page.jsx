@@ -1,13 +1,12 @@
 "use client";
 
-import CategoryFilter from "app/components/CategoryFilter/CategoryFilter.jsx";
+import CategoryFilter from "../components/CategoryFilter/CategoryFilter";
 import LargeCard from "../components/LargeCard/LargeCard";
-import Card from "app/components/Card/Card.jsx";
+import Card from "../components/Card/Card";
 import { collection, query, onSnapshot, where } from "firebase/firestore";
 import { db } from "app/firebase/firebase.jsx";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ca } from "date-fns/locale";
 
 const Campaigns = () => {
   const [campaigns, setCampaigns] = useState([]);

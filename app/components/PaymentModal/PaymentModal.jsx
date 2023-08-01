@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import './PaymentModal.css'
-import Button from '../Button/Button';
+import Button from '../../[lng]/components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '@/app/lib/features/paymentModalSlice';
 import { auth } from "../../firebase/firebase";

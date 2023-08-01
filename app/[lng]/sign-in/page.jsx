@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import Button from "app/components/Button/Button.jsx";
-import NavLink from "../../components/NavLink/NavLink";
+import Button from "../components/Button/Button";
+import NavLink from "../components/NavLink/NavLink";
 import { useRouter } from "next/navigation";
 import {
   userSignInWithEmailAndPassword,
