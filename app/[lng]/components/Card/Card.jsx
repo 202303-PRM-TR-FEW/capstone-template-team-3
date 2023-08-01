@@ -1,7 +1,7 @@
 import Image from "next/image";
 import "./Card.css";
 import { useTranslation } from "../../../i18n/client";
-import DonationBar from "../DonationBar/DonationBar";
+import DonationBar from "@/app/[lng]/components/DonationBar/DonationBar";
 
 const Card = ({ img, title, raised, goal, lng }) => {
   const { t } = useTranslation(lng, "largeCard");

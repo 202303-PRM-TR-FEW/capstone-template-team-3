@@ -11,8 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 const Campaigns = () => {
   const { push } = useRouter();
   const searchParams = useSearchParams();
-  const dispatch = useDispatch()
-  const allCampaigns = useSelector((state) => state.campaign.allCampaigns)
+  const dispatch = useDispatch();
+  const allCampaigns = useSelector((state) => state.campaign.allCampaigns);
   const category = searchParams.get("category");
 
   const getCampaignsByCategory = (campaigns, category) => {
@@ -31,12 +31,12 @@ const Campaigns = () => {
   );
 
   const getCampaigns = async () => {
-    dispatch(getAllCampaigns())
-  }
+    dispatch(getAllCampaigns());
+  };
 
   useEffect(() => {
-    getCampaigns()
-  }, [])
+    getCampaigns();
+  }, []);
 
   return (
     <main>
