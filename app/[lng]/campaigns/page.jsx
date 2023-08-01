@@ -3,34 +3,40 @@
 import CategoryFilter from "../components/CategoryFilter/CategoryFilter";
 import LargeCard from "../components/LargeCard/LargeCard";
 import Card from "../components/Card/Card";
-import { collection, query, onSnapshot, where } from "firebase/firestore";
-import { db } from "app/firebase/firebase.jsx";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { getAllCampaigns } from "@/app/lib/features/campaignSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Campaigns = () => {
-  const [campaigns, setCampaigns] = useState([]);
   const { push } = useRouter();
   const searchParams = useSearchParams();
-
+  const dispatch = useDispatch()
+  const allCampaigns = useSelector((state) => state.campaign.allCampaigns)
   const category = searchParams.get("category");
+
+  const getCampaignsByCategory = (campaigns, category) => {
+    if (campaigns && campaigns.length > 0 && category) {
+      const filteredCampaigns = campaigns.filter((campaign) => {
+        return campaign.category?.map((item) => item.value).includes(category);
+      });
+      return filteredCampaigns;
+    }
+    return campaigns;
+  };
+
   const filteredCampaignsByCategory = getCampaignsByCategory(
-    campaigns,
+    allCampaigns,
     category
   );
 
-  // Read campaigns from database
+  const getCampaigns = async () => {
+    dispatch(getAllCampaigns())
+  }
+
   useEffect(() => {
-    const q = query(collection(db, "campaigns"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let campaignsArr = [];
-      querySnapshot.forEach((campaign) => {
-        campaignsArr.push({ ...campaign.data(), id: campaign.id });
-      });
-      setCampaigns(campaignsArr);
-    });
-    return () => unsubscribe();
-  }, []);
+    getCampaigns()
+  }, [])
 
   return (
     <main>
@@ -43,25 +49,16 @@ const Campaigns = () => {
             onClick={() => push(`/campaigns/${campaign.id}`)}
           >
             <Card
-              img={campaign.image}
-              title={campaign.projectName}
-              raised={campaign.raised}
-              goal={campaign.goal}
+              img={campaign.data.image}
+              title={campaign.data.projectName}
+              raised={campaign.data.raised}
+              goal={campaign.data.goal}
             />
           </div>
         ))}
       </div>
     </main>
   );
-};
-const getCampaignsByCategory = (campaigns, category) => {
-  if (campaigns && campaigns.length > 0 && category) {
-    const filteredCampaigns = campaigns.filter((campaign) => {
-      return campaign.category?.map((item) => item.value).includes(category);
-    });
-    return filteredCampaigns;
-  }
-  return campaigns;
 };
 
 export default Campaigns;
