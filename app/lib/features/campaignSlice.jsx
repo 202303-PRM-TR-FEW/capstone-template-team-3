@@ -3,12 +3,23 @@ import { db, auth, doc, getDocs, getDoc, setDoc, updateDoc, addDoc, collection, 
 import { ref, uploadBytes } from 'firebase/storage'
 
 const initialState = {
+    allCampaigns: [],
     userCampaigns: [],
     userDonations: [],
     currentCampaign: [],
     status: "idle",
     error: null
 }
+
+export const getAllCampaigns = createAsyncThunk("getAllCampaigns", async () => {
+    try {
+        const allCampaigns = await getDocs(collection(db, "campaigns"));
+        return allCampaigns.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
 
 export const addUserCampaign = createAsyncThunk("addUserCampaign", async (data) => {
     const { currentUserName, projectName, goal, about, file, category, startDate, endDate, userId, formatDate, today, nextMonth } = data
@@ -40,7 +51,6 @@ export const addUserDonation = createAsyncThunk("addUserDonation", async (data) 
     try {
         const docRef = doc(db, "campaigns", campaignId)
         const docSnap = await getDoc(docRef)
-        console.log(docSnap)
         if (docSnap.exists()) {
             const updatedCampaign = await updateDoc(docRef, {
                 raised: increment(donation),
@@ -106,6 +116,7 @@ const campaignSlice = createSlice({
     initialState,
     reducers: {
         returnToInitialState: (state) => {
+            state.allCampaigns = []
             state.userCampaigns = []
             state.userDonations = []
             state.currentCampaign = []
@@ -115,6 +126,21 @@ const campaignSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            .addCase(getAllCampaigns.pending, (state) => {
+                state.allCampaigns = []
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(getAllCampaigns.fulfilled, (state, action) => {
+                state.allCampaigns = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(getAllCampaigns.rejected, (state, action) => {
+                state.allCampaigns = []
+                state.status = "failed"
+                state.error = action.error.message
+            })
             .addCase(addUserCampaign.pending, (state) => {
                 state.currentCampaign = []
                 state.status = "loading"
