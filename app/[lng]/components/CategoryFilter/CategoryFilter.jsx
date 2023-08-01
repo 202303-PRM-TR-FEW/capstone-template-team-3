@@ -1,5 +1,3 @@
-"use client";
-
 import "../CategoryFilter/CategoryFilter.css";
 import { useTranslation } from "../../../i18n/client";
 import Link from "next/link";
@@ -29,14 +27,13 @@ const CategoryFilter = ({ lng }) => {
         <Link
           key={category.name}
           href={{
-            pathname: "/campaigns",
+            pathname: "/en/campaigns",
             query: { category: category.query },
           }}
           className="icon-main"
+          passHref
         >
-          <div className="icon">
-            {category.icon}
-          </div>
+          <div className="icon">{category.icon}</div>
           <div>{category.name}</div>
         </Link>
       ))}
