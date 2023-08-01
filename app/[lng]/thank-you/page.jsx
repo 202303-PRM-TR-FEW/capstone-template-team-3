@@ -23,11 +23,11 @@ const ThankYouPage = ({ lng }) => {
         <h2 className="ty-header">{t("Thank you")}</h2>
         <h3 className="ty-sub-normal">{t("for supporting us!")}</h3>
         <div className="md:space-x-6 ty-buttons">
-          <NavLink to="/navigation" style="ty-first-button">
+          <NavLink to="/campaigns" style="ty-first-button">
             {t("Make another donation")}
           </NavLink>
-          <NavLink to="/campaigns" style="ty-second-button">
-            {t("Go to homepage")}
+          <NavLink to="/my-campaigns" style="ty-second-button">
+            {t("Go to My Campaigns")}
           </NavLink>
         </div>
       </div>
