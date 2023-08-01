@@ -22,7 +22,7 @@ import { auth } from "app/firebase/firebase.jsx";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "@/app/lib/features/paymentModalSlice";
-import PaymentModal from "@/app/components/PaymentModal/PaymentModal";
+import PaymentModal from "@/app/[lng]/components/PaymentModal/PaymentModal";
 
 export default function CampaignPage({ params, lng }) {
   const [user, loading] = useAuthState(auth);

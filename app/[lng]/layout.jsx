@@ -1,5 +1,5 @@
 import "styles/globals.css";
-import Navbar from "app/[lng]/components/Navbar/Navbar.jsx";
+import Navbar from "../[lng]/components/Navbar/Navbar";
 import { ReduxProvider } from "../../app/lib/features/provider";
 import { dir } from "i18next";
 import { languages } from "../i18n/settings";
