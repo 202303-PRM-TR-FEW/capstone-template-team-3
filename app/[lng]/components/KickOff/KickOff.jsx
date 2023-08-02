@@ -3,9 +3,10 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { useState, useEffect } from "react";
 import { FaUpload, FaCalendarAlt } from "react-icons/fa";
+import { TiDeleteOutline } from 'react-icons/ti';
+import { BsFillSendCheckFill } from 'react-icons/bs'
 import { CgClose } from "react-icons/cg";
 import DatePicker from "react-datepicker";
-import { BsFillSendCheckFill } from 'react-icons/bs'
 import "react-datepicker/dist/react-datepicker.css";
 import "./KickOff.css";
 import Button from "../Button/Button";
@@ -31,12 +32,14 @@ const PaymentModal = ({ lng }) => {
     formState: { errors },
     handleSubmit,
     control,
+    setValue
   } = useForm();
   const [showCalendar, setShowCalendar] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [uploadState, setUploadState] = useState(true)
   const [uploadedFileName, setUploadedFileName] = useState(null)
+  const [previewImage, setPreviewImage] = useState(null);
   const today = new Date();
   const nextMonth = new Date(
     today.getFullYear(),
@@ -107,14 +110,28 @@ const PaymentModal = ({ lng }) => {
   };
 
   const handleFileChange = (event) => {
-    setUploadedFileName(event.target.files[0].name)
-
-    if (event.target.files && event.target.files.length > 0) {
+    const file = event.target.files[0];
+    if (file) {
+      setUploadedFileName(file.name);
       setUploadState(false);
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result);
+      };
+      reader.readAsDataURL(file);
     } else {
+      setUploadedFileName("");
       setUploadState(true);
+      setPreviewImage(null);
     }
   };
+
+  const deleteFile = () => {
+    setUploadedFileName(null)
+    setUploadState(true)
+    setValue('file', null);
+  }
 
   const handleCancel = () => {
     setShowCalendar(false);
@@ -240,7 +257,7 @@ const PaymentModal = ({ lng }) => {
                           </Button>
                         </div>
                         <div className="calendar-container">
-                        <DatePicker
+                          <DatePicker
                             selected={startDate}
                             startDate={startDate}
                             endDate={endDate}
@@ -362,9 +379,15 @@ const PaymentModal = ({ lng }) => {
                       </label>
                     </>) : (
                     <>
-                      <span className="text-black px-4 text-[18px] text-center">File ready to be uploaded</span>
-                      <BsFillSendCheckFill title={uploadedFileName} size={30} className='m-1' />
-                      <span className="text-black px-4 text-[18px]" ></span>
+                      <div className="flex gap-2 justify-center items-center">
+                        <span className="text-black text-[15px] text-center mb-1">File ready to be uploaded</span>
+                        <BsFillSendCheckFill title={uploadedFileName} size={26} className='mb-2' />
+                      </div>
+                      {previewImage && <img src={previewImage} alt="Preview" className="h-1/2 w-1/2 mb-1" title={uploadedFileName}/>}
+                      <div className="flex gap-2 justify-center items-center">
+                        <span className="text-[15px] ">{uploadedFileName.substring(0, 8).split('.')[0] + uploadedFileName.slice(-4)}</span>
+                        <TiDeleteOutline onClick={deleteFile} size={30} />
+                      </div>
                     </>)
                   }
                   {errors.file?.type === "required" && (
