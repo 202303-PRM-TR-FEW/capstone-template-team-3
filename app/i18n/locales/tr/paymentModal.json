@@ -1,7 +1,7 @@
 {
-  "Enter the donation amount": "Bağış miktarını girin",
-  "Donation is required": "Bağış miktarı gereklidir",
-  "Donation is invalid": "Geçersiz bağış miktarı",
-  "Add 2% for charity": "Kurum için %2 ekleyin.",
-  "Pay now": "Bağışla"
+  "Enter the donation amount": "Destek miktarı girin",
+  "Donation is required": "Destek miktarı gereklidir",
+  "Donation is invalid": "Geçersiz destek miktarı",
+  "Add 2% for charity": "Organizasyona %2 bağış yap.",
+  "Pay now": "Destek ol"
 }
