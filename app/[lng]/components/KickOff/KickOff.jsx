@@ -177,13 +177,12 @@ const PaymentModal = ({ lng }) => {
                   <label className="font-mulish text-lg md:text-[18px]">
                     {t("Add your goal")}
                   </label>
-                  <span className="absolute left-1 top-[35px] text-black text-[25px] font-KronaOne">$</span>
+                  <span className="absolute left-1 top-[38px] text-black text-[25px] font-KronaOne">$</span>
                   <input
                     {...register("goal", {
                       required: true,
                       pattern: /^[1-9][0-9]*$/,
                     })}
-                    placeholder="$0"
                     className="bg-slate-50 text-black pl-7 text-[30px] w-full input-field focus:outline-none focus:ring-0 p-2"
                   />
                   {errors.goal?.type === "required" && (
@@ -346,12 +345,6 @@ const PaymentModal = ({ lng }) => {
                   )}
                 </div>
                 <div className="flex flex-col items-center lg:my-10 md:my-1">
-                  <span className="text-black px-4 text-[18px]">
-                    {t("Add media")}
-                  </span>
-                  <span className="text-black pb-4 text-[12px]">
-                    (.jpg/.jpeg/.png)
-                  </span>
                   <input
                     {...register("file", { required: true })}
                     type="file"
@@ -362,9 +355,8 @@ const PaymentModal = ({ lng }) => {
                   />
                   {uploadState ? (
                     <>
-                      <span className="text-black px-4 text-[18px]">Add media</span>
+                      <span className="text-black px-4 text-[18px]">{t("Add media")}</span>
                       <span className="text-black pb-4 text-[12px]">(.jpg/.jpeg/.png)</span>
-
                       <label htmlFor="file-input" className="flex justify-center">
                         <FaUpload className="border-[1px] border-black rounded-lg p-3 cursor-pointer" size={40} />
                       </label>
@@ -383,12 +375,6 @@ const PaymentModal = ({ lng }) => {
                       {t("Media is required")}
                     </p>
                   )}
-                  <label htmlFor="file-input" className="flex justify-center">
-                    <FaUpload
-                      className="border-[1px] border-black rounded-lg p-3 cursor-pointer"
-                      size={40}
-                    />
-                  </label>
                 </div>
               </div>
             </div>

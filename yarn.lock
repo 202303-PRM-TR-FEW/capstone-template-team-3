@@ -941,7 +941,7 @@
 
 accept-language@^3.0.18:
   version "3.0.18"
-  resolved "https://registry.npmjs.org/accept-language/-/accept-language-3.0.18.tgz"
+  resolved "https://registry.yarnpkg.com/accept-language/-/accept-language-3.0.18.tgz#f5025f17bf65a466a845838ccf98cdb877d83384"
   integrity sha512-sUofgqBPzgfcF20sPoBYGQ1IhQLt2LSkxTnlQSuLF3n5gPEqd5AimbvOvHEi0T1kLMiGVqPWzI5a9OteBRth3A==
   dependencies:
     bcp47 "^1.1.2"
