@@ -5,29 +5,30 @@ import "./Footer.css";
 const Footer = () => {
     return (
  
-<div class="flex ">
+<div class="flex flex-col bg-transparent">
 
-    <footer class="w-full text-gray-700 bg-white">
-    <section class="curve w-full h-64 2xl:bg-cover bg-[#D4EE26] border-t-[#D4EE26]" 
+<section class="curve w-full h-32 2xl:bg-cover object-fill" 
             style={{
-          backgroundImage: "url(/wave3.png)",
+          backgroundImage: "url(/wave-haikei3.svg)",
         }}></section>
+    <footer class="w-full text-gray-700 bg-white">
+    
         <div
-            class="container flex flex-col flex-wrap px-5 pb-16 pt-0 w-full bg-gradient-to-b from-white to-[#D4EE26] sm:items-center lg:items-start md:flex-row md:flex-no-wrap sm:text-center max-w-none">
-            <div class="flex-shrink-0 w-64 mb-16 text-center md:mx-0 sm: items-center xl:text-left">
-                <a class="flex items-center text-2xl text-gray-900 title-font xl:text-align" id="givingly">
+            class="container flex flex-col flex-wrap px-5 pb-10 pt-0 w-full bg-[#D4EE26] sm:items-center lg:items-start md:flex-row md:flex-no-wrap sm:text-center max-w-none">
+            <div class="flex-shrink-0 w-64 mt-5 mb-10 text-center md:mx-0 sm: items-center xl:text-left"id="givingly-cont">
+                <a class="text-2xl text-gray-900 title-font xl:text-align" id="givingly">
                     Givingly
                 </a>
-                <p class="mt-2 text-gray-500">Contact us!</p>
+                <p class="mt-2 text-gray-900 ">Contact us!</p>
                 <div class="mt-4">
                     <span class="inline-flex justify-center mt-2 sm:ml-auto sm:mt-0 sm:justify-start">
-                        <a class="text-gray-500 cursor-pointer hover:text-gray-700">
+                        <a class="text-gray-900 cursor-pointer hover:text-[#8ea10f]">
                             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 class="w-5 h-5" viewBox="0 0 24 24">
                                 <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                             </svg>
                         </a>
-                        <a class="ml-3 text-gray-500 cursor-pointer hover:text-gray-700">
+                        <a class="ml-3 text-gray-900 cursor-pointer hover:text-[#8ea10f]">
                             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 class="w-5 h-5" viewBox="0 0 24 24">
                                 <path
@@ -35,14 +36,14 @@ const Footer = () => {
                                 </path>
                             </svg>
                         </a>
-                        <a class="ml-3 text-gray-500 cursor-pointer hover:text-gray-700">
+                        <a class="ml-3 text-gray-900 cursor-pointer hover:text-[#8ea10f]">
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
                                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
                                 <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                             </svg>
                         </a>
-                        <a class="ml-3 text-gray-500 cursor-pointer hover:text-gray-700">
+                        <a class="ml-3 text-gray-900 cursor-pointer hover:text-[#8ea10f]">
                             <svg fill="currentColor" stroke="currentColor" stroke-linecap="round"
                                 stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
                                 <path stroke="none"
@@ -54,69 +55,69 @@ const Footer = () => {
                     </span>
                 </div>
             </div>
-            <div class="flex flex-wrap flex-grow mt-10 -mb-10 text-center md:pl-20 md:mt-6 md:text-left">
+            <div class="flex flex-wrap flex-grow mt-10 -mb-10 text-center md:pl-0 md:mt-6 md:text-center">
                 <div class="w-full px-4 lg:w-1/4 md:w-1/2">
-                    <h2 class="mb-3 text-sm font-medium tracking-widest text-gray-900 uppercase title-font">About</h2>
+                    <h2 class="mb-3 font-medium text-gray-900 tracking-widest uppercase title-font">About</h2>
                     <nav class="mb-10 list-none">
                         <li class="mt-3">
-                            <a class="text-gray-500 cursor-pointer hover:text-gray-900">Company</a>
+                            <a class=" cursor-pointer hover:text-[#8ea10f]">Company</a>
                         </li>
                         <li class="mt-3">
-                            <a class="text-gray-500 cursor-pointer hover:text-gray-900">Careers</a>
+                            <a class="cursor-pointer hover:text-[#8ea10f]">Careers</a>
                         </li>
                         <li class="mt-3">
-                            <a class="text-gray-500 cursor-pointer hover:text-gray-900">Blog</a>
+                            <a class="cursor-pointer hover:text-[#8ea10f]">Blog</a>
                         </li>
                     </nav>
                 </div>
                 <div class="w-full px-4 lg:w-1/4 md:w-1/2">
-                    <h2 class="mb-3 text-sm font-medium tracking-widest text-gray-900 uppercase title-font">Support</h2>
+                    <h2 class="mb-3 font-medium text-gray-900 tracking-widest uppercase title-font">Support</h2>
                     <nav class="mb-10 list-none">
                         <li class="mt-3">
-                            <a class="text-gray-500 cursor-pointer hover:text-gray-900">Contact Support</a>
+                            <a class="cursor-pointer hover:text-[#8ea10f]">Contact Support</a>
                         </li>
                         <li class="mt-3">
-                            <a class="text-gray-500 cursor-pointer hover:text-gray-900">Help Resources</a>
+                            <a class="cursor-pointer hover:text-[#8ea10f]">Help Resources</a>
                         </li>
                         <li class="mt-3">
-                            <a class="text-gray-500 cursor-pointer hover:text-gray-900">Release Updates</a>
+                            <a class="cursor-pointer hover:text-[#8ea10f]">Release Updates</a>
                         </li>
                     </nav>
                 </div>
                 <div class="w-full px-4 lg:w-1/4 md:w-1/2">
-                    <h2 class="mb-3 text-sm font-medium tracking-widest text-gray-900 uppercase title-font">Platform
+                    <h2 class="mb-3 font-medium tracking-widest text-gray-900 uppercase title-font">Platform
                     </h2>
                     <nav class="mb-10 list-none">
                         <li class="mt-3">
-                            <a class="text-gray-500 cursor-pointer hover:text-gray-900">Terms &amp; Privacy</a>
+                            <a class="cursor-pointer hover:text-[#8ea10f]">Terms &amp; Privacy</a>
                         </li>
                         <li class="mt-3">
-                            <a class="text-gray-500 cursor-pointer hover:text-gray-900">Pricing</a>
+                            <a class="cursor-pointer hover:text-[#8ea10f]">Pricing</a>
                         </li>
                         <li class="mt-3">
-                            <a class="text-gray-500 cursor-pointer hover:text-gray-900">FAQ</a>
+                            <a class=" cursor-pointer hover:text-[#8ea10f]">FAQ</a>
                         </li>
                     </nav>
                 </div>
                 <div class="w-full px-4 lg:w-1/4 md:w-1/2">
-                    <h2 class="mb-3 text-sm font-medium tracking-widest text-gray-900 uppercase title-font">Contact</h2>
+                    <h2 class="mb-3 font-medium tracking-widest text-gray-900 uppercase title-font">Contact</h2>
                     <nav class="mb-10 list-none">
                         <li class="mt-3">
-                            <a class="text-gray-500 cursor-pointer hover:text-gray-900">Send a Message</a>
+                            <a class=" cursor-pointer hover:text-[#8ea10f]">Send a Message</a>
                         </li>
                         <li class="mt-3">
-                            <a class="text-gray-500 cursor-pointer hover:text-gray-900">Request a Quote</a>
+                            <a class="cursor-pointer hover:text-[#8ea10f]">Request a Quote</a>
                         </li>
                         <li class="mt-3">
-                            <a class="text-gray-500 cursor-pointer hover:text-gray-900">+123-456-7890</a>
+                            <a class=" cursor-pointer hover:text-[#8ea10f]">+123-456-7890</a>
                         </li>
                     </nav>
                 </div>
             </div>
         </div>
-        <div class="bg-gray-300">
-            <div class="container px-5 py-4 mx-auto">
-                <p class="text-sm text-gray-700 capitalize xl:text-center">© 2020 All rights reserved </p>
+        <div class="bg-[#D4EE26]">
+            <div class="container w-full px-5 py-4 mx-auto">
+                <p class="text-sm text-gray-900 capitalize sm:text-center">© 2023 All rights reserved </p>
             </div>
         </div>
     </footer>
