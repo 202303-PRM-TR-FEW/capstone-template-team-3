@@ -18,14 +18,17 @@ const Campaigns = ({lng}) => {
   const allCampaigns = useSelector((state) => state.campaign.allCampaigns)
   const category = searchParams.get("category");
 
-  const getCampaignsByCategory = (campaigns, category) => {
-    if (campaigns && campaigns.length > 0 && category) {
-      const filteredCampaigns = campaigns.filter((campaign) => {
-        return campaign.category?.map((item) => item.value).includes(category);
+  const getCampaignsByCategory = (allCampaigns, category) => {
+    if (allCampaigns && allCampaigns.length > 0 && category) {
+      const filteredCampaigns = allCampaigns.filter((campaign) => {
+        return campaign.data.category
+          ?.map((item) => item.value)
+          .includes(category);
       });
+      console.log(filteredCampaigns);
       return filteredCampaigns;
     }
-    return campaigns;
+    return allCampaigns;
   };
 
   const filteredCampaignsByCategory = getCampaignsByCategory(
@@ -34,12 +37,12 @@ const Campaigns = ({lng}) => {
   );
 
   const getCampaigns = async () => {
-    dispatch(getAllCampaigns())
-  }
+    dispatch(getAllCampaigns());
+  };
 
   useEffect(() => {
-    getCampaigns()
-  }, [])
+    getCampaigns();
+  }, []);
 
   return (
     <main>
