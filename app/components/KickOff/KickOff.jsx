@@ -1,9 +1,11 @@
+
 'use client'
 
 import { IoIosArrowBack } from 'react-icons/io';
 import { useState } from 'react';
 import { FaUpload, FaCalendarAlt } from 'react-icons/fa';
 import { CgClose } from 'react-icons/cg';
+import { BsFillSendCheckFill } from 'react-icons/bs'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './KickOff.css';
@@ -22,6 +24,8 @@ const PaymentModal = () => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [uploadState, setUploadState] = useState(true)
+  const [uploadedFileName, setUploadedFileName] = useState(null)
   const today = new Date();
   const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
 
@@ -49,6 +53,16 @@ const PaymentModal = () => {
     await dispatch(getAllUserCampaigns(userId))
     await dispatch(closeModal())
   }
+
+  const handleFileChange = (event) => {
+    setUploadedFileName(event.target.files[0].name)
+
+    if (event.target.files && event.target.files.length > 0) {
+      setUploadState(false);
+    } else {
+      setUploadState(true);
+    }
+  };
 
   const handleCancel = () => {
     setShowCalendar(false);
@@ -82,11 +96,11 @@ const PaymentModal = () => {
                   {errors.projectName?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Project Name is required</p>}
                   {errors.projectName?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Project Name is invalid</p>}
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col relative">
                   <label className="font-mulish text-lg md:text-[18px]">Add your goal</label>
+                  <span className="absolute left-1 top-[35px] text-black text-[25px] font-KronaOne">$</span>
                   <input {...register("goal", { required: true, pattern: /^[1-9][0-9]*$/ })}
-                    placeholder="$0"
-                    className="bg-slate-50 text-black text-[30px] w-full input-field focus:outline-none focus:ring-0 p-2" />
+                    className="bg-slate-50 text-black pl-7 text-[30px] w-full input-field focus:outline-none focus:ring-0 p-2" />
                   {errors.goal?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Goal is required</p>}
                   {errors.goal?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Goal is invalid</p>}
                 </div>
@@ -97,10 +111,10 @@ const PaymentModal = () => {
                       type="text"
                       name="input-field"
                       autoComplete="off"
-                      className="title-input bg-slate-50 py-0 px-2 text-black font-medium text-base leading-normal text-left uppercase input-field focus:outline-none focus:ring-0"
+                      className="title-input text-[15px] bg-slate-50 py-0 px-2 text-black font-medium text-base leading-normal text-left uppercase input-field focus:outline-none focus:ring-0"
                       onClick={handleCalendarIconClick}
                       readOnly
-                      value={startDate && endDate ? `${startDate.getDate()}/${startDate.getMonth() + 1}/${startDate.getFullYear().toString().slice(-2)} - ${endDate.getDate()}/${endDate.getMonth() + 1}/${endDate.getFullYear().toString().slice(-2)}` : `${formatDate(today)} - ${formatDate(nextMonth)}`}
+                      value={startDate && endDate ? `${startDate.getDate().toString().padStart(2, '0')}/${(startDate.getMonth() + 1).toString().padStart(2, '0')}/${startDate.getFullYear().toString().slice(-2)} - ${endDate.getDate().toString().padStart(2, '0')}/${(endDate.getMonth() + 1).toString().padStart(2, '0')}/${endDate.getFullYear().toString().slice(-2)}` : `${formatDate(today)} - ${formatDate(nextMonth)}`}
                     />
                     {errors.calendar?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Timeline is required</p>}
                     <FaCalendarAlt
@@ -124,6 +138,17 @@ const PaymentModal = () => {
                             selectsRange
                             inline
                             calendarClassName="custom-calendar"
+                            showYearDropdown
+                            showMonthDropdown
+                            yearDropdownItemNumber={5}
+                            minDate={today}
+                            dayClassName={(date) => {
+                              if (date <= today) {
+                                return "past-day";
+                              } else {
+                                return undefined
+                              }
+                            }}
                           />
                         </div>
                         <div className="confirm-button h-8 mb-2">
@@ -147,17 +172,29 @@ const PaymentModal = () => {
                   {errors.about?.type === 'pattern' && <p role="alert" className="text-end text-red-600 italic text-[14px]">About is invalid</p>}
                 </div>
                 <div className="flex flex-col items-center lg:my-10 md:my-1">
-                  <span className="text-black px-4 text-[18px]">Add media</span>
-                  <span className="text-black pb-4 text-[12px]">(.jpg/.jpeg/.png)</span>
                   <input {...register("file", { required: true })}
                     type="file"
                     className="hidden"
                     id="file-input"
-                    accept=".jpg,.jpeg,.png" />
+                    accept=".jpg,.jpeg,.png"
+                    onInput={handleFileChange}
+                  />
+                  {uploadState ? (
+                    <>
+                      <span className="text-black px-4 text-[18px]">Add media</span>
+                      <span className="text-black pb-4 text-[12px]">(.jpg/.jpeg/.png)</span>
+
+                      <label htmlFor="file-input" className="flex justify-center">
+                        <FaUpload className="border-[1px] border-black rounded-lg p-3 cursor-pointer" size={40} />
+                      </label>
+                    </>) : (
+                    <>
+                      <span className="text-black px-4 text-[18px] text-center">File ready to be uploaded</span>
+                      <BsFillSendCheckFill title={uploadedFileName} size={30} className='m-1' />
+                      <span className="text-black px-4 text-[18px]" ></span>
+                    </>)
+                  }
                   {errors.file?.type === 'required' && <p role="alert" className="text-end text-red-600 italic text-[14px]">Media is required</p>}
-                  <label htmlFor="file-input" className="flex justify-center">
-                    <FaUpload className="border-[1px] border-black rounded-lg p-3 cursor-pointer" size={40} />
-                  </label>
                 </div>
               </div>
             </div>
