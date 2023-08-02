@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "@/app/lib/features/paymentModalSlice";
 import PaymentModal from "@/app/[lng]/components/PaymentModal/PaymentModal";
 import { getCurrentCampaign } from "@/app/lib/features/campaignSlice";
+import { current } from "@reduxjs/toolkit";
 
 export default function CampaignPage({ params, lng }) {
   const [user, loading] = useAuthState(auth);
@@ -44,6 +45,27 @@ export default function CampaignPage({ params, lng }) {
     }
   };
   console.log(currentCampaign);
+
+  const calculateLeftDays = () => {
+    if (typeof currentCampaign.endDate === "object") {
+      const endDate = currentCampaign.endDate.toDate();
+      const today = new Date();
+      const leftDays = Math.floor((endDate - today) / (1000 * 60 * 60 * 24));
+      return leftDays;
+    } else if (typeof currentCampaign.endDate === "string") {
+      const [day, month, year] = currentCampaign.endDate.split("/");
+      const endDate = new Date(`${"20" + year}`, month - 1, day);
+      console.log(currentCampaign.endDate);
+      console.log(endDate);
+      const today = new Date();
+      const leftDays = Math.floor((endDate - today) / (1000 * 60 * 60 * 24));
+      return leftDays;
+    }
+  };
+
+  const leftDays = calculateLeftDays();
+
+  console.log(typeof currentCampaign.endDate);
 
   return (
     // main container
@@ -167,8 +189,13 @@ export default function CampaignPage({ params, lng }) {
                     goal={currentCampaign.goal}
                   />
                   <div>
-                    <h5 className="flex items-center">
-                      <FaRegCalendarDays /> {currentCampaign.date}
+                    <h5 className="flex items-center space-x-2">
+                      <FaRegCalendarDays />
+                      <p>
+                        {leftDays > 0
+                          ? leftDays + " days left"
+                          : "Campaign is over"}
+                      </p>
                     </h5>
                   </div>
                 </div>
