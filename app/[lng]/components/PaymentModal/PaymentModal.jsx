@@ -13,6 +13,7 @@ import { getUserData } from "@/app/lib/features/userSlice";
 import { addUserDonation } from "@/app/lib/features/campaignSlice";
 import { getCurrentCampaign } from "@/app/lib/features/campaignSlice";
 import { useTranslation } from "../../../i18n/client";
+import { useRouter } from "next/navigation";
 
 const PaymentModal = ({ campaignId, lng }) => {
   const [user, loading] = useAuthState(auth);
@@ -23,6 +24,8 @@ const PaymentModal = ({ campaignId, lng }) => {
   } = useForm();
   const dispatch = useDispatch();
   const { t } = useTranslation(lng, "paymentModal");
+  const router = useRouter();
+
   const currentUser = useSelector((state) => state.user.user);
 
   const handleModalToggle = () => {
@@ -48,6 +51,7 @@ const PaymentModal = ({ campaignId, lng }) => {
     );
     await dispatch(getCurrentCampaign(campaignId));
     await dispatch(closeModal());
+    await router.push("/thank-you");
   };
 
   return (
