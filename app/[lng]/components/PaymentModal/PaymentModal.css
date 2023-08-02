@@ -1,0 +1,21 @@
+input.charity-checkbox {
+    @apply w-[16px] h-[16px] rounded-md text-theme ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent outline-none focus:outline-none disabled:opacity-25 cursor-pointer disabled:cursor-not-allowed
+  }
+
+  .charity-checkbox:checked {
+    background-color: rgb(212, 238, 38);
+  }
+
+  .charity-checkbox:checked:hover {
+    background-color: rgb(212, 238, 38);
+  }
+
+  .charity-checkbox:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .charity-checkbox:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }

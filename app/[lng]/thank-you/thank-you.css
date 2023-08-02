@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ty-img {
+  @apply mx-auto mt-20;
+}
+
+.ty-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @apply flex flex-col items-center text-center;
+}
+
+.ty-header {
+  @apply text-7xl mb-5;
+}
+
+.ty-sub-normal {
+  @apply text-2xl mb-16;
+}
+
+.ty-buttons {
+  @apply flex flex-row;
+}
+
+a.ty-first-button {
+  @apply text-white bg-[#050708] hover:bg-[#050708]/50 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium border-2 border-black hover:border-[#050708]/10 rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mr-2 mb-2 w-[16.5rem];
+}
+
+a.ty-second-button {
+    @apply text-black bg-white hover:bg-[#050708]/80  hover:text-white focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium border-2 border-[#050708]/50 rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mr-2 mb-2 w-[16.5rem];
+  }
+
+  @media (max-width: 640px) {
+    .ty-buttons {
+      flex-direction: column;
+    }
+    .ty-header{
+      font-size: 30px;
+      font-weight: bolder;
+    }
+    .ty-sub-normal{
+      font-size: 15px;
+    }
+    .ty-img{
+      width: 55vh;
+    }
+  }
