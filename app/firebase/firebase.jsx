@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
-import { getFirestore, addDoc, collection, onSnapshot, query, where, getDoc, doc, setDoc, getDocs } from "@firebase/firestore"
+import { getFirestore, addDoc, collection, onSnapshot, query, where, getDoc, doc, setDoc, getDocs, updateDoc, increment, arrayUnion, deleteField } from "@firebase/firestore"
 import { GoogleAuthProvider, signInWithPopup, GithubAuthProvider, TwitterAuthProvider } from "firebase/auth";
 import { getStorage, getDownloadURL } from 'firebase/storage'
 
@@ -42,26 +42,29 @@ auth.useDeviceLanguage();
 // const analytics = getAnalytics(app);
 
 export {
-
-    auth,
-    createUserWithEmailAndPassword,
-    updateProfile,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signOut,
-    db,
-    addDoc,
-    collection,
-    onSnapshot,
-    query,
-    where,
-    googleAuthProvider,
-    signInWithPopup,
-    githubAuthProvider,
-    twitterAuthProvider,
-    doc,
-    getDoc,
-    setDoc,
-    getDocs,
-    getDownloadURL
+  auth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  db,
+  addDoc,
+  collection,
+  onSnapshot,
+  query,
+  where,
+  googleAuthProvider,
+  signInWithPopup,
+  githubAuthProvider,
+  twitterAuthProvider,
+  doc,
+  getDoc,
+  setDoc,
+  getDocs,
+  getDownloadURL,
+  updateDoc,
+  increment,
+  arrayUnion,
+  deleteField
 }

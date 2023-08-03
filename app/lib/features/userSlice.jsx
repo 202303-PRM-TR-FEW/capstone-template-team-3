@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
-import { db, auth, signInWithPopup, googleAuthProvider, githubAuthProvider, twitterAuthProvider, doc, getDoc, setDoc, query, where, collection } from '@/app/firebase/firebase';
+import { db, auth, signInWithPopup, googleAuthProvider, githubAuthProvider, twitterAuthProvider, doc, getDoc, setDoc, query, where, collection, updateDoc, getDownloadURL, storage, deleteField } from '@/app/firebase/firebase';
+import { ref, uploadBytes } from 'firebase/storage'
 
 const initialState = {
     user: null,
@@ -19,6 +20,60 @@ export const getUserData = createAsyncThunk("getUserData", async (userId) => {
     }
 })
 
+export const userJoinNewsletter = createAsyncThunk("userJoinNewsletter", async (userId) => {
+    try {
+        const docRef = doc(db, "users", userId)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+            const updatedUser = await updateDoc(docRef, {
+                joinedNewsletter: true
+            })
+            return updatedUser.data()
+        }
+        return docSnap.data()
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
+export const userUpdatePhoto = createAsyncThunk("userUpdatePhoto", async (data) => {
+    const { userId, currentUserName, file } = data
+    const fileRef = ref(storage, `userImage/${file[0].name} ${userId} ${currentUserName}`)
+    try {
+        await uploadBytes(fileRef, file[0])
+        const docRef = doc(db, "users", userId)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+            const updatedUser = await updateDoc(docRef, {
+                photo: await getDownloadURL(fileRef)
+            })
+            return updatedUser.data()
+        }
+        return docSnap.data()
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
+export const userDeletePhoto = createAsyncThunk("userDeletePhoto", async (userId) => {
+    try {
+        const docRef = doc(db, "users", userId)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+            const updatedUser = await updateDoc(docRef, {
+                photo: deleteField()
+            })
+            return updatedUser.data()
+        }
+        return docSnap.data()
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
 export const userSignInWithEmailAndPassword = createAsyncThunk(
     "signInWithEmailAndPassword",
     async (data) => {
@@ -30,6 +85,7 @@ export const userSignInWithEmailAndPassword = createAsyncThunk(
         } catch (error) {
             console.log(error.code)
             console.log(error.message)
+            throw error
         }
     })
 
@@ -55,6 +111,7 @@ export const userSignUpWithEmailAndPassword = createAsyncThunk(
         } catch (error) {
             console.log(error.code)
             console.log(error.message)
+            throw error
         }
     }
 )
@@ -76,6 +133,7 @@ export const userSignInWithGoogle = createAsyncThunk(
                     email: userCredential.user.email,
                     id: userCredential.user.uid,
                     name: userCredential.user.displayName,
+                    photo: userCredential.user.photoURL
                 })
             }
             handleRoute()
@@ -83,6 +141,7 @@ export const userSignInWithGoogle = createAsyncThunk(
         } catch (error) {
             console.log(error.code)
             console.log(error.message)
+            throw error
         }
     })
 
@@ -102,6 +161,7 @@ export const userSignInWithGithub = createAsyncThunk(
                     email: userCredential.user.email,
                     id: userCredential.user.uid,
                     name: userCredential.user.displayName,
+                    photo: userCredential.user.photoURL
                 })
             }
             handleRoute()
@@ -109,6 +169,7 @@ export const userSignInWithGithub = createAsyncThunk(
         } catch (error) {
             console.log(error.code)
             console.log(error.message)
+            throw error
         }
     })
 
@@ -128,6 +189,7 @@ export const userSignInWithTwitter = createAsyncThunk(
                     email: userCredential.user.email,
                     id: userCredential.user.uid,
                     name: userCredential.user.displayName,
+                    photo: userCredential.user.photoURL
                 })
             }
             handleRoute()
@@ -135,6 +197,7 @@ export const userSignInWithTwitter = createAsyncThunk(
         } catch (error) {
             console.log(error.code)
             console.log(error.message)
+            throw error
         }
     })
 
@@ -173,6 +236,51 @@ const userSlice = createSlice({
                 state.error = null
             })
             .addCase(getUserData.rejected, (state, action) => {
+                state.user = {}
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(userJoinNewsletter.pending, (state) => {
+                state.user = {}
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(userJoinNewsletter.fulfilled, (state, action) => {
+                state.user = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(userJoinNewsletter.rejected, (state, action) => {
+                state.user = {}
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(userUpdatePhoto.pending, (state) => {
+                state.user = {}
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(userUpdatePhoto.fulfilled, (state, action) => {
+                state.user = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(userUpdatePhoto.rejected, (state, action) => {
+                state.user = {}
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(userDeletePhoto.pending, (state) => {
+                state.user = {}
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(userDeletePhoto.fulfilled, (state, action) => {
+                state.user = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(userDeletePhoto.rejected, (state, action) => {
                 state.user = {}
                 state.status = "failed"
                 state.error = action.error.message
