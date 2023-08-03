@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@media screen and (max-width: 768px) {
+    #givingly{
+        display: flex;
+        flex-direction: column;
+    }
+    .container{
+        display: flex;
+        align-items: center;
+        flex-direction: column
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 987px) {
+    #givingly-cont{
+        @apply w-full;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+    #givingly{
+        align-content: center;
+    }
+}
+
+li.mt-3{
+    @apply text-gray-900 text-sm;
+}
+
+.curve {
+    opacity: inherit;
+}
