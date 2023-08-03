@@ -46,7 +46,7 @@ const Navbar = ({ lng }) => {
   };
 
   const handleModalToggle = () => {
-    router.push(`/${lng}//my-campaigns`);
+    router.push(`/${lng}/my-campaigns`);
     dispatch(openModal());
   };
 
