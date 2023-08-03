@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest"
   },
   "dependencies": {
     "@firebase/firestore": "^4.0.0",
@@ -40,5 +41,14 @@
     "tailwindcss": "^3.3.2",
     "uid": "^2.0.2",
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "@testing-library/react": "^14.0.0",
+    "babel-jest": "^29.6.2",
+    "jest": "^29.6.2",
+    "react-test-renderer": "^18.2.0"
   }
 }
