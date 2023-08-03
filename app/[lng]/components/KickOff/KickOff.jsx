@@ -146,7 +146,7 @@ const PaymentModal = ({ lng }) => {
       <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-slate-50 lg:w-[50%] lg:h-[auto] rounded-xl p-4 flex flex-col justify-between sm:w-[75%] sm:h-[75%]"
+          className="bg-slate-50 lg:w-[65%] lg:h-[auto] md:h-[60%] rounded-xl p-4 flex flex-col justify-between sm:w-[75%] sm:h-[auto]"
         >
           <div>
             <div>
@@ -154,12 +154,12 @@ const PaymentModal = ({ lng }) => {
                 <IoIosArrowBack size={28} />
               </Button>
             </div>
-            <div className="lg:m-2 md:m-0 lg:my-4 md:my-1 lg:text-[40px] md:text-[20px]">
+            <div className="lg:m-2 md:m-0 lg:my-4 md:my-1 lg:text-[38px] md:text-[20px] md:mx-4">
               {t("Kick-off")}
               <br /> {t("your campaign")}
             </div>
             <div className="flex flex-col md:flex-row justify-between m-2">
-              <div className="flex flex-col lg:mx-4">
+              <div className="flex flex-col lg:mx-4 md:px-4">
                 <div className="flex flex-col">
                   <label className="font-mulish text-lg md:text-[18px]">
                     {t("Name of your campaign")}
@@ -171,7 +171,7 @@ const PaymentModal = ({ lng }) => {
                         /^(?=.*[a-zA-Z])[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*(?:\s[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*)*$/,
                     })}
                     placeholder={t("Build a cat shelter with us!")}
-                    className="title-input bg-slate-50 p-2 input-field focus:outline-none focus:ring-0 project-name-input"
+                    className="title-input mb-4 text-[20px] bg-slate-50 py-0 input-field focus:outline-none focus:ring-0 project-name-input"
                   />
                   {errors.projectName?.type === "required" && (
                     <p
@@ -194,13 +194,13 @@ const PaymentModal = ({ lng }) => {
                   <label className="font-mulish text-lg md:text-[18px]">
                     {t("Add your goal")}
                   </label>
-                  <span className="absolute left-1 top-[38px] text-black text-[25px] font-KronaOne">$</span>
+                  <span className="absolute left-1 top-[28px] text-black text-[20px] font-KronaOne">$</span>
                   <input
                     {...register("goal", {
                       required: true,
                       pattern: /^[1-9][0-9]*$/,
                     })}
-                    className="bg-slate-50 text-black pl-7 text-[30px] w-full input-field focus:outline-none focus:ring-0 p-2"
+                    className="bg-slate-50 text-black pl-7 text-[20px] w-full input-field focus:outline-none focus:ring-0 p-0"
                   />
                   {errors.goal?.type === "required" && (
                     <p
@@ -220,7 +220,7 @@ const PaymentModal = ({ lng }) => {
                   )}
                 </div>
                 <div className="flex flex-col">
-                  <label className="font-mulish text-lg md:text-[18px]">
+                  <label className="font-mulish text-lg md:text-[18px] md:pt-2">
                     {t("Add your timeline")}
                   </label>
                   <div className="flex flex-row justify-between relative">
@@ -228,7 +228,7 @@ const PaymentModal = ({ lng }) => {
                       type="text"
                       name="input-field"
                       autoComplete="off"
-                      className="title-input text-[15px] bg-slate-50 py-0 px-2 text-black font-medium text-base leading-normal text-left uppercase input-field focus:outline-none focus:ring-0"
+                      className="title-input text-[15px] md:text-[14px] bg-slate-50 py-0 px-2 text-black font-medium text-base leading-normal text-left uppercase input-field focus:outline-none focus:ring-0"
                       onClick={handleCalendarIconClick}
                       readOnly
                       value={startDate && endDate ? `${startDate.getDate().toString().padStart(2, '0')}/${(startDate.getMonth() + 1).toString().padStart(2, '0')}/${startDate.getFullYear().toString().slice(-2)} - ${endDate.getDate().toString().padStart(2, '0')}/${(endDate.getMonth() + 1).toString().padStart(2, '0')}/${endDate.getFullYear().toString().slice(-2)}` : `${formatDate(today)} - ${formatDate(nextMonth)}`}
@@ -328,8 +328,8 @@ const PaymentModal = ({ lng }) => {
                 </div>
               </div>
               <div className="bg-zinc-400 border rounded border-zinc-400 h-auto"></div>
-              <div className="lg:mx-4 md:w-auto">
-                <div className="flex flex-col">
+              <div className="lg:mx-4 lg:w-[50%] md:w-[75%] md:mx-4">
+                <div className="flex flex-col max-md:mt-4">
                   <label className="font-mulish text-lg md:text-[18px]">
                     {t("About your campaign")}
                   </label>
@@ -342,7 +342,7 @@ const PaymentModal = ({ lng }) => {
                     placeholder={t(
                       "So many cats, so little homes. We want to provide home and care to them all. Help us build a dream shelter for all cats in our town."
                     )}
-                    className="title-input bg-slate-50 lg:py-7 md:py-1 input-field focus:outline-none focus:ring-0"
+                    className="title-input text-[20px] bg-slate-50 lg:py-0 md:py-1 input-field focus:outline-none focus:ring-0"
                   />
                   {errors.about?.type === "required" && (
                     <p
@@ -361,7 +361,7 @@ const PaymentModal = ({ lng }) => {
                     </p>
                   )}
                 </div>
-                <div className="flex flex-col items-center lg:my-10 md:my-1">
+                <div className="flex flex-col items-center lg:my-10 md:my-1 max-md:mt-4 md:mt-4">
                   <input
                     {...register("file", { required: true })}
                     type="file"
@@ -402,7 +402,7 @@ const PaymentModal = ({ lng }) => {
               </div>
             </div>
           </div>
-          <div className="flex justify-end lg:mt-5 md:mt-auto">
+          <div className="flex justify-end lg:mt-5 md:mt-1">
             <Button
               type="submit"
               style="bg-zinc-950 rounded-md w-full p-2 text-white text-[15px]"
