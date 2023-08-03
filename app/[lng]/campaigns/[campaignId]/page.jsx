@@ -15,9 +15,9 @@ import PaymentModal from "@/app/[lng]/components/PaymentModal/PaymentModal";
 import { getCurrentCampaign } from "@/app/lib/features/campaignSlice";
 import { current } from "@reduxjs/toolkit";
 
-export default function CampaignPage({ params, lng }) {
+export default function CampaignPage({ params }) {
   const [user, loading] = useAuthState(auth);
-  const { campaignId } = params;
+  const { campaignId, lng } = params;
   const router = useRouter();
   const dispatch = useDispatch();
   const modalIsOpen = useSelector((state) => state.paymentModal.isOpen);
@@ -27,6 +27,7 @@ export default function CampaignPage({ params, lng }) {
   const campaignStatus = useSelector((state) => state.campaign.status);
 
   const { t } = useTranslation(lng, "campaignId");
+  console.log(params)
 
   const getCampaign = async () => {
     dispatch(getCurrentCampaign(campaignId));
@@ -45,6 +46,8 @@ export default function CampaignPage({ params, lng }) {
     }
   };
   console.log(currentCampaign);
+  console.log(lng);
+
 
   const calculateLeftDays = () => {
     if (typeof currentCampaign.endDate === "object") {
