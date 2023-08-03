@@ -14,7 +14,8 @@ import Card from "../components/Card/Card";
 import PaymentModal from "../components/KickOff/KickOff";
 import { useTranslation } from "../../i18n/client";
 
-const MyCampaigns = ({ lng }) => {
+const MyCampaigns = ({ params }) => {
+  const { lng } = params;
   const [user, loading] = useAuthState(auth);
   const { t } = useTranslation(lng, "myCampaings");
   const dispatch = useDispatch();
@@ -22,6 +23,8 @@ const MyCampaigns = ({ lng }) => {
   const modalIsOpen = useSelector((state) => state.kickOffModal.isOpen);
   const userCampaigns = useSelector((state) => state.campaign.userCampaigns);
   const userDonations = useSelector((state) => state.campaign.userDonations);
+
+  console.log(lng);
 
   const getUserCampaigns = async () => {
     const userId = user.uid;
@@ -52,7 +55,9 @@ const MyCampaigns = ({ lng }) => {
               return (
                 <div
                   key={index}
-                  onClick={() => router.push(`/campaigns/${campaign.id}`)}
+                  onClick={() =>
+                    router.push(`/${lng}/campaigns/${campaign.id}`)
+                  }
                 >
                   <Card
                     lng={lng}
@@ -74,7 +79,9 @@ const MyCampaigns = ({ lng }) => {
               return (
                 <div
                   key={index}
-                  onClick={() => router.push(`/campaigns/${campaign.id}`)}
+                  onClick={() =>
+                    router.push(`/${lng}/campaigns/${campaign.id}`)
+                  }
                 >
                   <Card
                     key={campaign.id}

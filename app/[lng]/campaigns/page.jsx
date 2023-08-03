@@ -9,14 +9,16 @@ import { getAllCampaigns } from "@/app/lib/features/campaignSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "../../i18n/client";
 
-
-const Campaigns = ({lng}) => {
+const Campaigns = ({ params }) => {
+  const { lng } = params;
   const { push } = useRouter();
   const searchParams = useSearchParams();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { t } = useTranslation(lng, "campaingId");
-  const allCampaigns = useSelector((state) => state.campaign.allCampaigns)
+  const allCampaigns = useSelector((state) => state.campaign.allCampaigns);
   const category = searchParams.get("category");
+
+  console.log(lng);
 
   const getCampaignsByCategory = (allCampaigns, category) => {
     if (allCampaigns && allCampaigns.length > 0 && category) {
@@ -52,9 +54,10 @@ const Campaigns = ({lng}) => {
         {filteredCampaignsByCategory.map((campaign) => (
           <div
             key={campaign.id}
-            onClick={() => push(`/campaigns/${campaign.id}`)}
+            onClick={() => push(`/${lng}/campaigns/${campaign.id}`)}
           >
-            <Card lng={lng}
+            <Card
+              lng={lng}
               img={campaign.data.image}
               title={campaign.data.projectName}
               raised={campaign.data.raised}
