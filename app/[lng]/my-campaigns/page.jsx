@@ -55,6 +55,7 @@ const MyCampaigns = ({ lng }) => {
                   onClick={() => router.push(`/campaigns/${campaign.id}`)}
                 >
                   <Card
+                    lng={lng}
                     key={campaign.id}
                     title={campaign.data.projectName}
                     goal={campaign.data.goal}
