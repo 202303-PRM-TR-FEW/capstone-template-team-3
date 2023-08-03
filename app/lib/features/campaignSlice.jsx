@@ -75,6 +75,29 @@ export const getCurrentCampaign = createAsyncThunk("getCurrentCampaign", async (
     }
 })
 
+export const updateCurrentCampaign = createAsyncThunk("updateCurrentCampaign", async (data) => {
+    const { campaignId, projectName, about, file, category, userId } = data
+    const fileRef = ref(storage, `folder/${file[0].name} ${userId} ${projectName}`)
+    try {
+        await uploadBytes(fileRef, file[0])
+        const docRef = doc(db, "campaigns", campaignId)
+        const docSnap = await getDoc(docRef)
+        console.log(docSnap.exists)
+        if (docSnap.exists()) {
+            const updatedCampaign = await updateDoc(docRef, {
+                projectName: projectName,
+                about: about,
+                image: await getDownloadURL(fileRef),
+                category: category
+            })
+            return updatedCampaign
+        }
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
 export const getAllUserCampaigns = createAsyncThunk("getAllUserCampaigns", async (userId) => {
     try {
         const q = query(collection(db, "campaigns"), where("id", "==", userId))
@@ -182,6 +205,21 @@ const campaignSlice = createSlice({
                 state.error = null
             })
             .addCase(getCurrentCampaign.rejected, (state, action) => {
+                state.currentCampaign = []
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(updateCurrentCampaign.pending, (state) => {
+                state.currentCampaign = []
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(updateCurrentCampaign.fulfilled, (state, action) => {
+                state.currentCampaign = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(updateCurrentCampaign.rejected, (state, action) => {
                 state.currentCampaign = []
                 state.status = "failed"
                 state.error = action.error.message
