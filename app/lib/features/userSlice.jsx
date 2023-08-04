@@ -5,6 +5,7 @@ import { ref, uploadBytes } from 'firebase/storage'
 
 const initialState = {
     user: null,
+    campaignOwner: null,
     status: "idle",
     error: null
 }
@@ -12,6 +13,18 @@ const initialState = {
 export const getUserData = createAsyncThunk("getUserData", async (userId) => {
     try {
         const docRef = doc(db, "users", userId)
+        const docSnap = await getDoc(docRef)
+        return docSnap.data()
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
+export const getCampaignOwnerData = createAsyncThunk("getCampaignOwnerData", async (currentCampaignId) => {
+    try {
+        console.log("slice id", currentCampaignId)
+        const docRef = doc(db, "users", currentCampaignId)
         const docSnap = await getDoc(docRef)
         return docSnap.data()
     } catch (error) {
@@ -219,6 +232,7 @@ const userSlice = createSlice({
     reducers: {
         returnToInitialState: (state) => {
             state.user = null,
+                state.campaignOwner = null,
                 state.status = "idle",
                 state.error = null
         }
@@ -237,6 +251,21 @@ const userSlice = createSlice({
             })
             .addCase(getUserData.rejected, (state, action) => {
                 state.user = {}
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(getCampaignOwnerData.pending, (state) => {
+                state.campaignOwner = {}
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(getCampaignOwnerData.fulfilled, (state, action) => {
+                state.campaignOwner = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(getCampaignOwnerData.rejected, (state, action) => {
+                state.campaignOwner = {}
                 state.status = "failed"
                 state.error = action.error.message
             })
