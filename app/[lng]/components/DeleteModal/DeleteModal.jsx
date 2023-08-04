@@ -12,7 +12,7 @@ import { deleteCurrentCampaign } from "@/app/lib/features/campaignSlice";
 const DeleteModal = ({ lng, campaignId, setDeleteModalIsOpen }) => {
     const dispatch = useDispatch();
     const router = useRouter()
-    const { t } = useTranslation(lng, "kickOff");
+    const { t } = useTranslation(lng, "deleteModal");
     const currentCampaign = useSelector((state) => state.campaign.currentCampaign)
 
     const handleCloseModal = () => {
@@ -29,10 +29,10 @@ const DeleteModal = ({ lng, campaignId, setDeleteModalIsOpen }) => {
         <main>
             <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background">
                 <div className="bg-slate-50 lg:w-[50%] lg:h-[auto] rounded-xl p-4 flex flex-col justify-between sm:w-[75%] sm:h-[75%]">
-                    <h3 className="text-center text-[30px] p-5">Are you sure you want to cancel and delete this campaign?</h3>
+                    <h3 className="text-center text-[30px] p-5">{t("Are you sure you want to cancel and delete this campaign?")}</h3>
                     <div className="flex justify-center items-center gap-5">
-                        <Button name={"Yes, cancel and delete the campaign"} style={"bg-red-600 text-white py-3 px-8 rounded-lg"} clickAction={handleDeleteCampaign} />
-                        <Button name={"No, back to the campaign"} style={"bg-neutral-950 text-white py-3 px-8 rounded-lg"} clickAction={handleCloseModal} />
+                        <Button name={t("Yes, cancel and delete the campaign")} style={"bg-red-600 text-white py-3 px-8 rounded-lg"} clickAction={handleDeleteCampaign} />
+                        <Button name={t("No, back to the campaign")} style={"bg-neutral-950 text-white py-3 px-8 rounded-lg"} clickAction={handleCloseModal} />
                     </div>
                 </div>
             </div>
