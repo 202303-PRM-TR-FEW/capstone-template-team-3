@@ -4,7 +4,7 @@ import Button from "@/app/[lng]/components/Button/Button";
 import Image from "next/image";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import { useTranslation } from "../../../i18n/client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import DonationBar from "@/app/[lng]/components/DonationBar/DonationBar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "app/firebase/firebase.jsx";
@@ -13,11 +13,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "@/app/lib/features/paymentModalSlice";
 import { openModal as openEditModal } from "@/app/lib/features/campaignEditSlice";
 import PaymentModal from "@/app/[lng]/components/PaymentModal/PaymentModal";
-import { getCurrentCampaign } from "@/app/lib/features/campaignSlice";
+import { getCurrentCampaign, deleteCurrentCampaign } from "@/app/lib/features/campaignSlice";
 import CampaignEditModal from "../../components/CampaignEditModal/CampaignEditModal";
+import DeleteModal from "../../components/DeleteModal/DeleteModal";
 
 export default function CampaignPage({ params }) {
   const [user, loading] = useAuthState(auth);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
   const { campaignId, lng } = params;
   const router = useRouter();
   const dispatch = useDispatch();
@@ -45,12 +47,13 @@ export default function CampaignPage({ params }) {
       dispatch(openModal());
     }
   };
-  console.log(currentCampaign);
-  console.log(lng);
-
 
   const handleEditModalToggle = () => {
     dispatch(openEditModal())
+  }
+
+  const handleCancelCampaign = () => {
+    setDeleteModalIsOpen((prevState) => !prevState)
   }
 
   const calculateLeftDays = () => {
@@ -75,6 +78,7 @@ export default function CampaignPage({ params }) {
     <>
       {modalIsOpen && <PaymentModal campaignId={campaignId} />}
       {editModalIsOpen && <CampaignEditModal campaignId={campaignId} />}
+      {deleteModalIsOpen && <DeleteModal campaignId={campaignId} setDeleteModalIsOpen={setDeleteModalIsOpen} />}
       {campaignStatus === "loading" ? (
         <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
           {/* left container */}
@@ -204,16 +208,16 @@ export default function CampaignPage({ params }) {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-center lg:flex lg:justify-start gap-5">
+              <div className="flex justify-center items-center gap-5">
                 <Button
-                  style={"bg-neutral-950 text-white py-3 px-8 rounded-lg"}
-                  name={t("Edit Campaign")}
+                  style={"w-[15rem] bg-neutral-950 text-white py-3 px-8 rounded-lg"}
+                  name={t("Edit")}
                   clickAction={handleEditModalToggle}
                 />
                 <Button
-                  style={"bg-neutral-950 text-white py-3 px-8 rounded-lg"}
-                  name={t("Delete Campaign")}
-                  clickAction={handleModalToggle}
+                  style={"w-[15rem] bg-neutral-950 text-white py-3 px-8 rounded-lg"}
+                  name={t("Cancel")}
+                  clickAction={handleCancelCampaign}
                 />
               </div>
             </div>
