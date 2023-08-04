@@ -16,11 +16,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/firebase";
 import { BsTwitter, BsGithub, BsGoogle } from "react-icons/bs";
 import { useTranslation } from "../../i18n/client";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
 
-function SignIn({ params }) {
+function SignIn({ lng }) {
   const [user, loading] = useAuthState(auth);
-  const { lng } = params;
   const {
     register,
     formState: { errors },
@@ -29,43 +28,29 @@ function SignIn({ params }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation(lng, "sign-in");
-  const error = useSelector((state) => state.user.error);
-  const currentUserStatus = useSelector((state) => state.user.status);
+  const error = useSelector((state) => state.user.error)
+  const currentUserStatus = useSelector((state) => state.user.status)
 
   useEffect(() => {
-    currentUserStatus === "succeeded" &&
-      toast.success("Signed in succesfully.", {
-        toastId: "sign-in-succeeded",
-      });
-    error &&
-      error ===
-        "Firebase: Error (auth/account-exists-with-different-credential)." &&
-      toast.error("Account exists with different credentials.", {
-        toastId: "account-exists-with-different-credential",
-      });
-    error &&
-      error === "Firebase: Error (auth/user-not-found)." &&
-      toast.error("Account not found.", {
-        toastId: "user-not-found",
-      });
-    error &&
-      error === "Firebase: Error (auth/wrong-password)." &&
-      toast.error("Password is wrong.", {
-        toastId: "wrong-password",
-      });
-    error &&
-      error ===
-        "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)." &&
-      toast.error(
-        "Account has been temporarily disabled due to many failed login attempts. Please try again later.",
-        {
-          toastId: "too-many-requests",
-        }
-      );
-  }, [currentUserStatus, error]);
+    currentUserStatus === "succeeded" && toast.success("Signed in succesfully.", {
+      toastId: "sign-in-succeeded"
+    })
+    error && error === "Firebase: Error (auth/account-exists-with-different-credential)." && toast.error("Account exists with different credentials.", {
+      toastId: "account-exists-with-different-credential"
+    })
+    error && error === "Firebase: Error (auth/user-not-found)." && toast.error("Account not found.", {
+      toastId: "user-not-found"
+    })
+    error && error === "Firebase: Error (auth/wrong-password)." && toast.error("Password is wrong.", {
+      toastId: "wrong-password"
+    })
+    error && error === "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)." && toast.error("Account has been temporarily disabled due to many failed login attempts. Please try again later.", {
+      toastId: "too-many-requests"
+    })
+  }, [currentUserStatus, error])
 
   const handleRoute = () => {
-    router.push(`/${lng}/profile`);
+    router.push(`/profile`);
   };
 
   const onSubmit = async (data) => {
@@ -90,9 +75,7 @@ function SignIn({ params }) {
       {!user && (
         <div className="container mx-auto">
           <div className="flex flex-col w-11/12 xl:w-2/5 p-5 mt-10  mx-auto text-center bg-neutral-950 text-white rounded-lg">
-            <p>
-              {t("Sign in to kick-off your campaigns or support the others!")}
-            </p>
+            <p>{t("Sign in to kick-off your campaigns or support the others!")}</p>
           </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
