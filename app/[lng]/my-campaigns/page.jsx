@@ -24,8 +24,6 @@ const MyCampaigns = ({ params }) => {
   const userCampaigns = useSelector((state) => state.campaign.userCampaigns);
   const userDonations = useSelector((state) => state.campaign.userDonations);
 
-  console.log(lng);
-
   const getUserCampaigns = async () => {
     const userId = user.uid;
     dispatch(getAllUserCampaigns(userId));
