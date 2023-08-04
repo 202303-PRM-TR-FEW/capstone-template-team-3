@@ -119,8 +119,7 @@ const Profile = ({ params }) => {
   };
 
   const onSubmit = async (data) => {
-    const { file } = data;
-    console.log(file);
+    const { file } = data;   
     const userId = user.uid;
     const currentUserName = currentUser.name;
     await dispatch(userUpdatePhoto({ userId, currentUserName, file }));

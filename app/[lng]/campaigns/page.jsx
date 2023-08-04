@@ -18,8 +18,6 @@ const Campaigns = ({ params }) => {
   const allCampaigns = useSelector((state) => state.campaign.allCampaigns);
   const category = searchParams.get("category");
 
-  console.log(lng);
-
   const getCampaignsByCategory = (allCampaigns, category) => {
     if (allCampaigns && allCampaigns.length > 0 && category) {
       const filteredCampaigns = allCampaigns.filter((campaign) => {
@@ -27,7 +25,6 @@ const Campaigns = ({ params }) => {
           ?.map((item) => item.value)
           .includes(category);
       });
-      console.log(filteredCampaigns);
       return filteredCampaigns;
     }
     return allCampaigns;
