@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { db, auth, doc, getDocs, getDoc, setDoc, updateDoc, addDoc, collection, storage, query, where, getDownloadURL, increment, arrayUnion } from '@/app/firebase/firebase';
+import { db, auth, doc, getDocs, getDoc, setDoc, updateDoc, addDoc, collection, storage, query, where, getDownloadURL, increment, arrayUnion, deleteDoc } from '@/app/firebase/firebase';
 import { ref, uploadBytes } from 'firebase/storage'
 
 const initialState = {
@@ -91,6 +91,21 @@ export const updateCurrentCampaign = createAsyncThunk("updateCurrentCampaign", a
                 category: category
             })
             return updatedCampaign
+        }
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
+export const deleteCurrentCampaign = createAsyncThunk("deleteCurrentCampaign", async (data) => {
+    const { campaignId } = data
+    try {
+        const docRef = doc(db, "campaigns", campaignId)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+            const deletedCampaign = await deleteDoc(docRef)
+            return deletedCampaign
         }
     } catch (error) {
         console.log(error.code)
@@ -220,6 +235,21 @@ const campaignSlice = createSlice({
                 state.error = null
             })
             .addCase(updateCurrentCampaign.rejected, (state, action) => {
+                state.currentCampaign = []
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(deleteCurrentCampaign.pending, (state) => {
+                state.currentCampaign = []
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(deleteCurrentCampaign.fulfilled, (state, action) => {
+                state.currentCampaign = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(deleteCurrentCampaign.rejected, (state, action) => {
                 state.currentCampaign = []
                 state.status = "failed"
                 state.error = action.error.message
