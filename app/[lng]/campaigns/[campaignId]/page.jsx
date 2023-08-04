@@ -13,9 +13,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "@/app/lib/features/paymentModalSlice";
 import { openModal as openEditModal } from "@/app/lib/features/campaignEditSlice";
 import PaymentModal from "@/app/[lng]/components/PaymentModal/PaymentModal";
-import { getCurrentCampaign, deleteCurrentCampaign } from "@/app/lib/features/campaignSlice";
+import { getCurrentCampaign } from "@/app/lib/features/campaignSlice";
 import CampaignEditModal from "../../components/CampaignEditModal/CampaignEditModal";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
+import { getCampaignOwnerData } from "@/app/lib/features/userSlice";
 
 export default function CampaignPage({ params }) {
   const [user, loading] = useAuthState(auth);
@@ -27,16 +28,28 @@ export default function CampaignPage({ params }) {
   const editModalIsOpen = useSelector((state) => state.campaignEditModal.isOpen)
   const currentCampaign = useSelector((state) => state.campaign.currentCampaign);
   const campaignStatus = useSelector((state) => state.campaign.status);
+  const campaignOwner = useSelector((state) => state.user.campaignOwner)
 
   const { t } = useTranslation(lng, "campaignId");
   console.log(params)
 
-  const getCampaign = async () => {
-    await dispatch(getCurrentCampaign(campaignId));
+  // const getCampaignData = async () => {
+  //   await dispatch(getCurrentCampaign(campaignId));
+  //   console.log("page", currentCampaign)
+  //   const currentCampaignId = currentCampaign.id
+  //   await dispatch(getCampaignOwnerData(currentCampaignId))
+  // };
+
+  const getCampaignData = async () => {
+    const currentCampaign = await dispatch(getCurrentCampaign(campaignId));
+    const currentCampaignId = currentCampaign.payload.id
+    if (currentCampaignId) {
+      await dispatch(getCampaignOwnerData(currentCampaignId))
+    }
   };
 
   useEffect(() => {
-    getCampaign();
+    getCampaignData()
   }, [campaignId, modalIsOpen, editModalIsOpen]);
 
   const handleModalToggle = () => {
@@ -140,7 +153,7 @@ export default function CampaignPage({ params }) {
           </div>
         </div>
       ) : (
-        currentCampaign && user && currentCampaign.id === user.uid ? (
+        currentCampaign && user && currentCampaign.id === user.uid && campaignOwner ? (
           <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
             {/* left container */}
             <div className="mb-5 max-w-3xl">
@@ -158,19 +171,18 @@ export default function CampaignPage({ params }) {
                 {currentCampaign.projectName}
               </h1>
               <div className="flex items-center justify-center space-x-5 lg:justify-start">
-                <Image
-                  className="rounded-full border-2 border-neutral-950"
-                  alt={currentCampaign.organizer}
-                  src={currentCampaign.image}
-                  width={50}
-                  height={50}
-                />
+                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative">
+                  <Image
+                    className="rounded-full"
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="center"
+                    alt={campaignOwner.name}
+                    src={campaignOwner.photo ? campaignOwner.photo : "/assets/images/empty-user.png"}
+                  />
+                </div>
                 <h3>
-                  {currentCampaign.organizer ? (
-                    currentCampaign.organizer
-                  ) : (
-                    <>{t("Organizer")}</>
-                  )}
+                  {campaignOwner.name}
                 </h3>
               </div>
 
@@ -179,6 +191,16 @@ export default function CampaignPage({ params }) {
                 <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
                   <h4 className="text-xl">{t("About campaign")}</h4>
                   <p className="text-sm">{currentCampaign.about}</p>
+                  {currentCampaign.category && (
+                    <div>
+                      <h5 className="text-md mb-2">Categories</h5>
+                      <div className="flex justify-center items-center gap-2 text-sm">
+                        {currentCampaign.category.map((category) =>
+                          <span className="p-2 border-2 border-black bg-theme text-black rounded-lg">{category.value}</span>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
                 {/* campaign details   */}
                 <div className="flex flex-col justify-around p-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950">
@@ -222,7 +244,7 @@ export default function CampaignPage({ params }) {
               </div>
             </div>
           </div>
-        ) : (currentCampaign &&
+        ) : (currentCampaign && user && campaignOwner &&
           <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
             {/* left container */}
             <div className="mb-5 max-w-3xl">
@@ -240,19 +262,18 @@ export default function CampaignPage({ params }) {
                 {currentCampaign.projectName}
               </h1>
               <div className="flex items-center justify-center space-x-5 lg:justify-start">
-                <Image
-                  className="rounded-full border-2 border-neutral-950"
-                  alt={currentCampaign.organizer}
-                  src={currentCampaign.image}
-                  width={50}
-                  height={50}
-                />
+                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative">
+                  <Image
+                    className="rounded-full"
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="center"
+                    alt={campaignOwner.name}
+                    src={campaignOwner.photo ? campaignOwner.photo : "/assets/images/empty-user.png"}
+                  />
+                </div>
                 <h3>
-                  {currentCampaign.organizer ? (
-                    currentCampaign.organizer
-                  ) : (
-                    <>{t("Organizer")}</>
-                  )}
+                  {campaignOwner.name}
                 </h3>
               </div>
 
@@ -260,7 +281,16 @@ export default function CampaignPage({ params }) {
                 {/* about campaign  */}
                 <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
                   <h4 className="text-xl">{t("About campaign")}</h4>
-                  <p className="text-sm">{currentCampaign.about}</p>
+                  {currentCampaign.category && (
+                    <div>
+                      <h5 className="text-md mb-2">Categories</h5>
+                      <div className="flex justify-center items-center gap-2 text-sm">
+                        {currentCampaign.category.map((category) =>
+                          <span className="p-2 border-2 border-black bg-theme text-black rounded-lg">{category.value}</span>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
                 {/* campaign details   */}
                 <div className="flex flex-col justify-around p-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950">
