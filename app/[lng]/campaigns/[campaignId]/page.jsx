@@ -196,7 +196,7 @@ export default function CampaignPage({ params }) {
                       <h5 className="text-md mb-2">Categories</h5>
                       <div className="flex justify-center items-center gap-2 text-sm">
                         {currentCampaign.category.map((category) =>
-                          <span className="p-2 border-2 border-black bg-theme text-black rounded-lg">{category.value}</span>
+                          <span key={category.label} className="p-2 border-2 border-black bg-theme text-black rounded-lg">{category.value}</span>
                         )}
                       </div>
                     </div>
@@ -286,7 +286,7 @@ export default function CampaignPage({ params }) {
                       <h5 className="text-md mb-2">Categories</h5>
                       <div className="flex justify-center items-center gap-2 text-sm">
                         {currentCampaign.category.map((category) =>
-                          <span className="p-2 border-2 border-black bg-theme text-black rounded-lg">{category.value}</span>
+                          <span key={category.label} className="p-2 border-2 border-black bg-theme text-black rounded-lg">{category.value}</span>
                         )}
                       </div>
                     </div>
