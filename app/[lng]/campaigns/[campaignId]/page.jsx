@@ -20,25 +20,21 @@ import { getCampaignOwnerData } from "@/app/lib/features/userSlice";
 
 export default function CampaignPage({ params }) {
   const [user, loading] = useAuthState(auth);
-  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
   const { campaignId, lng } = params;
   const router = useRouter();
   const dispatch = useDispatch();
   const modalIsOpen = useSelector((state) => state.paymentModal.isOpen);
-  const editModalIsOpen = useSelector((state) => state.campaignEditModal.isOpen)
-  const currentCampaign = useSelector((state) => state.campaign.currentCampaign);
+  const editModalIsOpen = useSelector(
+    (state) => state.campaignEditModal.isOpen
+  );
+  const currentCampaign = useSelector(
+    (state) => state.campaign.currentCampaign
+  );
   const campaignStatus = useSelector((state) => state.campaign.status);
   const campaignOwner = useSelector((state) => state.user.campaignOwner)
 
   const { t } = useTranslation(lng, "campaignId");
-  console.log(params)
-
-  // const getCampaignData = async () => {
-  //   await dispatch(getCurrentCampaign(campaignId));
-  //   console.log("page", currentCampaign)
-  //   const currentCampaignId = currentCampaign.id
-  //   await dispatch(getCampaignOwnerData(currentCampaignId))
-  // };
 
   const getCampaignData = async () => {
     const currentCampaign = await dispatch(getCurrentCampaign(campaignId));
@@ -62,12 +58,12 @@ export default function CampaignPage({ params }) {
   };
 
   const handleEditModalToggle = () => {
-    dispatch(openEditModal())
-  }
+    dispatch(openEditModal());
+  };
 
   const handleCancelCampaign = () => {
-    setDeleteModalIsOpen((prevState) => !prevState)
-  }
+    setDeleteModalIsOpen((prevState) => !prevState);
+  };
 
   const calculateLeftDays = () => {
     if (currentCampaign && typeof currentCampaign.endDate === "object") {
@@ -91,7 +87,12 @@ export default function CampaignPage({ params }) {
     <>
       {modalIsOpen && <PaymentModal campaignId={campaignId} />}
       {editModalIsOpen && <CampaignEditModal campaignId={campaignId} />}
-      {deleteModalIsOpen && <DeleteModal campaignId={campaignId} setDeleteModalIsOpen={setDeleteModalIsOpen} />}
+      {deleteModalIsOpen && (
+        <DeleteModal
+          campaignId={campaignId}
+          setDeleteModalIsOpen={setDeleteModalIsOpen}
+        />
+      )}
       {campaignStatus === "loading" ? (
         <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
           {/* left container */}
@@ -106,7 +107,9 @@ export default function CampaignPage({ params }) {
           </div>
           {/* right container  */}
           <div className="flex flex-col space-y-5 ">
-            <h1 className="text-2xl font-bold lg:text-start ">Loading...</h1>
+            <h1 className="text-2xl font-bold lg:text-start ">
+              {t("Loading")}...
+            </h1>
             <div className="flex items-center justify-center space-x-5 lg:justify-start">
               <Image
                 className="rounded-full border-2 border-neutral-950"
@@ -115,14 +118,14 @@ export default function CampaignPage({ params }) {
                 width={50}
                 height={50}
               />
-              <h3>Loading...</h3>
+              <h3>{t("Loading")}...</h3>
             </div>
 
             <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
               {/* about campaign  */}
               <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
                 <h4 className="text-xl">{t("About campaign")}</h4>
-                <p className="text-sm">Loading...</p>
+                <p className="text-sm">{t("Loading")}...</p>
               </div>
               {/* campaign details   */}
               <div className="flex flex-col justify-around py-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950">
@@ -313,8 +316,8 @@ export default function CampaignPage({ params }) {
                       <FaRegCalendarDays />
                       <p>
                         {leftDays > 0
-                          ? leftDays + " days left"
-                          : "Campaign is over"}
+                          ? leftDays + " " + t("days left") + "."
+                          : t("Campaign is over")}
                       </p>
                     </h5>
                   </div>
