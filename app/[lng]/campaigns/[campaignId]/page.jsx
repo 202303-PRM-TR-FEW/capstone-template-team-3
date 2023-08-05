@@ -94,7 +94,7 @@ export default function CampaignPage({ params }) {
         />
       )}
       {campaignStatus === "loading" ? (
-        <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
+        <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5 lg:items-start lg:mx-16 lg:justify-center">
           {/* left container */}
           <div className="mb-5 max-w-3xl">
             <Image
@@ -123,7 +123,7 @@ export default function CampaignPage({ params }) {
 
             <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
               {/* about campaign  */}
-              <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
+              <div className="flex flex-col space-y-5 rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
                 <h4 className="text-xl">{t("About campaign")}</h4>
                 <p className="text-sm">{t("Loading")}...</p>
               </div>
@@ -176,7 +176,10 @@ export default function CampaignPage({ params }) {
               {currentCampaign.projectName}
             </h1>
             <div className="flex items-center justify-center space-x-5 lg:justify-start">
-              <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative">
+              <div
+                className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0"
+                onClick={() => router.push(`/${lng}/profile`)}
+              >
                 <Image
                   className="rounded-full"
                   layout="fill"
@@ -192,6 +195,25 @@ export default function CampaignPage({ params }) {
               </div>
               <h3>{campaignOwner.name}</h3>
             </div>
+            {/* right container 
+            <div className="flex flex-col space-y-5 ">
+              <h1 className="text-2xl font-bold lg:text-start ">
+                {currentCampaign.projectName}
+              </h1>
+              <div className="flex items-center justify-center space-x-5 lg:justify-start">
+                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0" onClick={() => router.push(`/${lng}/profile`)}>
+                  <Image
+X                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="center"
+                    alt={campaignOwner.name}
+                    src={campaignOwner.photo ? campaignOwner.photo : "/assets/images/empty-user.png"}
+                  />
+                </div>
+                <h3>
+                  {campaignOwner.name}
+                </h3>
+              </div> */}
 
             <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
               {/* about campaign  */}
@@ -262,7 +284,6 @@ export default function CampaignPage({ params }) {
         </div>
       ) : (
         currentCampaign &&
-        user &&
         campaignOwner && (
           <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
             {/* left container */}
@@ -281,7 +302,14 @@ export default function CampaignPage({ params }) {
                 {currentCampaign.projectName}
               </h1>
               <div className="flex items-center justify-center space-x-5 lg:justify-start">
-                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative">
+                <div
+                  className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0"
+                  onClick={() =>
+                    router.push(
+                      `/${lng}/campaigns/${campaignId}/${campaignOwner.id}`
+                    )
+                  }
+                >
                   <Image
                     className="rounded-full"
                     layout="fill"

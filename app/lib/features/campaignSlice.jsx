@@ -6,6 +6,8 @@ const initialState = {
     allCampaigns: [],
     userCampaigns: [],
     userDonations: [],
+    ownerCampaigns: [],
+    ownerDonations: [],
     currentCampaign: [],
     status: "idle",
     error: null
@@ -131,11 +133,47 @@ export const getAllUserCampaigns = createAsyncThunk("getAllUserCampaigns", async
     }
 })
 
+export const getAllOwnerCampaigns = createAsyncThunk("getAllOwnerCampaigns", async (userId) => {
+    try {
+        const q = query(collection(db, "campaigns"), where("id", "==", userId))
+        const allOwnerCampaigns = await getDocs(q)
+        const allCampaigns = allOwnerCampaigns.docs.map((doc) => {
+            return {
+                id: doc.id,
+                data: doc.data()
+            }
+        })
+        console.log(allCampaigns)
+        return allCampaigns
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
 export const getAllUserDonations = createAsyncThunk("getAllUserDonations", async (userId) => {
     try {
         const q = query(collection(db, "campaigns"), where("donators", "array-contains", userId))
         const allUserDonations = await getDocs(q)
         const allDonations = allUserDonations.docs.map((doc) => {
+            return {
+                id: doc.id,
+                data: doc.data()
+            }
+        })
+        console.log(allDonations)
+        return allDonations
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
+export const getAllOwnerDonations = createAsyncThunk("getAllOwnerDonations", async (userId) => {
+    try {
+        const q = query(collection(db, "campaigns"), where("donators", "array-contains", userId))
+        const allOwnerDonations = await getDocs(q)
+        const allDonations = allOwnerDonations.docs.map((doc) => {
             return {
                 id: doc.id,
                 data: doc.data()
@@ -157,6 +195,8 @@ const campaignSlice = createSlice({
             state.allCampaigns = []
             state.userCampaigns = []
             state.userDonations = []
+            state.ownerCampaigns = []
+            state.ownerDonations = []
             state.currentCampaign = []
             state.status = "idle"
             state.error = null
@@ -269,6 +309,21 @@ const campaignSlice = createSlice({
                 state.status = "failed"
                 state.error = action.error.message
             })
+            .addCase(getAllOwnerCampaigns.pending, (state) => {
+                state.ownerCampaigns = []
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(getAllOwnerCampaigns.fulfilled, (state, action) => {
+                state.ownerCampaigns = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(getAllOwnerCampaigns.rejected, (state, action) => {
+                state.ownerCampaigns = []
+                state.status = "failed"
+                state.error = action.error.message
+            })
             .addCase(getAllUserDonations.pending, (state) => {
                 state.userDonations = []
                 state.status = "loading"
@@ -281,6 +336,21 @@ const campaignSlice = createSlice({
             })
             .addCase(getAllUserDonations.rejected, (state, action) => {
                 state.userDonations = []
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(getAllOwnerDonations.pending, (state) => {
+                state.ownerDonations = []
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(getAllOwnerDonations.fulfilled, (state, action) => {
+                state.ownerDonations = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(getAllOwnerDonations.rejected, (state, action) => {
+                state.ownerDonations = []
                 state.status = "failed"
                 state.error = action.error.message
             })
