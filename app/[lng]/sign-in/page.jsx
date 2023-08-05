@@ -33,13 +33,13 @@ function SignIn({ params }) {
   const currentUserStatus = useSelector((state) => state.user.status);
 
   useEffect(() => {
-    currentUserStatus === "succeeded" &&
+    user && currentUserStatus === "succeeded" &&
       toast.success("Signed in succesfully.", {
         toastId: "sign-in-succeeded",
       });
     error &&
       error ===
-        "Firebase: Error (auth/account-exists-with-different-credential)." &&
+      "Firebase: Error (auth/account-exists-with-different-credential)." &&
       toast.error("Account exists with different credentials.", {
         toastId: "account-exists-with-different-credential",
       });
@@ -55,14 +55,14 @@ function SignIn({ params }) {
       });
     error &&
       error ===
-        "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)." &&
+      "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)." &&
       toast.error(
         "Account has been temporarily disabled due to many failed login attempts. Please try again later.",
         {
           toastId: "too-many-requests",
         }
       );
-  }, [currentUserStatus, error]);
+  }, [currentUserStatus, error, user]);
 
   const handleRoute = () => {
     router.push(`/${lng}/profile`);

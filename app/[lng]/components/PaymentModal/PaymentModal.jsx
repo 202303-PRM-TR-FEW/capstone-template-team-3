@@ -56,7 +56,7 @@ const PaymentModal = ({ campaignId, lng }) => {
 
   return (
     <main>
-      <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background">
+      <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background z-10">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-slate-50 lg:w-[35%] lg:h-[70%] rounded-xl p-4 flex flex-col justify-between sm:w-[75%] sm:h-[75%]"
