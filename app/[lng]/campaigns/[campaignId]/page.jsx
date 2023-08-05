@@ -174,7 +174,7 @@ export default function CampaignPage({ params }) {
                 {currentCampaign.projectName}
               </h1>
               <div className="flex items-center justify-center space-x-5 lg:justify-start">
-                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative">
+                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0">
                   <Image
                     className="rounded-full"
                     layout="fill"
@@ -247,7 +247,7 @@ export default function CampaignPage({ params }) {
               </div>
             </div>
           </div>
-        ) : (currentCampaign && user && campaignOwner &&
+        ) : (currentCampaign && campaignOwner &&
           <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
             {/* left container */}
             <div className="mb-5 max-w-3xl">
@@ -265,7 +265,7 @@ export default function CampaignPage({ params }) {
                 {currentCampaign.projectName}
               </h1>
               <div className="flex items-center justify-center space-x-5 lg:justify-start">
-                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative">
+                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0">
                   <Image
                     className="rounded-full"
                     layout="fill"
