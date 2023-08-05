@@ -132,16 +132,16 @@ export default function CampaignPage({ params }) {
                 <div className="flex space-x-10 ">
                   <div className="p-2">
                     <h5>{t("Raised")}:</h5>
-                    <p>{"$" + "Loading..."}</p>
+                    <p>{"$" + t("Loading") + "..."}</p>
                   </div>
                   <div className="bg-theme rounded-lg p-2">
                     <h5>{t("Goal")}:</h5>
-                    <p>{"$" + "Loading..."}</p>
+                    <p>{"$" + t("Loading") + "..."}</p>
                   </div>
                 </div>
                 <div>
                   <h5 className="flex items-center">
-                    <FaRegCalendarDays /> {"Loading..."}
+                    <FaRegCalendarDays /> {t("Loading") + "..."}
                   </h5>
                 </div>
               </div>
@@ -195,26 +195,6 @@ export default function CampaignPage({ params }) {
               </div>
               <h3>{campaignOwner.name}</h3>
             </div>
-            {/* right container 
-            <div className="flex flex-col space-y-5 ">
-              <h1 className="text-2xl font-bold lg:text-start ">
-                {currentCampaign.projectName}
-              </h1>
-              <div className="flex items-center justify-center space-x-5 lg:justify-start">
-                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0" onClick={() => router.push(`/${lng}/profile`)}>
-                  <Image
-X                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="center"
-                    alt={campaignOwner.name}
-                    src={campaignOwner.photo ? campaignOwner.photo : "/assets/images/empty-user.png"}
-                  />
-                </div>
-                <h3>
-                  {campaignOwner.name}
-                </h3>
-              </div> */}
-
             <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
               {/* about campaign  */}
               <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
@@ -222,7 +202,7 @@ X                    layout="fill"
                 <p className="text-sm">{currentCampaign.about}</p>
                 {currentCampaign.category && (
                   <div>
-                    <h5 className="text-md mb-2">Categories</h5>
+                    <h5 className="text-md mb-2">{t("Categories")}</h5>
                     <div className="flex justify-center items-center gap-2 text-sm">
                       {currentCampaign.category.map((category) => (
                         <span
@@ -332,7 +312,7 @@ X                    layout="fill"
                   <h4 className="text-xl">{t("About campaign")}</h4>
                   {currentCampaign.category && (
                     <div>
-                      <h5 className="text-md mb-2">Categories</h5>
+                      <h5 className="text-md mb-2">{t("Categories")}</h5>
                       <div className="flex justify-center items-center gap-2 text-sm">
                         {currentCampaign.category.map((category) => (
                           <span

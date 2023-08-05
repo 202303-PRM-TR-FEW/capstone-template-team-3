@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "@/app/i18n/client";
 import { useDispatch, useSelector } from "react-redux";
 import { getCampaignOwnerProfileData } from "@/app/lib/features/userSlice";
 import { getAllOwnerCampaigns, getAllOwnerDonations } from "@/app/lib/features/campaignSlice";
@@ -10,6 +11,7 @@ const CampaignOwnerProfile = ({ params }) => {
     const { campaignId, lng, campaignOwnerId } = params;
     const router = useRouter()
     const dispatch = useDispatch()
+    const { t } = useTranslation(lng, "campaignId");
     const campaignOwner = useSelector((state) => state.user.campaignOwnerProfileData)
     const ownerCampaigns = useSelector((state) => state.campaign.ownerCampaigns)
     const ownerDonations = useSelector((state) => state.campaign.ownerDonations)
@@ -75,7 +77,7 @@ const CampaignOwnerProfile = ({ params }) => {
                         </div>
                         <div className="flex justify-center w-full px-4 text-center border-t border-blueGray-200 mt-10 py-10">
                             <div className="w-1/3 mx-auto">
-                                <h2>Campaigns</h2>
+                                <h2>{t("Campaigns")}</h2>
                                 <div className="flex justify-center py-4 lg:pt-4 pt-8">
                                     <div
                                         className="mr-2 p-3 h-20 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer"
@@ -85,7 +87,7 @@ const CampaignOwnerProfile = ({ params }) => {
                                             {ownerCampaigns.length}
                                         </span>
                                         <span className="text-sm text-blueGray-400">
-                                            Kicked-Off
+                                            {t("Kicked-Off")}
                                         </span>
                                     </div>
                                     <div
@@ -96,7 +98,7 @@ const CampaignOwnerProfile = ({ params }) => {
                                             {ownerDonations.length}
                                         </span>
                                         <span className="text-sm text-blueGray-400">
-                                            Supported
+                                            {t("Supported")}
                                         </span>
                                     </div>
                                 </div>

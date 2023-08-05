@@ -9,6 +9,7 @@ import {
   FaLinkedin,
 } from "react-icons/fa6";
 import Logo from "../Logo/Logo";
+import Image from "next/image";
 
 export const FooterBase = ({ t, lng }) => {
   return (
@@ -20,7 +21,7 @@ export const FooterBase = ({ t, lng }) => {
         }}
       ></section>
       <footer className="w-full text-gray-700 bg-white">
-        <div className="container flex flex-col flex-wrap px-5 pt-0 w-full bg-[#D4EE26] sm:items-center lg:items-start md:flex-row md:flex-no-wrap sm:text-center max-w-none">
+        <div className="container flex flex-col flex-wrap px-5 pt-0 w-full bg-[#D4EE26] sm:items-center lg:items-start md:flex-row md:flex-no-wrap sm:text-center max-w-none justify-center">
           <div
             className="flex-shrink-0 w-64 mt-5 mb-5 text-center md:mx-0 sm:items-center"
             id="givingly-cont"
@@ -47,9 +48,9 @@ export const FooterBase = ({ t, lng }) => {
                   <FaLinkedin />
                 </a>
               </span>
-              <div className="mt-4">
+              <div className="mt-4 text-[14px]">
                 <Trans i18nKey="languageSwitcher" t={t}>
-                  Switch from <strong>{{ lng }}</strong> to:{" "}
+                  Switch to:
                 </Trans>
                 {languages
                   .filter((l) => lng !== l)
@@ -57,7 +58,19 @@ export const FooterBase = ({ t, lng }) => {
                     return (
                       <span key={l}>
                         {index > 0 && " or "}
-                        <Link href={`/${l}`}>{l}</Link>
+                        <Link href={`/${l}`}>
+                          <Image
+                            alt="lng flag"
+                            className="inline"
+                            width={40}
+                            height={40}
+                            src={
+                              lng === "en"
+                                ? "/assets/images/tr.png"
+                                : "/assets/images/en.png"
+                            }
+                          />
+                        </Link>
                       </span>
                     );
                   })}
@@ -66,81 +79,89 @@ export const FooterBase = ({ t, lng }) => {
           </div>
           <div className="flex flex-wrap flex-grow mt-10 -mb-10 text-center md:pl-0 md:mt-6 md:text-center">
             <div className="w-full px-4 lg:w-1/4 md:w-1/2">
-              <h2 className="mb-3 font-medium text-gray-900 tracking-widest uppercase title-font">
-                About
+              <h2 className="mb-3 text-gray-900 tracking-widest uppercase title-font font-bold text-[14px]">
+                {t("About")}
               </h2>
               <nav className="mb-10 list-none">
                 <li className="mt-3">
-                  <a className=" cursor-pointer hover:text-[#8ea10f] ">
-                    Company
+                  <a className=" cursor-pointer hover:text-[#8ea10f] text-[12px] ">
+                    {t("Company")}
                   </a>
                 </li>
                 <li className="mt-3">
-                  <a className="cursor-pointer hover:text-[#8ea10f]">Careers</a>
-                </li>
-                <li className="mt-3">
-                  <a className="cursor-pointer hover:text-[#8ea10f]">Blog</a>
-                </li>
-              </nav>
-            </div>
-            <div className="w-full px-4 lg:w-1/4 md:w-1/2">
-              <h2 className="mb-3 font-medium text-gray-900 tracking-widest uppercase title-font">
-                Support
-              </h2>
-              <nav className="mb-10 list-none">
-                <li className="mt-3">
-                  <a className="cursor-pointer hover:text-[#8ea10f]">
-                    Contact Support
+                  <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    {t("Careers")}
                   </a>
                 </li>
                 <li className="mt-3">
-                  <a className="cursor-pointer hover:text-[#8ea10f]">
-                    Help Resources
-                  </a>
-                </li>
-                <li className="mt-3">
-                  <a className="cursor-pointer hover:text-[#8ea10f]">
-                    Release Updates
+                  <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    Blog
                   </a>
                 </li>
               </nav>
             </div>
             <div className="w-full px-4 lg:w-1/4 md:w-1/2">
-              <h2 className="mb-3 font-medium tracking-widest text-gray-900 uppercase title-font">
+              <h2 className="mb-3 text-gray-900 tracking-widest uppercase title-font font-bold text-[14px]">
+                {t("Support")}
+              </h2>
+              <nav className="mb-10 list-none">
+                <li className="mt-3">
+                  <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    {t("Contact Support")}
+                  </a>
+                </li>
+                <li className="mt-3">
+                  <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    {t("Help Resources")}
+                  </a>
+                </li>
+                <li className="mt-3">
+                  <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    {t("Release Updates")}
+                  </a>
+                </li>
+              </nav>
+            </div>
+            <div className="w-full px-4 lg:w-1/4 md:w-1/2">
+              <h2 className="mb-3 tracking-widest text-gray-900 uppercase title-font font-bold text-[14px]">
                 Platform
               </h2>
               <nav className="mb-10 list-none">
                 <li className="mt-3">
-                  <a className="cursor-pointer hover:text-[#8ea10f]">
-                    Terms &amp; Privacy
+                  <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    {t("Terms & Privacy")}
                   </a>
                 </li>
                 <li className="mt-3">
-                  <a className=" cursor-pointer hover:text-[#8ea10f]">FAQ</a>
+                  <a className=" cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    {t("FAQ")}
+                  </a>
                 </li>
                 <li className="mt-3">
-                  <a className=" cursor-pointer hover:text-[#8ea10f]">Fees</a>
+                  <a className=" cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    {t("Fees")}
+                  </a>
                 </li>
               </nav>
             </div>
-            <div className="w-full px-4 lg:w-1/4 md:w-1/2">
-              <h2 className="mb-3 font-medium tracking-widest text-gray-900 uppercase title-font">
-                Explore
+            <div className="w-full px-4 lg:w-1/4 md:w-1/2  ">
+              <h2 className="mb-3 tracking-widest text-gray-900 uppercase title-font font-bold text-[14px]">
+                {t("Explore")}
               </h2>
               <nav className="mb-10 list-none">
                 <li className="mt-3">
-                  <a className=" cursor-pointer hover:text-[#8ea10f]">
-                    What We Do
+                  <a className=" cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    {t("What We Do")}
                   </a>
                 </li>
                 <li className="mt-3">
-                  <a className="cursor-pointer hover:text-[#8ea10f]">
-                    How Givingly Works
+                  <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    {t("How Givingly Works")}
                   </a>
                 </li>
                 <li className="mt-3">
-                  <a className=" cursor-pointer hover:text-[#8ea10f]">
-                    Funding
+                  <a className=" cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    {t("Funding")}
                   </a>
                 </li>
               </nav>
@@ -149,8 +170,8 @@ export const FooterBase = ({ t, lng }) => {
         </div>
         <div className="bg-[#D4EE26]">
           <div className="container w-full px-5 py-4 mx-auto">
-            <p className="text-sm text-gray-900 capitalize sm:text-center text-[11px]">
-              © 2023 All rights reserved
+            <p className="text-sm text-gray-900 capitalize sm:text-center text-[10px]">
+              © 2023 {t("All rights reserved")}
             </p>
           </div>
         </div>
