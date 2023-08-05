@@ -35,6 +35,7 @@ const OwnerCampaigns = ({ params }) => {
     }, []);
 
     return (
+        campaignOwner && ownerCampaigns && ownerDonations &&
         <main>
             <h3 className="text-center py-5">{`${campaignOwner.name}'s Campaigns`}</h3>
             <div className="container mx-auto grid grid-cols-3 place-items-center gap-5 pb-5">
