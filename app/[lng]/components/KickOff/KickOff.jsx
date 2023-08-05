@@ -143,7 +143,7 @@ const PaymentModal = ({ lng }) => {
 
   return (
     <main>
-      <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background">
+      <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background z-10">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-slate-50 lg:w-[65%] lg:h-[auto] md:h-[60%] rounded-xl p-4 flex flex-col justify-between sm:w-[75%] sm:h-[auto]"
@@ -383,7 +383,7 @@ const PaymentModal = ({ lng }) => {
                         <span className="text-black text-[15px] text-center mb-1">File ready to be uploaded</span>
                         <BsFillSendCheckFill title={uploadedFileName} size={26} className='mb-2' />
                       </div>
-                      {previewImage && <img src={previewImage} alt="Preview" className="h-1/2 w-1/2 mb-1" title={uploadedFileName}/>}
+                      {previewImage && <img src={previewImage} alt="Preview" className="h-1/2 w-1/2 mb-1" title={uploadedFileName} />}
                       <div className="flex gap-2 justify-center items-center">
                         <span className="text-[15px] ">{uploadedFileName.substring(0, 8).split('.')[0] + uploadedFileName.slice(-4)}</span>
                         <TiDeleteOutline onClick={deleteFile} size={30} />
