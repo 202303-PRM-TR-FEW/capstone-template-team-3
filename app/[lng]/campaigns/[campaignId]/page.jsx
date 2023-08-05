@@ -174,7 +174,7 @@ export default function CampaignPage({ params }) {
                 {currentCampaign.projectName}
               </h1>
               <div className="flex items-center justify-center space-x-5 lg:justify-start">
-                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0">
+                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0" onClick={() => router.push(`/${lng}/profile`)}>
                   <Image
                     className="rounded-full"
                     layout="fill"
@@ -265,7 +265,7 @@ export default function CampaignPage({ params }) {
                 {currentCampaign.projectName}
               </h1>
               <div className="flex items-center justify-center space-x-5 lg:justify-start">
-                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0">
+                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0" onClick={() => router.push(`/${lng}/campaigns/${campaignId}/${campaignOwner.id}`)}>
                   <Image
                     className="rounded-full"
                     layout="fill"
