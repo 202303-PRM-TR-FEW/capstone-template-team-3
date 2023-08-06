@@ -37,7 +37,7 @@ const LargeCard = ({ lng }) => {
               mode="PROTOTYPE/MODES/MODE_PLAY"
             >
               <div>
-                <div className="custom-background"></div>
+                <div className="custom-background w-full"></div>
               </div>
             </div>
           </div>

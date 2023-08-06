@@ -102,3 +102,54 @@
   font-size: 14px;
   margin-bottom: 0.3rem;
 }
+
+@media screen and (max-width:1200px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width:620px) {
+  
+  html,body{
+    overflow-x: hidden;
+}
+
+  .project-description{
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    height: 160px;
+  }
+
+  .project-text{
+    font-size: 40px;
+    text-align: center;
+  }
+  .project-title{
+    text-align: center;
+  }
+  .project-descripe{
+    text-align: center;
+  }
+
+  /*.custom-background{
+    width:inherit;
+  }*/
+
+  .container-style{
+    width: 100%;
+  }
+
+  .image-container-style{
+    width: smaller;
+  }
+ 
+}
+
+@media screen and (max-width:400px){
+  .custom-background{
+    width: 250px;
+  }
+}

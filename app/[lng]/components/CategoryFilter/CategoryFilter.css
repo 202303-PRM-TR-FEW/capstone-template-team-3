@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 .icon-main {
-  @apply flex flex-col items-center gap-2 rounded-md p-2 space-y-2
+  @apply flex flex-col items-center gap-2 rounded-md m-2 p-2 space-y-2
 }
 
 .icon {
   @apply border-2 border-spacing-4 rounded-md border-black hover:border-[#d4ee26] hover:text-[#d4ee26] p-[0.250rem]
+}
+
+.categories{
+@apply flex justify-center;
 }
