@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import Card from "../components/Card/Card";
 import PaymentModal from "../components/KickOff/KickOff";
 import { useTranslation } from "../../i18n/client";
+import "./my-campaigns.css";
 
 const MyCampaigns = ({ params }) => {
   const { lng } = params;
