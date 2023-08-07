@@ -10,7 +10,8 @@ import { userSignUpWithEmailAndPassword } from "app/lib/features/userSlice.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "app/firebase/firebase.jsx";
 import { useTranslation } from "../../i18n/client";
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
+import Image from "next/image.js";
 
 function SignUp({ lng }) {
   const [user, loading] = useAuthState(auth);
@@ -23,17 +24,20 @@ function SignUp({ lng }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation(lng, "sign-up");
-  const error = useSelector((state) => state.user.error)
-  const currentUserStatus = useSelector((state) => state.user.status)
+  const error = useSelector((state) => state.user.error);
+  const currentUserStatus = useSelector((state) => state.user.status);
 
   useEffect(() => {
-    currentUserStatus === "succeeded" && toast.success("Signed in succesfully.", {
-      toastId: "sign-in-succeeded"
-    })
-    error && error === "Firebase: Error (auth/email-already-in-use)." && toast.error("Email already associated with another account.", {
-      toastId: "email-already-in-use"
-    })
-  }, [currentUserStatus, error])
+    currentUserStatus === "succeeded" &&
+      toast.success("Signed in succesfully.", {
+        toastId: "sign-in-succeeded",
+      });
+    error &&
+      error === "Firebase: Error (auth/email-already-in-use)." &&
+      toast.error("Email already associated with another account.", {
+        toastId: "email-already-in-use",
+      });
+  }, [currentUserStatus, error]);
 
   const handleRoute = () => {
     router.push(`/profile`);
@@ -53,12 +57,18 @@ function SignUp({ lng }) {
   };
 
   return (
-    <div>
+    <div style={{ position: "relative" }} className=" max-h-screen">
+      <Image
+        src={"/assets/images/bg.png"}
+        alt="bg"
+        fill
+        style={{ objectFit: "contain", zIndex: "-1", opacity: 0.3 }}
+      />
       {!user && (
         <div className="container mx-auto">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto bg-theme mt-32 rounded-3xl"
+            className="flex flex-col p-5 w-11/12 md:w-3/5 xl:w-2/5 mx-auto bg-theme mt-32 rounded-3xl"
           >
             <div className="my-2 mx-auto w-10/12">
               <input
