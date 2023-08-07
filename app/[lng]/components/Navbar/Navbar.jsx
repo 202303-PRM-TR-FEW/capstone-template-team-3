@@ -42,11 +42,11 @@ const Navbar = ({ lng }) => {
   const handleLogout = async () => {
     await dispatch(userSignOut());
     await dispatch(returnToInitialState());
-    router.push("/");
+    router.push(`/${lng}`);
   };
 
   const handleModalToggle = () => {
-    router.push(`/${lng}//my-campaigns`);
+    router.push(`/${lng}/my-campaigns`);
     dispatch(openModal());
   };
 

@@ -1,10 +1,13 @@
 import "./LargeCard.css";
 import { useTranslation } from "../../../i18n/client";
+import DonationBar from "../DonationBar/DonationBar";
+import Image from "next/image";
 
-const LargeCard = ({ lng }) => {
+
+const LargeCard = ({ img, title, about, raised, goal, lng, clickAction }) => {
   const { t } = useTranslation(lng, "largeCard");
   return (
-    <main>
+    <main onClick={clickAction}>
       <div>
         <p className="project-description">
           <span className="project-text">{t("Campaign of the week")}</span>
@@ -12,20 +15,25 @@ const LargeCard = ({ lng }) => {
       </div>
       <div className="row">
         <div className="column">
-          <div className="container-style"></div>
-          <div className="image-container-style"></div>
+          <div className="card-img-section">
+            <Image
+              className="h-[9em] w-[16em]"
+              src={img}
+              alt={title}
+              width={800}
+              height={200}
+            />
+          </div>
         </div>
         <div className="column">
           <div className="project-title">
             <h1>
-              Help us release <br /> cookbook for parents <br />
-              and kids
+              {title}
             </h1>
           </div>
           <div className="project-descripe">
             <p>
-              We want to create beautiful and helpful cooking book for parents
-              and kids to have fun in kitchen.
+              {about}
             </p>
           </div>
           <div>
@@ -35,18 +43,18 @@ const LargeCard = ({ lng }) => {
               mode="PROTOTYPE/MODES/MODE_PLAY"
             >
               <div>
-                <div className="custom-background"></div>
+                <DonationBar raised={raised} goal={goal} />
               </div>
             </div>
           </div>
           <div className="donation-info">
             <div className="donation-amount">
               <p className="donation-tag">{t("Raised")}:</p>
-              <p>$2.000</p>
+              <p>${raised}</p>
             </div>
             <div className="donation-amount">
               <p className="donation-tag">{t("Goal")}:</p>
-              <p>$3.000</p>
+              <p>${goal}</p>
             </div>
           </div>
         </div>

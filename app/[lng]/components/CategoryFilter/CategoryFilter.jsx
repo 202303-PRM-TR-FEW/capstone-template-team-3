@@ -27,7 +27,7 @@ const CategoryFilter = ({ lng }) => {
         <Link
           key={category.name}
           href={{
-            pathname: "/en/campaigns",
+            path: "/campaigns",
             query: { category: category.query },
           }}
           className="icon-main"
