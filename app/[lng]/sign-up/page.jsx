@@ -59,10 +59,10 @@ function SignUp({ lng }) {
   return (
     <div style={{ position: "relative" }} className=" max-h-screen">
       <Image
-        src={"/assets/images/bg.png"}
+        src={"/assets/images/bgnew.png"}
         alt="bg"
         fill
-        style={{ objectFit: "contain", zIndex: "-1", opacity: 0.3 }}
+        style={{ objectFit: "contain", zIndex: "-1", opacity: 0.4 }}
       />
       {!user && (
         <div className="container mx-auto">

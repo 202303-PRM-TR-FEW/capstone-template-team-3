@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { db, auth, doc, getDocs, getDoc, setDoc, updateDoc, addDoc, collection, storage, query, where, getDownloadURL, increment, arrayUnion, deleteDoc } from '@/app/firebase/firebase';
+import { db, auth, doc, getDocs, getDoc, setDoc, updateDoc, addDoc, collection, storage, query, where, getDownloadURL, increment, arrayUnion, deleteDoc, orderBy, limit } from '@/app/firebase/firebase';
 import { ref, uploadBytes } from 'firebase/storage'
 
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
     userCampaigns: [],
     userDonations: [],
     charities: [],
+    campaignOfTheWeek: [],
     ownerCampaigns: [],
     ownerDonations: [],
     currentCampaign: [],
@@ -81,6 +82,18 @@ export const getCharities = createAsyncThunk("getCharities", async () => {
         const allCharityCampaigns = await getDocs(q)
         const allCharity = allCharityCampaigns.docs.map((doc) => doc.data().charity)
         return allCharity
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
+export const getCampaignOfTheWeek = createAsyncThunk("getCampaignOfTheWeek", async () => {
+    try {
+        const q = query(collection(db, "campaigns"), orderBy("raised", "desc"), limit(1))
+        const campaignOfTheWeek = await getDocs(q)
+        const campaign = campaignOfTheWeek.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
+        return campaign
     } catch (error) {
         console.log(error.code)
         console.log(error.message)
@@ -217,6 +230,7 @@ const campaignSlice = createSlice({
             state.userCampaigns = []
             state.userDonations = []
             state.charities = []
+            state.campaignOfTheWeek = []
             state.ownerCampaigns = []
             state.ownerDonations = []
             state.currentCampaign = []
@@ -283,6 +297,21 @@ const campaignSlice = createSlice({
             })
             .addCase(getCharities.rejected, (state, action) => {
                 state.charities = []
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(getCampaignOfTheWeek.pending, (state) => {
+                state.campaignOfTheWeek = []
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(getCampaignOfTheWeek.fulfilled, (state, action) => {
+                state.campaignOfTheWeek = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(getCampaignOfTheWeek.rejected, (state, action) => {
+                state.campaignOfTheWeek = []
                 state.status = "failed"
                 state.error = action.error.message
             })
