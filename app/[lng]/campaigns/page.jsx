@@ -5,7 +5,7 @@ import LargeCard from "../components/LargeCard/LargeCard";
 import Card from "../components/Card/Card";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getAllCampaigns, getCharities } from "@/app/lib/features/campaignSlice";
+import { getAllCampaigns, getCharities, getCampaignOfTheWeek } from "@/app/lib/features/campaignSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "../../i18n/client";
 
@@ -18,6 +18,7 @@ const Campaigns = ({ params }) => {
   const { t } = useTranslation(lng, "campaingId");
   const allCampaigns = useSelector((state) => state.campaign.allCampaigns);
   const allCharities = useSelector((state) => state.campaign.charities)
+  const campaignOfTheWeek = useSelector((state) => state.campaign.campaignOfTheWeek)
   const category = searchParams.get("category");
 
   const getCampaignsByCategory = (allCampaigns, category) => {
@@ -45,7 +46,12 @@ const Campaigns = ({ params }) => {
     dispatch(getCharities())
   }
 
+  const getWeeklyCampaign = async () => {
+    dispatch(getCampaignOfTheWeek())
+  }
+
   useEffect(() => {
+    getWeeklyCampaign()
     getCampaigns()
     getCampaignCharities()
   }, []);
@@ -56,9 +62,18 @@ const Campaigns = ({ params }) => {
     }
   }, [allCharities])
 
+  console.log(campaignOfTheWeek)
+
   return (
     <main>
-      <LargeCard />
+      {campaignOfTheWeek.map((campaign) => <LargeCard
+        lng={lng}
+        img={campaign.data.image}
+        title={campaign.data.projectName}
+        about={campaign.data.about}
+        raised={campaign.data.raised}
+        goal={campaign.data.goal}
+        clickAction={() => push(`/${lng}/campaigns/${campaign.id}`)} />)}
       <div className="flex flex-col justify-center items-center bg-theme p-5 w-1/3 mx-auto rounded-xl gap-3">
         <p>Thanks to our supporters</p>
         <div className="bg-accent-black text-accent p-5 rounded-xl">
