@@ -1,10 +1,8 @@
 import "./LargeCard.css";
 import { useTranslation } from "../../../i18n/client";
-import { useRouter } from "next/navigation";
 
 const LargeCard = ({ lng }) => {
   const { t } = useTranslation(lng, "largeCard");
-  const router = useRouter();
   return (
     <main>
       <div>

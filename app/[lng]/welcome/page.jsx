@@ -19,9 +19,7 @@ export default async function WelcomePage({ lng }) {
             <p className="leading-normal">
               {t("leading-normal-first")} <br></br> {t("leading-normal-second")}
             </p>
-            <p className="leading-sub-normal">
-            {t("leading-sub-normal")}            
-            </p>
+            <p className="leading-sub-normal">{t("leading-sub-normal")}</p>
             <NavLink to={`/${lng}/navigation`} style="leading-button">
               {t("leading-button")}
             </NavLink>
