@@ -11,13 +11,13 @@ import {
 import Logo from "../Logo/Logo";
 import Image from "next/image";
 
-export const FooterBase = ({ t, lng }) => {
+export const FooterBase = ({ t, lng, pathname }) => {
   return (
     <div className="flex flex-col bg-transparent">
       <section
-        className="curve w-full h-32 2xl:bg-cover object-fill"
+        className={pathname === `/${lng}` ? "" : "curve w-full h-32 2xl:bg-cover object-fill"}
         style={{
-          backgroundImage: "url(/assets/images/wave-haikei3.svg)",
+          backgroundImage: pathname === `/${lng}` ? "" : "url(/assets/images/wave-haikei3.svg)"
         }}
       ></section>
       <footer className="w-full text-gray-700 bg-white">
