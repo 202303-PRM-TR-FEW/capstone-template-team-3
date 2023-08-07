@@ -6,6 +6,7 @@ const initialState = {
     allCampaigns: [],
     userCampaigns: [],
     userDonations: [],
+    charities: [],
     ownerCampaigns: [],
     ownerDonations: [],
     currentCampaign: [],
@@ -53,13 +54,33 @@ export const addUserDonation = createAsyncThunk("addUserDonation", async (data) 
     try {
         const docRef = doc(db, "campaigns", campaignId)
         const docSnap = await getDoc(docRef)
-        if (docSnap.exists()) {
+        if (docSnap.exists() && !checkbox) {
             const updatedCampaign = await updateDoc(docRef, {
                 raised: increment(donation),
                 donators: arrayUnion(currentUserId)
             })
             return updatedCampaign
         }
+        else if (docSnap.exists() && checkbox) {
+            const updatedCampaign = await updateDoc(docRef, {
+                raised: increment(donation),
+                donators: arrayUnion(currentUserId),
+                charity: increment(donation * 0.02)
+            })
+            return updatedCampaign
+        }
+    } catch (error) {
+        console.log(error.code)
+        console.log(error.message)
+    }
+})
+
+export const getCharities = createAsyncThunk("getCharities", async () => {
+    try {
+        const q = query(collection(db, "campaigns"), where("charity", ">", 0))
+        const allCharityCampaigns = await getDocs(q)
+        const allCharity = allCharityCampaigns.docs.map((doc) => doc.data().charity)
+        return allCharity
     } catch (error) {
         console.log(error.code)
         console.log(error.message)
@@ -195,6 +216,7 @@ const campaignSlice = createSlice({
             state.allCampaigns = []
             state.userCampaigns = []
             state.userDonations = []
+            state.charities = []
             state.ownerCampaigns = []
             state.ownerDonations = []
             state.currentCampaign = []
@@ -246,6 +268,21 @@ const campaignSlice = createSlice({
             })
             .addCase(addUserDonation.rejected, (state, action) => {
                 state.currentCampaign = []
+                state.status = "failed"
+                state.error = action.error.message
+            })
+            .addCase(getCharities.pending, (state) => {
+                state.charities = []
+                state.status = "loading"
+                state.error = null
+            })
+            .addCase(getCharities.fulfilled, (state, action) => {
+                state.charities = action.payload
+                state.status = "succeeded"
+                state.error = null
+            })
+            .addCase(getCharities.rejected, (state, action) => {
+                state.charities = []
                 state.status = "failed"
                 state.error = action.error.message
             })
