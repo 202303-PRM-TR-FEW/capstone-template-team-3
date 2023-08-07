@@ -67,6 +67,7 @@ const Campaigns = ({ params }) => {
   return (
     <main>
       {campaignOfTheWeek.map((campaign) => <LargeCard
+        key={campaign.id}
         lng={lng}
         img={campaign.data.image}
         title={campaign.data.projectName}
