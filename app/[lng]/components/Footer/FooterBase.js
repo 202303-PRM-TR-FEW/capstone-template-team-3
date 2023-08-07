@@ -76,7 +76,7 @@ export const FooterBase = ({ t, lng, pathname }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-wrap flex-grow mt- -mb-10 text-center md:pl-0 md:mt-6 md:text-center">
+          <div className="flex flex-wrap flex-grow mt-4 -mb-10 text-center md:pl-0 md:mt-6 md:text-center">
             <div className="w-full px-4 lg:w-1/4 md:w-1/2">
               <h2 className="mb-3 text-gray-900 tracking-widest uppercase title-font font-bold text-[14px]">
                 {t("About")}

@@ -57,7 +57,7 @@ function SignUp({ lng }) {
   };
 
   return (
-    <div style={{ position: "relative" }} className=" max-h-screen">
+    <div style={{ position: "relative" }}>
       <Image
         src={"/assets/images/bgnew.png"}
         alt="bg"
@@ -68,7 +68,7 @@ function SignUp({ lng }) {
         <div className="container mx-auto">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col p-5 w-11/12 md:w-3/5 xl:w-2/5 mx-auto bg-theme mt-32 rounded-3xl"
+            className="flex flex-col p-5 w-11/12 md:w-3/5 xl:w-2/5 mx-auto bg-theme mt-28 rounded-3xl"
           >
             <div className="my-2 mx-auto w-10/12">
               <input
@@ -202,7 +202,7 @@ function SignUp({ lng }) {
               )}
             </div>
 
-            <div className="my-2 flex justify-between items-center w-10/12 mx-auto">
+            <div className="my-2 flex justify-evenly justify-items-center items-center w-10/12 mx-auto">
               <input
                 {...register("checkbox", { required: true })}
                 type="checkbox"
