@@ -1,5 +1,5 @@
-@media screen and (max-width:760px){
-    .container{
+/*@media screen and (max-width:760px){
+    .duo{
         display: flex;
         flex-wrap: wrap;
 
@@ -8,10 +8,10 @@
 }
 
 @media screen and (min-width:760px) and (max-width:1030px){
-    .container{
+    .duo{
         display: grid;
         grid-template-columns: 1fr 1fr;
 
     }
     
-}
+}*/
