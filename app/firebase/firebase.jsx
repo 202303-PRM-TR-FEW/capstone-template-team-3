@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
-import { getFirestore, addDoc, collection, onSnapshot, query, where, getDoc, doc, setDoc, getDocs, updateDoc, increment, arrayUnion, deleteField, deleteDoc } from "@firebase/firestore"
+import { getFirestore, addDoc, collection, onSnapshot, query, where, getDoc, doc, setDoc, getDocs, updateDoc, increment, arrayUnion, deleteField, deleteDoc, orderBy, limit } from "@firebase/firestore"
 import { GoogleAuthProvider, signInWithPopup, GithubAuthProvider, TwitterAuthProvider } from "firebase/auth";
 import { getStorage, getDownloadURL } from 'firebase/storage'
 
@@ -67,5 +67,7 @@ export {
   increment,
   arrayUnion,
   deleteField,
-  deleteDoc
+  deleteDoc,
+  orderBy,
+  limit
 }

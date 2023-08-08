@@ -3,7 +3,7 @@ import Navbar from "../[lng]/components/Navbar/Navbar";
 import { ReduxProvider } from "../../app/lib/features/provider";
 import { dir } from "i18next";
 import { languages } from "../i18n/settings";
-import { Footer } from "./components/Footer";
+import { Footer } from "./components/Footer/client";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
