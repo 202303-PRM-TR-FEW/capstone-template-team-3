@@ -88,12 +88,12 @@ function SignIn({ params }) {
   };
 
   return (
-    <div className="container mx-auto w-11/12 mt-10 object-cover relative">
+    <div className="container mx-auto w-11/12 mt-10 object-cover relative ">
       <Image
-        src={"/assets/images/bgnew.png"}
+        src={"/assets/images/bgimage.png"}
         alt="bg"
         fill
-        style={{ objectFit: "contain", zIndex: "-1", opacity: 0.4, padding:"20px" }}
+        className="object-contain z-[-1] opacity-50"
       />
       {!user && (
         <div className="container mx-auto ">
