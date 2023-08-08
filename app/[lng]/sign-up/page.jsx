@@ -57,18 +57,19 @@ function SignUp({ lng }) {
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className="container mx-auto w-11/12 mt-10 object-cover relative">
       <Image
         src={"/assets/images/bgnew.png"}
         alt="bg"
         fill
-        style={{ objectFit: "contain", zIndex: "-1", opacity: 0.4 }}
+        style={{ objectFit: "contain", zIndex: "-1", opacity: 0.4, padding:"4px" }}
+
       />
       {!user && (
-        <div className="container mx-auto">
+        <div className="container mx-auto ">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col p-5 w-11/12 md:w-3/5 xl:w-2/5 mx-auto bg-theme mt-28 rounded-3xl"
+            className="flex flex-col p-5 w-11/12 md:w-3/5 xl:w-2/5 mx-auto bg-theme rounded-3xl"
           >
             <div className="my-2 mx-auto w-10/12">
               <input

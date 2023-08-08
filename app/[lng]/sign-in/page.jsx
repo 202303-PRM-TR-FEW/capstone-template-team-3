@@ -88,16 +88,16 @@ function SignIn({ params }) {
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className="container mx-auto w-11/12 mt-10 object-cover relative">
       <Image
         src={"/assets/images/bgnew.png"}
         alt="bg"
         fill
-        style={{ objectFit: "contain", zIndex: "-1", opacity: 0.4, margin:"5px" }}
+        style={{ objectFit: "contain", zIndex: "-1", opacity: 0.4, padding:"20px" }}
       />
       {!user && (
-        <div className="container mx-auto">
-          <div className="flex flex-col w-11/12 sm:w-2/5 p-5 mt-10 mx-auto text-center bg-theme text-[0a0a0a] rounded-3xl">
+        <div className="container mx-auto ">
+          <div className="flex flex-col p-5 w-11/12 sm:w-2/5 mx-auto text-center bg-theme text-[0a0a0a] rounded-3xl">
             <p>
               {t("Sign in to kick-off your campaigns or support the others!")}
             </p>
