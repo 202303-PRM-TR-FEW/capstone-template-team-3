@@ -87,6 +87,8 @@ function SignIn({ params }) {
     dispatch(userSignInWithTwitter({ handleRoute }));
   };
 
+  //to be deleted
+
   return (
     <div className="container mx-auto w-11/12 mt-10 object-cover relative ">
       <Image
