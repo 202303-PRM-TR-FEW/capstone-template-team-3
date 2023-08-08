@@ -32,7 +32,7 @@ const RootLayout = ({ children, params: { lng } }) => {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            toastStyle={{ minWidth: "max-content", maxWidth: "320px", backgroundColor: "rgb(250, 250, 250)" }}
+            toastStyle={{ minWidth: "max-content", maxWidth: "310px", backgroundColor: "rgb(250, 250, 250)" }}
           />
           <Footer lng={lng} />
         </ReduxProvider>
