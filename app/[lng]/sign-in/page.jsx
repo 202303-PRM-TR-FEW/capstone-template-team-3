@@ -18,6 +18,7 @@ import { BsTwitter, BsGithub, BsGoogle } from "react-icons/bs";
 import { useTranslation } from "../../i18n/client";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader/loader";
+import Image from "next/image";
 
 function SignIn({ params }) {
   const [user, loading] = useAuthState(auth);
@@ -34,13 +35,14 @@ function SignIn({ params }) {
   const currentUserStatus = useSelector((state) => state.user.status);
 
   useEffect(() => {
-    user && currentUserStatus === "succeeded" &&
+    user &&
+      currentUserStatus === "succeeded" &&
       toast.success("Signed in succesfully.", {
         toastId: "sign-in-succeeded",
       });
     error &&
       error ===
-      "Firebase: Error (auth/account-exists-with-different-credential)." &&
+        "Firebase: Error (auth/account-exists-with-different-credential)." &&
       toast.error("Account exists with different credentials.", {
         toastId: "account-exists-with-different-credential",
       });
@@ -56,7 +58,7 @@ function SignIn({ params }) {
       });
     error &&
       error ===
-      "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)." &&
+        "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)." &&
       toast.error(
         "Account has been temporarily disabled due to many failed login attempts. Please try again later.",
         {
@@ -95,6 +97,41 @@ function SignIn({ params }) {
               <div className="flex flex-col w-11/12 xl:w-2/5 p-5 mt-10  mx-auto text-center bg-neutral-950 text-white rounded-lg">
                 <p>
                   {t("Sign in to kick-off your campaigns or support the others!")}
+    <div className="container mx-auto w-11/12 mt-10 object-cover relative ">
+      <Image
+        src={"/assets/images/bgimage.png"}
+        alt="bg"
+        fill
+        className="object-contain z-[-1] opacity-50"
+      />
+      {!user && (
+        <div className="container mx-auto ">
+          <div className="flex flex-col p-5 w-11/12 sm:w-2/5 mx-auto text-center bg-theme text-[0a0a0a] rounded-3xl">
+            <p>
+              {t("Sign in to kick-off your campaigns or support the others!")}
+            </p>
+          </div>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col p-5 w-11/12 sm:w-2/5 mx-auto bg-theme mt-14 rounded-3xl"
+          >
+            <div className="my-2 mx-auto w-10/12">
+              <input
+                {...register("email", {
+                  required: true,
+                  pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                })}
+                placeholder={t("Email")}
+                className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                aria-invalid={errors.email ? "true" : "false"}
+                type="text"
+              />
+              {errors.email?.type === "required" && (
+                <p
+                  role="alert"
+                  className="text-end text-red-600 italic text-[14px]"
+                >
+                  {t("Email is required")}
                 </p>
               </div>
               <form
