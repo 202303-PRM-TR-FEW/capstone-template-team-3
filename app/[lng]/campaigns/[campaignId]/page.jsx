@@ -17,6 +17,7 @@ import { getCurrentCampaign } from "@/app/lib/features/campaignSlice";
 import CampaignEditModal from "../../components/CampaignEditModal/CampaignEditModal";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import { getCampaignOwnerData } from "@/app/lib/features/userSlice";
+import Loader from "../../components/Loader/loader";
 
 export default function CampaignPage({ params }) {
   const [user, loading] = useAuthState(auth);
@@ -31,6 +32,7 @@ export default function CampaignPage({ params }) {
   const currentCampaign = useSelector(
     (state) => state.campaign.currentCampaign
   );
+  const userStatus = useSelector((state) => state.user.status)
   const campaignStatus = useSelector((state) => state.campaign.status);
   const campaignOwner = useSelector((state) => state.user.campaignOwner);
 
@@ -93,69 +95,7 @@ export default function CampaignPage({ params }) {
           setDeleteModalIsOpen={setDeleteModalIsOpen}
         />
       )}
-      {campaignStatus === "loading" ? (
-        <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5 lg:items-start lg:mx-16 lg:justify-center">
-          {/* left container */}
-          <div className="mb-5 max-w-3xl">
-            <Image
-              className="bg-slate-100 rounded-xl"
-              width={1200}
-              height={200}
-              src="/assets/images/mockup.png"
-              alt="asd"
-            />
-          </div>
-          {/* right container  */}
-          <div className="flex flex-col space-y-5 ">
-            <h1 className="text-2xl font-bold lg:text-start ">
-              {t("Loading")}...
-            </h1>
-            <div className="flex items-center justify-center space-x-5 lg:justify-start">
-              <Image
-                className="rounded-full border-2 border-neutral-950"
-                alt="asd"
-                src="/assets/images/mockup.png"
-                width={50}
-                height={50}
-              />
-              <h3>{t("Loading")}...</h3>
-            </div>
-
-            <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
-              {/* about campaign  */}
-              <div className="flex flex-col space-y-5 rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
-                <h4 className="text-xl">{t("About campaign")}</h4>
-                <p className="text-sm">{t("Loading")}...</p>
-              </div>
-              {/* campaign details   */}
-              <div className="flex flex-col justify-around py-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950">
-                <div className="flex space-x-10 ">
-                  <div className="p-2">
-                    <h5>{t("Raised")}:</h5>
-                    <p>{"$" + t("Loading") + "..."}</p>
-                  </div>
-                  <div className="bg-theme rounded-lg p-2">
-                    <h5>{t("Goal")}:</h5>
-                    <p>{"$" + t("Loading") + "..."}</p>
-                  </div>
-                </div>
-                <div>
-                  <h5 className="flex items-center">
-                    <FaRegCalendarDays /> {t("Loading") + "..."}
-                  </h5>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center lg:flex lg:justify-start">
-              <Button
-                style={"bg-neutral-950 text-white  py-3 px-16  rounded-lg"}
-                name={t("Fund this campaign!")}
-                clickAction={handleModalToggle}
-              />
-            </div>
-          </div>
-        </div>
-      ) : currentCampaign &&
+      {userStatus === "loading" || campaignStatus === "loading" ? (<Loader />) : currentCampaign &&
         user &&
         currentCampaign.id === user.uid &&
         campaignOwner ? (
