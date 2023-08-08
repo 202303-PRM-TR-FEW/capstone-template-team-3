@@ -27,14 +27,13 @@ const RootLayout = ({ children, params: { lng } }) => {
             position="bottom-right"
             autoClose={5000}
             limit={3}
-            hideProgressBar={false}
             newestOnTop
             closeOnClick
-            rtl={false}
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            toastClassName={"bg-theme"} />
+            toastStyle={{ minWidth: "max-content", maxWidth: "320px", backgroundColor: "rgb(250, 250, 250)" }}
+          />
           <Footer lng={lng} />
         </ReduxProvider>
       </body>

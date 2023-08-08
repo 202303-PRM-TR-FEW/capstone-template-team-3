@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "@/app/lib/features/kickOffModalSlice";
 import { useTranslation } from "../../../i18n/client";
 import Select from "react-select";
+import { toast } from "react-toastify"
 
 const PaymentModal = ({ lng }) => {
   const [user, loading] = useAuthState(auth);
@@ -107,6 +108,9 @@ const PaymentModal = ({ lng }) => {
     );
     await dispatch(getAllUserCampaigns(userId));
     await dispatch(closeModal());
+    toast.success("Campaign launched succesfully.", {
+      toastId: "campaign-launch-succeeded"
+    })
   };
 
   const handleFileChange = (event) => {
@@ -407,7 +411,7 @@ const PaymentModal = ({ lng }) => {
               type="submit"
               style="bg-zinc-950 rounded-md w-full p-2 text-white text-[15px]"
             >
-              {t("Upload campaign")}
+              {t("Launch campaign")}
             </Button>
           </div>
         </form>

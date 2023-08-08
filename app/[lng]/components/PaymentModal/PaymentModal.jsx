@@ -14,6 +14,7 @@ import { addUserDonation } from "@/app/lib/features/campaignSlice";
 import { getCurrentCampaign } from "@/app/lib/features/campaignSlice";
 import { useTranslation } from "../../../i18n/client";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify"
 
 const PaymentModal = ({ campaignId, lng }) => {
   const [user, loading] = useAuthState(auth);
@@ -52,6 +53,9 @@ const PaymentModal = ({ campaignId, lng }) => {
     await dispatch(getCurrentCampaign(campaignId));
     await dispatch(closeModal());
     await router.push("/thank-you");
+    toast.success("Payment succesfull.", {
+      toastId: "payment-succeeded"
+    })
   };
 
   return (
