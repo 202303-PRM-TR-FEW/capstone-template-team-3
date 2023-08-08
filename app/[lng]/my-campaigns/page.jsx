@@ -46,8 +46,10 @@ const MyCampaigns = ({ params }) => {
     user && (
       <main>
         {modalIsOpen && <PaymentModal />}
-        <h3 className="text-center py-5">{t("Your Campaigns")}</h3>
-        <div className="duo container mx-auto flex flex-wrap lg:grid grid-cols-2 lg:place-items-center xl: grid grid-cols-3 lg:gap-5 lg:pb-5">
+       {/* <div className="all flex flex-col lg: flex flex-row">*/}
+        <h3 className="title text-center py-5">{t("Your Campaigns")}</h3>
+        <div className="container mx-auto flex flex-wrap flex-row justify-center items-center gap-5 pb-5">
+          {/*lg:place-items-center xl: grid grid-cols-3 lg:gap-5 lg:pb-5*/}
           {Array.isArray(userCampaigns) &&
             userCampaigns.length > 0 &&
             userCampaigns.map((campaign, index) => {
@@ -70,8 +72,8 @@ const MyCampaigns = ({ params }) => {
               );
             })}
         </div>
-        <h3 className="text-center py-5">{t("You Are Supporting")}</h3>
-        <div className="duo container mx-auto flex flex-wrap lg:grid grid-cols-2 lg:place-items-center xl: grid grid-cols-3 lg:gap-5 lg:pb-5">
+        <h3 className="title text-center py-5">{t("You Are Supporting")}</h3>
+        <div className="container mx-auto flex flex-wrap flex-row justify-center items-center gap-5 pb-5">
           {Array.isArray(userDonations) &&
             userDonations.length > 0 &&
             userDonations.map((campaign, index) => {
@@ -93,6 +95,7 @@ const MyCampaigns = ({ params }) => {
               );
             })}
         </div>
+        {/*</div>*/}
       </main>
     )
   );
