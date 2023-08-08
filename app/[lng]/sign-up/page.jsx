@@ -10,7 +10,8 @@ import { userSignUpWithEmailAndPassword } from "app/lib/features/userSlice.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "app/firebase/firebase.jsx";
 import { useTranslation } from "../../i18n/client";
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
+import Image from "next/image.js";
 
 function SignUp({ lng }) {
   const [user, loading] = useAuthState(auth);
@@ -23,18 +24,21 @@ function SignUp({ lng }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation(lng, "sign-up");
-  const error = useSelector((state) => state.user.error)
-  const currentUserStatus = useSelector((state) => state.user.status)
+  const error = useSelector((state) => state.user.error);
+  const currentUserStatus = useSelector((state) => state.user.status);
 
   useEffect(() => {
-    user && currentUserStatus === "succeeded"
-      && toast.success("Signed up succesfully.", {
-        toastId: "sign-up-succeeded"
-      })
-    error && error === "Firebase: Error (auth/email-already-in-use)." && toast.error("Email already associated with another account.", {
-      toastId: "email-already-in-use"
-    })
-  }, [currentUserStatus, error])
+    user &&
+      currentUserStatus === "succeeded" &&
+      toast.success("Signed up succesfully.", {
+        toastId: "sign-up-succeeded",
+      });
+    error &&
+      error === "Firebase: Error (auth/email-already-in-use)." &&
+      toast.error("Email already associated with another account.", {
+        toastId: "email-already-in-use",
+      });
+  }, [currentUserStatus, error]);
 
   const handleRoute = () => {
     router.push(`/profile`);
@@ -54,12 +58,23 @@ function SignUp({ lng }) {
   };
 
   return (
-    <div>
+    <div className="container mx-auto w-11/12 mt-5 object-cover relative">
+      <Image
+        src={"/assets/images/bgimage.png"}
+        alt="bg"
+        fill
+        className="object-contain z-[-1] opacity-50"
+      />
       {!user && (
-        <div className="container mx-auto">
+        <div className="container mx-auto ">
+          <div className="flex flex-col p-5 w-11/12 sm:w-2/5 mx-auto text-center bg-accent text-accent rounded-3xl">
+            <p>
+              {t("Sign in to kick-off your campaigns or support the others!")}
+            </p>
+          </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto bg-theme mt-32 rounded-3xl"
+            className="flex flex-col p-5 w-11/12 md:w-3/5 xl:w-2/5 mx-auto bg-theme rounded-3xl"
           >
             <div className="my-2 mx-auto w-10/12">
               <input
@@ -193,7 +208,7 @@ function SignUp({ lng }) {
               )}
             </div>
 
-            <div className="my-2 flex justify-between items-center w-10/12 mx-auto">
+            <div className="my-2 flex justify-evenly justify-items-center items-center w-10/12 mx-auto">
               <input
                 {...register("checkbox", { required: true })}
                 type="checkbox"
