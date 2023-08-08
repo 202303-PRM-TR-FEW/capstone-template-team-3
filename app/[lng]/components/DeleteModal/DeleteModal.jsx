@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "../../../i18n/client";
 import { deleteCurrentCampaign } from "@/app/lib/features/campaignSlice";
+import { toast } from "react-toastify"
 
 
 const DeleteModal = ({ lng, campaignId, setDeleteModalIsOpen }) => {
@@ -23,6 +24,9 @@ const DeleteModal = ({ lng, campaignId, setDeleteModalIsOpen }) => {
         await dispatch(deleteCurrentCampaign({ campaignId }))
         setDeleteModalIsOpen(false)
         await router.push("/my-campaigns")
+        toast.success("Campaign deleted succesfully.", {
+            toastId: "delete-succeeded"
+        })
     }
 
     return (currentCampaign &&
