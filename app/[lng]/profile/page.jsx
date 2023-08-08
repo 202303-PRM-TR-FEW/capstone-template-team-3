@@ -25,6 +25,7 @@ import { FaUpload } from "react-icons/fa";
 import { MdAddAPhoto } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import { TiDeleteOutline } from "react-icons/ti";
+import { toast } from "react-toastify"
 
 const Profile = ({ params }) => {
   const { lng } = params;
@@ -84,6 +85,9 @@ const Profile = ({ params }) => {
       const userId = user.uid;
       await dispatch(userJoinNewsletter(userId));
       await dispatch(getUserData(userId));
+      toast.success("Joined newsletter succesfully.", {
+        toastId: "profile-newsletter-join-succeeded"
+      })
     }
   };
 
@@ -115,11 +119,14 @@ const Profile = ({ params }) => {
       setEditProfileImage(false);
       setUploadState(true);
       setUploadedFileName(null);
+      toast.success("Profile updated succesfully.", {
+        toastId: "profile-image-delete-succeeded"
+      })
     }
   };
 
   const onSubmit = async (data) => {
-    const { file } = data;   
+    const { file } = data;
     const userId = user.uid;
     const currentUserName = currentUser.name;
     await dispatch(userUpdatePhoto({ userId, currentUserName, file }));
@@ -127,6 +134,9 @@ const Profile = ({ params }) => {
     setEditProfileImage(false);
     setUploadState(true);
     setUploadedFileName(null);
+    toast.success("Profile updated succesfully.", {
+      toastId: "profile-image-upload-succeeded"
+    })
   };
 
   useEffect(() => {
@@ -147,19 +157,17 @@ const Profile = ({ params }) => {
               <div className="flex flex-wrap justify-center">
                 <div className="w-full px-4 flex justify-center">
                   <div
-                    className={`${
-                      editProfileImage
-                        ? "mt-10 mb-4 relative"
-                        : "mt-10 mb-10 relative"
-                    }`}
+                    className={`${editProfileImage
+                      ? "mt-10 mb-4 relative"
+                      : "mt-10 mb-10 relative"
+                      }`}
                   >
                     <img
                       alt="..."
-                      src={`${
-                        currentUser.photo
-                          ? currentUser.photo
-                          : "/assets/images/empty-user.png"
-                      }`}
+                      src={`${currentUser.photo
+                        ? currentUser.photo
+                        : "/assets/images/empty-user.png"
+                        }`}
                       className="bg-theme shadow-xl rounded-full h-40 w-40 align-middle border-4 border-theme"
                     />
                     <MdAddAPhoto

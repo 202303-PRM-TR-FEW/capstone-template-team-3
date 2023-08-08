@@ -13,6 +13,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "app/firebase/firebase.jsx";
 import { getUserData, userJoinNewsletter } from "@/app/lib/features/userSlice";
 import { BsPatchCheckFill } from "react-icons/bs"
+import { toast } from "react-toastify"
 
 export default function Navigation({ lng }) {
   const [user, loading] = useAuthState(auth);
@@ -36,6 +37,9 @@ export default function Navigation({ lng }) {
       const userId = user.uid
       await dispatch(userJoinNewsletter(userId))
       await dispatch(getUserData(userId))
+      toast.success("Joined newsletter succesfully.", {
+        toastId: "navigation-newsletter-join-succeeded"
+      })
     } else {
       router.push("/sign-in")
     }

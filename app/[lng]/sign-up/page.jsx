@@ -28,16 +28,14 @@ function SignUp({ lng }) {
   const currentUserStatus = useSelector((state) => state.user.status);
 
   useEffect(() => {
-    currentUserStatus === "succeeded" &&
-      toast.success("Signed in succesfully.", {
-        toastId: "sign-in-succeeded",
-      });
-    error &&
-      error === "Firebase: Error (auth/email-already-in-use)." &&
-      toast.error("Email already associated with another account.", {
-        toastId: "email-already-in-use",
-      });
-  }, [currentUserStatus, error]);
+    user && currentUserStatus === "succeeded"
+      && toast.success("Signed up succesfully.", {
+        toastId: "sign-up-succeeded"
+      })
+    error && error === "Firebase: Error (auth/email-already-in-use)." && toast.error("Email already associated with another account.", {
+      toastId: "email-already-in-use"
+    })
+  }, [currentUserStatus, error])
 
   const handleRoute = () => {
     router.push(`/profile`);

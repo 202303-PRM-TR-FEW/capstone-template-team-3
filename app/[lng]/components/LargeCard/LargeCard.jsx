@@ -3,6 +3,7 @@ import { useTranslation } from "../../../i18n/client";
 import DonationBar from "../DonationBar/DonationBar";
 import Image from "next/image";
 
+
 const LargeCard = ({ img, title, about, raised, goal, lng, clickAction }) => {
   const { t } = useTranslation(lng, "largeCard");
   return (
