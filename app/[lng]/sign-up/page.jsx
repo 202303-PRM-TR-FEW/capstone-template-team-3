@@ -12,7 +12,6 @@ import { auth } from "app/firebase/firebase.jsx";
 import { useTranslation } from "../../i18n/client";
 import { toast } from "react-toastify"
 import Loader from "../components/Loader/loader.jsx";
-import Image from "next/image.js";
 
 function SignUp({ lng }) {
   const [user, loading] = useAuthState(auth);
@@ -25,21 +24,18 @@ function SignUp({ lng }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation(lng, "sign-up");
-  const error = useSelector((state) => state.user.error);
-  const currentUserStatus = useSelector((state) => state.user.status);
+  const error = useSelector((state) => state.user.error)
+  const currentUserStatus = useSelector((state) => state.user.status)
 
   useEffect(() => {
-    user &&
-      currentUserStatus === "succeeded" &&
-      toast.success("Signed up succesfully.", {
-        toastId: "sign-up-succeeded",
-      });
-    error &&
-      error === "Firebase: Error (auth/email-already-in-use)." &&
-      toast.error("Email already associated with another account.", {
-        toastId: "email-already-in-use",
-      });
-  }, [currentUserStatus, error]);
+    user && currentUserStatus === "succeeded"
+      && toast.success("Signed up succesfully.", {
+        toastId: "sign-up-succeeded"
+      })
+    error && error === "Firebase: Error (auth/email-already-in-use)." && toast.error("Email already associated with another account.", {
+      toastId: "email-already-in-use"
+    })
+  }, [currentUserStatus, error])
 
   const handleRoute = () => {
     router.push(`/profile`);
@@ -97,53 +93,7 @@ function SignUp({ lng }) {
                     </p>
                   )}
                 </div>
-    <div className="container mx-auto w-11/12 mt-5 object-cover relative">
-      <Image
-        src={"/assets/images/bgimage.png"}
-        alt="bg"
-        fill
-        className="object-contain z-[-1] opacity-50"
-      />
-      {!user && (
-        <div className="container mx-auto ">
-          <div className="flex flex-col p-5 w-11/12 sm:w-2/5 mx-auto text-center bg-accent text-accent rounded-3xl">
-            <p>
-              {t("Sign in to kick-off your campaigns or support the others!")}
-            </p>
-          </div>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col p-5 w-11/12 md:w-3/5 xl:w-2/5 mx-auto bg-theme rounded-3xl"
-          >
-            <div className="my-2 mx-auto w-10/12">
-              <input
-                {...register("name", {
-                  required: true,
-                  pattern:
-                    /^[a-zA-Z]+(?:-[a-zA-Z]+)*(?:\s[a-zA-Z]+(?:-[a-zA-Z]+)*)*$/,
-                })}
-                placeholder={t("Name")}
-                className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
-                aria-invalid={errors.name ? "true" : "false"}
-                type="text"
-              />
-              {errors.name?.type === "required" && (
-                <p
-                  role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
-                >
-                  {t("Name is required")}
-                </p>
-              )}
-              {errors.name?.type === "pattern" && (
-                <p
-                  role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
-                >
-                  {t("Name is invalid")}
-                </p>
-              )}
-            </div>
+
                 <div className="my-2 mx-auto w-10/12">
                   <input
                     {...register("email", {
@@ -172,6 +122,7 @@ function SignUp({ lng }) {
                     </p>
                   )}
                 </div>
+
                 <div className="my-2 mx-auto w-10/12">
                   <input
                     {...register("password", {
@@ -211,6 +162,7 @@ function SignUp({ lng }) {
                     </p>
                   )}
                 </div>
+
                 <div className="my-2 mx-auto w-10/12">
                   <input
                     {...register("passwordConfirm", {
@@ -243,6 +195,7 @@ function SignUp({ lng }) {
                     </p>
                   )}
                 </div>
+
                 <div className="my-2 flex justify-between items-center w-10/12 mx-auto">
                   <input
                     {...register("checkbox", { required: true })}
@@ -280,22 +233,6 @@ function SignUp({ lng }) {
                   style="text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg px-5 py-2 text-center flex items-center justify-center h-11"
                 />
               </form>
-            <div className="my-2 flex justify-evenly justify-items-center items-center w-10/12 mx-auto">
-              <input
-                {...register("checkbox", { required: true })}
-                type="checkbox"
-                name="checkbox"
-                className="text-lime-600 w-6 h-6 rounded-md ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent outline-none focus:outline-none cursor-pointer"
-              />
-              <label
-                className="text-center font-medium text-[16px]"
-                htmlFor="checkbox"
-              >
-                {t("I accept the")}{" "}
-                <a href="#" className="text-lime-700 italic font-bold">
-                  {t("Terms & Conditions")}
-                </a>
-              </label>
             </div>
           ) : (<Loader />)}
         </div>)

@@ -1,10 +1,10 @@
 import NavLink from "../NavLink/NavLink";
 import "./Logo.css";
 
-const Logo = ({ lng, style }) => {
+const Logo = ({ lng }) => {
   return (
     <div className="logo">
-      <NavLink to={`/${lng}`} name="Givingly" style={style} />
+      <NavLink to={`/${lng}`} name="Givingly" />
     </div>
   );
 };
