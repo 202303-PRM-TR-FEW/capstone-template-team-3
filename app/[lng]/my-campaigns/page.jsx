@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import Card from "../components/Card/Card";
 import PaymentModal from "../components/KickOff/KickOff";
 import { useTranslation } from "../../i18n/client";
-import "./my-campaigns.css";
+import Loader from "../components/Loader/loader";
 
 const MyCampaigns = ({ params }) => {
   const { lng } = params;
@@ -43,13 +43,12 @@ const MyCampaigns = ({ params }) => {
   }, [loading]);
 
   return (
-    user && (
+    campaignStatus === "loading" ? (<Loader />) : (
+      user ? (
       <main>
         {modalIsOpen && <PaymentModal />}
-       {/* <div className="all flex flex-col lg: flex flex-row">*/}
-        <h3 className="title text-center py-5">{t("Your Campaigns")}</h3>
+        <h3 className="text-center py-5">{t("Your Campaigns")}</h3>
         <div className="container mx-auto flex flex-wrap flex-row justify-center items-center gap-5 pb-5">
-          {/*lg:place-items-center xl: grid grid-cols-3 lg:gap-5 lg:pb-5*/}
           {Array.isArray(userCampaigns) &&
             userCampaigns.length > 0 &&
             userCampaigns.map((campaign, index) => {
@@ -72,7 +71,7 @@ const MyCampaigns = ({ params }) => {
               );
             })}
         </div>
-        <h3 className="title text-center py-5">{t("You Are Supporting")}</h3>
+        <h3 className="text-center py-5">{t("You Are Supporting")}</h3>
         <div className="container mx-auto flex flex-wrap flex-row justify-center items-center gap-5 pb-5">
           {Array.isArray(userDonations) &&
             userDonations.length > 0 &&
@@ -95,8 +94,8 @@ const MyCampaigns = ({ params }) => {
               );
             })}
         </div>
-        {/*</div>*/}
       </main>
+      ) : (<Loader />)
     )
   );
 };
