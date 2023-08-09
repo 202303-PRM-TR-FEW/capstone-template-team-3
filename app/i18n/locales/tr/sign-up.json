@@ -18,5 +18,7 @@
   "Already a member?": "Üyeliğin var mı?",
   "Sign In": "Giriş Yap",
   "Sign Up": "Üye Ol",
-  "Password is invalid": "Geçersiz şifre"
+  "Password is invalid": "Geçersiz şifre",
+  "Signed up successfully.": "Başarıyla kaydoldunuz.",
+  "Email already associated with another account.": "E-posta başka bir hesapla ilişkilendirilmiş."
 }

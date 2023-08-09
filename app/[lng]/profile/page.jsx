@@ -25,6 +25,8 @@ import { FaUpload } from "react-icons/fa";
 import { MdAddAPhoto } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import { TiDeleteOutline } from "react-icons/ti";
+import { toast } from "react-toastify";
+import Loader from "../components/Loader/loader";
 
 const Profile = ({ params }) => {
   const { lng } = params;
@@ -38,6 +40,8 @@ const Profile = ({ params }) => {
   const { t } = useTranslation(lng, "profile");
   const userCampaigns = useSelector((state) => state.campaign.userCampaigns);
   const userDonations = useSelector((state) => state.campaign.userDonations);
+  const userStatus = useSelector((state) => state.user.status);
+  const campaignStatus = useSelector((state) => state.campaign.status);
   const {
     register,
     formState: { errors },
@@ -84,6 +88,9 @@ const Profile = ({ params }) => {
       const userId = user.uid;
       await dispatch(userJoinNewsletter(userId));
       await dispatch(getUserData(userId));
+      toast.success(t("Joined newsletter successfully."), {
+        toastId: "profile-newsletter-join-succeeded",
+      });
     }
   };
 
@@ -115,11 +122,14 @@ const Profile = ({ params }) => {
       setEditProfileImage(false);
       setUploadState(true);
       setUploadedFileName(null);
+      toast.success(t("Profile updated successfully."), {
+        toastId: "profile-image-delete-succeeded",
+      });
     }
   };
 
   const onSubmit = async (data) => {
-    const { file } = data;   
+    const { file } = data;
     const userId = user.uid;
     const currentUserName = currentUser.name;
     await dispatch(userUpdatePhoto({ userId, currentUserName, file }));
@@ -127,6 +137,9 @@ const Profile = ({ params }) => {
     setEditProfileImage(false);
     setUploadState(true);
     setUploadedFileName(null);
+    toast.success(t("Profile updated successfully."), {
+      toastId: "profile-image-upload-succeeded",
+    });
   };
 
   useEffect(() => {
@@ -137,9 +150,10 @@ const Profile = ({ params }) => {
     }
   }, [loading]);
 
-  return (
-    user &&
-    currentUser && (
+  return userStatus === "loading" || campaignStatus === "loading" ? (
+    <Loader />
+  ) : (
+    user && currentUser && (
       <main>
         <div className="container px-4 mx-auto">
           <div className="flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg my-10">

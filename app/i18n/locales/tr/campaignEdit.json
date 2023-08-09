@@ -3,7 +3,7 @@
   "your campaign": "düzenle",
   "Name of your campaign": "Kampanyanı isimlendir",
   "Campaign name is required": "Kampanya ismi gereklidir.",
-  "Campaign name is invalid": "Geçersiz kampanya ismi",  
+  "Campaign name is invalid": "Geçersiz kampanya ismi",
   "About your campaign": "Kampanya hakkında",
   "So many cats, so little homes. We want to provide home and care to them all. Help us build a dream shelter for all cats in our town.": "Çok kedi, az barınak! Tüm kedilere barınak ve bakım sağlamak istiyoruz. Kasabamızdaki tüm kediler için rüya gibi bir barınak kurmamıza yardım edin.",
   "About is required": "Kampanya açıklaması gereklidir",
@@ -18,5 +18,6 @@
   "Culture": "Kültür",
   "Education": "Eğitim",
   "No category found...": "Kategori bulunamadı...",
-  "Category is required": "Kategori gereklidir"
+  "Category is required": "Kategori gereklidir",
+  "Campaign updated successfully.": "Kampanya başarıyla güncellendi."
 }

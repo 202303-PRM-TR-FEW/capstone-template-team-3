@@ -14,6 +14,7 @@ const DonationBar = ({ goal, raised }) => {
   return (
     <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4 ">
       <div
+        data-cy="progressBar"
         className="bg-theme h-2.5 rounded-full dark:bg-theme"
         style={{ width: `${progress <= 100 ? progress : 100}%` }}
       ></div>

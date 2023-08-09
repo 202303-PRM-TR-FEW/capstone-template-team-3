@@ -8,5 +8,10 @@
   "Email is invalid": "Geçersiz e-posta",
   "Password is required": "Şifre giriniz",
   "Password is invalid": "Geçersiz şifre",
-  "Sign in to kick-off your campaigns or support the others!": "Kampanya başlatmak veya diğerlerini desteklemek için oturum açmanız gerekmektedir!"
+  "Sign in to kick-off your campaigns or support the others!": "Kampanya başlatmak veya diğerlerini desteklemek için oturum açmanız gerekmektedir!",
+  "Signed in successfully.": "Başarıyla giriş yapıldı.",
+  "Account exists with different credentials.": "Hesap, farklı kimlik bilgileriyle mevcuttur.",
+  "Account not found.": "Hesap bulunamadı.",
+  "Password is wrong.": "Hatalı şifre",
+  "Account has been temporarily disabled due to many failed login attempts. Please try again later.": "Birçok başarısız giriş denemesi nedeniyle hesap geçici olarak devre dışı bırakıldı. Lütfen daha sonra tekrar deneyin."
 }
