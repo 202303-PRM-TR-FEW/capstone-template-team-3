@@ -18,10 +18,9 @@ const LargeCard = ({ lng }) => {
           <div className="image-container-style"></div>
         </div>
         <div className="column">
-          <div className="project-title">
+          <div className="project-title w-full font-krona text-[27px] mt-8 px-8">
             <h1>
-              Help us release <br /> cookbook for parents <br />
-              and kids
+              Help us release cookbook for parents and kids
             </h1>
           </div>
           <div className="project-descripe">
@@ -32,12 +31,12 @@ const LargeCard = ({ lng }) => {
           </div>
           <div>
             <div
-              className="custom-container"
+              className="custom-container w-full top-572 md:top-0 lg:top-100 px-6"
               data-dom-node="true"
               mode="PROTOTYPE/MODES/MODE_PLAY"
             >
               <div>
-                <div className="custom-background w-full"></div>
+                <div className="custom-background w-full h-[10px] opacity-100 bg-gray-300 rounded-md"></div>
               </div>
             </div>
           </div>
