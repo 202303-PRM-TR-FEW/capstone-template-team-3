@@ -9,7 +9,7 @@ const LargeCard = ({ img, title, about, raised, goal, lng, clickAction }) => {
   return (
     <main onClick={clickAction}>
       <div>
-        <p className="project-description">
+        <p className="project-description lg:flex justify-center">
           <span className="project-text">{t("Campaign of the week")}</span>
         </p>
       </div>
