@@ -17,6 +17,7 @@ import { getCurrentCampaign } from "@/app/lib/features/campaignSlice";
 import CampaignEditModal from "../../components/CampaignEditModal/CampaignEditModal";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import { getCampaignOwnerData } from "@/app/lib/features/userSlice";
+import Loader from "../../components/Loader/loader";
 
 export default function CampaignPage({ params }) {
   const [user, loading] = useAuthState(auth);
@@ -31,21 +32,22 @@ export default function CampaignPage({ params }) {
   const currentCampaign = useSelector(
     (state) => state.campaign.currentCampaign
   );
+  const userStatus = useSelector((state) => state.user.status)
   const campaignStatus = useSelector((state) => state.campaign.status);
-  const campaignOwner = useSelector((state) => state.user.campaignOwner)
+  const campaignOwner = useSelector((state) => state.user.campaignOwner);
 
   const { t } = useTranslation(lng, "campaignId");
 
   const getCampaignData = async () => {
     const currentCampaign = await dispatch(getCurrentCampaign(campaignId));
-    const currentCampaignId = currentCampaign.payload.id
+    const currentCampaignId = currentCampaign.payload.id;
     if (currentCampaignId) {
-      await dispatch(getCampaignOwnerData(currentCampaignId))
+      await dispatch(getCampaignOwnerData(currentCampaignId));
     }
   };
 
   useEffect(() => {
-    getCampaignData()
+    getCampaignData();
   }, [campaignId, modalIsOpen, editModalIsOpen]);
 
   const handleModalToggle = () => {
@@ -86,14 +88,17 @@ export default function CampaignPage({ params }) {
     // main container
     <>
       {modalIsOpen && <PaymentModal campaignId={campaignId} />}
-      {editModalIsOpen && <CampaignEditModal campaignId={campaignId} />}
+      {editModalIsOpen && <CampaignEditModal campaignId={campaignId} lng={lng} />}
       {deleteModalIsOpen && (
         <DeleteModal
           campaignId={campaignId}
           setDeleteModalIsOpen={setDeleteModalIsOpen}
         />
       )}
-      {campaignStatus === "loading" ? (
+      {userStatus === "loading" || campaignStatus === "loading" ? (<Loader />) : currentCampaign &&
+        user &&
+        currentCampaign.id === user.uid &&
+        campaignOwner ? (
         <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
           {/* left container */}
           <div className="mb-5 max-w-3xl">
@@ -101,62 +106,105 @@ export default function CampaignPage({ params }) {
               className="bg-slate-100 rounded-xl"
               width={1200}
               height={200}
-              src="/assets/images/mockup.png"
-              alt="asd"
+              src={currentCampaign.image}
+              alt={currentCampaign.projectName}
             />
           </div>
           {/* right container  */}
           <div className="flex flex-col space-y-5 ">
             <h1 className="text-2xl font-bold lg:text-start ">
-              {t("Loading")}...
+              {currentCampaign.projectName}
             </h1>
             <div className="flex items-center justify-center space-x-5 lg:justify-start">
-              <Image
-                className="rounded-full border-2 border-neutral-950"
-                alt="asd"
-                src="/assets/images/mockup.png"
-                width={50}
-                height={50}
-              />
-              <h3>{t("Loading")}...</h3>
+              <div
+                className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0"
+                onClick={() => router.push(`/${lng}/profile`)}
+              >
+                <Image
+                  className="rounded-full"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  alt={campaignOwner.name}
+                  src={
+                    campaignOwner.photo
+                      ? campaignOwner.photo
+                      : "/assets/images/empty-user.png"
+                  }
+                />
+              </div>
+              <h3>{campaignOwner.name}</h3>
             </div>
-
             <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
               {/* about campaign  */}
               <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
                 <h4 className="text-xl">{t("About campaign")}</h4>
-                <p className="text-sm">{t("Loading")}...</p>
+                <p className="text-sm">{currentCampaign.about}</p>
+                {currentCampaign.category && (
+                  <div>
+                    <h5 className="text-md mb-2">{t("Categories")}</h5>
+                    <div className="flex justify-center items-center gap-2 text-sm">
+                      {currentCampaign.category.map((category) => (
+                        <span
+                          key={category.label}
+                          className="p-2 border-2 border-black bg-theme text-black rounded-lg"
+                        >
+                          {category.value}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
               {/* campaign details   */}
-              <div className="flex flex-col justify-around py-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950">
+              <div className="flex flex-col justify-around p-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950">
                 <div className="flex space-x-10 ">
                   <div className="p-2">
                     <h5>{t("Raised")}:</h5>
-                    <p>{"$" + "Loading..."}</p>
+                    <p>{"$" + currentCampaign.raised}</p>
                   </div>
                   <div className="bg-theme rounded-lg p-2">
                     <h5>{t("Goal")}:</h5>
-                    <p>{"$" + "Loading..."}</p>
+                    <p>{"$" + currentCampaign.goal}</p>
                   </div>
                 </div>
+                <DonationBar
+                  raised={currentCampaign.raised}
+                  goal={currentCampaign.goal}
+                />
                 <div>
-                  <h5 className="flex items-center">
-                    <FaRegCalendarDays /> {"Loading..."}
+                  <h5 className="flex items-center space-x-2">
+                    <FaRegCalendarDays />
+                    <p>
+                      {leftDays > 0
+                        ? leftDays + " " + t("days left") + "."
+                        : t("Campaign is over")}
+                    </p>
                   </h5>
                 </div>
               </div>
             </div>
-            <div className="flex justify-center lg:flex lg:justify-start">
+            <div className="flex justify-center items-center gap-5">
               <Button
-                style={"bg-neutral-950 text-white  py-3 px-16  rounded-lg"}
-                name={t("Fund this campaign!")}
-                clickAction={handleModalToggle}
+                style={
+                  "w-[15rem] bg-neutral-950 text-white py-3 px-8 rounded-lg"
+                }
+                name={t("Edit")}
+                clickAction={handleEditModalToggle}
+              />
+              <Button
+                style={
+                  "w-[15rem] bg-neutral-950 text-white py-3 px-8 rounded-lg"
+                }
+                name={t("Cancel")}
+                clickAction={handleCancelCampaign}
               />
             </div>
           </div>
         </div>
       ) : (
-        currentCampaign && user && currentCampaign.id === user.uid && campaignOwner ? (
+        currentCampaign &&
+        campaignOwner && (
           <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
             {/* left container */}
             <div className="mb-5 max-w-3xl">
@@ -174,110 +222,28 @@ export default function CampaignPage({ params }) {
                 {currentCampaign.projectName}
               </h1>
               <div className="flex items-center justify-center space-x-5 lg:justify-start">
-                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0">
+                <div
+                  className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0"
+                  onClick={() =>
+                    router.push(
+                      `/${lng}/campaigns/${campaignId}/${campaignOwner.id}`
+                    )
+                  }
+                >
                   <Image
                     className="rounded-full"
                     layout="fill"
                     objectFit="cover"
                     objectPosition="center"
                     alt={campaignOwner.name}
-                    src={campaignOwner.photo ? campaignOwner.photo : "/assets/images/empty-user.png"}
+                    src={
+                      campaignOwner.photo
+                        ? campaignOwner.photo
+                        : "/assets/images/empty-user.png"
+                    }
                   />
                 </div>
-                <h3>
-                  {campaignOwner.name}
-                </h3>
-              </div>
-
-              <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
-                {/* about campaign  */}
-                <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
-                  <h4 className="text-xl">{t("About campaign")}</h4>
-                  <p className="text-sm">{currentCampaign.about}</p>
-                  {currentCampaign.category && (
-                    <div>
-                      <h5 className="text-md mb-2">Categories</h5>
-                      <div className="flex justify-center items-center gap-2 text-sm">
-                        {currentCampaign.category.map((category) =>
-                          <span key={category.label} className="p-2 border-2 border-black bg-theme text-black rounded-lg">{category.value}</span>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-                {/* campaign details   */}
-                <div className="flex flex-col justify-around p-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950">
-                  <div className="flex space-x-10 ">
-                    <div className="p-2">
-                      <h5>{t("Raised")}:</h5>
-                      <p>{"$" + currentCampaign.raised}</p>
-                    </div>
-                    <div className="bg-theme rounded-lg p-2">
-                      <h5>{t("Goal")}:</h5>
-                      <p>{"$" + currentCampaign.goal}</p>
-                    </div>
-                  </div>
-                  <DonationBar
-                    raised={currentCampaign.raised}
-                    goal={currentCampaign.goal}
-                  />
-                  <div>
-                    <h5 className="flex items-center space-x-2">
-                      <FaRegCalendarDays />
-                      <p>
-                        {leftDays > 0
-                          ? leftDays + " days left"
-                          : "Campaign is over"}
-                      </p>
-                    </h5>
-                  </div>
-                </div>
-              </div>
-              <div className="flex justify-center items-center gap-5">
-                <Button
-                  style={"w-[15rem] bg-neutral-950 text-white py-3 px-8 rounded-lg"}
-                  name={t("Edit")}
-                  clickAction={handleEditModalToggle}
-                />
-                <Button
-                  style={"w-[15rem] bg-neutral-950 text-white py-3 px-8 rounded-lg"}
-                  name={t("Cancel")}
-                  clickAction={handleCancelCampaign}
-                />
-              </div>
-            </div>
-          </div>
-        ) : (currentCampaign && campaignOwner &&
-          <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
-            {/* left container */}
-            <div className="mb-5 max-w-3xl">
-              <Image
-                className="bg-slate-100 rounded-xl"
-                width={1200}
-                height={200}
-                src={currentCampaign.image}
-                alt={currentCampaign.projectName}
-              />
-            </div>
-            {/* right container  */}
-            <div className="flex flex-col space-y-5 ">
-              <h1 className="text-2xl font-bold lg:text-start ">
-                {currentCampaign.projectName}
-              </h1>
-              <div className="flex items-center justify-center space-x-5 lg:justify-start">
-                <div className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0">
-                  <Image
-                    className="rounded-full"
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="center"
-                    alt={campaignOwner.name}
-                    src={campaignOwner.photo ? campaignOwner.photo : "/assets/images/empty-user.png"}
-                  />
-                </div>
-                <h3>
-                  {campaignOwner.name}
-                </h3>
+                <h3>{campaignOwner.name}</h3>
               </div>
 
               <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
@@ -286,11 +252,16 @@ export default function CampaignPage({ params }) {
                   <h4 className="text-xl">{t("About campaign")}</h4>
                   {currentCampaign.category && (
                     <div>
-                      <h5 className="text-md mb-2">Categories</h5>
+                      <h5 className="text-md mb-2">{t("Categories")}</h5>
                       <div className="flex justify-center items-center gap-2 text-sm">
-                        {currentCampaign.category.map((category) =>
-                          <span key={category.label} className="p-2 border-2 border-black bg-theme text-black rounded-lg">{category.value}</span>
-                        )}
+                        {currentCampaign.category.map((category) => (
+                          <span
+                            key={category.label}
+                            className="p-2 border-2 border-black bg-theme text-black rounded-lg"
+                          >
+                            {category.value}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   )}

@@ -10,7 +10,9 @@ import { userSignUpWithEmailAndPassword } from "app/lib/features/userSlice.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "app/firebase/firebase.jsx";
 import { useTranslation } from "../../i18n/client";
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
+import Loader from "../components/Loader/loader.jsx";
+import Image from "next/image.js";
 
 function SignUp({ lng }) {
   const [user, loading] = useAuthState(auth);
@@ -23,17 +25,21 @@ function SignUp({ lng }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation(lng, "sign-up");
-  const error = useSelector((state) => state.user.error)
-  const currentUserStatus = useSelector((state) => state.user.status)
+  const error = useSelector((state) => state.user.error);
+  const currentUserStatus = useSelector((state) => state.user.status);
 
   useEffect(() => {
-    currentUserStatus === "succeeded" && toast.success("Signed in succesfully.", {
-      toastId: "sign-in-succeeded"
-    })
-    error && error === "Firebase: Error (auth/email-already-in-use)." && toast.error("Email already associated with another account.", {
-      toastId: "email-already-in-use"
-    })
-  }, [currentUserStatus, error])
+    user &&
+      currentUserStatus === "succeeded" &&
+      toast.success(t("Signed up successfully."), {
+        toastId: "sign-up-succeeded",
+      });
+    error &&
+      error === "Firebase: Error (auth/email-already-in-use)." &&
+      toast.error(t("Email already associated with another account."), {
+        toastId: "email-already-in-use",
+      });
+  }, [currentUserStatus, error]);
 
   const handleRoute = () => {
     router.push(`/profile`);
@@ -52,13 +58,22 @@ function SignUp({ lng }) {
     );
   };
 
-  return (
-    <div>
-      {!user && (
-        <div className="container mx-auto">
+  return currentUserStatus === "loading" ? (
+    <Loader />
+  ) : (
+    <div className="container mx-auto w-11/12 mt-5 object-cover relative">
+      <Image
+        src={"/assets/images/bgimage.png"}
+        alt="bg"
+        fill
+        className="object-contain z-[-1] opacity-50"
+      />
+      {!user ? (
+        <div className="container mx-auto ">
+          <div className="flex flex-col p-5 w-11/12 sm:w-2/5 mx-auto text-center bg-accent text-accent rounded-3xl h-[94px] xl:w-2/5 mt-10 "></div>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto bg-theme mt-32 rounded-3xl"
+            className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto md:w-3/5 bg-theme rounded-3xl"
           >
             <div className="my-2 mx-auto w-10/12">
               <input
@@ -68,7 +83,7 @@ function SignUp({ lng }) {
                     /^[a-zA-Z]+(?:-[a-zA-Z]+)*(?:\s[a-zA-Z]+(?:-[a-zA-Z]+)*)*$/,
                 })}
                 placeholder={t("Name")}
-                className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.name ? "true" : "false"}
                 type="text"
               />
@@ -97,7 +112,7 @@ function SignUp({ lng }) {
                   pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                 })}
                 placeholder={t("Email")}
-                className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.email ? "true" : "false"}
                 type="text"
               />
@@ -127,7 +142,7 @@ function SignUp({ lng }) {
                   minLength: 8,
                 })}
                 placeholder={t("Password")}
-                className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.password ? "true" : "false"}
                 type="password"
               />
@@ -170,7 +185,7 @@ function SignUp({ lng }) {
                   },
                 })}
                 placeholder={t("Confirm Password")}
-                className="bg-accent text-gray-900 rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.passwordConfirm ? "true" : "false"}
                 type="password"
               />
@@ -230,6 +245,8 @@ function SignUp({ lng }) {
             />
           </form>
         </div>
+      ) : (
+        <Loader />
       )}
     </div>
   );

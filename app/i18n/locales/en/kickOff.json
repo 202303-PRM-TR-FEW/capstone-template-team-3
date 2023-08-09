@@ -17,12 +17,13 @@
   "About is invalid": "About is invalid",
   "Add media": "Add media",
   "Media is required": "Media is required",
-  "Upload campaign": "Upload campaign",
+  "Launch campaign": "Launch campaign",
   "Select categories for your campaign": "Select categories for your campaign",
   "Animals": "Animals",
   "Children": "Children",
   "Culture": "Culture",
   "Education": "Education",
   "No category found...": "No category found...",
-  "Category is required": "Category is required"
+  "Category is required": "Category is required",
+  "Campaign launched successfully.": "Campaign launched successfully."
 }

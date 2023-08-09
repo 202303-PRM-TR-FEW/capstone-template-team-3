@@ -8,5 +8,11 @@
   "days left": "days left",
   "Campaign is over": "Campaign is over",
   "Edit": "Edit",
-  "Cancel": "Cancel"
+  "Cancel": "Cancel",
+  "Categories": "Categories",
+  "Campaigns": "Campaigns",
+  "Kicked-Off": "Kicked-Off",
+  "Supported": "Supported",
+  "Kicked-Off These Campaigns": "'s Campaigns",
+  "Campaign updated successfully.":"Campaign updated successfully."
 }

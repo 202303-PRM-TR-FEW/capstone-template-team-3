@@ -1,3 +1,20 @@
 {
-    "languageSwitcher": "Switch from <1>{{lng}}</1> to: "
-  }
+  "languageSwitcher": "Switch to: ",
+  "Contact us": "Contact us",
+  "About": "About",
+  "Company": "Company",
+  "Careers": "Careers",
+  "Support": "Support",
+  "Contact Support": "Contact Support",
+  "Help Resources": "Help Resources",
+  "Release Updates": "Release Updates",
+  "Platform": "Platform",
+  "Terms & Privacy": "Terms & Privacy",
+  "FAQ": "FAQ",
+  "Fees": "Fees",
+  "Explore": "Explore",
+  "What We Do": "What We Do",
+  "How Givingly Works": "How Givingly Works",
+  "Funding":"Funding",
+  "All rights reserved": "All rights reserved"
+}
