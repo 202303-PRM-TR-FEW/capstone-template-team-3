@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "@/app/lib/features/campaignEditSlice";
 import { useTranslation } from "../../../i18n/client";
 import Select from "react-select";
+import { toast } from "react-toastify";
 
 const CampaignEditModal = ({ lng, campaignId }) => {
   const [user, loading] = useAuthState(auth);
@@ -59,6 +60,8 @@ const CampaignEditModal = ({ lng, campaignId }) => {
     { label: t("Children"), value: t("Children") },
   ];
 
+  console.log(lng);
+
   const onSubmit = async (data) => {
     const { projectName, about, file, category } = data;
     const userId = user.uid;
@@ -73,6 +76,9 @@ const CampaignEditModal = ({ lng, campaignId }) => {
       })
     );
     await dispatch(closeModal());
+    toast.success(t("Campaign updated successfully."), {
+      toastId: "edit-succeeded",
+    });
   };
 
   const handleFileChange = (event) => {

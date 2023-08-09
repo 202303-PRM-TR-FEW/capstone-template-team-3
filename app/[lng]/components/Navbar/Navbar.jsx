@@ -17,6 +17,7 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useTranslation } from "../../../i18n/client";
 import { openModal, closeModal } from "@/app/lib/features/kickOffModalSlice";
+import { toast } from "react-toastify"
 
 const Navbar = ({ lng }) => {
   const [user, loading] = useAuthState(auth);
@@ -43,6 +44,9 @@ const Navbar = ({ lng }) => {
     await dispatch(userSignOut());
     await dispatch(returnToInitialState());
     router.push(`/${lng}`);
+    toast.success(t("Signed out successfully."), {
+      toastId: "sign-out-succeeded"
+    })
   };
 
   const handleModalToggle = () => {

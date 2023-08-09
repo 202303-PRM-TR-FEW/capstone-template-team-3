@@ -24,6 +24,7 @@ const MyCampaigns = ({ params }) => {
   const modalIsOpen = useSelector((state) => state.kickOffModal.isOpen);
   const userCampaigns = useSelector((state) => state.campaign.userCampaigns);
   const userDonations = useSelector((state) => state.campaign.userDonations);
+  const campaignStatus = useSelector((state) => state.campaign.status)
 
   const getUserCampaigns = async () => {
     const userId = user.uid;
@@ -94,10 +95,10 @@ const MyCampaigns = ({ params }) => {
               );
             })}
         </div>
-      </main>
+      </main>      
       ) : (<Loader />)
     )
-  );
+  )
 };
 
 export default MyCampaigns;

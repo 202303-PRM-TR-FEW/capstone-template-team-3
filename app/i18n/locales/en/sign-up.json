@@ -18,5 +18,7 @@
   "Already a member?": "Already a member?",
   "Sign In": "Sign In",
   "Sign Up": "Sign Up",
-  "Password is invalid": "Password is invalid"
+  "Password is invalid": "Password is invalid",
+  "Signed up successfully.": "Signed up successfully.",
+  "Email already associated with another account.": "Email already associated with another account."
 }
