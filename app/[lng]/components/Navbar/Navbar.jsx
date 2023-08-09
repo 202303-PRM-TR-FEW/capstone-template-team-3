@@ -1,20 +1,22 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useRouter } from 'next/navigation';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { HiSearchCircle } from 'react-icons/hi';
-import { auth } from 'app/firebase/firebase.jsx';
-import { userSignOut, returnToInitialState } from '@/app/lib/features/userSlice';
-import { openModal } from '@/app/lib/features/kickOffModalSlice';
-import { getAllCampaigns } from '@/app/lib/features/campaignSlice';
-import Logo from '../Logo/Logo';
-import Search from '../Search/Search';
-import NavLink from '../NavLink/NavLink';
-import Button from '../Button/Button';
-import './Navbar.css';
-import { useTranslation } from '../../../i18n/client';
+import { useState } from "react";
+import Logo from "../Logo/Logo";
+import Search from "../Search/Search";
+import NavLink from "../NavLink/NavLink";
+import Button from "../Button/Button";
+import "./Navbar.css";
+import { HiSearchCircle } from "react-icons/hi";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { auth } from "app/firebase/firebase.jsx";
+import {
+  userSignOut,
+  returnToInitialState,
+} from "@/app/lib/features/userSlice";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useTranslation } from "../../../i18n/client";
+import { openModal, closeModal } from "@/app/lib/features/kickOffModalSlice";
 
 const Navbar = ({ lng }) => {
   const [user] = useAuthState(auth);
@@ -43,6 +45,9 @@ const Navbar = ({ lng }) => {
     await dispatch(userSignOut());
     await dispatch(returnToInitialState());
     router.push(`/${lng}`);
+    toast.success(t("Signed out successfully."), {
+      toastId: "sign-out-succeeded"
+    })
   };
 
   const handleModalToggle = () => {

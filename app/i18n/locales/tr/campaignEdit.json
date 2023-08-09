@@ -1,0 +1,23 @@
+{
+  "Edit": "Kampanyayı",
+  "your campaign": "düzenle",
+  "Name of your campaign": "Kampanyanı isimlendir",
+  "Campaign name is required": "Kampanya ismi gereklidir.",
+  "Campaign name is invalid": "Geçersiz kampanya ismi",
+  "About your campaign": "Kampanya hakkında",
+  "So many cats, so little homes. We want to provide home and care to them all. Help us build a dream shelter for all cats in our town.": "Çok kedi, az barınak! Tüm kedilere barınak ve bakım sağlamak istiyoruz. Kasabamızdaki tüm kediler için rüya gibi bir barınak kurmamıza yardım edin.",
+  "About is required": "Kampanya açıklaması gereklidir",
+  "About is invalid": "Geçersiz kampanya açıklaması",
+  "Add media": "Fotoğraf ekle",
+  "Media is required": "Fotoğraf gereklidir",
+  "File ready to be uploaded": "Yüklemeye hazır.",
+  "Upload campaign": "Kaydet",
+  "Select categories for your campaign": "Kampanyanın kategorisini belirle",
+  "Animals": "Hayvanlar",
+  "Children": "Çocuklar",
+  "Culture": "Kültür",
+  "Education": "Eğitim",
+  "No category found...": "Kategori bulunamadı...",
+  "Category is required": "Kategori gereklidir",
+  "Campaign updated successfully.": "Kampanya başarıyla güncellendi."
+}

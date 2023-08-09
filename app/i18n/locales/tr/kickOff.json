@@ -17,12 +17,13 @@
   "About is invalid": "Geçersiz kampanya açıklaması",
   "Add media": "Fotoğrafı ekle",
   "Media is required": "Fotoğraf gereklidir",
-  "Upload campaign": "Kampanyayı başlat",
+  "Launch campaign": "Kampanyayı başlat",
   "Select categories for your campaign": "Kampanyanın kategorisini belirle",
   "Animals": "Hayvanlar",
   "Children": "Çocuklar",
   "Culture": "Kültür",
   "Education": "Eğitim",
   "No category found...": "Kategori bulunamadı...",
-  "Category is required": "Kategori gereklidir"
+  "Category is required": "Kategori gereklidir",
+  "Campaign launched successfully.": "Kampanya başarıyla başlatıldı."
 }
