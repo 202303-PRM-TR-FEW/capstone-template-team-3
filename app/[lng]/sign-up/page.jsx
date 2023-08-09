@@ -31,12 +31,12 @@ function SignUp({ lng }) {
   useEffect(() => {
     user &&
       currentUserStatus === "succeeded" &&
-      toast.success("Signed up succesfully.", {
+      toast.success(t("Signed up successfully."), {
         toastId: "sign-up-succeeded",
       });
     error &&
       error === "Firebase: Error (auth/email-already-in-use)." &&
-      toast.error("Email already associated with another account.", {
+      toast.error(t("Email already associated with another account."), {
         toastId: "email-already-in-use",
       });
   }, [currentUserStatus, error]);

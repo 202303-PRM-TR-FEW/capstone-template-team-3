@@ -37,30 +37,30 @@ function SignIn({ params }) {
   useEffect(() => {
     user &&
       currentUserStatus === "succeeded" &&
-      toast.success("Signed in succesfully.", {
+      toast.success(t("Signed in successfully."), {
         toastId: "sign-in-succeeded",
       });
     error &&
       error ===
         "Firebase: Error (auth/account-exists-with-different-credential)." &&
-      toast.error("Account exists with different credentials.", {
+      toast.error(t("Account exists with different credentials."), {
         toastId: "account-exists-with-different-credential",
       });
     error &&
       error === "Firebase: Error (auth/user-not-found)." &&
-      toast.error("Account not found.", {
+      toast.error(t("Account not found."), {
         toastId: "user-not-found",
       });
     error &&
       error === "Firebase: Error (auth/wrong-password)." &&
-      toast.error("Password is wrong.", {
+      toast.error(t("Password is wrong."), {
         toastId: "wrong-password",
       });
     error &&
       error ===
         "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)." &&
       toast.error(
-        "Account has been temporarily disabled due to many failed login attempts. Please try again later.",
+        t("Account has been temporarily disabled due to many failed login attempts. Please try again later."),
         {
           toastId: "too-many-requests",
         }

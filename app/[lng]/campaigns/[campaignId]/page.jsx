@@ -88,7 +88,7 @@ export default function CampaignPage({ params }) {
     // main container
     <>
       {modalIsOpen && <PaymentModal campaignId={campaignId} />}
-      {editModalIsOpen && <CampaignEditModal campaignId={campaignId} />}
+      {editModalIsOpen && <CampaignEditModal campaignId={campaignId} lng={lng} />}
       {deleteModalIsOpen && (
         <DeleteModal
           campaignId={campaignId}

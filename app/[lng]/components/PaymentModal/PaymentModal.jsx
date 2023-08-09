@@ -53,7 +53,7 @@ const PaymentModal = ({ campaignId, lng }) => {
     await dispatch(getCurrentCampaign(campaignId));
     await dispatch(closeModal());
     await router.push("/thank-you");
-    toast.success("Payment succesfull.", {
+    toast.success(t("Payment successfull."), {
       toastId: "payment-succeeded"
     })
   };
