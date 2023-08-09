@@ -1,31 +1,31 @@
 "use client";
 
-import { useState } from "react";
-import Logo from "../Logo/Logo";
-import Search from "../Search/Search";
-import NavLink from "../NavLink/NavLink";
-import Button from "../Button/Button";
-import "./Navbar.css";
-import { HiSearchCircle } from "react-icons/hi";
-import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { auth } from "app/firebase/firebase.jsx";
-import {
-  userSignOut,
-  returnToInitialState,
-} from "@/app/lib/features/userSlice";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useTranslation } from "../../../i18n/client";
-import { openModal, closeModal } from "@/app/lib/features/kickOffModalSlice";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { HiSearchCircle } from 'react-icons/hi';
+import { auth } from 'app/firebase/firebase.jsx';
+import { userSignOut, returnToInitialState } from '@/app/lib/features/userSlice';
+import { openModal } from '@/app/lib/features/kickOffModalSlice';
+import { getAllCampaigns } from '@/app/lib/features/campaignSlice';
+import Logo from '../Logo/Logo';
+import Search from '../Search/Search';
+import NavLink from '../NavLink/NavLink';
+import Button from '../Button/Button';
+import './Navbar.css';
+import { useTranslation } from '../../../i18n/client';
 
 const Navbar = ({ lng }) => {
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
-  const [isHidden, setIsHidden] = useState("xl:hidden");
+  const [isHidden, setIsHidden] = useState('xl:hidden');
   const router = useRouter();
   const dispatch = useDispatch();
-  const { t } = useTranslation(lng, "navbar");
+  const allCampaigns = useSelector((state) => state.campaign.allCampaigns);
+  const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useTranslation(lng, 'navbar');
 
   const handleToggleDropdown = () => {
     setToggleDropdown((prevState) => !prevState);
@@ -50,28 +50,52 @@ const Navbar = ({ lng }) => {
     dispatch(openModal());
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  const handleSuggestionClick = (campaignId) => {
+    router.push(`/${lng}/campaigns/${campaignId}`);
+  };
+
+  const suggestionCampaigns = allCampaigns.filter((campaign) => {
+    return campaign.data.projectName.toLowerCase().startsWith(searchQuery.toLowerCase());
+  });
+
+  useEffect(() => {
+    dispatch(getAllCampaigns());
+  }, []);
+
   return (
-    <div className="bg-theme">
-      <nav className="container mx-auto flex flex-row justify-between items-center py-5 px-5 whitespace-nowrap">
-        <div className="flex justify-between items-center">
-          <Logo lng={lng} />
-        </div>
-        <div className="relative">
-          <HiSearchCircle
-            className={isHidden}
-            size={40}
-            title="Search"
-            onClick={() => {
-              handleToggleSearch();
-              setToggleDropdown(false);
-            }}
-          />
-          {isHidden === "xl:hidden" && !toggleSearch ? (
-            <Search style="bg-accent text-gray-900 rounded-lg focus:ring-0 w-[20rem] p-2.5 border-0 h-11 ms-8 hidden xl:block" />
-          ) : (
-            <Search style="bg-accent text-gray-900 text-sm lg:text-[1rem] rounded-lg focus:ring-0 w-[12.4rem] lg:w-[14rem] p-2.5 border-0 h-11 -left-20 lg:-left-24 inset-y-[3.2rem] sm:inset-y-10 absolute drop-shadow-2xl" />
-          )}
-        </div>
+      <div className="bg-theme">
+        <nav className="container mx-auto flex flex-row justify-between items-center py-5 px-5 whitespace-nowrap">
+          <div className="flex justify-between items-center">
+            <Logo lng={lng} />
+          </div>
+          <div className="relative">
+            <HiSearchCircle
+              className={isHidden}
+              size={40}
+              title="Search"
+              onClick={() => {
+                handleToggleSearch();
+                setToggleDropdown(false);
+              }}
+            />
+            {isHidden === "xl:hidden" && !toggleSearch ? (
+              <Search style="bg-accent text-gray-900 rounded-lg focus:ring-0 w-[20rem] p-2.5 border-0 h-11 ms-8 hidden xl:block"
+                onSearch={handleSearch}
+                suggestions={suggestionCampaigns}
+                onSuggestionClick={handleSuggestionClick}
+              />
+            ) : (
+              <Search style="bg-accent text-gray-900 text-sm lg:text-[1rem] rounded-lg focus:ring-0 w-[12.4rem] lg:w-[14rem] p-2.5 border-0 h-11 -left-20 lg:-left-24 inset-y-[3.2rem] sm:inset-y-10 absolute drop-shadow-2xl"
+                onSearch={handleSearch}
+                suggestions={suggestionCampaigns}
+                onSuggestionClick={handleSuggestionClick}
+              />
+            )}
+          </div>
         <div className="lg:flex lg:justify-between lg:items-center hidden">
           <NavLink
             to={`/${lng}/campaigns`}
