@@ -3,8 +3,8 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { useState, useEffect } from "react";
 import { FaUpload, FaCalendarAlt } from "react-icons/fa";
-import { TiDeleteOutline } from 'react-icons/ti';
-import { BsFillSendCheckFill } from 'react-icons/bs'
+import { TiDeleteOutline } from "react-icons/ti";
+import { BsFillSendCheckFill } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "@/app/lib/features/kickOffModalSlice";
 import { useTranslation } from "../../../i18n/client";
 import Select from "react-select";
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
 
 const PaymentModal = ({ lng }) => {
   const [user, loading] = useAuthState(auth);
@@ -33,13 +33,13 @@ const PaymentModal = ({ lng }) => {
     formState: { errors },
     handleSubmit,
     control,
-    setValue
+    setValue,
   } = useForm();
   const [showCalendar, setShowCalendar] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [uploadState, setUploadState] = useState(true)
-  const [uploadedFileName, setUploadedFileName] = useState(null)
+  const [uploadState, setUploadState] = useState(true);
+  const [uploadedFileName, setUploadedFileName] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const today = new Date();
   const nextMonth = new Date(
@@ -108,9 +108,9 @@ const PaymentModal = ({ lng }) => {
     );
     await dispatch(getAllUserCampaigns(userId));
     await dispatch(closeModal());
-    toast.success("Campaign launched succesfully.", {
-      toastId: "campaign-launch-succeeded"
-    })
+    toast.success(t("Campaign launched successfully."), {
+      toastId: "campaign-launch-succeeded",
+    });
   };
 
   const handleFileChange = (event) => {
@@ -132,10 +132,10 @@ const PaymentModal = ({ lng }) => {
   };
 
   const deleteFile = () => {
-    setUploadedFileName(null)
-    setUploadState(true)
-    setValue('file', null);
-  }
+    setUploadedFileName(null);
+    setUploadState(true);
+    setValue("file", null);
+  };
 
   const handleCancel = () => {
     setShowCalendar(false);
@@ -198,7 +198,9 @@ const PaymentModal = ({ lng }) => {
                   <label className="font-mulish text-lg md:text-[18px]">
                     {t("Add your goal")}
                   </label>
-                  <span className="absolute left-1 top-[28px] text-black text-[20px] font-KronaOne">$</span>
+                  <span className="absolute left-1 top-[28px] text-black text-[20px] font-KronaOne">
+                    $
+                  </span>
                   <input
                     {...register("goal", {
                       required: true,
@@ -235,7 +237,27 @@ const PaymentModal = ({ lng }) => {
                       className="title-input text-[15px] md:text-[14px] bg-slate-50 py-0 px-2 text-black font-medium text-base leading-normal text-left uppercase input-field focus:outline-none focus:ring-0"
                       onClick={handleCalendarIconClick}
                       readOnly
-                      value={startDate && endDate ? `${startDate.getDate().toString().padStart(2, '0')}/${(startDate.getMonth() + 1).toString().padStart(2, '0')}/${startDate.getFullYear().toString().slice(-2)} - ${endDate.getDate().toString().padStart(2, '0')}/${(endDate.getMonth() + 1).toString().padStart(2, '0')}/${endDate.getFullYear().toString().slice(-2)}` : `${formatDate(today)} - ${formatDate(nextMonth)}`}
+                      value={
+                        startDate && endDate
+                          ? `${startDate
+                              .getDate()
+                              .toString()
+                              .padStart(2, "0")}/${(startDate.getMonth() + 1)
+                              .toString()
+                              .padStart(2, "0")}/${startDate
+                              .getFullYear()
+                              .toString()
+                              .slice(-2)} - ${endDate
+                              .getDate()
+                              .toString()
+                              .padStart(2, "0")}/${(endDate.getMonth() + 1)
+                              .toString()
+                              .padStart(2, "0")}/${endDate
+                              .getFullYear()
+                              .toString()
+                              .slice(-2)}`
+                          : `${formatDate(today)} - ${formatDate(nextMonth)}`
+                      }
                     />
                     {errors.calendar?.type === "required" && (
                       <p
@@ -277,7 +299,7 @@ const PaymentModal = ({ lng }) => {
                               if (date <= today) {
                                 return "past-day";
                               } else {
-                                return undefined
+                                return undefined;
                               }
                             }}
                           />
@@ -376,24 +398,51 @@ const PaymentModal = ({ lng }) => {
                   />
                   {uploadState ? (
                     <>
-                      <span className="text-black px-4 text-[18px]">{t("Add media")}</span>
-                      <span className="text-black pb-4 text-[12px]">(.jpg/.jpeg/.png)</span>
-                      <label htmlFor="file-input" className="flex justify-center">
-                        <FaUpload className="border-[1px] border-black rounded-lg p-3 cursor-pointer" size={40} />
+                      <span className="text-black px-4 text-[18px]">
+                        {t("Add media")}
+                      </span>
+                      <span className="text-black pb-4 text-[12px]">
+                        (.jpg/.jpeg/.png)
+                      </span>
+                      <label
+                        htmlFor="file-input"
+                        className="flex justify-center"
+                      >
+                        <FaUpload
+                          className="border-[1px] border-black rounded-lg p-3 cursor-pointer"
+                          size={40}
+                        />
                       </label>
-                    </>) : (
+                    </>
+                  ) : (
                     <>
                       <div className="flex gap-2 justify-center items-center">
-                        <span className="text-black text-[15px] text-center mb-1">File ready to be uploaded</span>
-                        <BsFillSendCheckFill title={uploadedFileName} size={26} className='mb-2' />
+                        <span className="text-black text-[15px] text-center mb-1">
+                          File ready to be uploaded
+                        </span>
+                        <BsFillSendCheckFill
+                          title={uploadedFileName}
+                          size={26}
+                          className="mb-2"
+                        />
                       </div>
-                      {previewImage && <img src={previewImage} alt="Preview" className="h-1/2 w-1/2 mb-1" title={uploadedFileName} />}
+                      {previewImage && (
+                        <img
+                          src={previewImage}
+                          alt="Preview"
+                          className="h-1/2 w-1/2 mb-1"
+                          title={uploadedFileName}
+                        />
+                      )}
                       <div className="flex gap-2 justify-center items-center">
-                        <span className="text-[15px] ">{uploadedFileName.substring(0, 8).split('.')[0] + uploadedFileName.slice(-4)}</span>
+                        <span className="text-[15px] ">
+                          {uploadedFileName.substring(0, 8).split(".")[0] +
+                            uploadedFileName.slice(-4)}
+                        </span>
                         <TiDeleteOutline onClick={deleteFile} size={30} />
                       </div>
-                    </>)
-                  }
+                    </>
+                  )}
                   {errors.file?.type === "required" && (
                     <p
                       role="alert"

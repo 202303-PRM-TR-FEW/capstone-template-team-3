@@ -44,7 +44,7 @@ const Navbar = ({ lng }) => {
     await dispatch(userSignOut());
     await dispatch(returnToInitialState());
     router.push(`/${lng}`);
-    toast.success("Signed out succesfully.", {
+    toast.success(t("Signed out successfully."), {
       toastId: "sign-out-succeeded"
     })
   };

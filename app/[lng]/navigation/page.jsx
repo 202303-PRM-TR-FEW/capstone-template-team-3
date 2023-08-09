@@ -40,7 +40,7 @@ export default function Navigation({ lng }) {
       const userId = user.uid
       await dispatch(userJoinNewsletter(userId))
       await dispatch(getUserData(userId))
-      toast.success("Joined newsletter succesfully.", {
+      toast.success(t("Joined newsletter successfully."), {
         toastId: "navigation-newsletter-join-succeeded"
       })
     } else {

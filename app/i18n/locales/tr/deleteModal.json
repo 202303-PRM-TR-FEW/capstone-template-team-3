@@ -1,5 +1,6 @@
 {
   "Are you sure you want to cancel and delete this campaign?": "Kampanyayı iptal edip silmek istediğinizden emin misiniz?",
   "Yes, cancel and delete the campaign": "Evet, kampanyayı iptal et ve sil",
-  "No, back to the campaign": "Hayır, kampanyaya geri dön"
+  "No, back to the campaign": "Hayır, kampanyaya geri dön",
+  "Campaign deleted successfully.": "Kampanya başarıyla silindi."
 }
