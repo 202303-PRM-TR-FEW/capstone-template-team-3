@@ -1,7 +1,6 @@
 .card-main {
   @apply w-72 h-96 my-5 mx-5 sm:w-80 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between;
 }
-/*w-[19rem] ml-[2rem]*/
 
 .card-img-section {
   @apply m-5 p-3 rounded-lg h-[9.3em] w-[14em] sm:w-[16em] mx-auto overflow-visible bg-[#e6e6e6];
