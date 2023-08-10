@@ -9,7 +9,7 @@ const LargeCard = ({ img, title, about, raised, goal, lng, clickAction }) => {
   return (
     <main onClick={clickAction}>
       <div>
-        <p className="project-description">
+        <p className="project-description lg:flex justify-center">
           <span className="project-text">{t("Campaign of the week")}</span>
         </p>
       </div>
@@ -26,7 +26,7 @@ const LargeCard = ({ img, title, about, raised, goal, lng, clickAction }) => {
           </div>
         </div>
         <div className="column">
-          <div className="project-title">
+          <div className="project-title w-full font-krona text-[27px] mt-8 px-8">
             <h1>
               {title}
             </h1>
@@ -38,7 +38,7 @@ const LargeCard = ({ img, title, about, raised, goal, lng, clickAction }) => {
           </div>
           <div>
             <div
-              className="custom-container"
+              className="custom-container w-full top-572 md:top-0 lg:top-100 px-6"
               data-dom-node="true"
               mode="PROTOTYPE/MODES/MODE_PLAY"
             >

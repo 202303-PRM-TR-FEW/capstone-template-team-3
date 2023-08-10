@@ -22,7 +22,7 @@ const CategoryFilter = ({ lng }) => {
   ];
 
   return (
-    <div className="flex ">
+    <div className="categories flex flex-wrap ">
       {categories.map((category) => (
         <Link
           key={category.name}
