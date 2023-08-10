@@ -86,6 +86,7 @@ function SignUp({ lng }) {
                 className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.name ? "true" : "false"}
                 type="text"
+                data-cy="name-input"
               />
               {errors.name?.type === "required" && (
                 <p
@@ -115,6 +116,7 @@ function SignUp({ lng }) {
                 className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.email ? "true" : "false"}
                 type="text"
+                data-cy="email-input"
               />
               {errors.email?.type === "required" && (
                 <p
@@ -145,6 +147,7 @@ function SignUp({ lng }) {
                 className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.password ? "true" : "false"}
                 type="password"
+                data-cy="password-input"
               />
               {errors.password?.type === "required" && (
                 <p
@@ -188,6 +191,7 @@ function SignUp({ lng }) {
                 className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
                 aria-invalid={errors.passwordConfirm ? "true" : "false"}
                 type="password"
+                data-cy="passwordConfirm-input"
               />
               {errors.passwordConfirm?.type === "required" && (
                 <p
