@@ -28,8 +28,8 @@ export const FooterBase = ({ t, lng, pathname }) => {
         }}
       ></section>
       <div className="bg-theme">
-        <footer className="footer-main">
-          <div className="footer-submain">
+        <footer className="footer-main ">
+          <div className="footer-submain flex-row">
             <div className="logo-main">
               <Logo lng={lng} style="logo" />
               <li className="contact">{t("Contact us!")}</li>
@@ -107,36 +107,24 @@ export const FooterBase = ({ t, lng, pathname }) => {
                 </div>
               </div>
               <div className="platform-section">
-                <h2 className="platform">
-                  Platform
-                </h2>
+                <h2 className="platform">Platform</h2>
                 <div className="mb-10 list-none">
                   <li className="mt-3">
-                    <a className="terms-privacy">
-                      {t("Terms & Privacy")}
-                    </a>
+                    <a className="terms-privacy">{t("Terms & Privacy")}</a>
                   </li>
                   <li className="mt-3">
-                    <a className="FAQ">
-                      {t("FAQ")}
-                    </a>
+                    <a className="FAQ">{t("FAQ")}</a>
                   </li>
                   <li className="mt-3">
-                    <a className="fees">
-                      {t("Fees")}
-                    </a>
+                    <a className="fees">{t("Fees")}</a>
                   </li>
                 </div>
               </div>
               <div className="explore-section">
-                <h2 className="explore">
-                  {t("Explore")}
-                </h2>
+                <h2 className="explore">{t("Explore")}</h2>
                 <div className="mb-10 list-none">
                   <li className="mt-3">
-                    <a className="what-we-do">
-                      {t("What We Do")}
-                    </a>
+                    <a className="what-we-do">{t("What We Do")}</a>
                   </li>
                   <li className="mt-3">
                     <a className="how-givingly-works">
@@ -144,9 +132,7 @@ export const FooterBase = ({ t, lng, pathname }) => {
                     </a>
                   </li>
                   <li className="mt-3">
-                    <a className="funding">
-                      {t("Funding")}
-                    </a>
+                    <a className="funding">{t("Funding")}</a>
                   </li>
                 </div>
               </div>
@@ -154,9 +140,7 @@ export const FooterBase = ({ t, lng, pathname }) => {
           </div>
           <div className="bg-theme">
             <div className="rights-section">
-              <p className="rights">
-                © 2023 {t("All rights reserved")}
-              </p>
+              <p className="rights">© 2023 {t("All rights reserved")}</p>
             </div>
           </div>
         </footer>
