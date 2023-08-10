@@ -18,6 +18,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useTranslation } from "../../../i18n/client";
 import { openModal, closeModal } from "@/app/lib/features/kickOffModalSlice";
 import { toast } from "react-toastify"
+import { usePathname } from 'next/navigation'
 
 const Navbar = ({ lng }) => {
   const [user, loading] = useAuthState(auth);
@@ -26,6 +27,7 @@ const Navbar = ({ lng }) => {
   const [isHidden, setIsHidden] = useState("xl:hidden");
   const router = useRouter();
   const dispatch = useDispatch();
+  const pathname = usePathname()
   const { t } = useTranslation(lng, "navbar");
 
   const handleToggleDropdown = () => {
@@ -80,19 +82,19 @@ const Navbar = ({ lng }) => {
           <NavLink
             to={`/${lng}/campaigns`}
             name={t("Home")}
-            style="lg:ms-0 xl:ms-8"
+            style={pathname === `/${lng}/campaigns` ? "underline underline-offset-8 decoration-4 lg:ms-0 xl:ms-8" : "lg:ms-0 xl:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
           />
           {user && (
             <>
               <NavLink
                 to={`/${lng}/my-campaigns`}
                 name={t("My Campaigns")}
-                style="lg:ms-8"
+                style={pathname === `/${lng}/my-campaigns` ? "underline underline-offset-8 decoration-4 lg:ms-0 xl:ms-8" : "lg:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
               />
               <NavLink
                 to={`/${lng}/profile`}
                 name={t("Profile")}
-                style="lg:ms-8"
+                style={pathname === `/${lng}/profile` ? "underline underline-offset-8 decoration-4 lg:ms-0 xl:ms-8" : "lg:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
               />
               <Button
                 type="button"
@@ -132,15 +134,15 @@ const Navbar = ({ lng }) => {
           </Button>
           {toggleDropdown && (
             <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl">
-              <NavLink to="/campaigns" name={t("Home")} style="mb-2" />
+              <NavLink to="/campaigns" name={t("Home")} style={pathname === `/${lng}/campaigns` ? "underline underline-offset-[6px] decoration-2 mb-2" : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"} />
               {user && (
                 <>
                   <NavLink
                     to={`/${lng}/my-campaigns`}
                     name={t("My Campaigns")}
-                    style="mb-2"
+                    style={pathname === `/${lng}/my-campaigns` ? "underline underline-offset-[6px] decoration-2 mb-2" : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
                   />
-                  <NavLink to="/profile" name={t("Profile")} style="mb-2" />
+                  <NavLink to={`/${lng}/profile`} name={t("Profile")} style={pathname === `/${lng}/profile` ? "underline underline-offset-[6px] decoration-2 mb-2" : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"} />
                   <Button
                     type="button"
                     name={t("New Campaign")}
