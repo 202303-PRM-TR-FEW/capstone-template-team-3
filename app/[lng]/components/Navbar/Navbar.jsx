@@ -1,33 +1,36 @@
 "use client";
 
-import { useState } from "react";
-import Logo from "../Logo/Logo";
-import Search from "../Search/Search";
-import NavLink from "../NavLink/NavLink";
-import Button from "../Button/Button";
+import { useState, useEffect } from 'react';
+import Logo from '../Logo/Logo';
+import Search from '../Search/Search';
+import NavLink from '../NavLink/NavLink';
+import Button from '../Button/Button';
 import "./Navbar.css";
-import { HiSearchCircle } from "react-icons/hi";
-import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { auth } from "app/firebase/firebase.jsx";
+import { HiSearchCircle } from 'react-icons/hi';
+import { useDispatch, useSelector } from 'react-redux';
+import { auth } from 'app/firebase/firebase.jsx';
 import {
   userSignOut,
   returnToInitialState,
-} from "@/app/lib/features/userSlice";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useTranslation } from "../../../i18n/client";
-import { openModal, closeModal } from "@/app/lib/features/kickOffModalSlice";
+} from '@/app/lib/features/userSlice';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useTranslation } from '../../../i18n/client';
+import { useRouter } from 'next/navigation';
+import { openModal } from '@/app/lib/features/kickOffModalSlice';
+import { getAllCampaigns } from '@/app/lib/features/campaignSlice';
+import { usePathname } from 'next/navigation'
 
 const Navbar = ({ lng }) => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
-  const [isHidden, setIsHidden] = useState('xl:hidden');
+  const [isHidden, setIsHidden] = useState("xl:hidden");
   const router = useRouter();
   const dispatch = useDispatch();
   const allCampaigns = useSelector((state) => state.campaign.allCampaigns);
   const [searchQuery, setSearchQuery] = useState('');
   const { t } = useTranslation(lng, 'navbar');
+  const pathname = usePathname()
 
   const handleToggleDropdown = () => {
     setToggleDropdown((prevState) => !prevState);
@@ -72,52 +75,53 @@ const Navbar = ({ lng }) => {
   }, []);
 
   return (
-      <div className="bg-theme">
-        <nav className="container mx-auto flex flex-row justify-between items-center py-5 px-5 whitespace-nowrap">
-          <div className="flex justify-between items-center">
-            <Logo lng={lng} />
-          </div>
-          <div className="relative">
-            <HiSearchCircle
-              className={isHidden}
-              size={40}
-              title="Search"
-              onClick={() => {
-                handleToggleSearch();
-                setToggleDropdown(false);
-              }}
+    <div className="bg-theme">
+      <nav className="container mx-auto flex flex-row justify-between items-center py-5 px-5 whitespace-nowrap">
+        <div className="flex justify-between items-center">
+          <Logo lng={lng} />
+        </div>
+        <div className="relative">
+          <HiSearchCircle
+            className={isHidden}
+            size={40}
+            title="Search"
+            onClick={() => {
+              handleToggleSearch();
+              setToggleDropdown(false);
+            }}
+          />
+          {isHidden === "xl:hidden" && !toggleSearch ? (
+            <Search
+              style="bg-accent text-gray-900 rounded-lg focus:ring-0 w-[20rem] p-2.5 border-0 h-11 ms-8 hidden xl:block" onSearch={handleSearch}
+              suggestions={suggestionCampaigns}
+              onSuggestionClick={handleSuggestionClick}
             />
-            {isHidden === "xl:hidden" && !toggleSearch ? (
-              <Search style="bg-accent text-gray-900 rounded-lg focus:ring-0 w-[20rem] p-2.5 border-0 h-11 ms-8 hidden xl:block"
-                onSearch={handleSearch}
-                suggestions={suggestionCampaigns}
-                onSuggestionClick={handleSuggestionClick}
-              />
-            ) : (
-              <Search style="bg-accent text-gray-900 text-sm lg:text-[1rem] rounded-lg focus:ring-0 w-[12.4rem] lg:w-[14rem] p-2.5 border-0 h-11 -left-20 lg:-left-24 inset-y-[3.2rem] sm:inset-y-10 absolute drop-shadow-2xl"
-                onSearch={handleSearch}
-                suggestions={suggestionCampaigns}
-                onSuggestionClick={handleSuggestionClick}
-              />
-            )}
-          </div>
+          ) : (
+            <Search
+              style="bg-accent text-gray-900 text-sm lg:text-[1rem] rounded-lg focus:ring-0 w-[12.4rem] lg:w-[14rem] p-2.5 border-0 h-11 -left-20 lg:-left-24 inset-y-[3.2rem] sm:inset-y-10 absolute drop-shadow-2xl"
+              onSearch={handleSearch}
+              suggestions={suggestionCampaigns}
+              onSuggestionClick={handleSuggestionClick}
+            />
+          )}
+        </div>
         <div className="lg:flex lg:justify-between lg:items-center hidden">
           <NavLink
             to={`/${lng}/campaigns`}
             name={t("Home")}
-            style="lg:ms-0 xl:ms-8"
+            style={pathname === `/${lng}/campaigns` ? "underline underline-offset-8 decoration-4 lg:ms-0 xl:ms-8" : "lg:ms-0 xl:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
           />
           {user && (
             <>
               <NavLink
                 to={`/${lng}/my-campaigns`}
                 name={t("My Campaigns")}
-                style="lg:ms-8"
+                style={pathname === `/${lng}/my-campaigns` ? "underline underline-offset-8 decoration-4 lg:ms-0 xl:ms-8" : "lg:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
               />
               <NavLink
                 to={`/${lng}/profile`}
                 name={t("Profile")}
-                style="lg:ms-8"
+                style={pathname === `/${lng}/profile` ? "underline underline-offset-8 decoration-4 lg:ms-0 xl:ms-8" : "lg:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
               />
               <Button
                 type="button"
