@@ -1,94 +1,43 @@
+.large-card-main {
+  @apply container mx-auto w-11/12
+}
 
 .project-description {
-  width: auto;
-  height: 80px;
-  flex-grow: 1;
-  margin: 1.5rem;
-  overflow: hidden;
-  font-size: 48px;
-  text-transform: none;
-  text-align: left;
-  letter-spacing: -4px;
-  line-height: 80px;
-  white-space: pre-line;
-  opacity: 1;
-  visibility: visible;
+  @apply my-6 mx-5 text-xl text-center md:text-left;
 }
 
 .project-text {
-  color: #0a0a0a;
+  @apply text-accent-black;
 }
 
 .row {
-  display: flex;
-  align-items: stretch;
-  margin: 1rem;
+  @apply flex flex-col lg:flex-row m-4;
 }
 
 .column {
-  flex: 1;
-  margin: 5px;
-  position: relative;
+  @apply m-[5px] relative flex-1;
 }
 
 .card-img-section {
-  @apply m-5 p-3 rounded-lg h-[20em] w-[32em] mx-auto overflow-visible bg-[#e6e6e6];
-}
-
-.image-container-style {
-  position: absolute;
-  top: -20px;
-  left: 0;
-  z-index: 5;
-  width: 100%;
-  height: 100%;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 8px;
-  border: 0px;
+  @apply m-5 p-3 rounded-lg mx-auto overflow-visible;
 }
 
 .project-title {
-  font-family: "Krona One";
-  font-size: 27px;
-  margin: 1.8rem;
+  @apply text-center md:text-left text-[27px] mt-8 px-8;
 }
 
-.project-descripe{
-  font-family: 'Krona One', sans-serif;
-  font-size: 16px;
-  color:rgb(201, 201, 201);
-  margin: 1.8rem;
+.project-describe {
+  @apply text-left text-base text-[#c9c9c9] m-[1.8rem];
 }
 
 .custom-container {
-  top: 572px;
-  left: 808px;
-  width: 500px;
-  height: 12px;
-  z-index: 109;
-  margin: 1.8rem;
+  @apply px-6;
 }
 
-.custom-background {
-  width: 535px;
-  height: 12px;
-  opacity: 1;
-  background-color: rgb(233, 233, 233);
-  border-radius: 4px;
-}
 .donation-info {
-  display: flex;
-  justify-content: space-between;
-  margin: 1.8rem;
+  @apply flex justify-between m-[1.8rem];
 }
 
-.donation-amount {
-  display: flex;
-  flex-direction: column;
-}
-.donation-tag{
-  font-size: 14px;
-  margin-bottom: 0.3rem;
+.donation-tag {
+  @apply text-sm mb-[0.3rem];
 }

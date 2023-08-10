@@ -1,5 +1,5 @@
 .card-main {
-  @apply w-72 h-96 my-5 mx-5 sm:w-80 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between;
+  @apply w-72 h-96 my-5 sm:w-80 bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between;
 }
 
 .card-img-section {
@@ -20,14 +20,6 @@
 
 .card-progress-bar-main {
   @apply flex items-center mt-2.5 mb-5;
-}
-
-.card-progress-bar {
-  @apply w-full bg-gray-200 rounded-full h-2.5;
-}
-
-.progress-bar {
-  @apply bg-[#d4ee26] h-2.5 rounded-full w-3/5;
 }
 
 .card-money-section {

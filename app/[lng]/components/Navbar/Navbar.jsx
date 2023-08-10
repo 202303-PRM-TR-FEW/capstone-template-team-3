@@ -12,11 +12,12 @@ import { auth } from 'app/firebase/firebase.jsx';
 import {
   userSignOut,
   returnToInitialState,
-} from '@/app/lib/features/userSlice';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useTranslation } from '../../../i18n/client';
+} from "@/app/lib/features/userSlice";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useTranslation } from "../../../i18n/client";
+import { openModal, closeModal } from "@/app/lib/features/kickOffModalSlice";
+import { toast } from "react-toastify"
 import { useRouter } from 'next/navigation';
-import { openModal } from '@/app/lib/features/kickOffModalSlice';
 import { getAllCampaigns } from '@/app/lib/features/campaignSlice';
 import { usePathname } from 'next/navigation'
 
@@ -116,17 +117,17 @@ const Navbar = ({ lng }) => {
               <NavLink
                 to={`/${lng}/my-campaigns`}
                 name={t("My Campaigns")}
-                style={pathname === `/${lng}/my-campaigns` ? "underline underline-offset-8 decoration-4 lg:ms-0 xl:ms-8" : "lg:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
+                style={pathname === `/${lng}/my-campaigns` ? "underline underline-offset-8 decoration-4 lg:ms-4 2xl:ms-8" : "lg:ms-4 2xl:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
               />
               <NavLink
                 to={`/${lng}/profile`}
                 name={t("Profile")}
-                style={pathname === `/${lng}/profile` ? "underline underline-offset-8 decoration-4 lg:ms-0 xl:ms-8" : "lg:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
+                style={pathname === `/${lng}/profile` ? "underline underline-offset-8 decoration-4 lg:ms-4 2xl:ms-8" : "lg:ms-4 2xl:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
               />
               <Button
                 type="button"
                 name={t("New Campaign")}
-                style="lg:ms-8 navbar-button"
+                style="lg:ms-4 2xl:ms-8 navbar-button"
                 clickAction={handleModalToggle}
               />
             </>
@@ -134,7 +135,7 @@ const Navbar = ({ lng }) => {
           <Button
             type="button"
             name={user ? t("Sign out") : t("Sign in")}
-            style="ms-5 navbar-button"
+            style="ms-4 navbar-button"
             clickAction={!user ? () => handleLogin() : () => handleLogout()}
           />
         </div>
@@ -160,16 +161,16 @@ const Navbar = ({ lng }) => {
             </div>
           </Button>
           {toggleDropdown && (
-            <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl">
-              <NavLink to="/campaigns" name={t("Home")} style="mb-2" />
+            <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl z-10">
+              <NavLink to="/campaigns" name={t("Home")} style={pathname === `/${lng}/campaigns` ? "underline underline-offset-[6px] decoration-2 mb-2" : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"} />
               {user && (
                 <>
                   <NavLink
                     to={`/${lng}/my-campaigns`}
                     name={t("My Campaigns")}
-                    style="mb-2"
+                    style={pathname === `/${lng}/my-campaigns` ? "underline underline-offset-[6px] decoration-2 mb-2" : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
                   />
-                  <NavLink to="/profile" name={t("Profile")} style="mb-2" />
+                  <NavLink to={`/${lng}/profile`} name={t("Profile")} style={pathname === `/${lng}/profile` ? "underline underline-offset-[6px] decoration-2 mb-2" : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"} />
                   <Button
                     type="button"
                     name={t("New Campaign")}

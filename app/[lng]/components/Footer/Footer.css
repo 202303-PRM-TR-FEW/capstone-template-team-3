@@ -2,35 +2,146 @@
 @tailwind components;
 @tailwind utilities;
 
-
-@media screen and (max-width: 768px) {
-    #givingly{
-        display: flex;
-        flex-direction: column;
-    }
-    .container{
-        display: flex;
-        align-items: center;
-        flex-direction: column
-    }
+.footer-main {
+  @apply container mx-auto w-full justify-center items-center;
 }
 
-@media screen and (min-width: 768px) and (max-width: 987px) {
-    #givingly-cont{
-        @apply w-full;
-    }
+.footer-submain {
+  @apply container flex flex-col flex-wrap w-full sm:items-center lg:items-start md:flex-row text-center justify-center px-1;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1440px) {
-    #givingly{
-        align-content: center;
-    }
+.logo-main {
+  @apply w-64 mt-5 mb-5 md:mx-0 sm:items-center list-none;
 }
 
-li.mt-3{
-    @apply text-gray-900 text-sm;
+.logo {
+  @apply text-accent-black mb-3;
+}
+
+.contact {
+  @apply mt-3 text-accent-black text-[14px];
+}
+
+.social-links {
+  @apply inline-flex justify-center mt-2 sm:ml-auto sm:mt-0 sm:justify-start;
+}
+
+.facebook {
+  @apply text-accent-black cursor-pointer hover:text-[#050708]/50;
+}
+
+.twitter {
+  @apply ml-3 text-accent-black cursor-pointer hover:text-[#050708]/50;
+}
+
+.instagram {
+  @apply ml-3 text-accent-black cursor-pointer hover:text-[#050708]/50;
+}
+
+.linkedin {
+  @apply ml-3 text-accent-black cursor-pointer hover:text-[#050708]/50;
+}
+
+.lng-section {
+  @apply text-accent-black text-[14px];
+}
+
+.footer-info-section {
+  @apply flex flex-wrap grow mt-4 -mb-10 text-center md:pl-0 md:mt-6 justify-center items-center;
+}
+
+.about-section {
+  @apply w-full px-4 lg:w-1/4 md:w-1/2;
+}
+
+.about {
+  @apply mb-3 text-accent-black tracking-widest uppercase font-bold text-[14px];
+}
+
+.company {
+  @apply cursor-pointer hover:text-[#050708]/50 text-[12px];
+}
+
+.careers {
+  @apply cursor-pointer hover:text-[#050708]/50 text-[12px];
+}
+
+.blog {
+  @apply cursor-pointer hover:text-[#050708]/50 text-[12px];
+}
+
+.support-section {
+  @apply w-full px-4 lg:w-1/4 md:w-1/2 justify-center items-center;
+}
+
+.support {
+  @apply mb-3 text-accent-black tracking-widest uppercase font-bold text-[14px];
+}
+
+.contact-support {
+  @apply cursor-pointer hover:text-[#050708]/50 text-[12px];
+}
+
+.help-resources {
+  @apply cursor-pointer hover:text-[#050708]/50 text-[12px];
+}
+
+.release-updates {
+  @apply cursor-pointer hover:text-[#050708]/50 text-[12px];
+}
+
+.platform-section {
+  @apply w-full px-4 lg:w-1/4 md:w-1/2 justify-center items-center;
+}
+
+.platform {
+  @apply mb-3 tracking-widest text-accent-black uppercase font-bold text-[14px];
+}
+
+.terms-privacy {
+  @apply cursor-pointer hover:text-[#050708]/50 text-[12px];
+}
+
+.FAQ {
+  @apply cursor-pointer hover:text-[#050708]/50 text-[12px];
+}
+
+.fees {
+  @apply cursor-pointer hover:text-[#050708]/50 text-[12px];
+}
+
+.explore-section {
+  @apply w-full px-4 lg:w-1/4 md:w-1/2 justify-center items-center;
+}
+
+.explore {
+  @apply mb-3 tracking-widest text-accent-black uppercase font-bold text-[14px];
+}
+
+.what-we-do {
+  @apply cursor-pointer hover:text-[#050708]/50 text-[12px];
+}
+
+.how-givingly-works {
+  @apply cursor-pointer hover:text-[#050708]/50 text-[12px];
+}
+
+.funding {
+  @apply cursor-pointer hover:text-[#050708]/50 text-[12px];
+}
+
+.rights-section {
+  @apply container w-full px-5 py-4 mx-auto;
+}
+
+.rights {
+  @apply text-accent-black capitalize sm:text-center text-[10px];
+}
+
+li.mt-3 {
+  @apply text-gray-900 text-sm;
 }
 
 .curve {
-    opacity: inherit;
+  opacity: inherit;
 }

@@ -9,20 +9,25 @@ import {
   FaGraduationCap,
   FaMasksTheater,
 } from "react-icons/fa6";
+import { useSearchParams } from 'next/navigation'
 
-const CategoryFilter = ({ lng }) => {
+const CategoryFilter = ({ lng, href }) => {
   const { t } = useTranslation(lng, "categoryFilter");
+  const searchParams = useSearchParams()
+  const search = searchParams.get('category')
 
   const categories = [
     { name: t("All"), query: null, icon: <FaGlobe /> },
-    { name: t("Education"), query: `Education`, icon: <FaGraduationCap /> },
-    { name: t("Culture"), query: `Culture`, icon: <FaMasksTheater /> },
-    { name: t("Animals"), query: `Animals`, icon: <FaPaw /> },
-    { name: t("Children"), query: `Children`, icon: <FaChild /> },
+    { name: t("Education"), query: t("Education"), icon: <FaGraduationCap /> },
+    { name: t("Culture"), query: t("Culture"), icon: <FaMasksTheater /> },
+    { name: t("Animals"), query: t("Animals"), icon: <FaPaw /> },
+    { name: t("Children"), query: t("Children"), icon: <FaChild /> },
   ];
 
+  console.log(search)
+
   return (
-    <div className="flex ">
+    <div className="categories">
       {categories.map((category) => (
         <Link
           key={category.name}
@@ -30,11 +35,10 @@ const CategoryFilter = ({ lng }) => {
             path: "/campaigns",
             query: { category: category.query },
           }}
-          className="icon-main"
-          passHref
+          className={search === t(category.name) || category.name === t("All") && !search ? "icon-main-selected" : "icon-main"}
         >
-          <div className="icon">{category.icon}</div>
-          <div>{category.name}</div>
+          <div className={search === t(category.name) || category.name === t("All") && !search ? "icon-selected" : "icon"}>{category.icon}</div>
+          <div className={search === t(category.name) || category.name === t("All") && !search ? "" : "category-text-selected"}>{category.name}</div>
         </Link>
       ))}
     </div>
