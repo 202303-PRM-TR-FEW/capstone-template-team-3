@@ -80,11 +80,11 @@ const CampaignOwnerProfile = ({ params }) => {
                 </div> */}
                             </div>
                             <div className="flex justify-center w-full px-4 text-center border-t border-blueGray-200 mt-10 py-10">
-                                <div className="w-1/1.5 mx-auto">
+                                <div className="mx-auto md:w-1/3">
                                     <h2>{t("Campaigns")}</h2>
-                                    <div className="flex justify-center py-4 lg:pt-4 pt-8">
+                                    <div className="flex flex-col justify-center py-4 lg:pt-4 pt-8 md:flex-row">
                                         <div
-                                            className="mr-2 p-3 h-22 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer"
+                                            className="my-2 p-3 h-22 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer md:mr-2"
                                             onClick={handleRoute}
                                         >
                                             <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
@@ -95,7 +95,7 @@ const CampaignOwnerProfile = ({ params }) => {
                                             </span>
                                         </div>
                                         <div
-                                            className="ml-2 p-3 h-22 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer"
+                                            className="my-2 p-3 h-22 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer md:ml-2"
                                             onClick={handleRoute}
                                         >
                                             <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
