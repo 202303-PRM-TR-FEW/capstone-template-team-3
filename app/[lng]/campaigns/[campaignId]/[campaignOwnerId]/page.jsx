@@ -80,7 +80,7 @@ const CampaignOwnerProfile = ({ params }) => {
                 </div> */}
                             </div>
                             <div className="flex justify-center w-full px-4 text-center border-t border-blueGray-200 mt-10 py-10">
-                                <div className="w-1/3 mx-auto">
+                                <div className="w-1/1.5 mx-auto">
                                     <h2>{t("Campaigns")}</h2>
                                     <div className="flex justify-center py-4 lg:pt-4 pt-8">
                                         <div
