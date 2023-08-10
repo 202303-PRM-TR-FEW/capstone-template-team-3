@@ -8,7 +8,7 @@ describe("LargeCard Component", () => {
     cy.get("main").should("exist");
     cy.get(".project-text").should("contain", "Campaign of the week");
 
-    cy.get(".project-descripe p").should(
+    cy.get(".project-describe p").should(
       "contain",
       "We want to create beautiful and helpful cooking book for parents and kids to have fun in kitchen."
     );

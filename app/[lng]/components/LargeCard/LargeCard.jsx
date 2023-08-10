@@ -7,38 +7,36 @@ import Image from "next/image";
 const LargeCard = ({ img, title, about, raised, goal, lng, clickAction }) => {
   const { t } = useTranslation(lng, "largeCard");
   return (
-    <main onClick={clickAction}>
-      <div>
-        <p className="project-description lg:flex justify-center">
-          <span className="project-text">{t("Campaign of the week")}</span>
-        </p>
-      </div>
+    <section onClick={clickAction} className="large-card-main">
+      <p className="project-description">
+        {t("Campaign of the week")}
+      </p>
       <div className="row">
         <div className="column">
           <div className="card-img-section">
             <Image
-              className="h-[9em] w-[16em]"
+              // className="h-[9em] w-[16em]"
               src={img}
               alt={title}
-              width={800}
-              height={200}
+              width={2000}
+              height={400}
             />
           </div>
         </div>
         <div className="column">
-          <div className="project-title w-full font-krona text-[27px] mt-8 px-8">
+          <div className="project-title">
             <h1>
               {title}
             </h1>
           </div>
-          <div className="project-descripe">
+          <div className="project-describe">
             <p>
               {about}
             </p>
           </div>
           <div>
             <div
-              className="custom-container w-full top-572 md:top-0 lg:top-100 px-6"
+              className="custom-container"
               data-dom-node="true"
               mode="PROTOTYPE/MODES/MODE_PLAY"
             >
@@ -59,7 +57,7 @@ const LargeCard = ({ img, title, about, raised, goal, lng, clickAction }) => {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 };
 
