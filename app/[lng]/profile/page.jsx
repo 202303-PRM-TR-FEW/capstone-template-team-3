@@ -272,21 +272,21 @@ const Profile = ({ params }) => {
                   University of Computer Science
                 </div> */}
               </div>
-              <div className="flex justify-center w-full px-4 text-center border-t border-blueGray-200 mt-10 py-10">
-                <div className="w-1/3 mx-auto">
+              <div className="flex flex-col justify-center w-full px-4 text-center border-t border-blueGray-200 mt-10 py-10 lg:flex-row">
+                <div className="w-1/1.5 mx-auto">
                   <h2>{t("Kick-Off")}</h2>
                   <Button
                     type={"button"}
-                    style="bg-theme px-2 py-3 xl:my-4 text-[#0a0a0a] xl:text-[18px] text-[14px] w-5/6 mx-auto rounded-lg mt-0 mb-5 md:mb-0 md:text-[14px] lg:text-[22px] md:w-1/6 lg:w-1/3 xl:w-5/6 md:h-[6.5rem] lg:h-[7rem] xl:h-[5rem] md:me-4 xl:mx-auto md:rounded-l-3xl md:rounded-r-sm xl:rounded-lg break-words hover:bg-accent-black hover:text-theme cursor-pointer"
+                    style="ml-2 p-3 h-20 text-center text-sm bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer my-4"
                     name={t("New campaign")}
                     clickAction={handleNewCampaign}
                   />
                 </div>
-                <div className="w-1/3 mx-auto">
+                <div className="w-1/1.5 mx-auto">
                   <h2>{t("Campaigns")}</h2>
-                  <div className="flex justify-center py-4 lg:pt-4 pt-8">
+                  <div className="flex justify-center py-4">
                     <div
-                      className="mr-2 p-3 h-20 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer"
+                      className="mr-2 p-3 h-20 w-36 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer"
                       onClick={handleRoute}
                     >
                       <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
@@ -297,23 +297,23 @@ const Profile = ({ params }) => {
                       </span>
                     </div>
                     <div
-                      className="ml-2 p-3 h-20 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer"
+                      className="ml-2 p-3 h-20 w-36 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer "
                       onClick={handleRoute}
                     >
                       <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                         {userDonations.length}
                       </span>
-                      <span className="text-sm text-blueGray-400">
+                      <span className="text-sm text-blueGray-400 w-36">
                         {t("Supported")}
                       </span>
                     </div>
                   </div>
                 </div>
-                <div className="w-1/3 mx-auto">
+                <div className="w-1/1.5 mx-auto">
                   <h2>{t("Support")}</h2>
                   <Button
                     type={"button"}
-                    style="bg-theme px-2 py-3 xl:my-4 text-[#0a0a0a] xl:text-[18px] text-[14px] w-5/6 mx-auto rounded-lg mt-0 mb-5 md:mb-0 md:text-[14px] lg:text-[22px] md:w-1/6 lg:w-1/3 xl:w-5/6 md:h-[6.5rem] lg:h-[7rem] xl:h-[5rem] md:me-4 xl:mx-auto md:rounded-l-3xl md:rounded-r-sm xl:rounded-lg break-words hover:bg-accent-black hover:text-theme cursor-pointer"
+                    style="ml-2 p-3 h-20 text-center text-sm bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer my-4"
                     name={t("Other campaigns")}
                     clickAction={handleSupport}
                   />
