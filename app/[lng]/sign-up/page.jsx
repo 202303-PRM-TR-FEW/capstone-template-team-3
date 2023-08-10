@@ -70,7 +70,7 @@ function SignUp({ lng }) {
       />
       {!user ? (
         <div className="container mx-auto ">
-          <div className="flex flex-col p-5 w-11/12 sm:w-2/5 mx-auto text-center bg-accent text-accent rounded-3xl h-[94px] xl:w-2/5 mt-10 "></div>
+          <div className="flex flex-col p-5 w-11/12 sm:w-2/5 mx-auto text-center bg-accent text-accent rounded-3xl h-[94px] xl:w-2/5 mt-10 z-0"></div>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto md:w-3/5 bg-theme rounded-3xl"

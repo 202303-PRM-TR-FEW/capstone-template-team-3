@@ -88,7 +88,7 @@ const Campaigns = ({ params }) => {
         />
       ))}
       <div className="bg-accent">
-        <div className="flex justify-center items-center bg-theme p-5 mx-auto rounded-xl gap-3 my-5 w-11/12 text-center text-[14px] sm:text-[16px] lg:text-[20px] container whitespace-nowrap">
+        <div className="flex flex-col md:flex-row justify-center items-center bg-theme p-5 mx-auto rounded-xl gap-3 my-5 w-11/12 text-center text-[14px] sm:text-[16px] lg:text-[20px] container whitespace-nowrap">
           <span>{t("Thanks to our supporters")}</span>
           <div className="bg-accent-black text-accent p-5 rounded-xl">
             <span>{`$${totalCharity}`}</span>
@@ -97,7 +97,7 @@ const Campaigns = ({ params }) => {
         </div>
       </div>
       <CategoryFilter />
-      <div className="flex flex-row gap-4 flex-wrap items-center justify-evenly container w-11/12 mx-auto">
+      <div className="flex flex-row gap-5 flex-wrap items-center justify-evenly container w-11/12 mx-auto">
         {filteredCampaignsByCategory.map((campaign) => (
           <div
             key={campaign.id}

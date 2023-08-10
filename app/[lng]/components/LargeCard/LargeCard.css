@@ -1,5 +1,9 @@
+.large-card-main {
+  @apply container mx-auto w-11/12
+}
+
 .project-description {
-  @apply lg:flex justify-center m-6 overflow-hidden text-5xl normal-case text-left tracking-[-4px] leading-[80px] whitespace-pre-line opacity-100 visible;
+  @apply my-6 mx-5 text-xl text-center md:text-left;
 }
 
 .project-text {

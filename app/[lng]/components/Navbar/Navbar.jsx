@@ -133,7 +133,7 @@ const Navbar = ({ lng }) => {
             </div>
           </Button>
           {toggleDropdown && (
-            <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl">
+            <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl z-10">
               <NavLink to="/campaigns" name={t("Home")} style={pathname === `/${lng}/campaigns` ? "underline underline-offset-[6px] decoration-2 mb-2" : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"} />
               {user && (
                 <>
