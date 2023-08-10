@@ -28,36 +28,27 @@ export const FooterBase = ({ t, lng, pathname }) => {
         }}
       ></section>
       <div className="bg-theme">
-        <footer className="container mx-auto w-full text-gray-700 justify-center items-center">
-          <div className="container flex flex-col flex-wrap w-full bg-theme sm:items-center lg:items-start md:flex-row md:flex-no-wrap text-center justify-center px-1">
-            <div
-              className="flex-shrink-0 w-64 mt-5 mb-5 md:mx-0 sm:items-center list-none"
-              id="givingly-cont"
-            >
-              <Logo
-                lng={lng}
-                style="text-accent-black title-font xl:text-align mb-3"
-                id="givingly"
-              />
-              <li className="mt-3 text-accent-black text-[14px]">
-                {t("Contact us!")}
-              </li>
+        <footer className="footer-main">
+          <div className="footer-submain">
+            <div className="logo-main">
+              <Logo lng={lng} style="logo" />
+              <li className="contact">{t("Contact us!")}</li>
               <div className="mt-3">
-                <span className="inline-flex justify-center mt-2 sm:ml-auto sm:mt-0 sm:justify-start ">
-                  <a className="text-accent-black cursor-pointer hover:text-[#8ea10f]">
+                <span className="social-links">
+                  <a className="facebook">
                     <FaFacebook />
                   </a>
-                  <a className="ml-3 text-accent-black cursor-pointer hover:text-[#8ea10f]">
+                  <a className="twitter">
                     <FaTwitter />
                   </a>
-                  <a className="ml-3 text-accent-black cursor-pointer hover:text-[#8ea10f]">
+                  <a className="instagram">
                     <FaInstagram />
                   </a>
-                  <a className="ml-3 text-accent-black cursor-pointer hover:text-[#8ea10f]">
+                  <a className="linkedin">
                     <FaLinkedin />
                   </a>
                 </span>
-                <div className="text-accent-black text-[14px]">
+                <div className="lng-section">
                   <Trans i18nKey="languageSwitcher" t={t}>
                     Switch to:
                   </Trans>
@@ -86,90 +77,74 @@ export const FooterBase = ({ t, lng, pathname }) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-wrap flex-grow mt-4 -mb-10 text-center md:pl-0 md:mt-6 md:text-center justify-center items-center">
-              <div className="w-full px-4 lg:w-1/4 md:w-1/2">
-                <h2 className="mb-3 text-accent-black tracking-widest uppercase title-font font-bold text-[14px]">
-                  {t("About")}
-                </h2>
+            <div className="footer-info-section">
+              <div className="about-section">
+                <h2 className="about">{t("About")}</h2>
                 <div className="mb-10 list-none">
                   <li className="mt-3">
-                    <a className=" cursor-pointer hover:text-[#8ea10f] text-[12px] ">
-                      {t("Company")}
-                    </a>
+                    <a className="company">{t("Company")}</a>
                   </li>
                   <li className="mt-3">
-                    <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
-                      {t("Careers")}
-                    </a>
+                    <a className="careers">{t("Careers")}</a>
                   </li>
                   <li className="mt-3">
-                    <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
-                      Blog
-                    </a>
+                    <a className="blog">Blog</a>
                   </li>
                 </div>
               </div>
-              <div className="w-full px-4 lg:w-1/4 md:w-1/2 justify-center items-center">
-                <h2 className="mb-3 text-accent-black tracking-widest uppercase title-font font-bold text-[14px]">
-                  {t("Support")}
-                </h2>
+              <div className="support-section">
+                <h2 className="support">{t("Support")}</h2>
                 <div className="mb-10 list-none">
                   <li className="mt-3">
-                    <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
-                      {t("Contact Support")}
-                    </a>
+                    <a className="contact-support">{t("Contact Support")}</a>
                   </li>
                   <li className="mt-3">
-                    <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
-                      {t("Help Resources")}
-                    </a>
+                    <a className="help-resources">{t("Help Resources")}</a>
                   </li>
                   <li className="mt-3">
-                    <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
-                      {t("Release Updates")}
-                    </a>
+                    <a className="release-updates">{t("Release Updates")}</a>
                   </li>
                 </div>
               </div>
-              <div className="w-full px-4 lg:w-1/4 md:w-1/2 justify-center items-center">
-                <h2 className="mb-3 tracking-widest text-accent-black uppercase title-font font-bold text-[14px]">
+              <div className="platform-section">
+                <h2 className="platform">
                   Platform
                 </h2>
                 <div className="mb-10 list-none">
                   <li className="mt-3">
-                    <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    <a className="terms-privacy">
                       {t("Terms & Privacy")}
                     </a>
                   </li>
                   <li className="mt-3">
-                    <a className=" cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    <a className="FAQ">
                       {t("FAQ")}
                     </a>
                   </li>
                   <li className="mt-3">
-                    <a className=" cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    <a className="fees">
                       {t("Fees")}
                     </a>
                   </li>
                 </div>
               </div>
-              <div className="w-full px-4 lg:w-1/4 md:w-1/2 justify-center items-center ">
-                <h2 className="mb-3 tracking-widest text-accent-black uppercase title-font font-bold text-[14px]">
+              <div className="explore-section">
+                <h2 className="explore">
                   {t("Explore")}
                 </h2>
                 <div className="mb-10 list-none">
                   <li className="mt-3">
-                    <a className=" cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    <a className="what-we-do">
                       {t("What We Do")}
                     </a>
                   </li>
                   <li className="mt-3">
-                    <a className="cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    <a className="how-givingly-works">
                       {t("How Givingly Works")}
                     </a>
                   </li>
                   <li className="mt-3">
-                    <a className=" cursor-pointer hover:text-[#8ea10f] text-[12px]">
+                    <a className="funding">
                       {t("Funding")}
                     </a>
                   </li>
@@ -178,8 +153,8 @@ export const FooterBase = ({ t, lng, pathname }) => {
             </div>
           </div>
           <div className="bg-theme">
-            <div className="container w-full px-5 py-4 mx-auto">
-              <p className="text-accent-black capitalize sm:text-center text-[10px]">
+            <div className="rights-section">
+              <p className="rights">
                 © 2023 {t("All rights reserved")}
               </p>
             </div>
