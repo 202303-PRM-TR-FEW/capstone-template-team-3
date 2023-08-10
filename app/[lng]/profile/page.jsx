@@ -286,7 +286,7 @@ const Profile = ({ params }) => {
                   <h2>{t("Campaigns")}</h2>
                   <div className="flex justify-center py-4">
                     <div
-                      className="mr-2 p-3 h-20 w-36 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer"
+                      className="mr-2 p-3 h-20 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer"
                       onClick={handleRoute}
                     >
                       <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
@@ -297,7 +297,7 @@ const Profile = ({ params }) => {
                       </span>
                     </div>
                     <div
-                      className="ml-2 p-3 h-20 w-36 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer "
+                      className="ml-2 p-3 h-20 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer "
                       onClick={handleRoute}
                     >
                       <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
