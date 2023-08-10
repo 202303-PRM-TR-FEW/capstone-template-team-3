@@ -273,7 +273,7 @@ const Profile = ({ params }) => {
                 </div> */}
               </div>
               <div className="flex flex-col justify-center w-full px-4 text-center border-t border-blueGray-200 mt-10 py-10 lg:flex-row">
-                <div className="w-1/1.5 mx-auto">
+                <div className="lg:w-1/3 mx-auto">
                   <h2>{t("Kick-Off")}</h2>
                   <Button
                     type={"button"}
@@ -282,11 +282,11 @@ const Profile = ({ params }) => {
                     clickAction={handleNewCampaign}
                   />
                 </div>
-                <div className="w-1/1.5 mx-auto">
+                <div className="lg:w-1/3 mx-auto">
                   <h2>{t("Campaigns")}</h2>
-                  <div className="flex justify-center py-4">
+                  <div className="flex flex-col justify-center py-4 md:flex-row md:py-2">
                     <div
-                      className="mr-2 p-3 h-20 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer"
+                      className="p-3 h-22 my-2 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer md:mr-2 md:my-0"
                       onClick={handleRoute}
                     >
                       <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
@@ -297,7 +297,7 @@ const Profile = ({ params }) => {
                       </span>
                     </div>
                     <div
-                      className="ml-2 p-3 h-20 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer "
+                      className="p-3 h-22 my-2 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer md:ml-2 md:my-0"
                       onClick={handleRoute}
                     >
                       <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
@@ -309,7 +309,7 @@ const Profile = ({ params }) => {
                     </div>
                   </div>
                 </div>
-                <div className="w-1/1.5 mx-auto">
+                <div className="lg:w-1/3 mx-auto">
                   <h2>{t("Support")}</h2>
                   <Button
                     type={"button"}
