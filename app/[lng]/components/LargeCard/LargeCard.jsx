@@ -7,7 +7,7 @@ import Image from "next/image";
 const LargeCard = ({ img, title, about, raised, goal, lng, clickAction }) => {
   const { t } = useTranslation(lng, "largeCard");
   return (
-    <main onClick={clickAction}>
+    <section onClick={clickAction}>
       <div>
         <p className="project-description lg:flex justify-center">
           <span className="project-text">{t("Campaign of the week")}</span>
@@ -59,7 +59,7 @@ const LargeCard = ({ img, title, about, raised, goal, lng, clickAction }) => {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 };
 

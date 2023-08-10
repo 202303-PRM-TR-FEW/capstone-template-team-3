@@ -87,12 +87,14 @@ const Campaigns = ({ params }) => {
           clickAction={() => push(`/${lng}/campaigns/${campaign.id}`)}
         />
       ))}
-      <div className="flex flex-col justify-center items-center bg-theme p-5 w-5/6 mx-auto rounded-xl gap-3 my-5 sm:w-1/2 lg:w-1/3">
-        <p className="text-center">{t("Thanks to our supporters")}</p>
-        <div className="bg-accent-black text-accent p-5 rounded-xl">
-          <span>{`$${totalCharity}`}</span>
+      <div className="bg-accent">
+        <div className="flex justify-center items-center bg-theme p-5 mx-auto rounded-xl gap-3 my-5 w-11/12 text-center text-[14px] sm:text-[16px] lg:text-[20px] container whitespace-nowrap">
+          <span>{t("Thanks to our supporters")}</span>
+          <div className="bg-accent-black text-accent p-5 rounded-xl">
+            <span>{`$${totalCharity}`}</span>
+          </div>
+          <span>{t("accumulated for charity")}!</span>
         </div>
-        <h3 className="text-center">{t("accumulated for charity")}!</h3>
       </div>
       <CategoryFilter />
       <div className="flex flex-row gap-4 flex-wrap items-center justify-evenly container w-11/12 mx-auto">

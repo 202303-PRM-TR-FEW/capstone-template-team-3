@@ -22,14 +22,6 @@
   @apply flex items-center mt-2.5 mb-5;
 }
 
-.card-progress-bar {
-  @apply w-full bg-gray-200 rounded-full h-2.5;
-}
-
-.progress-bar {
-  @apply bg-[#d4ee26] h-2.5 rounded-full w-3/5;
-}
-
 .card-money-section {
   @apply flex sm:items-center justify-between max-sm:flex-row sm:flex-row gap-4 flex-col;
 }

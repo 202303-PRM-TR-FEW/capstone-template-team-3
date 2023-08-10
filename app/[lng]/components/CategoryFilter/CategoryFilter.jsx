@@ -9,9 +9,12 @@ import {
   FaGraduationCap,
   FaMasksTheater,
 } from "react-icons/fa6";
+import { useSearchParams } from 'next/navigation'
 
-const CategoryFilter = ({ lng }) => {
+const CategoryFilter = ({ lng, href }) => {
   const { t } = useTranslation(lng, "categoryFilter");
+  const searchParams = useSearchParams()
+  const search = searchParams.get('category')
 
   const categories = [
     { name: t("All"), query: null, icon: <FaGlobe /> },
@@ -21,8 +24,10 @@ const CategoryFilter = ({ lng }) => {
     { name: t("Children"), query: `Children`, icon: <FaChild /> },
   ];
 
+  console.log(search)
+
   return (
-    <div className="categories flex flex-wrap ">
+    <div className="categories">
       {categories.map((category) => (
         <Link
           key={category.name}
@@ -30,11 +35,10 @@ const CategoryFilter = ({ lng }) => {
             path: "/campaigns",
             query: { category: category.query },
           }}
-          className="icon-main"
-          passHref
+          className={search === category.name || category.name === "All" && !search ? "icon-main-selected" : "icon-main"}
         >
-          <div className="icon">{category.icon}</div>
-          <div>{category.name}</div>
+          <div className={search === category.name || category.name === "All" && !search ? "icon-selected" : "icon"}>{category.icon}</div>
+          <div className={search === category.name || category.name === "All" && !search ? "" : "category-text-selected"}>{category.name}</div>
         </Link>
       ))}
     </div>
