@@ -7,12 +7,10 @@ import Image from "next/image";
 const LargeCard = ({ img, title, about, raised, goal, lng, clickAction }) => {
   const { t } = useTranslation(lng, "largeCard");
   return (
-    <main onClick={clickAction}>
-      <div>
-        <p className="project-description">
-          <span className="project-text">{t("Campaign of the week")}</span>
-        </p>
-      </div>
+    <section onClick={clickAction} className="large-card-main">
+      <p className="project-description">
+        {t("Campaign of the week")}
+      </p>
       <div className="row">
         <div className="column">
           <div className="card-img-section">
@@ -59,7 +57,7 @@ const LargeCard = ({ img, title, about, raised, goal, lng, clickAction }) => {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 };
 

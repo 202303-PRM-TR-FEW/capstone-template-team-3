@@ -75,7 +75,7 @@ const Navbar = ({ lng }) => {
           {isHidden === "xl:hidden" && !toggleSearch ? (
             <Search style="bg-accent text-gray-900 rounded-lg focus:ring-0 w-[20rem] p-2.5 border-0 h-11 ms-8 hidden xl:block" />
           ) : (
-            <Search style="bg-accent text-gray-900 text-sm lg:text-[1rem] rounded-lg focus:ring-0 w-[12.4rem] lg:w-[14rem] p-2.5 border-0 h-11 -left-20 lg:-left-24 inset-y-[3.2rem] sm:inset-y-10 absolute drop-shadow-2xl" />
+            <Search style="bg-accent text-gray-900 text-[12px] lg:text-[14px] rounded-lg focus:ring-0 w-[12.4rem] lg:w-[14rem] p-2.5 border-0 h-11 -left-20 lg:-left-24 inset-y-[3.2rem] absolute drop-shadow-2xl" />
           )}
         </div>
         <div className="lg:flex lg:justify-between lg:items-center hidden">
@@ -89,17 +89,17 @@ const Navbar = ({ lng }) => {
               <NavLink
                 to={`/${lng}/my-campaigns`}
                 name={t("My Campaigns")}
-                style={pathname === `/${lng}/my-campaigns` ? "underline underline-offset-8 decoration-4 lg:ms-0 xl:ms-8" : "lg:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
+                style={pathname === `/${lng}/my-campaigns` ? "underline underline-offset-8 decoration-4 lg:ms-4 2xl:ms-8" : "lg:ms-4 2xl:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
               />
               <NavLink
                 to={`/${lng}/profile`}
                 name={t("Profile")}
-                style={pathname === `/${lng}/profile` ? "underline underline-offset-8 decoration-4 lg:ms-0 xl:ms-8" : "lg:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
+                style={pathname === `/${lng}/profile` ? "underline underline-offset-8 decoration-4 lg:ms-4 2xl:ms-8" : "lg:ms-4 2xl:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
               />
               <Button
                 type="button"
                 name={t("New Campaign")}
-                style="lg:ms-8 navbar-button"
+                style="lg:ms-4 2xl:ms-8 navbar-button"
                 clickAction={handleModalToggle}
               />
             </>
@@ -107,7 +107,7 @@ const Navbar = ({ lng }) => {
           <Button
             type="button"
             name={user ? t("Sign out") : t("Sign in")}
-            style="ms-5 navbar-button"
+            style="ms-4 navbar-button"
             clickAction={!user ? () => handleLogin() : () => handleLogout()}
           />
         </div>
@@ -133,7 +133,7 @@ const Navbar = ({ lng }) => {
             </div>
           </Button>
           {toggleDropdown && (
-            <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl">
+            <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl z-10">
               <NavLink to="/campaigns" name={t("Home")} style={pathname === `/${lng}/campaigns` ? "underline underline-offset-[6px] decoration-2 mb-2" : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"} />
               {user && (
                 <>

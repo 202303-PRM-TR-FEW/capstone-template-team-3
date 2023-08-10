@@ -21,11 +21,8 @@ const Card = ({ img, title, raised, goal, lng }) => {
       <div className="card-text-section">
         <h1 className="card-title ">{title}</h1>
         <div className="card-progress-bar-main">
-          <div className="card-progress-bar">
-            <DonationBar raised={raised} goal={goal} />
-          </div>
+          <DonationBar raised={raised} goal={goal} />
         </div>
-
         <div className="card-money-section">
           <div>
             <p>{t("Raised")}:</p>
