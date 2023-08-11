@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from '../../../i18n/client';
+import './Search.css'
 
 const Search = ({ style, lng, onSearch, suggestions, onSuggestionClick }) => {
   const { t } = useTranslation(lng, 'search');
@@ -42,32 +43,34 @@ const Search = ({ style, lng, onSearch, suggestions, onSuggestionClick }) => {
       <input
         ref={searchRef}
         type="text"
-        className={style}
+        className={`search-box ${style} `}
         placeholder={t('Search-for-campaigns')}
         value={searchCampaigns}
         onChange={handleSearchChanges}
       />
       {searchCampaigns.length > 0 && isDropdownOpen && (
-        <div className={`absolute overflow-y-auto z-[10] bg-accent text-gray-900  mt-1 p-2.5 bg-white border-0 shadow-lg h-fit rounded-lg ${style}`} style={{ top: window.innerWidth < 1280 ? '230%' : '100%', width: window.innerWidth < 1280 ? '12.4rem' : '20rem' }}>
+        <div className={`suggestions-dropdown  ${style}`} style={{ top: window.innerWidth < 1280 ? '230%' : '100%', width: window.innerWidth < 1280 ? '12.4rem' : '20rem' }}>
           <ul className="suggestions-list">
             {suggestions.length > 0 ? (
               suggestions.map((campaign) => (
                 <div
-                  className='cursor-pointer hover:bg-black hover:bg-opacity-10 p-2 lg:p-4 flex items-center justify-between'
+                  className='suggestions-attributes '
                   key={campaign.id}
                   onClick={() => handleSuggestionClick(campaign.id)}
                   title={campaign.data.about}
                 >
-                  <button>
-                    {campaign.data.projectName.slice(0, 14)}
-                  </button>
-                  <div className="ml-2">
-                    <img src={campaign.data.image} alt={campaign.data.projectName} className="w-14 h-7" />
+                  <div className='suggestions-content'>
+                    <button>
+                      {campaign.data.projectName.slice(0, 14)}
+                    </button>
+                    <div className="ml-2">
+                      <img src={campaign.data.image} alt={campaign.data.projectName} className="w-14 h-7" />
+                    </div>
                   </div>
                 </div>
               ))
             ) : (
-              <div className="no-results-message">
+              <div>
                 <span className='text-sm text-gray-900/50'>{t('Campaigns not found')}</span>
               </div>
             )}
