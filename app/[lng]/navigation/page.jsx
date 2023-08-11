@@ -128,7 +128,7 @@ export default function Navigation({ lng }) {
               </p>
             </article>
             {currentUser && currentUser.joinedNewsletter ?
-              <BsPatchCheckFill size={50} className="text-theme my-10" />
+              <BsPatchCheckFill size={50} className="text-theme mt-0 mb-5 md:mb-0 md:me-5 lg:me-10 md:w-[8em] mx-auto xl:w-auto xl:my-10 xl:mx-auto" />
               : <Button
                 type={"button"}
                 style="newsletter-button"
