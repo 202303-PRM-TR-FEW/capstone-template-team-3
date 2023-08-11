@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from '../../../i18n/client';
 import './Search.css'
 
 const Search = ({ style, lng, onSearch, suggestions, onSuggestionClick }) => {
-  const { t } = useTranslation(lng, 'search');
-  const [searchCampaigns, setSearchCampaigns] = useState('');
+  const { t } = useTranslation(lng, "search");
+  const [searchCampaigns, setSearchCampaigns] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const searchRef = useRef(null);
 
@@ -14,14 +14,14 @@ const Search = ({ style, lng, onSearch, suggestions, onSuggestionClick }) => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
-        setSearchCampaigns('');
+        setSearchCampaigns("");
       }
     };
 
-    window.addEventListener('click', handleClickOutside);
+    window.addEventListener("click", handleClickOutside);
 
     return () => {
-      window.removeEventListener('click', handleClickOutside);
+      window.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
@@ -34,7 +34,7 @@ const Search = ({ style, lng, onSearch, suggestions, onSuggestionClick }) => {
 
   const handleSuggestionClick = (campaignId) => {
     onSuggestionClick(campaignId);
-    setSearchCampaigns('');
+    setSearchCampaigns("");
     setIsDropdownOpen(false);
   };
 
@@ -54,7 +54,7 @@ const Search = ({ style, lng, onSearch, suggestions, onSuggestionClick }) => {
             {suggestions.length > 0 ? (
               suggestions.map((campaign) => (
                 <div
-                  className='suggestions-attributes '
+                  className='suggestions-attributes'
                   key={campaign.id}
                   onClick={() => handleSuggestionClick(campaign.id)}
                   title={campaign.data.about}
