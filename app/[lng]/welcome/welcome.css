@@ -1,9 +1,9 @@
 .welcome-main-container {
-  @apply bg-theme h-screen flex flex-col justify-center items-center md:block;
+  @apply bg-theme h-screen flex flex-col justify-center items-center lg:block;
 }
 
 .welcome {
-  @apply sm:h-5/6 md:grid md:grid-cols-2 content-center md:bg-center sm:bg-no-repeat sm:bg-contain  bg-contain bg-no-repeat ml-4 mr-4;
+  @apply lg:h-5/6 md:grid md:grid-cols-2 content-center md:bg-center sm:bg-no-repeat sm:bg-contain  bg-contain bg-no-repeat ml-4 mr-4;
 }
 
 .welcome-container {
@@ -11,11 +11,11 @@
 }
 
 .leading-left {
-  @apply flex flex-col w-full justify-center text-center md:text-left md:ml-10 max-w-[17em] min-w-[17rem] mx-auto xl:max-w-[28rem] ;
+  @apply flex flex-col w-full justify-center text-center md:text-left md:ml-10 max-w-[19em] min-w-[17rem] mx-auto xl:max-w-[28rem];
 }
 
 .leading-header {
-  @apply sm:text-7xl text-5xl font-bold mb-10;
+  @apply sm:text-7xl text-[3.5rem] font-bold mb-10;
 }
 
 .leading-normal {
@@ -27,5 +27,5 @@
 }
 
 a.leading-button {
-  @apply text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center md:flex sm:items-center justify-center mr-2 mb-2 w-[16.5rem];
+  @apply text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center md:flex sm:items-center justify-center w-[16.5rem] place-self-center md:place-self-start;
 }

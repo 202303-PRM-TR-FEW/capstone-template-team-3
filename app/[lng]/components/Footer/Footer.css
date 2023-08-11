@@ -135,7 +135,7 @@
 }
 
 .rights {
-  @apply text-accent-black capitalize sm:text-center text-[10px];
+  @apply text-accent-black capitalize text-center text-[10px];
 }
 
 li.mt-3 {

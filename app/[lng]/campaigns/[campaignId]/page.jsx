@@ -32,7 +32,7 @@ export default function CampaignPage({ params }) {
   const currentCampaign = useSelector(
     (state) => state.campaign.currentCampaign
   );
-  const userStatus = useSelector((state) => state.user.status)
+  const userStatus = useSelector((state) => state.user.status);
   const campaignStatus = useSelector((state) => state.campaign.status);
   const campaignOwner = useSelector((state) => state.user.campaignOwner);
 
@@ -52,7 +52,7 @@ export default function CampaignPage({ params }) {
 
   const handleModalToggle = () => {
     if (!user) {
-      router.push("/sign-in");
+      router.push(`/${lng}/sign-in`);
     }
     if (user) {
       dispatch(openModal());
@@ -88,14 +88,18 @@ export default function CampaignPage({ params }) {
     // main container
     <>
       {modalIsOpen && <PaymentModal campaignId={campaignId} />}
-      {editModalIsOpen && <CampaignEditModal campaignId={campaignId} lng={lng} />}
+      {editModalIsOpen && (
+        <CampaignEditModal campaignId={campaignId} lng={lng} />
+      )}
       {deleteModalIsOpen && (
         <DeleteModal
           campaignId={campaignId}
           setDeleteModalIsOpen={setDeleteModalIsOpen}
         />
       )}
-      {userStatus === "loading" || campaignStatus === "loading" ? (<Loader />) : currentCampaign &&
+      {userStatus === "loading" || campaignStatus === "loading" ? (
+        <Loader />
+      ) : currentCampaign &&
         user &&
         currentCampaign.id === user.uid &&
         campaignOwner ? (
