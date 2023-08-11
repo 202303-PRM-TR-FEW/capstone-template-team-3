@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import Logo from '../Logo/Logo';
-import Search from '../Search/Search';
-import NavLink from '../NavLink/NavLink';
-import Button from '../Button/Button';
+import { useState, useEffect } from "react";
+import Logo from "../Logo/Logo";
+import Search from "../Search/Search";
+import NavLink from "../NavLink/NavLink";
+import Button from "../Button/Button";
 import "./Navbar.css";
-import { HiSearchCircle } from 'react-icons/hi';
-import { useDispatch, useSelector } from 'react-redux';
-import { auth } from 'app/firebase/firebase.jsx';
+import { HiSearchCircle } from "react-icons/hi";
+import { useDispatch, useSelector } from "react-redux";
+import { auth } from "app/firebase/firebase.jsx";
 import {
   userSignOut,
   returnToInitialState,
@@ -16,10 +16,10 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useTranslation } from "../../../i18n/client";
 import { openModal, closeModal } from "@/app/lib/features/kickOffModalSlice";
-import { toast } from "react-toastify"
-import { useRouter } from 'next/navigation';
-import { getAllCampaigns } from '@/app/lib/features/campaignSlice';
-import { usePathname } from 'next/navigation'
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { getAllCampaigns } from "@/app/lib/features/campaignSlice";
+import { usePathname } from "next/navigation";
 
 const Navbar = ({ lng }) => {
   const [user, loading] = useAuthState(auth);
@@ -29,9 +29,9 @@ const Navbar = ({ lng }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const allCampaigns = useSelector((state) => state.campaign.allCampaigns);
-  const [searchQuery, setSearchQuery] = useState('');
-  const { t } = useTranslation(lng, 'navbar');
-  const pathname = usePathname()
+  const [searchQuery, setSearchQuery] = useState("");
+  const { t } = useTranslation(lng, "navbar");
+  const pathname = usePathname();
 
   const handleToggleDropdown = () => {
     setToggleDropdown((prevState) => !prevState);
@@ -50,8 +50,8 @@ const Navbar = ({ lng }) => {
     await dispatch(returnToInitialState());
     router.push(`/${lng}`);
     toast.success(t("Signed out successfully."), {
-      toastId: "sign-out-succeeded"
-    })
+      toastId: "sign-out-succeeded",
+    });
   };
 
   const handleModalToggle = () => {
@@ -68,7 +68,9 @@ const Navbar = ({ lng }) => {
   };
 
   const suggestionCampaigns = allCampaigns.filter((campaign) => {
-    return campaign.data.projectName.toLowerCase().startsWith(searchQuery.toLowerCase());
+    return campaign.data.projectName
+      .toLowerCase()
+      .startsWith(searchQuery.toLowerCase());
   });
 
   useEffect(() => {
@@ -93,7 +95,8 @@ const Navbar = ({ lng }) => {
           />
           {isHidden === "xl:hidden" && !toggleSearch ? (
             <Search
-              style="bg-accent text-gray-900 rounded-lg focus:ring-0 w-[20rem] p-2.5 border-0 h-11 ms-8 hidden xl:block" onSearch={handleSearch}
+              style="bg-accent text-gray-900 rounded-lg focus:ring-0 w-[20rem] p-2.5 border-0 h-11 ms-8 hidden xl:block"
+              onSearch={handleSearch}
               suggestions={suggestionCampaigns}
               onSuggestionClick={handleSuggestionClick}
             />
@@ -110,19 +113,31 @@ const Navbar = ({ lng }) => {
           <NavLink
             to={`/${lng}/campaigns`}
             name={t("Home")}
-            style={pathname === `/${lng}/campaigns` ? "underline underline-offset-8 decoration-4 lg:ms-0 xl:ms-8" : "lg:ms-0 xl:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
+            style={
+              pathname === `/${lng}/campaigns`
+                ? "underline underline-offset-8 decoration-4 lg:ms-0 xl:ms-8"
+                : "lg:ms-0 xl:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"
+            }
           />
           {user && (
             <>
               <NavLink
                 to={`/${lng}/my-campaigns`}
                 name={t("My Campaigns")}
-                style={pathname === `/${lng}/my-campaigns` ? "underline underline-offset-8 decoration-4 lg:ms-4 2xl:ms-8" : "lg:ms-4 2xl:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
+                style={
+                  pathname === `/${lng}/my-campaigns`
+                    ? "underline underline-offset-8 decoration-4 lg:ms-4 2xl:ms-8"
+                    : "lg:ms-4 2xl:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"
+                }
               />
               <NavLink
                 to={`/${lng}/profile`}
                 name={t("Profile")}
-                style={pathname === `/${lng}/profile` ? "underline underline-offset-8 decoration-4 lg:ms-4 2xl:ms-8" : "lg:ms-4 2xl:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
+                style={
+                  pathname === `/${lng}/profile`
+                    ? "underline underline-offset-8 decoration-4 lg:ms-4 2xl:ms-8"
+                    : "lg:ms-4 2xl:ms-8 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"
+                }
               />
               <Button
                 type="button"
@@ -162,15 +177,35 @@ const Navbar = ({ lng }) => {
           </Button>
           {toggleDropdown && (
             <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl z-10">
-              <NavLink to="/campaigns" name={t("Home")} style={pathname === `/${lng}/campaigns` ? "underline underline-offset-[6px] decoration-2 mb-2" : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"} />
+              <NavLink
+                to="/campaigns"
+                name={t("Home")}
+                style={
+                  pathname === `/${lng}/campaigns`
+                    ? "underline underline-offset-[6px] decoration-2 mb-2"
+                    : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"
+                }
+              />
               {user && (
                 <>
                   <NavLink
                     to={`/${lng}/my-campaigns`}
                     name={t("My Campaigns")}
-                    style={pathname === `/${lng}/my-campaigns` ? "underline underline-offset-[6px] decoration-2 mb-2" : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"}
+                    style={
+                      pathname === `/${lng}/my-campaigns`
+                        ? "underline underline-offset-[6px] decoration-2 mb-2"
+                        : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"
+                    }
                   />
-                  <NavLink to={`/${lng}/profile`} name={t("Profile")} style={pathname === `/${lng}/profile` ? "underline underline-offset-[6px] decoration-2 mb-2" : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"} />
+                  <NavLink
+                    to={`/${lng}/profile`}
+                    name={t("Profile")}
+                    style={
+                      pathname === `/${lng}/profile`
+                        ? "underline underline-offset-[6px] decoration-2 mb-2"
+                        : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"
+                    }
+                  />
                   <Button
                     type="button"
                     name={t("New Campaign")}

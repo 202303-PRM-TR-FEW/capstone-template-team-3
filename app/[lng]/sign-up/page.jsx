@@ -14,7 +14,8 @@ import { toast } from "react-toastify";
 import Loader from "../components/Loader/loader.jsx";
 import Image from "next/image.js";
 
-function SignUp({ lng }) {
+function SignUp({ params }) {
+  const { lng } = params;
   const [user, loading] = useAuthState(auth);
   const {
     register,
@@ -27,6 +28,8 @@ function SignUp({ lng }) {
   const { t } = useTranslation(lng, "sign-up");
   const error = useSelector((state) => state.user.error);
   const currentUserStatus = useSelector((state) => state.user.status);
+
+  console.log(lng);
 
   useEffect(() => {
     user &&
@@ -243,7 +246,7 @@ function SignUp({ lng }) {
             </Button>
             <p className="pt-5 pb-1 text-center"> {t("Already a member?")}</p>
             <NavLink
-              to={`/sign-in`}
+              to={`/${lng}/sign-in`}
               name={t("Sign In")}
               style="text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg px-5 py-2 text-center flex items-center justify-center h-11"
             />
