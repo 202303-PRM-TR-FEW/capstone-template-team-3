@@ -11,7 +11,7 @@
 }
 
 .logo-main {
-  @apply w-64 mt-5 mb-5 md:mx-0 sm:items-center list-none;
+  @apply w-64 mt-5 mb-5 md:mx-0 sm:items-center list-none flex-shrink-0;
 }
 
 .logo {
