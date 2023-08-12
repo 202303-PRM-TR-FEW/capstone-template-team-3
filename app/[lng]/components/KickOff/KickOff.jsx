@@ -150,7 +150,7 @@ const PaymentModal = ({ lng }) => {
       <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background z-10">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-slate-50 lg:w-[65%] lg:h-[auto] md:h-[60%] rounded-xl p-4 flex flex-col justify-between sm:w-[75%] sm:h-[auto]"
+          className="bg-slate-50 lg:w-[50%] lg:h-[auto] md:h-[60%] rounded-xl p-4 flex flex-col justify-between w-11/12 sm:w-[75%] sm:h-[auto]"
         >
           <div>
             <div>
@@ -158,12 +158,12 @@ const PaymentModal = ({ lng }) => {
                 <IoIosArrowBack size={28} />
               </Button>
             </div>
-            <div className="lg:m-2 md:m-0 lg:my-4 md:my-1 lg:text-[38px] md:text-[20px] md:mx-4">
+            <div className="lg:m-2 md:m-0 lg:my-4 md:my-1 lg:text-[38px] md:text-[20px] md:mx-4 text-[20px] leading-tight">
               {t("Kick-off")}
               <br /> {t("your campaign")}
             </div>
-            <div className="flex flex-col md:flex-row justify-between m-2">
-              <div className="flex flex-col lg:mx-4 md:px-4">
+            <div className="flex flex-col md:flex-row justify-between md:m-2 my-2">
+              <div className="flex flex-col justify-center gap-3 md:w-1/2 md:pe-5">
                 <div className="flex flex-col">
                   <label className="font-mulish text-lg md:text-[18px]">
                     {t("Name of your campaign")}
@@ -175,7 +175,7 @@ const PaymentModal = ({ lng }) => {
                         /^(?=.*[a-zA-ZçÇşŞğĞüÜıİöÖ])[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*(?:\s[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*)*$/,
                     })}
                     placeholder={t("Build a cat shelter with us!")}
-                    className="title-input mb-4 text-[20px] bg-slate-50 py-0 input-field focus:outline-none focus:ring-0 project-name-input"
+                    className="title-input text-[20px] bg-slate-50 py-0 input-field focus:outline-none focus:ring-0 project-name-input"
                   />
                   {errors.projectName?.type === "required" && (
                     <p
@@ -198,7 +198,7 @@ const PaymentModal = ({ lng }) => {
                   <label className="font-mulish text-lg md:text-[18px]">
                     {t("Add your goal")}
                   </label>
-                  <span className="absolute left-1 top-[28px] text-black text-[20px] font-KronaOne">
+                  <span className="absolute left-0 top-[28px] text-black text-[20px] font-KronaOne">
                     $
                   </span>
                   <input
@@ -206,7 +206,7 @@ const PaymentModal = ({ lng }) => {
                       required: true,
                       pattern: /^[1-9][0-9]*$/,
                     })}
-                    className="bg-slate-50 text-black pl-7 text-[20px] w-full input-field focus:outline-none focus:ring-0 p-0"
+                    className="bg-slate-50 text-black pl-5 text-[20px] w-full input-field focus:outline-none focus:ring-0 p-0"
                   />
                   {errors.goal?.type === "required" && (
                     <p
@@ -226,15 +226,15 @@ const PaymentModal = ({ lng }) => {
                   )}
                 </div>
                 <div className="flex flex-col">
-                  <label className="font-mulish text-lg md:text-[18px] md:pt-2">
+                  <label className="font-mulish text-lg md:text-[18px]">
                     {t("Add your timeline")}
                   </label>
-                  <div className="flex flex-row justify-between relative">
+                  <div className="flex flex-row items-center justify-between relative">
                     <input
                       type="text"
                       name="input-field"
                       autoComplete="off"
-                      className="title-input text-[15px] md:text-[14px] bg-slate-50 py-0 px-2 text-black font-medium text-base leading-normal text-left uppercase input-field focus:outline-none focus:ring-0"
+                      className="title-input text-[15px] md:text-[14px] bg-slate-50 p-0 w-full text-black font-medium text-base text-left uppercase input-field focus:outline-none focus:ring-0"
                       onClick={handleCalendarIconClick}
                       readOnly
                       value={
@@ -268,12 +268,12 @@ const PaymentModal = ({ lng }) => {
                       </p>
                     )}
                     <FaCalendarAlt
-                      className="border-[1px] border-black rounded-lg p-3 absolute right-2 top-[-15px] cursor-pointer"
+                      className="border-[1px] border-black rounded-lg p-3 absolute right-0 top-[-22px] cursor-pointer"
                       size={40}
                       onClick={handleCalendarIconClick}
                     />
                     {showCalendar && (
-                      <div className="calendar-modal absolute h-auto top-[40%] right-[5%] custom-calendar">
+                      <div className="absolute h-auto custom-calendar md:bottom-0 md:start-[46%] inset-x-0 md:inset-x-0 z-10 rounded-lg min-w-max">
                         <div className="text-right mr-2">
                           <Button type="button" clickAction={handleCancel}>
                             <CgClose
@@ -316,7 +316,7 @@ const PaymentModal = ({ lng }) => {
                     )}
                   </div>
                 </div>
-                <div className="flex flex-col mt-5">
+                <div className="flex flex-col">
                   <label className="font-mulish text-lg md:text-[18px]">
                     {t("Select categories for your campaign")}
                   </label>
@@ -353,8 +353,8 @@ const PaymentModal = ({ lng }) => {
                   )}
                 </div>
               </div>
-              <div className="bg-zinc-400 border rounded border-zinc-400 h-auto"></div>
-              <div className="lg:mx-4 lg:w-[50%] md:w-[75%] md:mx-4">
+              <div className="bg-accent-black w-[1px] rounded h-auto"></div>
+              <div className="md:ps-5 md:w-1/2 flex flex-col">
                 <div className="flex flex-col max-md:mt-4">
                   <label className="font-mulish text-lg md:text-[18px]">
                     {t("About your campaign")}
@@ -430,7 +430,7 @@ const PaymentModal = ({ lng }) => {
                         <img
                           src={previewImage}
                           alt="Preview"
-                          className="h-1/2 w-1/2 mb-1"
+                          className="w-1/2 mb-1"
                           title={uploadedFileName}
                         />
                       )}
