@@ -54,11 +54,25 @@ const CampaignEditModal = ({ lng, campaignId }) => {
   }, [loading]);
 
   const categoryOptions = [
-    { label: t("Education"), value: t("Education") },
-    { label: t("Culture"), value: t("Culture") },
-    { label: t("Animals"), value: t("Animals") },
-    { label: t("Children"), value: t("Children") },
+    { label: t("Education"), value: "Education" },
+    { label: t("Culture"), value: "Culture" },
+    { label: t("Animals"), value: "Animals" },
+    { label: t("Children"), value: "Children" },
   ];
+
+  const labelTrTranslations = {
+    "Education": "Eğitim",
+    "Culture": "Kültür",
+    "Animals": "Hayvanlar",
+    "Children": "Çocuklar"
+  };
+
+  const labelEnTranslations = {
+    "Eğitim": "Education",
+    "Kültür": "Culture",
+    "Hayvanlar": "Animals",
+    "Çocuklar": "Children"
+  };
 
   console.log(lng);
 
@@ -179,7 +193,21 @@ const CampaignEditModal = ({ lng, campaignId }) => {
                           noOptionsMessage={() => {
                             t("No category found...");
                           }}
-                          defaultValue={currentCampaign.category}
+                          defaultValue={
+                            currentCampaign && currentCampaign.category
+                            && currentCampaign.category.map(category => {
+                              let translatedLabel = category.label;
+                              if (lng === "tr" && labelTrTranslations[category.label]) {
+                                translatedLabel = labelTrTranslations[category.label];
+                              } else if (lng === "en" && labelEnTranslations[category.label]) {
+                                translatedLabel = labelEnTranslations[category.label];
+                              }
+                              return {
+                                label: translatedLabel,
+                                value: category.value
+                              };
+                            })
+                          }
                           classNames={{
                             multiValueRemove: () => multiValueRemoveStyles,
                             multiValueLabel: () => multiValueLabelStyles,

@@ -18,10 +18,10 @@ const CategoryFilter = ({ lng, href }) => {
 
   const categories = [
     { name: t("All"), query: null, icon: <FaGlobe /> },
-    { name: t("Education"), query: t("Education"), icon: <FaGraduationCap /> },
-    { name: t("Culture"), query: t("Culture"), icon: <FaMasksTheater /> },
-    { name: t("Animals"), query: t("Animals"), icon: <FaPaw /> },
-    { name: t("Children"), query: t("Children"), icon: <FaChild /> },
+    { name: t("Education"), query: "Education", icon: <FaGraduationCap /> },
+    { name: t("Culture"), query: "Culture", icon: <FaMasksTheater /> },
+    { name: t("Animals"), query: "Animals", icon: <FaPaw /> },
+    { name: t("Children"), query: "Children", icon: <FaChild /> },
   ];
 
   console.log(search)
@@ -35,10 +35,10 @@ const CategoryFilter = ({ lng, href }) => {
             path: "/campaigns",
             query: { category: category.query },
           }}
-          className={search === t(category.name) || category.name === t("All") && !search ? "icon-main-selected" : "icon-main"}
+          className={search === category.query || category.query === null && !search ? "icon-main-selected" : "icon-main"}
         >
-          <div className={search === t(category.name) || category.name === t("All") && !search ? "icon-selected" : "icon"}>{category.icon}</div>
-          <div className={search === t(category.name) || category.name === t("All") && !search ? "" : "category-text-selected"}>{category.name}</div>
+          <div className={search === category.query || category.query === null && !search ? "icon-selected" : "icon"}>{category.icon}</div>
+          <div className={search === category.query || category.query === null && !search ? "" : "category-text-selected"}>{category.name}</div>
         </Link>
       ))}
     </div>

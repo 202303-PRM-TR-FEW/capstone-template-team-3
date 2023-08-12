@@ -70,10 +70,10 @@ const PaymentModal = ({ lng }) => {
   };
 
   const categoryOptions = [
-    { label: t("Education"), value: t("Education") },
-    { label: t("Culture"), value: t("Culture") },
-    { label: t("Animals"), value: t("Animals") },
-    { label: t("Children"), value: t("Children") },
+    { label: t("Education"), value: "Education" },
+    { label: t("Culture"), value: "Culture" },
+    { label: t("Animals"), value: "Animals" },
+    { label: t("Children"), value: "Children" },
   ];
 
   const handleCalendarIconClick = () => {
@@ -240,22 +240,22 @@ const PaymentModal = ({ lng }) => {
                       value={
                         startDate && endDate
                           ? `${startDate
-                              .getDate()
-                              .toString()
-                              .padStart(2, "0")}/${(startDate.getMonth() + 1)
+                            .getDate()
+                            .toString()
+                            .padStart(2, "0")}/${(startDate.getMonth() + 1)
                               .toString()
                               .padStart(2, "0")}/${startDate
-                              .getFullYear()
-                              .toString()
-                              .slice(-2)} - ${endDate
-                              .getDate()
-                              .toString()
-                              .padStart(2, "0")}/${(endDate.getMonth() + 1)
-                              .toString()
-                              .padStart(2, "0")}/${endDate
-                              .getFullYear()
-                              .toString()
-                              .slice(-2)}`
+                                .getFullYear()
+                                .toString()
+                                .slice(-2)} - ${endDate
+                                  .getDate()
+                                  .toString()
+                                  .padStart(2, "0")}/${(endDate.getMonth() + 1)
+                                    .toString()
+                                    .padStart(2, "0")}/${endDate
+                                      .getFullYear()
+                                      .toString()
+                                      .slice(-2)}`
                           : `${formatDate(today)} - ${formatDate(nextMonth)}`
                       }
                     />
