@@ -151,7 +151,7 @@ const CampaignEditModal = ({ lng, campaignId }) => {
                       {...register("projectName", {
                         required: true,
                         pattern:
-                          /^(?=.*[a-zA-Z])[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*(?:\s[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*)*$/,
+                          /^(?=.*[a-zA-ZçÇşŞğĞüÜıİöÖ])[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*(?:\s[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*)*$/,
                       })}
                       defaultValue={currentCampaign.projectName}
                       className="title-input bg-slate-50 p-2 input-field focus:outline-none focus:ring-0 project-name-input"
@@ -235,7 +235,7 @@ const CampaignEditModal = ({ lng, campaignId }) => {
                       {...register("about", {
                         required: true,
                         pattern:
-                          /^(?=.*[a-zA-Z])[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*(?:\s[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*)*$/,
+                          /^(?=.*[a-zA-ZçÇşŞğĞüÜıİöÖ])[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*(?:\s[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*)*$/,
                       })}
                       placeholder={t(
                         "So many cats, so little homes. We want to provide home and care to them all. Help us build a dream shelter for all cats in our town."

@@ -1,6 +1,6 @@
 .input-field {
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #0a0a0a;
 }
 
 label {
@@ -30,13 +30,13 @@ input {
   transition: none;
 }
 
-.calendar-modal {
+/* .calendar-modal {
   position: fixed;
   top: 35%;
-  right: 30%;
+  right: 0%;
   z-index: 10;
   border-radius: 8px;
-}
+} */
 
 .confirm-button {
   background-color: rgb(212, 238, 38);
