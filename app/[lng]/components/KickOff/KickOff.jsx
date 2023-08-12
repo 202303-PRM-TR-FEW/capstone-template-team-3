@@ -172,7 +172,7 @@ const PaymentModal = ({ lng }) => {
                     {...register("projectName", {
                       required: true,
                       pattern:
-                        /^(?=.*[a-zA-Z])[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*(?:\s[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*)*$/,
+                        /^(?=.*[a-zA-ZçÇşŞğĞüÜıİöÖ])[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*(?:\s[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*)*$/,
                     })}
                     placeholder={t("Build a cat shelter with us!")}
                     className="title-input mb-4 text-[20px] bg-slate-50 py-0 input-field focus:outline-none focus:ring-0 project-name-input"
@@ -363,7 +363,7 @@ const PaymentModal = ({ lng }) => {
                     {...register("about", {
                       required: true,
                       pattern:
-                        /^(?=.*[a-zA-Z])[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*(?:\s[a-zA-Z\d]+(?:-[a-zA-Z\d]+)*)*$/,
+                        /^(?=.*[a-zA-ZçÇşŞğĞüÜıİöÖ])[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*(?:\s[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*)*$/,
                     })}
                     placeholder={t(
                       "So many cats, so little homes. We want to provide home and care to them all. Help us build a dream shelter for all cats in our town."
