@@ -145,6 +145,22 @@ const PaymentModal = ({ lng }) => {
     dispatch(closeModal());
   };
 
+  const style = {
+    control: (provided, state) => ({
+      ...provided,
+      border: '1px solid black',
+      boxShadow: 'none',
+      '&:hover': {
+        border: '1px solid black',
+      },
+      borderColor: state.isFocused ? 'black' : provided.borderColor,
+    }),
+    input: (provided, state) => ({
+      ...provided,
+      outline: state.isFocused ? 'none' : provided.outline,
+    }),
+  };  
+
   return (
     <main>
       <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background z-10">
@@ -158,7 +174,7 @@ const PaymentModal = ({ lng }) => {
                 <IoIosArrowBack size={28} />
               </Button>
             </div>
-            <div className="lg:m-2 md:m-0 lg:my-4 md:my-1 lg:text-[38px] md:text-[20px] md:mx-4 text-[20px] leading-tight">
+            <div className="lg:m-2 leading-none md:m-0 lg:my-4 md:my-1 lg:text-[38px] md:text-[20px] md:mx-4 text-[20px] leading-tight">
               {t("Kick-off")}
               <br /> {t("your campaign")}
             </div>
@@ -234,7 +250,7 @@ const PaymentModal = ({ lng }) => {
                       type="text"
                       name="input-field"
                       autoComplete="off"
-                      className="title-input text-[15px] md:text-[14px] bg-slate-50 p-0 w-full text-black font-medium text-base text-left uppercase input-field focus:outline-none focus:ring-0"
+                      className="title-input text-[15px] md:text-[13px] bg-slate-50 p-0 w-full text-black font-medium text-base text-left uppercase input-field focus:outline-none focus:ring-0"
                       onClick={handleCalendarIconClick}
                       readOnly
                       value={
@@ -273,7 +289,7 @@ const PaymentModal = ({ lng }) => {
                       onClick={handleCalendarIconClick}
                     />
                     {showCalendar && (
-                      <div className="absolute h-auto custom-calendar md:bottom-0 md:start-[46%] inset-x-0 md:inset-x-0 z-10 rounded-lg min-w-max">
+                      <div className="absolute h-auto custom-calendar md:bottom-0 md:start-[46%] md:inset-x-0 z-10 rounded-lg min-w-max">
                         <div className="text-right mr-2">
                           <Button type="button" clickAction={handleCancel}>
                             <CgClose
@@ -340,6 +356,7 @@ const PaymentModal = ({ lng }) => {
                           multiValueRemove: () => multiValueRemoveStyles,
                           multiValueLabel: () => multiValueLabelStyles,
                         }}
+                        styles={style}
                       />
                     )}
                   />
@@ -353,7 +370,7 @@ const PaymentModal = ({ lng }) => {
                   )}
                 </div>
               </div>
-              <div className="bg-accent-black w-[1px] rounded h-auto"></div>
+              <div className="bg-accent-black border border-zinc-400 w-[1px] rounded h-auto"></div>
               <div className="md:ps-5 md:w-1/2 flex flex-col">
                 <div className="flex flex-col max-md:mt-4">
                   <label className="font-mulish text-lg md:text-[18px]">
