@@ -14,7 +14,13 @@ module.exports = {
       colors: {
         "theme": "rgb(212, 238, 38)",
         "accent": "rgb(250, 250, 250)",
-        "accent-black": "#0a0a0a"
+        "accent-black": "#0a0a0a",
+        "calender-header":"#111",
+        "ranged-day":"rgb(212, 238, 38, 0.5)",
+        "hover-days":"rgb(136, 136, 136, 0.425)"
+      },
+      borderColor:{
+        'white':'#ffffff',
       }
     },
   },
