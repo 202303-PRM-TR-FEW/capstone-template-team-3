@@ -161,19 +161,17 @@ const Profile = ({ params }) => {
               <div className="flex flex-wrap justify-center">
                 <div className="w-full px-4 flex justify-center">
                   <div
-                    className={`${
-                      editProfileImage
-                        ? "mt-10 mb-4 relative"
-                        : "mt-10 mb-10 relative"
-                    }`}
+                    className={`${editProfileImage
+                      ? "mt-10 mb-4 relative"
+                      : "mt-10 mb-10 relative"
+                      }`}
                   >
                     <img
                       alt="..."
-                      src={`${
-                        currentUser.photo
-                          ? currentUser.photo
-                          : "/assets/images/empty-user.png"
-                      }`}
+                      src={`${currentUser.photo
+                        ? currentUser.photo
+                        : "/assets/images/empty-user.png"
+                        }`}
                       className="bg-theme shadow-xl rounded-full h-40 w-40 align-middle border-4 border-theme"
                     />
                     <MdAddAPhoto
@@ -259,61 +257,49 @@ const Profile = ({ params }) => {
                 <h3 className="text-xl font-semibold leading-normal text-blueGray-700 mb-2">
                   {currentUser.name}
                 </h3>
-                {/* <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                  <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-                  Los Angeles, California
-                </div>
-                <div className="mb-2 text-blueGray-600 mt-10">
-                  <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                  Solution Manager - Creative Tim Officer
-                </div>
-                <div className="mb-2 text-blueGray-600">
-                  <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
-                  University of Computer Science
-                </div> */}
               </div>
               <div className="flex flex-col justify-center w-full px-4 text-center border-t border-blueGray-200 mt-10 py-10 lg:flex-row">
-                <div className="lg:w-1/3 mx-auto">
+                <div className="lg:w-1/3 mx-auto flex flex-col justify-center items-center">
                   <h2>{t("Kick-Off")}</h2>
                   <Button
                     type={"button"}
-                    style="ml-2 p-3 h-20 text-center text-sm bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer my-4"
+                    style="bg-theme px-2 py-3 text-[#0a0a0a] xl:text-[18px] text-[14px] h-[5rem] mx-auto rounded-lg my-4 md:text-[18px] xl:mx-auto hover:bg-accent-black hover:text-theme cursor-pointer w-52 md:w-[27rem] lg:w-5/6 whitespace-nowrap"
                     name={t("New campaign")}
                     clickAction={handleNewCampaign}
                   />
                 </div>
-                <div className="lg:w-1/3 mx-auto">
+                <div className="lg:w-1/3 mx-auto flex flex-col justify-center items-center">
                   <h2>{t("Campaigns")}</h2>
-                  <div className="flex flex-col justify-center py-4 md:flex-row md:py-2">
+                  <div className="flex flex-col justify-center py-4 lg:pt-4 md:flex-row">
                     <div
-                      className="p-3 h-22 my-2 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer md:mr-2 md:my-0"
+                      className="p-3 h-[5rem] w-52 lg:w-36 my-2 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer md:mr-2 md:my-0"
                       onClick={handleRoute}
                     >
-                      <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                      <span className="text-xl font-bold block uppercase tracking-wide">
                         {userCampaigns.length}
                       </span>
-                      <span className="text-sm text-blueGray-400">
+                      <span className="text-sm">
                         {t("Kicked-Off")}
                       </span>
                     </div>
                     <div
-                      className="p-3 h-22 my-2 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer md:ml-2 md:my-0"
+                      className="p-3 h-[5rem] w-52 lg:w-36 my-2 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer md:ml-2 md:my-0"
                       onClick={handleRoute}
                     >
-                      <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                      <span className="text-xl font-bold block uppercase tracking-wide">
                         {userDonations.length}
                       </span>
-                      <span className="text-sm text-blueGray-400 w-36">
+                      <span className="text-sm">
                         {t("Supported")}
                       </span>
                     </div>
                   </div>
                 </div>
-                <div className="lg:w-1/3 mx-auto">
+                <div className="lg:w-1/3 mx-auto flex flex-col justify-center items-center">
                   <h2>{t("Support")}</h2>
                   <Button
                     type={"button"}
-                    style="ml-2 p-3 h-20 text-center text-sm bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer my-4"
+                    style="bg-theme px-2 py-3 lg:my-4 text-[#0a0a0a] xl:text-[18px] text-[14px] h-[5rem] mx-auto rounded-lg mt-4 md:text-[18px] xl:mx-auto hover:bg-accent-black hover:text-theme cursor-pointer w-52 md:w-[27rem] lg:w-5/6 whitespace-nowrap"
                     name={t("Other campaigns")}
                     clickAction={handleSupport}
                   />
