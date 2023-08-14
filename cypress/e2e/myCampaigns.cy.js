@@ -9,7 +9,7 @@ describe("navigates to created campaign page", () => {
     cy.get(":nth-child(2) > :nth-child(1) > .card-main").click();
     cy.location("pathname").should(
       "equal",
-      "/en/campaigns/nldCFQ6vayPurQJShdOU"
+      "/en/campaigns/3wwN8chgQevmN9mfQab8"
     );
   });
 });
@@ -19,7 +19,7 @@ describe("navigates to supported campaign page", () => {
     cy.get(":nth-child(4) > :nth-child(1) > .card-main").click();
     cy.location("pathname").should(
       "equal",
-      "/en/campaigns/ocHFvCCqpGpCCprbi2xS"
+      "/en/campaigns/F0D8yFlCfC9xPZ1NJ1Li"
     );
   });
 });
