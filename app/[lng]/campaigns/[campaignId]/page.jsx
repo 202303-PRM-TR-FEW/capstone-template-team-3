@@ -110,11 +110,11 @@ export default function CampaignPage({ params }) {
         user &&
         currentCampaign.id === user.uid &&
         campaignOwner ? (
-        <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
+        <div className="flex flex-col mx-auto p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5 lg:items-start lg:mx-16 lg:justify-center lg:space-y-0">
           {/* left container */}
-          <div className="mb-5 max-w-3xl">
+          <div className="mb-5 lg:flex items-center">
             <Image
-              className="bg-slate-100 rounded-xl"
+              className="bg-slate-100 rounded-xl max-h-[600px] lg:w-[40rem] sm:h-[25rem] sm:w-[36rem] overflow-visible sm:max-h-[70vh] mx-auto lg:max-w-lg"
               width={1200}
               height={200}
               src={currentCampaign.image}
@@ -122,7 +122,7 @@ export default function CampaignPage({ params }) {
             />
           </div>
           {/* right container  */}
-          <div className="flex flex-col space-y-5 ">
+          <div className="flex flex-col w-full sm:w-[620px] sm:w-auto md:w-[750px] lg:w-1/2 lg:h-1/2">
             <h1 className="text-2xl font-bold lg:text-start ">
               {currentCampaign.projectName}
             </h1>
@@ -146,9 +146,9 @@ export default function CampaignPage({ params }) {
               </div>
               <h3>{campaignOwner.name}</h3>
             </div>
-            <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
+            <div className="flex flex-col w-full p-3 items-center text-center lg:flex-row lg:space-y-0">
               {/* about campaign  */}
-              <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
+              <div className="flex flex-col w-full lg:w-1/2 rounded-lg border-2 lg:border-l-0 p-5 lg:rounded-none border-neutral-950 my-5 lg:flex-grow overflow-hidden">
                 <h4 className="text-xl">{t("About campaign")}</h4>
                 <p className="text-sm">{currentCampaign.about}</p>
                 {currentCampaign.category && (
@@ -168,8 +168,8 @@ export default function CampaignPage({ params }) {
                 )}
               </div>
               {/* campaign details   */}
-              <div className="flex flex-col justify-around p-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950">
-                <div className="flex space-x-10 ">
+              <div className="flex flex-col w-full lg:w-1/2 lg:justify-between p-5 my-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 border-neutral-950 lg:flex-grow">
+                <div className="flex space-x-10 py-2">
                   <div className="p-2">
                     <h5>{t("Raised")}:</h5>
                     <p>{"$" + currentCampaign.raised}</p>
@@ -195,7 +195,7 @@ export default function CampaignPage({ params }) {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center items-center gap-5">
+            <div className="flex justify-center items-center gap-5 lg:justify-end">
               <Button
                 style={
                   "w-[15rem] bg-neutral-950 text-white py-3 px-8 rounded-lg"
@@ -216,11 +216,11 @@ export default function CampaignPage({ params }) {
       ) : (
         currentCampaign &&
         campaignOwner && (
-          <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
+          <div className="flex flex-col w-full p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
             {/* left container */}
             <div className="mb-5 max-w-3xl">
               <Image
-                className="bg-slate-100 rounded-xl"
+                className="bg-slate-100 rounded-xl max-h-[70vh] xl:max-w-xl"
                 width={1200}
                 height={200}
                 src={currentCampaign.image}
@@ -228,7 +228,7 @@ export default function CampaignPage({ params }) {
               />
             </div>
             {/* right container  */}
-            <div className="flex flex-col space-y-5 ">
+            <div className="flex flex-col space-y-5 w-full">
               <h1 className="text-2xl font-bold lg:text-start ">
                 {currentCampaign.projectName}
               </h1>
@@ -259,7 +259,7 @@ export default function CampaignPage({ params }) {
 
               <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
                 {/* about campaign  */}
-                <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
+                <div className="flex flex-col space-y-5 rounded-lg border-2 overflow-hidden  py-5 lg:border-l-0 lg:rounded-none border-neutral-950 ">
                   <h4 className="text-xl">{t("About campaign")}</h4>
                   {currentCampaign.category && (
                     <div>
