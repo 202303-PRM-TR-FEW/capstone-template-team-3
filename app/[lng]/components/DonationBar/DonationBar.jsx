@@ -1,7 +1,6 @@
 import React from "react";
 
 const DonationBar = ({ goal, raised }) => {
-  // Ensure goal and raised are valid numbers
   const parsedGoal = parseInt(goal);
   const parsedRaised = parseInt(raised);
 

@@ -29,8 +29,6 @@ function SignUp({ params }) {
   const error = useSelector((state) => state.user.error);
   const currentUserStatus = useSelector((state) => state.user.status);
 
-  console.log(lng);
-
   useEffect(() => {
     user &&
       currentUserStatus === "succeeded" &&
@@ -64,21 +62,21 @@ function SignUp({ params }) {
   return currentUserStatus === "loading" ? (
     <Loader />
   ) : (
-    <div className="container mx-auto w-11/12 mt-5 object-cover relative">
+    <div className="container mx-auto object-cover relative">
       <Image
         src={"/assets/images/bgimage.png"}
         alt="bg"
         fill
-        className="object-contain z-[-1] opacity-50"
+        className="object-contain z-[-1] opacity-50 absolute"
       />
       {!user ? (
         <div className="container mx-auto ">
-          <div className="flex flex-col p-5 w-11/12 sm:w-2/5 mx-auto text-center bg-accent text-accent rounded-3xl h-[94px] xl:w-2/5 mt-10 z-0"></div>
+          <div className="flex flex-col p-5 w-fit mx-auto text-center bg-accent text-accent rounded-3xl h-[94px] mt-10 z-0"></div>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col p-5 w-11/12 xl:w-2/5 mx-auto md:w-3/5 bg-theme rounded-3xl"
+            className="flex flex-col p-5 mx-auto w-11/12 md:w-3/4 lg:w-8/12 xl:w-2/5 bg-theme rounded-3xl"
           >
-            <div className="my-2 mx-auto w-10/12">
+            <div className="my-2 mx-auto w-full md:w-10/12">
               <input
                 {...register("name", {
                   required: true,
@@ -86,7 +84,7 @@ function SignUp({ params }) {
                     /^[a-zA-Z]+(?:-[a-zA-Z]+)*(?:\s[a-zA-Z]+(?:-[a-zA-Z]+)*)*$/,
                 })}
                 placeholder={t("Name")}
-                className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11 text-xs md:text-base"
                 aria-invalid={errors.name ? "true" : "false"}
                 type="text"
                 data-cy="name-input"
@@ -94,7 +92,7 @@ function SignUp({ params }) {
               {errors.name?.type === "required" && (
                 <p
                   role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
+                  className="text-end text-red-600 italic text-[10px] md:text-[12px]"
                 >
                   {t("Name is required")}
                 </p>
@@ -102,21 +100,21 @@ function SignUp({ params }) {
               {errors.name?.type === "pattern" && (
                 <p
                   role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
+                  className="text-end text-red-600 italic text-[10px] md:text-[12px]"
                 >
                   {t("Name is invalid")}
                 </p>
               )}
             </div>
 
-            <div className="my-2 mx-auto w-10/12">
+            <div className="my-2 mx-auto w-full md:w-10/12">
               <input
                 {...register("email", {
                   required: true,
                   pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                 })}
                 placeholder={t("Email")}
-                className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11 text-xs md:text-base"
                 aria-invalid={errors.email ? "true" : "false"}
                 type="text"
                 data-cy="email-input"
@@ -124,7 +122,7 @@ function SignUp({ params }) {
               {errors.email?.type === "required" && (
                 <p
                   role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
+                  className="text-end text-red-600 italic text-[10px] md:text-[12px] "
                 >
                   {t("Email is required")}
                 </p>
@@ -132,14 +130,14 @@ function SignUp({ params }) {
               {errors.email?.type === "pattern" && (
                 <p
                   role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
+                  className="text-end text-red-600 italic text-[10px] md:text-[12px]"
                 >
                   {t("Email is invalid")}
                 </p>
               )}
             </div>
 
-            <div className="my-2 mx-auto w-10/12">
+            <div className="my-2 mx-auto w-full md:w-10/12">
               <input
                 {...register("password", {
                   required: true,
@@ -147,7 +145,7 @@ function SignUp({ params }) {
                   minLength: 8,
                 })}
                 placeholder={t("Password")}
-                className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11 text-xs md:text-base"
                 aria-invalid={errors.password ? "true" : "false"}
                 type="password"
                 data-cy="password-input"
@@ -155,7 +153,7 @@ function SignUp({ params }) {
               {errors.password?.type === "required" && (
                 <p
                   role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
+                  className="text-end text-red-600 italic text-[10px] md:text-[12px] "
                 >
                   {t("Password is required")}
                 </p>
@@ -163,7 +161,7 @@ function SignUp({ params }) {
               {errors.password?.type === "pattern" && (
                 <p
                   role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
+                  className="text-end text-red-600 italic text-[10px] md:text-[12px]"
                 >
                   {t(
                     "Password must contain a lowercase, an uppercase, and a special character"
@@ -173,14 +171,14 @@ function SignUp({ params }) {
               {errors.password?.type === "minLength" && (
                 <p
                   role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
+                  className="text-end text-red-600 italic text-[10px] md:text-[12px]"
                 >
                   {t("Password must be at least 8 characters")}
                 </p>
               )}
             </div>
 
-            <div className="my-2 mx-auto w-10/12">
+            <div className="my-2 mx-auto w-full md:w-10/12">
               <input
                 {...register("passwordConfirm", {
                   required: true,
@@ -191,7 +189,7 @@ function SignUp({ params }) {
                   },
                 })}
                 placeholder={t("Confirm Password")}
-                className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11"
+                className="bg-accent text-accent-black rounded-lg focus:ring-0 w-full p-2.5 border-0 h-11 text-xs md:text-base"
                 aria-invalid={errors.passwordConfirm ? "true" : "false"}
                 type="password"
                 data-cy="passwordConfirm-input"
@@ -199,7 +197,7 @@ function SignUp({ params }) {
               {errors.passwordConfirm?.type === "required" && (
                 <p
                   role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
+                  className="text-end text-red-600 italic text-[10px] md:text-[12px]"
                 >
                   {t("Please re-enter password")}
                 </p>
@@ -207,48 +205,57 @@ function SignUp({ params }) {
               {errors.passwordConfirm?.type === "validate" && (
                 <p
                   role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
+                  className="text-end text-red-600 italic text-[10px] md:text-[12px]"
                 >
                   {t("Passwords do not match")}
                 </p>
               )}
             </div>
 
-            <div className="my-2 flex justify-between items-center w-10/12 mx-auto">
+            <div className="my-3 flex justify-normal items-center w-10/12 mt-0.5 md:mx-auto whitespace-nowrap">
               <input
                 {...register("checkbox", { required: true })}
                 type="checkbox"
                 name="checkbox"
-                className="text-lime-600 w-6 h-6 rounded-md ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent outline-none focus:outline-none cursor-pointer"
+                className="text-[#050708]/30 w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 rounded-sm md:rounded-md ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent outline-none focus:outline-none cursor-pointer"
               />
               <label
-                className="text-center font-medium text-[16px]"
+                className="font-medium text-[11px] md:text-base ml-2"
                 htmlFor="checkbox"
               >
                 {t("I accept the")}{" "}
-                <a href="#" className="text-lime-700 italic font-bold">
-                  {t("Terms & Conditions")}
+                <a
+                  href="#"
+                  className="text-[#050708]/50 hover:text-[#050708]/80 italic font-bold text-[11px] md:text-base"
+                >
+                  {t("Terms & Conditions")}.
                 </a>
               </label>
             </div>
             {errors.checkbox?.type === "required" && (
-              <div className="my-2 w-10/12 mx-auto">
+              <div className="my-2 -mt-2 w-64 md:w-full">
                 <p
                   role="alert"
-                  className="text-center text-red-600 italic text-[14px]"
+                  className="text-center text-red-600 italic text-[10px] md:text-[12px]"
                 >
                   {t("You must accept the Terms & Conditions to proceed.")}
                 </p>
               </div>
             )}
-            <Button type="submit" style="navbar-button mt-5">
+            <Button
+              type="submit"
+              style="navbar-button mt-2 md:mt-3 w-full text-sm md:text-base lg:text-[18px] mx-auto"
+            >
               {t("Sign Up")}
             </Button>
-            <p className="pt-5 pb-1 text-center"> {t("Already a member?")}</p>
+            <p className="pt-5 pb-1 mb-1 text-center text-sm md:text-[18px]">
+              {" "}
+              {t("Already a member?")}
+            </p>
             <NavLink
               to={`/${lng}/sign-in`}
               name={t("Sign In")}
-              style="text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg px-5 py-2 text-center flex items-center justify-center h-11"
+              style="text-white bg-[#050708] hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg px-5 py-2 text-center flex items-center justify-center h-11 w-full text-sm md:text-base lg:text-[18px] mx-auto"
             />
           </form>
         </div>

@@ -15,7 +15,7 @@
 }
 
 .logo {
-  @apply text-accent-black mb-3;
+  @apply text-accent-black mb-3 !ml-[5px];
 }
 
 .contact {
@@ -23,7 +23,7 @@
 }
 
 .social-links {
-  @apply inline-flex justify-center mt-2 sm:ml-auto sm:mt-0 sm:justify-start;
+  @apply inline-flex justify-center sm:ml-auto mt-0 sm:justify-start;
 }
 
 .facebook {
