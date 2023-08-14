@@ -87,7 +87,7 @@ const Campaigns = ({ params }) => {
           clickAction={() => push(`/${lng}/campaigns/${campaign.id}`)}
         />
       ))}
-      <div className="bg-accent container px-5 mx-auto">
+      <div className="bg-accent container px-5 mx-auto w-11/12">
         <div className="flex flex-col md:flex-row justify-center items-center bg-theme p-5 mx-auto rounded-xl gap-3 my-5 text-center text-[14px] sm:text-[16px] lg:text-[20px] whitespace-nowrap">
           <span>{t("Thanks to our supporters")}</span>
           <div className="bg-accent-black text-accent p-5 rounded-xl">
@@ -96,7 +96,7 @@ const Campaigns = ({ params }) => {
           <span>{t("accumulated for charity")}!</span>
         </div>
       </div>
-      <div className="bg-accent container px-5 mx-auto">
+      <div className="bg-accent container px-5 mx-auto w-11/12">
         <hr className="h-0.5 mx-auto mb-3 bg-accent-black" />
       </div>
       <CategoryFilter />
