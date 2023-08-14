@@ -7,15 +7,15 @@
 }
 
 .row {
-  @apply flex flex-col lg:flex-row w-full lg:justify-center lg:items-center xl:justify-normal xl:items-stretch cursor-pointer;
+  @apply flex flex-col lg:flex-row w-full lg:justify-center lg:items-center xl:justify-between xl:items-stretch cursor-pointer;
 }
 
 .large-card-img-section {
-  @apply relative flex justify-center items-center rounded-lg w-[16rem] lg:w-[40rem] h-44 sm:h-[25rem] sm:w-[36rem] mx-auto lg:m-5 p-3 overflow-visible bg-[#e6e6e6];
+  @apply relative flex justify-center items-center rounded-lg w-[16rem] lg:w-[50rem] h-44 sm:h-[25rem] lg:h-[30rem] sm:w-[36rem] mx-auto lg:m-5 p-3 overflow-visible bg-[#e6e6e6];
 }
 
 .project-info {
-  @apply lg:w-1/2 flex flex-col justify-evenly p-5 lg:pt-5 lg:pb-5 lg:pe-5
+  @apply lg:w-1/2 flex flex-col justify-evenly p-5 md:p-6 lg:pt-5 lg:pb-5 lg:pe-5
 }
 
 .project-title {

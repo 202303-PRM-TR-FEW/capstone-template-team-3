@@ -17,8 +17,7 @@ export const getUserData = createAsyncThunk("getUserData", async (userId) => {
         const docSnap = await getDoc(docRef)
         return docSnap.data()
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -28,8 +27,7 @@ export const getCampaignOwnerProfileData = createAsyncThunk("getCampaignOwnerPro
         const docSnap = await getDoc(docRef)
         return docSnap.data()
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -39,8 +37,7 @@ export const getCampaignOwnerData = createAsyncThunk("getCampaignOwnerData", asy
         const docSnap = await getDoc(docRef)
         return docSnap.data()
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -56,8 +53,7 @@ export const userJoinNewsletter = createAsyncThunk("userJoinNewsletter", async (
         }
         return docSnap.data()
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -76,8 +72,7 @@ export const userUpdatePhoto = createAsyncThunk("userUpdatePhoto", async (data) 
         }
         return docSnap.data()
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -93,8 +88,7 @@ export const userDeletePhoto = createAsyncThunk("userDeletePhoto", async (userId
         }
         return docSnap.data()
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -107,8 +101,6 @@ export const userSignInWithEmailAndPassword = createAsyncThunk(
             handleRoute()
             return userCredential.user
         } catch (error) {
-            console.log(error.code)
-            console.log(error.message)
             throw error
         }
     })
@@ -133,8 +125,6 @@ export const userSignUpWithEmailAndPassword = createAsyncThunk(
             handleRoute()
             return userCredential.user
         } catch (error) {
-            console.log(error.code)
-            console.log(error.message)
             throw error
         }
     }
@@ -150,7 +140,6 @@ export const userSignInWithGoogle = createAsyncThunk(
             const userId = userCredential.user.uid
             const docRef = doc(db, "users", userId)
             const docSnap = await getDoc(docRef)
-            console.log(docSnap.exists())
             if (!docSnap.exists()) {
                 await setDoc(docRef, {
                     acceptedTermsAndConditions: true,
@@ -163,8 +152,6 @@ export const userSignInWithGoogle = createAsyncThunk(
             handleRoute()
             return userCredential.user
         } catch (error) {
-            console.log(error.code)
-            console.log(error.message)
             throw error
         }
     })
@@ -191,8 +178,6 @@ export const userSignInWithGithub = createAsyncThunk(
             handleRoute()
             return userCredential.user
         } catch (error) {
-            console.log(error.code)
-            console.log(error.message)
             throw error
         }
     })
@@ -219,8 +204,6 @@ export const userSignInWithTwitter = createAsyncThunk(
             handleRoute()
             return userCredential.user
         } catch (error) {
-            console.log(error.code)
-            console.log(error.message)
             throw error
         }
     })
@@ -231,8 +214,7 @@ export const userSignOut = createAsyncThunk(
         try {
             await signOut(auth)
         } catch (error) {
-            console.log(error.code)
-            console.log(error.message)
+            throw error
         }
     }
 )

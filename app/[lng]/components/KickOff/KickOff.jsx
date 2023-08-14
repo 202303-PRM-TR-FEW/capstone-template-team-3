@@ -108,7 +108,7 @@ const PaymentModal = ({ lng }) => {
     );
     await dispatch(getAllUserCampaigns(userId));
     await dispatch(closeModal());
-    toast.success(t("Campaign launched successfully."), {
+    toast.success(t("Campaign launched."), {
       toastId: "campaign-launch-succeeded",
     });
   };
@@ -148,6 +148,7 @@ const PaymentModal = ({ lng }) => {
   const style = {
     control: (provided, state) => ({
       ...provided,
+      fontSize: "16px",
       border: '1px solid black',
       boxShadow: 'none',
       '&:hover': {
@@ -159,14 +160,14 @@ const PaymentModal = ({ lng }) => {
       ...provided,
       outline: state.isFocused ? 'none' : provided.outline,
     }),
-  };  
+  };
 
   return (
     <main>
       <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background z-10">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-slate-50 lg:w-[50%] lg:h-[auto] md:h-[60%] rounded-xl p-4 flex flex-col justify-between w-11/12 sm:w-[75%] sm:h-[auto]"
+          className="bg-slate-50 xl:w-[60%] 2xl:w-[50%] lg:h-[auto] md:h-[60%] rounded-xl p-4 flex flex-col justify-between w-11/12 sm:w-[80%] sm:h-[auto]"
         >
           <div>
             <div>
@@ -174,7 +175,7 @@ const PaymentModal = ({ lng }) => {
                 <IoIosArrowBack size={28} />
               </Button>
             </div>
-            <div className="lg:m-2 leading-none md:m-0 lg:my-4 md:my-1 lg:text-[38px] md:text-[20px] md:mx-4 text-[20px] leading-tight">
+            <div className="lg:m-2 md:m-0 lg:my-4 md:my-1 lg:text-[38px] md:text-[20px] md:mx-4 text-[20px] leading-tight">
               {t("Kick-off")}
               <br /> {t("your campaign")}
             </div>
@@ -191,7 +192,7 @@ const PaymentModal = ({ lng }) => {
                         /^(?=.*[a-zA-ZçÇşŞğĞüÜıİöÖ])[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*(?:\s[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*)*$/,
                     })}
                     placeholder={t("Build a cat shelter with us!")}
-                    className="title-input text-[20px] bg-slate-50 py-0 input-field focus:outline-none focus:ring-0 project-name-input"
+                    className="title-input text-[20px] bg-slate-50 py-0 input-field focus:outline-none focus:ring-0 project-name-input w-full"
                   />
                   {errors.projectName?.type === "required" && (
                     <p
@@ -250,7 +251,7 @@ const PaymentModal = ({ lng }) => {
                       type="text"
                       name="input-field"
                       autoComplete="off"
-                      className="title-input text-[15px] md:text-[13px] bg-slate-50 p-0 w-full text-black font-medium text-base text-left uppercase input-field focus:outline-none focus:ring-0"
+                      className="title-input text-[13px] bg-slate-50 p-0 w-full text-black font-medium text-left uppercase input-field focus:outline-none focus:ring-0"
                       onClick={handleCalendarIconClick}
                       readOnly
                       value={
@@ -333,7 +334,7 @@ const PaymentModal = ({ lng }) => {
                   </div>
                 </div>
                 <div className="flex flex-col">
-                  <label className="font-mulish text-lg md:text-[18px]">
+                  <label className="font-mulish text-[15px] lg:text-[18px]">
                     {t("Select categories for your campaign")}
                   </label>
                   <Controller
@@ -370,7 +371,7 @@ const PaymentModal = ({ lng }) => {
                   )}
                 </div>
               </div>
-              <div className="bg-accent-black border border-zinc-400 w-[1px] rounded h-auto"></div>
+              <div className="bg-accent-black border border-accent-black w-[1px] rounded h-auto hidden md:block"></div>
               <div className="md:ps-5 md:w-1/2 flex flex-col">
                 <div className="flex flex-col max-md:mt-4">
                   <label className="font-mulish text-lg md:text-[18px]">
@@ -385,7 +386,7 @@ const PaymentModal = ({ lng }) => {
                     placeholder={t(
                       "So many cats, so little homes. We want to provide home and care to them all. Help us build a dream shelter for all cats in our town."
                     )}
-                    className="title-input text-[20px] bg-slate-50 lg:py-0 md:py-1 input-field focus:outline-none focus:ring-0"
+                    className="title-input text-[20px] bg-slate-50 input-field focus:outline-none focus:ring-0 w-full"
                   />
                   {errors.about?.type === "required" && (
                     <p

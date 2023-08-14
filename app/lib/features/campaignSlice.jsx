@@ -20,8 +20,7 @@ export const getAllCampaigns = createAsyncThunk("getAllCampaigns", async () => {
         const allCampaigns = await getDocs(collection(db, "campaigns"));
         return allCampaigns.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -45,8 +44,7 @@ export const addUserCampaign = createAsyncThunk("addUserCampaign", async (data) 
         });
         return campaign
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -71,8 +69,7 @@ export const addUserDonation = createAsyncThunk("addUserDonation", async (data) 
             return updatedCampaign
         }
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -83,8 +80,7 @@ export const getCharities = createAsyncThunk("getCharities", async () => {
         const allCharity = allCharityCampaigns.docs.map((doc) => doc.data().charity)
         return allCharity
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -95,8 +91,7 @@ export const getCampaignOfTheWeek = createAsyncThunk("getCampaignOfTheWeek", asy
         const campaign = campaignOfTheWeek.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
         return campaign
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -106,8 +101,7 @@ export const getCurrentCampaign = createAsyncThunk("getCurrentCampaign", async (
         const docSnap = await getDoc(docRef)
         return docSnap.data()
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -118,7 +112,6 @@ export const updateCurrentCampaign = createAsyncThunk("updateCurrentCampaign", a
         await uploadBytes(fileRef, file[0])
         const docRef = doc(db, "campaigns", campaignId)
         const docSnap = await getDoc(docRef)
-        console.log(docSnap.exists)
         if (docSnap.exists()) {
             const updatedCampaign = await updateDoc(docRef, {
                 projectName: projectName,
@@ -129,8 +122,7 @@ export const updateCurrentCampaign = createAsyncThunk("updateCurrentCampaign", a
             return updatedCampaign
         }
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -144,8 +136,7 @@ export const deleteCurrentCampaign = createAsyncThunk("deleteCurrentCampaign", a
             return deletedCampaign
         }
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -159,11 +150,9 @@ export const getAllUserCampaigns = createAsyncThunk("getAllUserCampaigns", async
                 data: doc.data()
             }
         })
-        console.log(allCampaigns)
         return allCampaigns
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -177,11 +166,9 @@ export const getAllOwnerCampaigns = createAsyncThunk("getAllOwnerCampaigns", asy
                 data: doc.data()
             }
         })
-        console.log(allCampaigns)
         return allCampaigns
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -195,11 +182,9 @@ export const getAllUserDonations = createAsyncThunk("getAllUserDonations", async
                 data: doc.data()
             }
         })
-        console.log(allDonations)
         return allDonations
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 
@@ -213,11 +198,9 @@ export const getAllOwnerDonations = createAsyncThunk("getAllOwnerDonations", asy
                 data: doc.data()
             }
         })
-        console.log(allDonations)
         return allDonations
     } catch (error) {
-        console.log(error.code)
-        console.log(error.message)
+        throw error
     }
 })
 

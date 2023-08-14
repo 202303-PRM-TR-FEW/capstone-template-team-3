@@ -44,6 +44,23 @@ const CampaignEditModal = ({params, campaignId }) => {
   );
   const currentUser = useSelector((state) => state.user.user);
 
+  const style = {
+    control: (provided, state) => ({
+      ...provided,
+      fontSize: "16px",
+      border: '1px solid black',
+      boxShadow: 'none',
+      '&:hover': {
+        border: '1px solid black',
+      },
+      borderColor: state.isFocused ? 'black' : provided.borderColor,
+    }),
+    input: (provided, state) => ({
+      ...provided,
+      outline: state.isFocused ? 'none' : provided.outline,
+    }),
+  };
+
   const getCurrentCampaignData = async () => {
     await dispatch(getCurrentCampaign(campaignId));
   };
@@ -91,7 +108,7 @@ const CampaignEditModal = ({params, campaignId }) => {
       })
     );
     await dispatch(closeModal());
-    toast.success(t("Campaign updated successfully."), {
+    toast.success(t("Campaign updated."), {
       toastId: "edit-succeeded",
     });
   };
@@ -130,7 +147,7 @@ const CampaignEditModal = ({params, campaignId }) => {
         <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background z-10">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="bg-slate-50 lg:w-[50%] lg:h-[auto] rounded-xl p-4 flex flex-col justify-between sm:w-[75%] sm:h-[75%]"
+            className="bg-slate-50 xl:w-[60%] 2xl:w-[50%] rounded-xl p-4 flex flex-col justify-between w-11/12 sm:w-[80%] sm:h-[auto]"
           >
             <div>
               <div>
@@ -138,12 +155,12 @@ const CampaignEditModal = ({params, campaignId }) => {
                   <IoIosArrowBack size={28} />
                 </Button>
               </div>
-              <div className="lg:m-2 md:m-0 lg:my-4 md:my-1 lg:text-[40px] md:text-[20px]">
+              <div className="lg:m-2 md:m-0 lg:my-4 md:my-1 lg:text-[38px] md:text-[20px] md:mx-4 text-[20px] leading-tight">
                 {t("Edit")}
                 <br /> {t("your campaign")}
               </div>
-              <div className="flex flex-col md:flex-row justify-between m-2">
-                <div className="flex flex-col lg:mx-4">
+              <div className="flex flex-col md:flex-row justify-between md:m-2 my-2">
+                <div className="flex flex-col gap-3 md:w-1/2 md:pe-5">
                   <div className="flex flex-col">
                     <label className="font-mulish text-lg md:text-[18px]">
                       {t("Name of your campaign")}
@@ -155,7 +172,7 @@ const CampaignEditModal = ({params, campaignId }) => {
                           /^(?=.*[a-zA-ZçÇşŞğĞüÜıİöÖ])[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*(?:\s[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+(?:-[a-zA-ZçÇşŞğĞüÜıİöÖ\d\W]+)*)*$/,
                       })}
                       defaultValue={currentCampaign.projectName}
-                      className="title-input bg-slate-50 p-2 input-field focus:outline-none focus:ring-0 project-name-input"
+                      className="title-input text-[20px] bg-slate-50 py-0 input-field focus:outline-none focus:ring-0 project-name-input w-full"
                     />
                     {errors.projectName?.type === "required" && (
                       <p
@@ -174,8 +191,8 @@ const CampaignEditModal = ({params, campaignId }) => {
                       </p>
                     )}
                   </div>
-                  <div className="flex flex-col mt-5">
-                    <label className="font-mulish text-lg md:text-[18px]">
+                  <div className="flex flex-col lg:my-10">
+                    <label className="font-mulish text-[15px] lg:text-[18px]">
                       {t("Select categories for your campaign")}
                     </label>
                     <Controller
@@ -213,6 +230,7 @@ const CampaignEditModal = ({params, campaignId }) => {
                             multiValueRemove: () => multiValueRemoveStyles,
                             multiValueLabel: () => multiValueLabelStyles,
                           }}
+                          styles={style}
                         />
                       )}
                     />
@@ -226,9 +244,9 @@ const CampaignEditModal = ({params, campaignId }) => {
                     )}
                   </div>
                 </div>
-                <div className="bg-zinc-400 border rounded border-zinc-400 h-auto"></div>
-                <div className="lg:mx-4 md:w-auto">
-                  <div className="flex flex-col">
+                <div className="bg-accent-black border border-accent-black w-[1px] rounded h-auto hidden md:block"></div>
+                <div className="md:ps-5 md:w-1/2 flex flex-col">
+                  <div className="flex flex-col max-md:mt-4">
                     <label className="font-mulish text-lg md:text-[18px]">
                       {t("About your campaign")}
                     </label>
@@ -241,7 +259,7 @@ const CampaignEditModal = ({params, campaignId }) => {
                       placeholder={t(
                         "So many cats, so little homes. We want to provide home and care to them all. Help us build a dream shelter for all cats in our town."
                       )}
-                      className="title-input bg-slate-50 lg:py-7 md:py-1 input-field focus:outline-none focus:ring-0"
+                      className="title-input text-[20px] bg-slate-50 input-field focus:outline-none focus:ring-0 w-full"
                       defaultValue={currentCampaign.about}
                     />
                     {errors.about?.type === "required" && (
@@ -261,7 +279,7 @@ const CampaignEditModal = ({params, campaignId }) => {
                       </p>
                     )}
                   </div>
-                  <div className="flex flex-col items-center lg:my-10 md:my-1">
+                  <div className="flex flex-col items-center lg:my-10 md:my-1 max-md:mt-4 md:mt-4">
                     <input
                       {...register("file", { required: true })}
                       type="file"
@@ -334,7 +352,7 @@ const CampaignEditModal = ({params, campaignId }) => {
                 type="submit"
                 style="bg-zinc-950 rounded-md w-full p-2 text-white text-[15px]"
               >
-                {t("Upload campaign")}
+                {t("Update campaign")}
               </Button>
             </div>
           </form>
