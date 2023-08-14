@@ -212,7 +212,7 @@ function SignUp({ params }) {
               )}
             </div>
 
-            <div className="my-3 flex justify-normal items-center w-10/12 mt-0.5 -ml-1 md:mx-auto whitespace-nowrap">
+            <div className="my-3 flex justify-normal items-center w-10/12 mt-0.5 md:mx-auto whitespace-nowrap">
               <input
                 {...register("checkbox", { required: true })}
                 type="checkbox"
@@ -220,13 +220,13 @@ function SignUp({ params }) {
                 className="text-[#050708]/30 w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 rounded-sm md:rounded-md ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent outline-none focus:outline-none cursor-pointer"
               />
               <label
-                className="font-medium text-[10px] md:text-[11px] lg:text-[14px] ml-2"
+                className="font-medium text-[11px] md:text-base ml-2"
                 htmlFor="checkbox"
               >
                 {t("I accept the")}{" "}
                 <a
                   href="#"
-                  className="text-[#050708]/50 hover:text-[#050708]/80 italic font-bold text-[10px] md:text-[11px] lg:text-[14px] "
+                  className="text-[#050708]/50 hover:text-[#050708]/80 italic font-bold text-[11px] md:text-base"
                 >
                   {t("Terms & Conditions")}.
                 </a>
