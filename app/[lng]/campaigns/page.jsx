@@ -102,18 +102,15 @@ const Campaigns = ({ params }) => {
       <CategoryFilter />
       <div className="flex flex-row gap-5 flex-wrap items-center justify-evenly container w-11/12 mx-auto">
         {filteredCampaignsByCategory.map((campaign) => (
-          <div
-            key={campaign.id}
-            onClick={() => push(`/${lng}/campaigns/${campaign.id}`)}
-          >
             <Card
               lng={lng}
+              key={campaign.id}
               img={campaign.data.image}
               title={campaign.data.projectName}
               raised={campaign.data.raised}
               goal={campaign.data.goal}
+              clickAction={() => push(`/${lng}/campaigns/${campaign.id}`)}
             />
-          </div>
         ))}
       </div>
     </main>
