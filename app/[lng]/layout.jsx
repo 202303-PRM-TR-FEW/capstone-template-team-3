@@ -34,8 +34,7 @@ const RootLayout = ({ children, params: { lng } }) => {
             draggable
             pauseOnHover
             toastStyle={{
-              minWidth: "max-content",
-              maxWidth: "320px",
+              width: "320px",
               backgroundColor: "rgb(250, 250, 250)",
             }}
           />

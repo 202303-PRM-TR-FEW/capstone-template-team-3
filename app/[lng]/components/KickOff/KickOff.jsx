@@ -108,7 +108,7 @@ const PaymentModal = ({ lng }) => {
     );
     await dispatch(getAllUserCampaigns(userId));
     await dispatch(closeModal());
-    toast.success(t("Campaign launched successfully."), {
+    toast.success(t("Campaign launched."), {
       toastId: "campaign-launch-succeeded",
     });
   };

@@ -23,7 +23,7 @@ const DeleteModal = ({ lng, campaignId, setDeleteModalIsOpen }) => {
         await dispatch(deleteCurrentCampaign({ campaignId }))
         setDeleteModalIsOpen(false)
         await router.push("/my-campaigns")
-        toast.success(t("Campaign deleted successfully."), {
+        toast.success(t("Campaign deleted."), {
             toastId: "delete-succeeded"
         })
     }

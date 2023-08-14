@@ -107,7 +107,7 @@ const CampaignEditModal = ({ lng, campaignId }) => {
       })
     );
     await dispatch(closeModal());
-    toast.success(t("Campaign updated successfully."), {
+    toast.success(t("Campaign updated."), {
       toastId: "edit-succeeded",
     });
   };
@@ -351,7 +351,7 @@ const CampaignEditModal = ({ lng, campaignId }) => {
                 type="submit"
                 style="bg-zinc-950 rounded-md w-full p-2 text-white text-[15px]"
               >
-                {t("Upload campaign")}
+                {t("Update campaign")}
               </Button>
             </div>
           </form>
