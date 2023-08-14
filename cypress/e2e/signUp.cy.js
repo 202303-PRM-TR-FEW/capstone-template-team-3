@@ -4,22 +4,6 @@ Cypress.on("uncaught:exception", (err, runnable) => {
 });
 
 describe("User Sign Up Form", () => {
-  it("allow users to sign up", () => {
-    cy.visit("http://localhost:3000/sign-up");
-    cy.get('[data-cy="name-input"]').type("John", { force: true });
-    cy.get('[data-cy="email-input"]').type("johndoe@gmail.com", {
-      force: true,
-    });
-    cy.get('[data-cy="password-input"]').type("Pass!123", { force: true });
-    cy.get('[data-cy="passwordConfirm-input"]').type("Pass!123", {
-      force: true,
-    });
-    cy.get('[type="checkbox"]').check({ force: true });
-    cy.get('[type="submit"]').click({ force: true });
-  });
-});
-
-describe("User Sign Up Form", () => {
   it("rejects invalid name input", () => {
     cy.visit("http://localhost:3000/sign-up");
     cy.get('[data-cy="name-input"]').type("123", { force: true });
@@ -103,5 +87,21 @@ describe("User Sign Up Form", () => {
     cy.contains("You must accept the Terms & Conditions to proceed.").should(
       "be.visible"
     );
+  });
+});
+
+describe("User Sign Up Form", () => {
+  it("allow users to sign up", () => {
+    cy.visit("http://localhost:3000/sign-up");
+    cy.get('[data-cy="name-input"]').type("John", { force: true });
+    cy.get('[data-cy="email-input"]').type("johndoe@gmail.com", {
+      force: true,
+    });
+    cy.get('[data-cy="password-input"]').type("Pass!123", { force: true });
+    cy.get('[data-cy="passwordConfirm-input"]').type("Pass!123", {
+      force: true,
+    });
+    cy.get('[type="checkbox"]').check({ force: true });
+    cy.get('[type="submit"]').click({ force: true });
   });
 });

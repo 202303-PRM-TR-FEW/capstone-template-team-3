@@ -46,7 +46,6 @@ const PaymentModal = ({ campaignId, lng }) => {
   const onSubmit = async (data) => {
     const { donation, checkbox } = data;
     const currentUserId = currentUser.id;
-    console.log(currentUserId, donation, campaignId);
     await dispatch(
       addUserDonation({ currentUserId, donation, checkbox, campaignId })
     );

@@ -96,10 +96,11 @@ export default function CampaignPage({ params }) {
     <>
       {modalIsOpen && <PaymentModal campaignId={campaignId} />}
       {editModalIsOpen && (
-        <CampaignEditModal campaignId={campaignId} lng={lng} />
+        <CampaignEditModal campaignId={campaignId} params={params} />
       )}
       {deleteModalIsOpen && (
         <DeleteModal
+          params={params}
           campaignId={campaignId}
           setDeleteModalIsOpen={setDeleteModalIsOpen}
         />

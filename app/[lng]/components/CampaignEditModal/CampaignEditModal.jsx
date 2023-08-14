@@ -21,7 +21,8 @@ import { useTranslation } from "../../../i18n/client";
 import Select from "react-select";
 import { toast } from "react-toastify";
 
-const CampaignEditModal = ({ lng, campaignId }) => {
+const CampaignEditModal = ({params, campaignId }) => {
+  const { lng } = params;
   const [user, loading] = useAuthState(auth);
   const dispatch = useDispatch();
   const { t } = useTranslation(lng, "campaignEdit");

@@ -10,7 +10,8 @@ import { deleteCurrentCampaign } from "@/app/lib/features/campaignSlice";
 import { toast } from "react-toastify"
 import Loader from "../Loader/loader";
 
-const DeleteModal = ({ lng, campaignId, setDeleteModalIsOpen }) => {
+const DeleteModal = ({ params, campaignId, setDeleteModalIsOpen }) => {
+    const { lng } = params;
     const dispatch = useDispatch();
     const router = useRouter()
     const { t } = useTranslation(lng, "deleteModal");

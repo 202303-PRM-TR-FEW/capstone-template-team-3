@@ -24,8 +24,6 @@ const CategoryFilter = ({ lng, href }) => {
     { name: t("Children"), query: "Children", icon: <FaChild /> },
   ];
 
-  console.log(search)
-
   return (
     <div className="categories">
       {categories.map((category) => (
