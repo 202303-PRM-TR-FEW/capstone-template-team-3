@@ -35,7 +35,7 @@ const RootLayout = ({ children, params: { lng } }) => {
             pauseOnHover
             toastStyle={{
               minWidth: "max-content",
-              maxWidth: "310px",
+              maxWidth: "320px",
               backgroundColor: "rgb(250, 250, 250)",
             }}
           />
