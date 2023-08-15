@@ -66,42 +66,30 @@ const CampaignOwnerProfile = ({ params }) => {
                                 <h3 className="text-xl font-semibold leading-normal text-blueGray-700 mb-2">
                                     {campaignOwner.name}
                                 </h3>
-                                {/* <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                  <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-                  Los Angeles, California
-                </div>
-                <div className="mb-2 text-blueGray-600 mt-10">
-                  <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                  Solution Manager - Creative Tim Officer
-                </div>
-                <div className="mb-2 text-blueGray-600">
-                  <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
-                  University of Computer Science
-                </div> */}
                             </div>
                             <div className="flex justify-center w-full px-4 text-center border-t border-blueGray-200 mt-10 py-10">
-                                <div className="mx-auto md:w-1/3">
+                                <div className="lg:w-1/3 mx-auto flex flex-col justify-center items-center">
                                     <h2>{t("Campaigns")}</h2>
-                                    <div className="flex flex-col justify-center py-4 lg:pt-4 pt-8 md:flex-row">
+                                    <div className="flex flex-col justify-center py-4 lg:pt-4 md:flex-row">
                                         <div
-                                            className="my-2 p-3 h-22 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer md:mr-2"
+                                            className="p-3 h-[5rem] w-52 lg:w-36 my-2 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer md:mr-2 md:my-0"
                                             onClick={handleRoute}
                                         >
-                                            <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                                            <span className="text-xl font-bold block uppercase tracking-wide">
                                                 {ownerCampaigns.length}
                                             </span>
-                                            <span className="text-sm text-blueGray-400">
+                                            <span className="text-sm">
                                                 {t("Kicked-Off")}
                                             </span>
                                         </div>
                                         <div
-                                            className="my-2 p-3 h-22 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer md:ml-2"
+                                            className="p-3 h-[5rem] w-52 lg:w-36 my-2 text-center bg-theme rounded-lg hover:bg-accent-black hover:text-theme cursor-pointer md:ml-2 md:my-0"
                                             onClick={handleRoute}
                                         >
-                                            <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                                            <span className="text-xl font-bold block uppercase tracking-wide">
                                                 {ownerDonations.length}
                                             </span>
-                                            <span className="text-sm text-blueGray-400">
+                                            <span className="text-sm">
                                                 {t("Supported")}
                                             </span>
                                         </div>

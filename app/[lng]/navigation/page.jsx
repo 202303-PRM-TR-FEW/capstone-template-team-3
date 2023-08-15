@@ -16,12 +16,13 @@ import { BsPatchCheckFill } from "react-icons/bs"
 import { toast } from "react-toastify"
 import Loader from "../components/Loader/loader";
 
-export default function Navigation({ lng }) {
+export default function Navigation({ params }) {
   const [user, loading] = useAuthState(auth);
   const [supportIsChecked, setSupportIsChecked] = useState(false);
   const [kickoffIsChecked, setKickoffIsChecked] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
+  const { lng } = params
   const { t } = useTranslation(lng, "navigation");
   const currentUser = useSelector((state) => state.user.user);
   const userStatus = useSelector((state) => state.user.status)
@@ -81,7 +82,7 @@ export default function Navigation({ lng }) {
               type="checkbox"
               name="support"
               id="support"
-              className="checkbox-input"
+              className="checkbox-input-support"
               onChange={handleSupportCheck}
               checked={supportIsChecked}
               disabled={kickoffIsChecked}
@@ -99,7 +100,7 @@ export default function Navigation({ lng }) {
               type="checkbox"
               name="kick-off"
               id="kick-off"
-              className="checkbox-input"
+              className={lng === "tr" ? "checkbox-input-kick-off-tr" : "checkbox-input-kick-off-en"}
               checked={kickoffIsChecked}
               disabled={supportIsChecked}
               onChange={handleKickoffCheck}

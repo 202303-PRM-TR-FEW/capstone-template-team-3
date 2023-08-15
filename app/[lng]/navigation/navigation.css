@@ -15,11 +15,19 @@
 }
 
 .checkbox-support-container {
-    @apply flex justify-center items-center xl:p-10 p-5 text-left xl:mb-10 mb-5
+    @apply flex justify-center items-center xl:p-10 p-5 text-right whitespace-nowrap xl:mb-10 mb-5
 }
 
-input.checkbox-input {
+input.checkbox-input-support {
     @apply xl:w-[48px] xl:h-[48px] w-[24px] h-[24px] md:w-[30px] md:h-[30px] lg:w-[36px] lg:h-[36px] rounded-md md:rounded-lg xl:rounded-xl text-theme ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent xl:me-20 xl:mb-12 me-8 mb-6 md:mb-8 md:me-12 lg:mb-9 lg:me-14 outline-none focus:outline-none disabled:opacity-25 cursor-pointer disabled:cursor-not-allowed
+}
+
+input.checkbox-input-kick-off-en {
+    @apply xl:w-[48px] xl:h-[48px] w-[24px] h-[24px] md:w-[30px] md:h-[30px] lg:w-[36px] lg:h-[36px] rounded-md md:rounded-lg xl:rounded-xl text-theme ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent xl:me-[7rem] xl:mb-12 me-[3rem] mb-6 md:mb-8 md:me-[4.3rem] lg:mb-9 lg:me-[5rem] outline-none focus:outline-none disabled:opacity-25 cursor-pointer disabled:cursor-not-allowed
+}
+
+input.checkbox-input-kick-off-tr {
+    @apply xl:w-[48px] xl:h-[48px] w-[24px] h-[24px] md:w-[30px] md:h-[30px] lg:w-[36px] lg:h-[36px] rounded-md md:rounded-lg xl:rounded-xl text-theme ring-0 ring-offset-0 focus:ring-offset-0 focus:ring-0 focus:ring-transparent xl:me-[6.2rem] xl:mb-12 me-[2.6rem] mb-6 md:mb-8 md:me-[3.7rem] lg:mb-9 lg:me-[4.4rem] outline-none focus:outline-none disabled:opacity-25 cursor-pointer disabled:cursor-not-allowed
 }
 
 .checkbox-text-container {
@@ -39,7 +47,7 @@ input.checkbox-input {
 }
 
 .checkbox-kick-off-container {
-    @apply flex justify-center items-center xl:p-10 p-5 text-left xl:mt-10 mt-5
+    @apply flex justify-center items-center xl:p-10 p-5 text-right whitespace-nowrap xl:mt-10 mt-5
 }
 
 .newsletter-section {

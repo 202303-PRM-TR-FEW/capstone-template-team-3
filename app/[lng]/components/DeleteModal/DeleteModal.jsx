@@ -10,7 +10,8 @@ import { deleteCurrentCampaign } from "@/app/lib/features/campaignSlice";
 import { toast } from "react-toastify"
 import Loader from "../Loader/loader";
 
-const DeleteModal = ({ lng, campaignId, setDeleteModalIsOpen }) => {
+const DeleteModal = ({ params, campaignId, setDeleteModalIsOpen }) => {
+    const { lng } = params;
     const dispatch = useDispatch();
     const router = useRouter()
     const { t } = useTranslation(lng, "deleteModal");
@@ -23,7 +24,7 @@ const DeleteModal = ({ lng, campaignId, setDeleteModalIsOpen }) => {
         await dispatch(deleteCurrentCampaign({ campaignId }))
         setDeleteModalIsOpen(false)
         await router.push("/my-campaigns")
-        toast.success(t("Campaign deleted successfully."), {
+        toast.success(t("Campaign deleted."), {
             toastId: "delete-succeeded"
         })
     }
@@ -31,11 +32,11 @@ const DeleteModal = ({ lng, campaignId, setDeleteModalIsOpen }) => {
     return (
         currentCampaign ? (<main>
             <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background z-10">
-                <div className="bg-slate-50 lg:w-[50%] lg:h-[auto] rounded-xl p-4 flex flex-col justify-between sm:w-[75%] sm:h-[75%]">
-                    <h3 className="text-center text-[30px] p-5">{t("Are you sure you want to cancel and delete this campaign?")}</h3>
-                    <div className="flex justify-center items-center gap-5">
-                        <Button name={t("Yes, cancel and delete the campaign")} style={"bg-red-600 text-white py-3 px-8 rounded-lg"} clickAction={handleDeleteCampaign} />
-                        <Button name={t("No, back to the campaign")} style={"bg-neutral-950 text-white py-3 px-8 rounded-lg"} clickAction={handleCloseModal} />
+                <div className="bg-slate-50 xl:w-[75%] 2xl:w-[60%] rounded-xl p-4 flex flex-col justify-between w-11/12 sm:w-[80%]">
+                    <h3 className="text-center text-base md:text-[22px] py-5 px-2">{t("Are you sure you want to cancel and delete this campaign?")}</h3>
+                    <div className="flex flex-col justify-stretch w-10/12 mx-auto gap-5">
+                        <Button name={t("Yes, cancel and delete the campaign")} style={"bg-red-600 text-sm md:text-[18px] text-white py-3 px-3 rounded-lg"} clickAction={handleDeleteCampaign} />
+                        <Button name={t("No, back to the campaign")} style={"bg-neutral-950 text-sm md:text-[18px] text-white py-3 px-3 rounded-lg"} clickAction={handleCloseModal} />
                     </div>
                 </div>
             </div>

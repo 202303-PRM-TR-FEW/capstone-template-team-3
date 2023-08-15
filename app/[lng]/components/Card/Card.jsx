@@ -3,14 +3,14 @@ import "./Card.css";
 import { useTranslation } from "../../../i18n/client";
 import DonationBar from "@/app/[lng]/components/DonationBar/DonationBar";
 
-const Card = ({ img, title, raised, goal, lng }) => {
+const Card = ({ img, title, raised, goal, lng,clickAction }) => {
   const { t } = useTranslation(lng, "largeCard");
   return (
-    <div className="card-main">
-      <div className="card-img-section ">
+    <div className="card-main cursor-pointer transform transition-transform duration-500 ease-in-out hover:shadow-gray-400 hover:drop-shadow-2xl hover:scale-110 " onClick={clickAction}>
+      <div className="card-img-section">
         <div className="card-img">
           <Image
-            className="h-[9em] w-[16em]"
+            className="h-[9em] w-[16em] rounded-lg "
             src={img}
             alt={title}
             width={800}

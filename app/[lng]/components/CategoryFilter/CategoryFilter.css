@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .categories{
-@apply flex flex-wrap justify-center xl:justify-start items-center container w-11/12 mx-auto px-3;
+@apply flex flex-wrap md:flex-nowrap justify-center xl:justify-start items-center container w-11/12 mx-auto px-3;
 }
 
 .icon-main {

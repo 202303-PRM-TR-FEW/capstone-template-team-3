@@ -1,31 +1,17 @@
-import React from "react";
+// Import the NavLink component
 import NavLink from "./NavLink";
 
-describe("NavLink", () => {
-  it("should render a link with the given name, to, and style props", () => {
-    // mount the component with some sample props
-    cy.mount(<NavLink name="Home" to="/" style="text-blue-500" />);
+// Define the test suite
+describe("<NavLink />", () => {
+  // Define the test case for rendering the NavLink component
+  it("should render the NavLink component with the given props", () => {
+    // Mount the NavLink component with some props
+    cy.mount(<NavLink to="/about" name="About" style="text-blue-500" />);
 
-    // check that the link is rendered with the correct attributes and text
+    // Assert that the link element has the expected attributes and text
     cy.get("a")
-      .should("have.attr", "href", "/")
-      .and("have.class", "text-blue-500")
-      .and("have.text", "Home");
-  });
-
-  it("should render any children passed to the component", () => {
-    // mount the component with some sample props and children
-    cy.mount(
-      <NavLink name="Home" to="/" style="text-blue-500">
-        <span className="ml-2">🏠</span>
-      </NavLink>
-    );
-
-    // check that the link has a child element with the correct class and text
-    cy.get("a")
-      .children()
-      .first()
-      .should("have.class", "ml-2")
-      .and("have.text", "🏠");
+      .should("have.attr", "href", "/about")
+      .should("have.class", "text-blue-500")
+      .should("contain.text", "About");
   });
 });

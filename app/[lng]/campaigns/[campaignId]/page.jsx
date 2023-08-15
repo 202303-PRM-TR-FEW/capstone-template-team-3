@@ -96,10 +96,11 @@ export default function CampaignPage({ params }) {
     <>
       {modalIsOpen && <PaymentModal campaignId={campaignId} />}
       {editModalIsOpen && (
-        <CampaignEditModal campaignId={campaignId} lng={lng} />
+        <CampaignEditModal campaignId={campaignId} params={params} />
       )}
       {deleteModalIsOpen && (
         <DeleteModal
+          params={params}
           campaignId={campaignId}
           setDeleteModalIsOpen={setDeleteModalIsOpen}
         />
@@ -270,7 +271,7 @@ export default function CampaignPage({ params }) {
                             key={category.label}
                             className="p-2 border-2 border-black bg-theme text-black rounded-lg"
                           >
-                            {category.value}
+                            {lng === "tr" ? categoryTranslations[category.value] : category.value}
                           </span>
                         ))}
                       </div>

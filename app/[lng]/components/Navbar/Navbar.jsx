@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Logo from "../Logo/Logo";
 import Search from "../Search/Search";
 import NavLink from "../NavLink/NavLink";
@@ -32,6 +32,7 @@ const Navbar = ({ lng }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { t } = useTranslation(lng, "navbar");
   const pathname = usePathname();
+  const dropdownRef = useRef(null);
 
   const handleToggleDropdown = () => {
     setToggleDropdown((prevState) => !prevState);
@@ -74,6 +75,18 @@ const Navbar = ({ lng }) => {
   });
 
   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setToggleDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
     dispatch(getAllCampaigns());
   }, []);
 
@@ -102,7 +115,7 @@ const Navbar = ({ lng }) => {
             />
           ) : (
             <Search
-              style="bg-accent text-gray-900 text-sm lg:text-[1rem] rounded-lg focus:ring-0 w-[12.4rem] lg:w-[14rem] p-2.5 border-0 h-11 -left-20 lg:-left-24 inset-y-[3.2rem] sm:inset-y-10 absolute drop-shadow-2xl"
+              style="bg-accent text-gray-900 text-[12px] lg:text-[14px] rounded-lg focus:ring-0 w-[12.4rem] lg:w-[14rem] p-2.5 border-0 h-11 -left-20 lg:-left-24 inset-y-[3.2rem] sm:inset-y-10 absolute drop-shadow-2xl"
               onSearch={handleSearch}
               suggestions={suggestionCampaigns}
               onSuggestionClick={handleSuggestionClick}
@@ -176,7 +189,8 @@ const Navbar = ({ lng }) => {
             </div>
           </Button>
           {toggleDropdown && (
-            <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl z-10">
+            <div className="bg-accent rounded-lg min-w-max min-h-fit absolute inset-y-14 right-5 p-4 flex flex-col text-sm items-stretch justify-center text-center drop-shadow-2xl z-10"
+              ref={dropdownRef}>
               <NavLink
                 to="/campaigns"
                 name={t("Home")}
@@ -185,6 +199,7 @@ const Navbar = ({ lng }) => {
                     ? "underline underline-offset-[6px] decoration-2 mb-2"
                     : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"
                 }
+                clickAction={() => setToggleDropdown(false)}
               />
               {user && (
                 <>
@@ -196,6 +211,7 @@ const Navbar = ({ lng }) => {
                         ? "underline underline-offset-[6px] decoration-2 mb-2"
                         : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"
                     }
+                    clickAction={() => setToggleDropdown(false)}
                   />
                   <NavLink
                     to={`/${lng}/profile`}
@@ -205,12 +221,13 @@ const Navbar = ({ lng }) => {
                         ? "underline underline-offset-[6px] decoration-2 mb-2"
                         : "mb-2 hover:underline hover:underline-offset-8 hover:decoration-4 hover:decoration-accent"
                     }
+                    clickAction={() => setToggleDropdown(false)}
                   />
                   <Button
                     type="button"
                     name={t("New Campaign")}
                     style="navbar-button mb-2"
-                    clickAction={handleModalToggle}
+                    clickAction={() => { handleModalToggle(), setToggleDropdown(false) }}
                   />
                 </>
               )}
@@ -218,7 +235,7 @@ const Navbar = ({ lng }) => {
                 type="button"
                 name={user ? t("Sign out") : t("Sign in")}
                 style="navbar-button"
-                clickAction={!user ? () => handleLogin() : () => handleLogout()}
+                clickAction={!user ? () => { handleLogin(), setToggleDropdown(false) } : () => { handleLogout(), setToggleDropdown(false) }}
               />
             </div>
           )}
