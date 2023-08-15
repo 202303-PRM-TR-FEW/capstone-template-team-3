@@ -111,11 +111,11 @@ export default function CampaignPage({ params }) {
         user &&
         currentCampaign.id === user.uid &&
         campaignOwner ? (
-        <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
+        <div className="xl:h-screen py-10 flex items-center flex-col xl:flex-row justify-center container mx-auto px-5 gap-5">
           {/* left container */}
-          <div className="mb-5 max-w-3xl">
+          <div className="w-[16rem] h-44 sm:w-[36rem] sm:h-[25rem] lg:w-[50rem] lg:h-[30rem] xl:w-1/2 xl:h-1/2 relative flex justify-center items-center rounded-lg overflow-visible bg-[#e6e6e6]">
             <Image
-              className="bg-slate-100 rounded-xl"
+              className="bg-slate-100 absolute w-[96%] h-[95%] rounded-lg transform transition-transform duration-500 ease-in-out hover:scale-105"
               width={1200}
               height={200}
               src={currentCampaign.image}
@@ -123,13 +123,13 @@ export default function CampaignPage({ params }) {
             />
           </div>
           {/* right container  */}
-          <div className="flex flex-col space-y-5 ">
-            <h1 className="text-2xl font-bold lg:text-start ">
+          <div className="flex flex-col space-y-5 lg:w-1/2">
+            <h1 className="text-xl lg:text-4xl font-bold text-center container w-11/12 mx-auto">
               {currentCampaign.projectName}
             </h1>
-            <div className="flex items-center justify-center space-x-5 lg:justify-start">
+            <div className="flex w-11/12 mx-auto lg:w-full items-center justify-center space-x-2 lg:space-x-5">
               <div
-                className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0"
+                className="h-16 w-16 lg:h-20 lg:w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0"
                 onClick={() => router.push(`/${lng}/profile`)}
               >
                 <Image
@@ -147,15 +147,15 @@ export default function CampaignPage({ params }) {
               </div>
               <h3>{campaignOwner.name}</h3>
             </div>
-            <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
+            <div className="flex flex-col space-y-5 lg:space-y-0">
               {/* about campaign  */}
-              <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
-                <h4 className="text-xl">{t("About campaign")}</h4>
+              <div className="flex flex-col space-y-5 justify-center items-center rounded-lg border-2 lg:border-l-0 lg:border-r-0 lg:border-b-0 p-5 lg:rounded-none border-neutral-950 text-center w-11/12 mx-auto lg:w-full">
+                <h4 className="text-lg lg:text-xl">{t("About campaign")}</h4>
                 <p className="text-sm">{currentCampaign.about}</p>
                 {currentCampaign.category && (
                   <div>
-                    <h5 className="text-md mb-2">{t("Categories")}</h5>
-                    <div className="flex justify-center items-center gap-2 text-sm">
+                    <h5 className="text-md mb-5">{t("Categories")}</h5>
+                    <div className="flex flex-wrap justify-center items-center gap-2 text-sm">
                       {currentCampaign.category.map((category) => (
                         <span
                           key={category.label}
@@ -168,9 +168,8 @@ export default function CampaignPage({ params }) {
                   </div>
                 )}
               </div>
-              {/* campaign details   */}
-              <div className="flex flex-col justify-around p-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950">
-                <div className="flex space-x-10 ">
+              <div className="flex flex-col justify-center p-5 rounded-lg lg:border-r-0 lg:border-l-0 lg:border-t-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950 w-11/12 lg:w-full mx-auto">
+                <div className="flex lg:space-x-10 justify-center items-center">
                   <div className="p-2">
                     <h5>{t("Raised")}:</h5>
                     <p>{"$" + currentCampaign.raised}</p>
@@ -195,8 +194,9 @@ export default function CampaignPage({ params }) {
                   </h5>
                 </div>
               </div>
+              {/* campaign details   */}
             </div>
-            <div className="flex justify-center items-center gap-5">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
               <Button
                 style={
                   "w-[15rem] bg-neutral-950 text-white py-3 px-8 rounded-lg"
@@ -217,11 +217,11 @@ export default function CampaignPage({ params }) {
       ) : (
         currentCampaign &&
         campaignOwner && (
-          <div className="flex flex-col p-3 items-center lg:pt-20 text-center lg:flex lg:flex-row lg:space-x-5  lg:items-start lg:mx-16 lg:justify-center ">
+          <div className="xl:h-screen py-10 flex items-center flex-col xl:flex-row justify-center container mx-auto px-5 gap-5">
             {/* left container */}
-            <div className="mb-5 max-w-3xl">
+            <div className="w-[16rem] h-44 sm:w-[36rem] sm:h-[25rem] lg:w-[50rem] lg:h-[30rem] xl:w-1/2 xl:h-1/2 relative flex justify-center items-center rounded-lg overflow-visible bg-[#e6e6e6]">
               <Image
-                className="bg-slate-100 rounded-xl"
+                className="bg-slate-100 absolute w-[96%] h-[95%] rounded-lg transform transition-transform duration-500 ease-in-out hover:scale-105"
                 width={1200}
                 height={200}
                 src={currentCampaign.image}
@@ -229,13 +229,13 @@ export default function CampaignPage({ params }) {
               />
             </div>
             {/* right container  */}
-            <div className="flex flex-col space-y-5 ">
-              <h1 className="text-2xl font-bold lg:text-start ">
+            <div className="flex flex-col space-y-5 lg:w-1/2">
+              <h1 className="text-xl lg:text-4xl font-bold text-center container w-11/12 mx-auto">
                 {currentCampaign.projectName}
               </h1>
-              <div className="flex items-center justify-center space-x-5 lg:justify-start">
+              <div className="flex w-11/12 mx-auto lg:w-full items-center justify-center space-x-2 lg:space-x-5">
                 <div
-                  className="h-20 w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0"
+                  className="h-16 w-16 lg:h-20 lg:w-20 rounded-full border-2 border-neutral-950 overflow-hidden bg-theme relative z-0"
                   onClick={() =>
                     router.push(
                       `/${lng}/campaigns/${campaignId}/${campaignOwner.id}`
@@ -258,14 +258,15 @@ export default function CampaignPage({ params }) {
                 <h3>{campaignOwner.name}</h3>
               </div>
 
-              <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0">
+              <div className="flex flex-col space-y-5 lg:space-y-0">
                 {/* about campaign  */}
-                <div className="flex flex-col space-y-5  rounded-lg border-2 lg:border-l-0 py-5 lg:rounded-none border-neutral-950 ">
-                  <h4 className="text-xl">{t("About campaign")}</h4>
+                <div className="flex flex-col space-y-5 justify-center items-center rounded-lg border-2 lg:border-l-0 lg:border-r-0 lg:border-b-0 p-5 lg:rounded-none border-neutral-950 text-center w-11/12 mx-auto lg:w-full">
+                  <h4 className="text-lg lg:text-xl">{t("About campaign")}</h4>
+                  <p className="text-sm">{currentCampaign.about}</p>
                   {currentCampaign.category && (
                     <div>
-                      <h5 className="text-md mb-2">{t("Categories")}</h5>
-                      <div className="flex justify-center items-center gap-2 text-sm">
+                      <h5 className="text-md mb-5">{t("Categories")}</h5>
+                      <div className="flex flex-wrap justify-center items-center gap-2 text-sm">
                         {currentCampaign.category.map((category) => (
                           <span
                             key={category.label}
@@ -278,9 +279,8 @@ export default function CampaignPage({ params }) {
                     </div>
                   )}
                 </div>
-                {/* campaign details   */}
-                <div className="flex flex-col justify-around p-5 rounded-lg lg:border-r-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950">
-                  <div className="flex space-x-10 ">
+                <div className="flex flex-col justify-center p-5 rounded-lg lg:border-r-0 lg:border-l-0 lg:border-t-0 lg:rounded-none text-center items-center border-2 space-y-3 border-neutral-950 w-11/12 lg:w-full mx-auto">
+                  <div className="flex lg:space-x-10 justify-center items-center">
                     <div className="p-2">
                       <h5>{t("Raised")}:</h5>
                       <p>{"$" + currentCampaign.raised}</p>
@@ -305,8 +305,9 @@ export default function CampaignPage({ params }) {
                     </h5>
                   </div>
                 </div>
+                {/* campaign details   */}
               </div>
-              <div className="flex justify-center lg:flex lg:justify-start">
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
                 <Button
                   style={"bg-neutral-950 text-white  py-3 px-16  rounded-lg"}
                   name={t("Fund this campaign!")}
