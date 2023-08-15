@@ -1,12 +1,12 @@
 Cypress.on("uncaught:exception", (err, runnable) => {
-  // returning false here prevents Cypress from failing the test
   return false;
 });
 
 describe("directs to kick off modal", () => {
   it("passes", () => {
     cy.visit("http://localhost:3000/en/profile");
-    cy.get(".flex.text-center > :nth-child(1) > .bg-theme").click();
+    cy.get(':nth-child(1) > [data-cy="New campaign"]').click();
+    cy.wait(20000);
     cy.location("pathname");
     cy.should("equal", "/en/my-campaigns");
     cy.contains("Kick-off your campaign");
