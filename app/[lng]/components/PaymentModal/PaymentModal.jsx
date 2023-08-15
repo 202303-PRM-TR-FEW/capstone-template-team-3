@@ -62,7 +62,7 @@ const PaymentModal = ({ campaignId, lng }) => {
       <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background z-10">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-slate-50 lg:w-[35%] lg:h-[70%] rounded-xl p-4 flex flex-col justify-between sm:w-[75%] sm:h-[75%]"
+          className="bg-slate-50 2xl:w-[40%] rounded-xl p-4 flex flex-col justify-between w-11/12 sm:w-[60%] lg:w-[72%] xl:w-[60%] h-[50%]"
         >
           <div>
             <div>
@@ -70,38 +70,37 @@ const PaymentModal = ({ campaignId, lng }) => {
                 <IoIosArrowBack size={28} />
               </Button>
             </div>
-            <div className="m-2 my-6 text-[32px]">
+            <div className="lg:m-2 lg:my-4 lg:text-[38px] md:text-[20px] md:m-2 text-[20px] leading-tight">
               {t("Enter the donation amount")}:
             </div>
-            <div>
+            <div className="flex flex-col md:flex-row justify-between md:m-2 my-2">
               <input
                 {...register("donation", {
                   required: true,
                   pattern: /^[1-9][0-9]*$/,
                 })}
                 placeholder="$0"
-                className="bg-slate-50 text-black text-[30px] w-full border-none focus:outline-none focus:ring-0 custom-border-bottom"
+                className="bg-slate-50 text-black text-[30px] w-full focus:outline-none focus:ring-0 custom-border-bottom border-x-0 border-t-0 border-b-[1px] border-solid border-black"
               />
-              {errors.donation?.type === "required" && (
-                <p
-                  role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
-                >
-                  {t("Donation is required")}
-                </p>
-              )}
-              {errors.donation?.type === "pattern" && (
-                <p
-                  role="alert"
-                  className="text-end text-red-600 italic text-[14px]"
-                >
-                  {t("Donation is invalid")}
-                </p>
-              )}
-              <hr className="w-full border-gray-400 border-solid border" />
             </div>
-            <div className="mt-3 flex items-center">
-              <label className="text-[13px]">{t("Add 2% for charity")}</label>
+            {errors.donation?.type === "required" && (
+              <p
+                role="alert"
+                className="text-end text-red-600 italic text-[14px] md:m-2"
+              >
+                {t("Donation is required")}
+              </p>
+            )}
+            {errors.donation?.type === "pattern" && (
+              <p
+                role="alert"
+                className="text-end text-red-600 italic text-[14px] md:m-2"
+              >
+                {t("Donation is invalid")}
+              </p>
+            )}
+            <div className="flex items-center md:m-2">
+              <label className="text-[18px]">{t("Add 2% for charity")}</label>
               <input
                 {...register("checkbox")}
                 type="checkbox"
