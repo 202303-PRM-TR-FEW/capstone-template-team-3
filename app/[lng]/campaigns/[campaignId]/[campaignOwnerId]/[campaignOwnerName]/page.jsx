@@ -53,7 +53,7 @@ const OwnerCampaigns = ({ params }) => {
           <h3 className="text-center py-5">
             {`${campaignOwner.name}` + " " + t("Kicked-Off These Campaigns")}:
           </h3>
-          <div className="container mx-auto grid grid-cols-3 place-items-center gap-5 pb-5">
+          <div className="container mx-auto flex flex-wrap flex-row justify-center items-center gap-5 pb-5">
             {Array.isArray(ownerCampaigns) &&
               ownerCampaigns.length > 0 &&
               ownerCampaigns.map((campaign, index) => {
@@ -79,7 +79,7 @@ const OwnerCampaigns = ({ params }) => {
           <h3 className="text-center py-5">
             {`${campaignOwner.name}` + " " + t("Is Supporting These Campaigns")}:
           </h3>
-          <div className="container mx-auto grid grid-cols-3 place-items-center gap-5 pb-5">
+          <div className="container mx-auto flex flex-wrap flex-row justify-center items-center gap-5 pb-5">
             {Array.isArray(ownerDonations) &&
               ownerDonations.length > 0 &&
               ownerDonations.map((campaign, index) => {

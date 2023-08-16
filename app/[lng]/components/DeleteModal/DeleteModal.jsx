@@ -32,9 +32,9 @@ const DeleteModal = ({ params, campaignId, setDeleteModalIsOpen }) => {
     return (
         currentCampaign ? (<main>
             <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-zinc-950 bg-opacity-50 modal-background z-10">
-                <div className="bg-slate-50 xl:w-[75%] 2xl:w-[60%] rounded-xl p-4 flex flex-col justify-between w-11/12 sm:w-[80%]">
+                <div className="bg-slate-50 xl:w-[75%] 2xl:w-[50%] rounded-xl p-4 flex flex-col justify-between w-11/12 sm:w-[80%]">
                     <h3 className="text-center text-base md:text-[22px] py-5 px-2">{t("Are you sure you want to cancel and delete this campaign?")}</h3>
-                    <div className="flex flex-col justify-stretch w-10/12 mx-auto gap-5">
+                    <div className="flex flex-col justify-stretch w-10/12 mx-auto gap-5 xl:w-[60%]">
                         <Button name={t("Yes, cancel and delete the campaign")} style={"bg-red-600 text-sm md:text-[18px] text-white py-3 px-3 rounded-lg"} clickAction={handleDeleteCampaign} />
                         <Button name={t("No, back to the campaign")} style={"bg-neutral-950 text-sm md:text-[18px] text-white py-3 px-3 rounded-lg"} clickAction={handleCloseModal} />
                     </div>
