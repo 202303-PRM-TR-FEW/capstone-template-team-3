@@ -19,7 +19,7 @@
 }
 
 .project-title {
-  @apply text-center lg:text-justify text-[18px] text-xl lg:text-2xl xl:text-[27px];
+  @apply text-center lg:text-start text-[18px] text-xl lg:text-2xl xl:text-[27px];
 }
 
 .project-describe {
