@@ -111,9 +111,9 @@ export default function CampaignPage({ params }) {
         user &&
         currentCampaign.id === user.uid &&
         campaignOwner ? (
-        <div className="xl:h-screen py-10 flex items-center flex-col xl:flex-row justify-center container mx-auto px-5 gap-5">
+        <div className="pt-10 flex items-center flex-col xl:flex-row justify-center container mx-auto px-5 gap-5">
           {/* left container */}
-          <div className="w-[16rem] h-44 sm:w-[36rem] sm:h-[25rem] lg:w-[50rem] lg:h-[30rem] xl:w-1/2 xl:h-1/2 relative flex justify-center items-center rounded-lg overflow-visible bg-[#e6e6e6]">
+          <div className="w-[16rem] h-44 sm:w-[36rem] sm:h-[25rem] lg:w-[50rem] lg:h-[30rem] relative flex justify-center items-center rounded-lg overflow-visible bg-[#e6e6e6]">
             <Image
               className="bg-slate-100 absolute w-[96%] h-[95%] rounded-lg transform transition-transform duration-500 ease-in-out hover:scale-105"
               width={1200}
@@ -217,9 +217,9 @@ export default function CampaignPage({ params }) {
       ) : (
         currentCampaign &&
         campaignOwner && (
-          <div className="xl:h-screen py-10 flex items-center flex-col xl:flex-row justify-center container mx-auto px-5 gap-5">
+          <div className="pt-10 flex items-center flex-col xl:flex-row justify-center container mx-auto px-5 gap-5">
             {/* left container */}
-            <div className="w-[16rem] h-44 sm:w-[36rem] sm:h-[25rem] lg:w-[50rem] lg:h-[30rem] xl:w-1/2 xl:h-1/2 relative flex justify-center items-center rounded-lg overflow-visible bg-[#e6e6e6]">
+            <div className="w-[16rem] h-44 sm:w-[36rem] sm:h-[25rem] lg:w-[50rem] lg:h-[30rem] relative flex justify-center items-center rounded-lg overflow-visible bg-[#e6e6e6]">
               <Image
                 className="bg-slate-100 absolute w-[96%] h-[95%] rounded-lg transform transition-transform duration-500 ease-in-out hover:scale-105"
                 width={1200}
