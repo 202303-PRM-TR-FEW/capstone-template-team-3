@@ -1,10 +1,10 @@
 This project aims to create a robust crowdfunding platform that connects passionate individuals and innovative projects with a community of potential backers.
 
-The website will provide a user-friendly and secure space where project creators can showcase their ideas, raise funds, and engage with supporters. With a focus on transparency and impact, this platform will empower individuals, nonprofits, and startups to bring their visions to life through collective financial contributions.
+The website provides a user-friendly and secure space where project creators can showcase their ideas, raise funds, and engage with supporters. With a focus on transparency and impact, this platform empowers individuals, nonprofits, and startups to bring their visions to life through collective financial contributions.
 
-The website will feature compelling project profiles, highlighting the goals, progress, and potential impact of each initiative. It will provide users with a seamless browsing experience, enabling them to explore projects by category, popularity, and relevance. The platform will emphasize trust and credibility, showcasing success stories and testimonials from previous campaigns. Key functionalities include a homepage showcasing featured projects, a project submission and approval process, secure payment integration, social sharing options, updates and communication tools, donor rewards, and a user profile section.
+The website features compelling project profiles, highlighting the goals, progress, and potential impact of each initiative. It provides users with a seamless browsing experience, enabling them to explore projects by category. Key functionalities include a homepage showcasing featured projects, a project submission and update process, payment integration, and a user profile section.
 
----
+##
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
