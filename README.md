@@ -1,8 +1,8 @@
-This project aims to create a robust crowdfunding platform that connects passionate individuals and innovative projects with a community of potential backers.
+Givingly is a robust crowdfunding platform that connects passionate individuals and innovative projects with a community of potential backers.
 
-The website provides a user-friendly and secure space where project creators can showcase their ideas, raise funds, and engage with supporters. With a focus on transparency and impact, this platform empowers individuals, nonprofits, and startups to bring their visions to life through collective financial contributions.
+The web application provides a user-friendly and secure space where project creators can showcase their ideas, raise funds, and engage with supporters. With a focus on transparency and impact, this platform empowers individuals, nonprofits, and startups to bring their visions to life through collective financial contributions.
 
-The website features compelling project profiles, highlighting the goals, progress, and potential impact of each initiative. It provides users with a seamless browsing experience, enabling them to explore projects by category. Key functionalities include a homepage showcasing featured projects, a project submission and update process, payment integration, and a user profile section.
+The web application features compelling project profiles, highlighting the goals, progress, and potential impact of each initiative. Givingly provides users with a seamless browsing experience, enabling them to explore projects by category. Key functionalities include a homepage showcasing featured projects, a project submission and update process, payment integration, and a user profile section.
 
 ##
 
